@@ -1,0 +1,28 @@
+{
+  "name": "com.seawisphunter.roleplay.attributes",
+  "version": "0.1.1",
+  "displayName": "Role Play Attributes",
+  "description": "Defines role playing attributes like \"health\" using generics that are modified non-destructively and notify on changes",
+  "unity": "2021.3",
+  "type": "library",
+  "author": {
+    "name": "Shane Celis",
+    "email": "support@seawisphunter.com",
+    "url": "https://seawisphunter.com"
+  },
+  "dependencies": { },
+  "documentationUrl": "https://github.com/shanecelis/SeawispHunter.RolePlay.Attributes/tree/unity3d",
+  "changelogUrl": "",
+  "license": "MIT",
+  "licensesUrl": "https://github.com/shanecelis/SeawispHunter.RolePlay.Attributes/blob/unity3d/LICENSE.md",
+  "keywords": [
+    "attributes", "role playing", "RPG", "stats", "Math", "experience"
+  ],
+  "samples": [
+    {
+      "displayName": "Generic RPG",
+      "description": "In this mockup of an role playing game, inventory can be equipped or consumed to affect the attributes of the character.",
+      "path": "Samples~/Generic RPG"
+    }
+  ]
+}
