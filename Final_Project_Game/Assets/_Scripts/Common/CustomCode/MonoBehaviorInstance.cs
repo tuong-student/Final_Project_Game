@@ -1,27 +1,58 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace NOOD
 {
-    public class MonoBehaviorInstance <T> : AbstractMonoBehaviour where T : MonoBehaviour
+    public static class InstanceHolder
     {
-        private static T instance;
-        public static T GetInstance
+        public static Dictionary<Type, object> InstanceDic = new Dictionary<Type, object>();
+
+        public static void AddToDic(object instance)
+        {
+            Debug.Log(instance.GetType());
+            if(InstanceDic.ContainsKey(instance.GetType()))
+            {
+                InstanceDic[instance.GetType()] = instance;
+            }
+            else
+            {
+                InstanceDic.Add(instance.GetType(), instance);
+            }
+        }
+        public static void RemoveFromDic(object instance)
+        {
+            if(InstanceDic.ContainsKey(instance.GetType()))
+            {
+                InstanceDic.Remove(instance.GetType());
+            }
+        }
+        public static T GetInstance<T>()
+        {
+            return (T)InstanceDic[typeof(T)];
+        }
+    }
+
+    public class MonoBehaviorInstance<T> : MonoBehaviour 
+    {
+        public static readonly object lockObject = new object();
+        public Type type;
+
+        public static T Instance
         {
             get
             {
-                if(instance == null)
+                lock(lockObject)
                 {
-                    instance = (T)FindObjectOfType(typeof(T));
+                    return InstanceHolder.GetInstance<T>();
                 }
-
-                if (instance == null)
-                {
-                    Debug.Log("Errorrrrr: " + typeof(T) + " not exit");
-                }
-                return instance;
             }
+        }
+
+        protected virtual void Awake()
+        {
+            InstanceHolder.AddToDic(this);
         }
     }
 }

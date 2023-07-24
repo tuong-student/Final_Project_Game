@@ -12,7 +12,6 @@ namespace Game
 
         void Awake()
         {
-            GameInput.Init();
             GameInput.onPlayerPressMoveVector2 += GetPlayerMoveDir;
             _speed.initial.value = PlayerConfig._speed;
         }

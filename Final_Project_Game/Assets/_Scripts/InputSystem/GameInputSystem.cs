@@ -35,6 +35,96 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""d363c610-57cd-475b-bdf1-8c23d5481dac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory1"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4275cb1-dc9a-4b11-adce-b43ab125eee2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory2"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c9f7093-f1a5-49cf-b38b-3a26c3f04c97"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory3"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ec5cbbb-413b-4311-b8da-65e0c1cc3326"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory4"",
+                    ""type"": ""Button"",
+                    ""id"": ""db684334-35ed-4f3e-a752-cb1bf8067ef0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory5"",
+                    ""type"": ""Button"",
+                    ""id"": ""49155ce6-afb0-42fe-bcef-02ca0bc2e410"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory6"",
+                    ""type"": ""Button"",
+                    ""id"": ""e128d8f8-a9db-40f3-abe8-eb38425dc6e2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory7"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e3f386a-c402-45eb-9b60-33ed11d94096"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory8"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a890ffe-e7ed-4793-9e87-990eaa6d7c58"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory9"",
+                    ""type"": ""Button"",
+                    ""id"": ""df8401c0-296f-45c3-ab9d-770da22df063"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +182,116 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ed1c8fa-cd57-40a1-9958-27460cbb8455"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bb14874-8aec-4e49-8a14-e777cc79678a"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f66b8448-ce1d-4481-9086-d0da3ad80067"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""469dce91-3846-492f-be74-868f0f70f681"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50fc32ef-a9d4-4608-b46d-fb16c1c7d84f"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6c79b36-2d7b-491c-a4ec-50888072c43e"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3aa448d1-c708-49e5-97cc-18d41c102cdc"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ecaa516-3766-4eea-a6e6-61a304d4653d"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0996036f-3752-4541-a5ff-ee746f9d77d6"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""407a0f54-a50d-49ab-abe9-a99a569bda09"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventory9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +301,16 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Inventory1 = m_Player.FindAction("Inventory1", throwIfNotFound: true);
+        m_Player_Inventory2 = m_Player.FindAction("Inventory2", throwIfNotFound: true);
+        m_Player_Inventory3 = m_Player.FindAction("Inventory3", throwIfNotFound: true);
+        m_Player_Inventory4 = m_Player.FindAction("Inventory4", throwIfNotFound: true);
+        m_Player_Inventory5 = m_Player.FindAction("Inventory5", throwIfNotFound: true);
+        m_Player_Inventory6 = m_Player.FindAction("Inventory6", throwIfNotFound: true);
+        m_Player_Inventory7 = m_Player.FindAction("Inventory7", throwIfNotFound: true);
+        m_Player_Inventory8 = m_Player.FindAction("Inventory8", throwIfNotFound: true);
+        m_Player_Inventory9 = m_Player.FindAction("Inventory9", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,11 +373,31 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Inventory1;
+    private readonly InputAction m_Player_Inventory2;
+    private readonly InputAction m_Player_Inventory3;
+    private readonly InputAction m_Player_Inventory4;
+    private readonly InputAction m_Player_Inventory5;
+    private readonly InputAction m_Player_Inventory6;
+    private readonly InputAction m_Player_Inventory7;
+    private readonly InputAction m_Player_Inventory8;
+    private readonly InputAction m_Player_Inventory9;
     public struct PlayerActions
     {
         private @GameInputSystem m_Wrapper;
         public PlayerActions(@GameInputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Inventory1 => m_Wrapper.m_Player_Inventory1;
+        public InputAction @Inventory2 => m_Wrapper.m_Player_Inventory2;
+        public InputAction @Inventory3 => m_Wrapper.m_Player_Inventory3;
+        public InputAction @Inventory4 => m_Wrapper.m_Player_Inventory4;
+        public InputAction @Inventory5 => m_Wrapper.m_Player_Inventory5;
+        public InputAction @Inventory6 => m_Wrapper.m_Player_Inventory6;
+        public InputAction @Inventory7 => m_Wrapper.m_Player_Inventory7;
+        public InputAction @Inventory8 => m_Wrapper.m_Player_Inventory8;
+        public InputAction @Inventory9 => m_Wrapper.m_Player_Inventory9;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -180,6 +410,36 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Inventory1.started += instance.OnInventory1;
+            @Inventory1.performed += instance.OnInventory1;
+            @Inventory1.canceled += instance.OnInventory1;
+            @Inventory2.started += instance.OnInventory2;
+            @Inventory2.performed += instance.OnInventory2;
+            @Inventory2.canceled += instance.OnInventory2;
+            @Inventory3.started += instance.OnInventory3;
+            @Inventory3.performed += instance.OnInventory3;
+            @Inventory3.canceled += instance.OnInventory3;
+            @Inventory4.started += instance.OnInventory4;
+            @Inventory4.performed += instance.OnInventory4;
+            @Inventory4.canceled += instance.OnInventory4;
+            @Inventory5.started += instance.OnInventory5;
+            @Inventory5.performed += instance.OnInventory5;
+            @Inventory5.canceled += instance.OnInventory5;
+            @Inventory6.started += instance.OnInventory6;
+            @Inventory6.performed += instance.OnInventory6;
+            @Inventory6.canceled += instance.OnInventory6;
+            @Inventory7.started += instance.OnInventory7;
+            @Inventory7.performed += instance.OnInventory7;
+            @Inventory7.canceled += instance.OnInventory7;
+            @Inventory8.started += instance.OnInventory8;
+            @Inventory8.performed += instance.OnInventory8;
+            @Inventory8.canceled += instance.OnInventory8;
+            @Inventory9.started += instance.OnInventory9;
+            @Inventory9.performed += instance.OnInventory9;
+            @Inventory9.canceled += instance.OnInventory9;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -187,6 +447,36 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Inventory1.started -= instance.OnInventory1;
+            @Inventory1.performed -= instance.OnInventory1;
+            @Inventory1.canceled -= instance.OnInventory1;
+            @Inventory2.started -= instance.OnInventory2;
+            @Inventory2.performed -= instance.OnInventory2;
+            @Inventory2.canceled -= instance.OnInventory2;
+            @Inventory3.started -= instance.OnInventory3;
+            @Inventory3.performed -= instance.OnInventory3;
+            @Inventory3.canceled -= instance.OnInventory3;
+            @Inventory4.started -= instance.OnInventory4;
+            @Inventory4.performed -= instance.OnInventory4;
+            @Inventory4.canceled -= instance.OnInventory4;
+            @Inventory5.started -= instance.OnInventory5;
+            @Inventory5.performed -= instance.OnInventory5;
+            @Inventory5.canceled -= instance.OnInventory5;
+            @Inventory6.started -= instance.OnInventory6;
+            @Inventory6.performed -= instance.OnInventory6;
+            @Inventory6.canceled -= instance.OnInventory6;
+            @Inventory7.started -= instance.OnInventory7;
+            @Inventory7.performed -= instance.OnInventory7;
+            @Inventory7.canceled -= instance.OnInventory7;
+            @Inventory8.started -= instance.OnInventory8;
+            @Inventory8.performed -= instance.OnInventory8;
+            @Inventory8.canceled -= instance.OnInventory8;
+            @Inventory9.started -= instance.OnInventory9;
+            @Inventory9.performed -= instance.OnInventory9;
+            @Inventory9.canceled -= instance.OnInventory9;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -207,5 +497,15 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnInventory1(InputAction.CallbackContext context);
+        void OnInventory2(InputAction.CallbackContext context);
+        void OnInventory3(InputAction.CallbackContext context);
+        void OnInventory4(InputAction.CallbackContext context);
+        void OnInventory5(InputAction.CallbackContext context);
+        void OnInventory6(InputAction.CallbackContext context);
+        void OnInventory7(InputAction.CallbackContext context);
+        void OnInventory8(InputAction.CallbackContext context);
+        void OnInventory9(InputAction.CallbackContext context);
     }
 }
