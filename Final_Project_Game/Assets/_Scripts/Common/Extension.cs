@@ -14,6 +14,10 @@ namespace Game
         {
             return new Vector3(source.x, 0, source.y);
         }
+        public static Vector3Int ToVector3Int(this Vector3 source)
+        {
+            return new Vector3Int((int)source.x, (int)source.y, (int)source.z);
+        }
     }
 
 }

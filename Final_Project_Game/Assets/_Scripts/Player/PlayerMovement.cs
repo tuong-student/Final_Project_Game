@@ -8,7 +8,7 @@ namespace Game
     public class PlayerMovement : MonoBehaviour
     {
         private ModifiableValue<float> _speed = new ModifiableValue<float>();
-        private Vector3 _playerMovement;
+        private Vector3 _playerMove;
 
         void Awake()
         {
@@ -27,11 +27,11 @@ namespace Game
 
         private void GetPlayerMoveDir(Vector2 playerInput)
         {
-             _playerMovement = playerInput.ToVector3XZ();
+            _playerMove = playerInput;
         }
         private void Move()
         {
-            this.transform.position += _playerMovement * _speed.value * Time.deltaTime;
+            this.transform.position += _playerMove * _speed.value * Time.deltaTime;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Game
         [SerializeField] private PlayerAnimation _playerAnimation;
         [SerializeField] private PlayerOnCollision _playerOnCollision;
         [SerializeField] private Inventory _inventory;
-        [SerializeField] private Transform _itemHolderTransform;
+        // [SerializeField] private Transform _itemHolderTransform;
 
         private ModifiableValue<float> _health = new ModifiableValue<float>();
         private ModifiableValue<float> _strength = new ModifiableValue<float>();
@@ -35,6 +35,10 @@ namespace Game
         }
         void Update()
         {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log(TileManager.Instance.IsInteractable(this.transform.position.ToVector3Int()));
+            }
         }
 
         public void SetSpeed(float speed)
@@ -62,10 +66,10 @@ namespace Game
 
         private void EquipItem(int inventoryIndex)
         {
-            Item item = _inventory.GetItemBaseOnIndex(inventoryIndex);
-            Item cloneItem = Instantiate(item, _itemHolderTransform); // Create Item GameObject
-            cloneItem.transform.position = _itemHolderTransform.position;
-            _playerAnimation.SetHold(true);
+            // Item item = _inventory.GetItemBaseOnIndex(inventoryIndex);
+            // Item cloneItem = Instantiate(item, _itemHolderTransform); // Create Item GameObject
+            // cloneItem.transform.position = _itemHolderTransform.position;
+            // _playerAnimation.SetHold(true);
         }
     }
 }
