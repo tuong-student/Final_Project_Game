@@ -25,7 +25,7 @@ namespace Game
             
         }
 
-        public void UpdateInventoryUI(List<ItemStack> inventoryStacks)
+        public void UpdateInventoryUI(List<InventoryStack> inventoryStacks)
         {
             _inventoryUI.SetInventoryStacks(inventoryStacks);
         }

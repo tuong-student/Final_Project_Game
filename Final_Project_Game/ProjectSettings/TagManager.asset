@@ -44,9 +44,9 @@ TagManager:
   - name: Backgorund
     uniqueID: 1227248279
     locked: 0
-  - name: Player
-    uniqueID: 1952401639
-    locked: 0
   - name: Item
     uniqueID: 3753733753
+    locked: 0
+  - name: Player
+    uniqueID: 1952401639
     locked: 0

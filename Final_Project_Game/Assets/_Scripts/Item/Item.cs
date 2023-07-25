@@ -14,12 +14,12 @@ namespace Game
 
         }
 
-        public void Pickup(Inventory inventory)
+        public virtual void Pickup(Inventory inventory)
         {
             inventory.AddToInventory(this);
         }
 
-        public Sprite GetIcon()
+        public virtual Sprite GetIcon()
         {
             return _icon;
         }

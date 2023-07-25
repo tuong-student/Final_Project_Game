@@ -8,15 +8,15 @@ using Game.Interface;
 namespace Game
 {
     [Serializable]
-    public class ItemStack 
+    public class InventoryStack 
     {
-        public Item item;
-        public int quantity;
+        public Item _item;
+        public int _quantity;
         public int maxQuantity = 20;
-        public ItemStack(Item item, int quantity = 1)
+        public InventoryStack(Item item, int quantity = 1)
         {
-            this.item = item;
-            this.quantity = quantity;
+            this._item = item;
+            this._quantity = quantity;
         }
         public void StackAndReturn(int quantity, out int returnQuantity)
         {
@@ -25,26 +25,26 @@ namespace Game
 
             int lessQuantity = maxQuantity - quantity;
             returnQuantity = Math.Clamp(quantity - lessQuantity, 0, 20);
-            this.quantity += quantity - returnQuantity;
+            this._quantity += quantity - returnQuantity;
         }
         public bool IsStackable()
         {
-            return maxQuantity > quantity;
+            return maxQuantity > _quantity;
         }
     }
 
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private List<ItemStack> _inventory = new List<ItemStack>();
+        [SerializeField] private List<InventoryStack> _inventory = new List<InventoryStack>();
 
-        public List<ItemStack> GetItemStacks()
+        public List<InventoryStack> GetItemStacks()
         {
             return _inventory;
         }
 
         public void AddToInventory(Item item)
         {
-            if(TryToGetItemStackables(item, out List<ItemStack> stackableList))
+            if(TryToGetInventoryStackables(item, out List<InventoryStack> stackableList))
             {
                 foreach(var stackable in stackableList)
                 {
@@ -55,12 +55,16 @@ namespace Game
             }
             else
             {
-                _inventory.Add(new ItemStack(item));
+                _inventory.Add(new InventoryStack(item));
             }
+        }
+        public void AddToInventory(ItemStack itemStack)
+        {
+            AddToInventory(itemStack.GetItem(), itemStack.GetQuantity());
         }
         public void AddToInventory(Item item, int quantity)
         {
-            if(TryToGetItemStackables(item, out List<ItemStack> stackableList))
+            if(TryToGetInventoryStackables(item, out List<InventoryStack> stackableList))
             {
                 int lessQuantity = quantity;
                 foreach(var stackable in stackableList)
@@ -70,16 +74,16 @@ namespace Game
             }
             else
             {
-                _inventory.Add(new ItemStack(item, quantity));
+                _inventory.Add(new InventoryStack(item, quantity));
             }
         }
 
-        public bool TryToGetItemStackables(Item item, out List<ItemStack> stacks)
+        public bool TryToGetInventoryStackables(Item item, out List<InventoryStack> stacks)
         {
             stacks = null;
-            List<ItemStack> tempItemStack = new List<ItemStack>();
-            tempItemStack = _inventory.Where(x => x.item == item).ToList();
-            if(!tempItemStack.Select(x => x.item).Contains(item) || !tempItemStack.Exists(x => x.IsStackable() == true))
+            List<InventoryStack> tempItemStack = new List<InventoryStack>();
+            tempItemStack = _inventory.Where(x => x._item == item).ToList();
+            if(!tempItemStack.Select(x => x._item).Contains(item) || !tempItemStack.Exists(x => x.IsStackable() == true))
             {
                 return false;
             }
@@ -92,7 +96,7 @@ namespace Game
 
         public Item GetItemBaseOnIndex(int index)
         {
-            return _inventory[index].item;
+            return _inventory[index]._item;
         }
     }
 }

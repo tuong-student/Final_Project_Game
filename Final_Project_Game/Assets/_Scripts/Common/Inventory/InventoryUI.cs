@@ -13,11 +13,11 @@ namespace Game
             return Instantiate<InventoryUI>(Resources.Load<InventoryUI>("Prefabs/UI/InventoryHolder"), parent);
         }
 
-        public void SetInventoryStacks(List<ItemStack> stacks)
+        public void SetInventoryStacks(List<InventoryStack> stacks)
         {
             for(int i = 0; i < stacks.Count; i++)
             {
-                _slots[i].SetItemStack(stacks[i]);
+                _slots[i].SetInventoryStack(stacks[i]);
             }
         }
     }
