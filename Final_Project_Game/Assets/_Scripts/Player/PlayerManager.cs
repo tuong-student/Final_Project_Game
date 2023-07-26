@@ -32,6 +32,7 @@ namespace Game
             _health.initial.value = PlayerConfig._maxHealth;
             _strength.initial.value = PlayerConfig._strength;
             _speed.initial.value = PlayerConfig._speed;
+            UIManager.Instance.onPlayerDragOutItem += RemoveInventoryStack;
         }
         void Update()
         {
@@ -56,12 +57,17 @@ namespace Game
             Item tempItem = _playerOnCollision.GetPickupableObject() as Item;
             if(tempItem == null) return;
             tempItem.Pickup(_inventory);
-            UIManager.Instance.UpdateInventoryUI(_inventory.GetItemStacks());
+            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
         }
         public void AddToInventory(Item item)
         {
             _inventory.AddToInventory(item);
-            UIManager.Instance.UpdateInventoryUI(_inventory.GetItemStacks());
+            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
+        }
+        public void RemoveInventoryStack(InventoryStack stack)
+        {
+            _inventory.RemoveFromInventory(stack);
+            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
         }
 
         private void EquipItem(int inventoryIndex)

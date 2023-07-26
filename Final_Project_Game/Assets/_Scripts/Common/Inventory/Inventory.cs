@@ -12,7 +12,7 @@ namespace Game
     {
         public Item _item;
         public int _quantity;
-        public int maxQuantity = 20;
+        public int _maxQuantity = 20;
         public InventoryStack(Item item, int quantity = 1)
         {
             this._item = item;
@@ -20,16 +20,13 @@ namespace Game
         }
         public void StackAndReturn(int quantity, out int returnQuantity)
         {
-            returnQuantity = 0;
-            if(quantity == 0) return;
-
-            int lessQuantity = maxQuantity - quantity;
-            returnQuantity = Math.Clamp(quantity - lessQuantity, 0, 20);
-            this._quantity += quantity - returnQuantity;
+            int lessQuantity = _maxQuantity - _quantity;
+            _quantity = Math.Clamp(_quantity + quantity, 0, _maxQuantity);
+            returnQuantity = Math.Clamp(quantity - lessQuantity, 0, quantity);
         }
         public bool IsStackable()
         {
-            return maxQuantity > _quantity;
+            return _maxQuantity > _quantity;
         }
     }
 
@@ -37,7 +34,7 @@ namespace Game
     {
         [SerializeField] private List<InventoryStack> _inventory = new List<InventoryStack>();
 
-        public List<InventoryStack> GetItemStacks()
+        public List<InventoryStack> GetInventoryStack()
         {
             return _inventory;
         }
@@ -66,16 +63,25 @@ namespace Game
         {
             if(TryToGetInventoryStackables(item, out List<InventoryStack> stackableList))
             {
-                int lessQuantity = quantity;
+                int returnQuantity = quantity;
                 foreach(var stackable in stackableList)
                 {
-                    stackable.StackAndReturn(lessQuantity, out lessQuantity);
+                    stackable.StackAndReturn(returnQuantity, out returnQuantity);
+                }
+                if(returnQuantity > 0)
+                {
+                    AddToInventory(item, returnQuantity);
                 }
             }
             else
             {
                 _inventory.Add(new InventoryStack(item, quantity));
             }
+        }
+
+        public void RemoveFromInventory(InventoryStack stack)
+        {
+            _inventory.Remove(stack);
         }
 
         public bool TryToGetInventoryStackables(Item item, out List<InventoryStack> stacks)

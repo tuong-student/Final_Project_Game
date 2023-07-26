@@ -19,14 +19,10 @@ namespace Game
         public void SetItemAndQuantity(Item item, int quantity)
         {
             _item = item;
+            _icon = item.GetIcon();
             _quantity = quantity;
             _sr.sprite = item.GetIcon();
             _itemNumber.text = quantity.ToString();
-        }
-
-        public override Sprite GetIcon()
-        {
-            return _item.GetIcon();
         }
 
         public override void Pickup(Inventory inventory)

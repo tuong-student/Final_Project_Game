@@ -15,9 +15,18 @@ namespace Game
 
         public void SetInventoryStacks(List<InventoryStack> stacks)
         {
-            for(int i = 0; i < stacks.Count; i++)
+            InventoryStack stack = null;
+            for(int i = 0; i < _slots.Count; i++)
             {
-                _slots[i].SetInventoryStack(stacks[i]);
+                try
+                {
+                    stack = stacks[i];
+                }
+                catch
+                {
+                    stack = null;
+                }
+                _slots[i].SetInventoryStack(stack);
             }
         }
     }

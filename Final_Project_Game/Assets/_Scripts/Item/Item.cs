@@ -7,7 +7,7 @@ namespace Game
 {
     public class Item : MonoBehaviour, IInteractable, IPickupable
     {
-        [SerializeField] private Sprite _icon;
+        [SerializeField] protected Sprite _icon;
 
         public void Interact(object interactor)
         {
