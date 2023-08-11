@@ -4,6 +4,9 @@ using UnityEngine;
 using SeawispHunter.RolePlay.Attributes;
 using Game.Interface;
 using NOOD;
+using Sirenix.OdinInspector;
+using UnityEngine.Tilemaps;
+using UnityEditor;
 
 namespace Game
 {
@@ -21,6 +24,8 @@ namespace Game
 
         private List<Item> _items = new List<Item>();
 
+        private PreviewHandler previewHandler = new PreviewHandler();
+
         void Awake()
         {
             GameInput.Init();
@@ -34,11 +39,18 @@ namespace Game
             _speed.initial.value = PlayerConfig._speed;
             UIManager.Instance.onPlayerDragOutItem += RemoveInventoryStack;
         }
+
+        private void SelectObj()
+        {
+//            previewHandler.UpdateTile(tilemap, tileBase);
+        }
         void Update()
         {
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log(TileManager.Instance.IsInteractable(this.transform.position.ToVector3Int()));
+                TileManager.Instance.InteractableHere(this.transform.position.ToVector3Int());
+                TileManager.Instance.AllPos();
             }
         }
 
