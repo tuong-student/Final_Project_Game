@@ -68,7 +68,7 @@ namespace Game
         {
             Item tempItem = _playerOnCollision.GetPickupableObject() as Item;
             if(tempItem == null) return;
-            tempItem.Pickup(_inventory);
+            //tempItem.Pickup(_inventory);
             UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
         }
         public void AddToInventory(Item item)

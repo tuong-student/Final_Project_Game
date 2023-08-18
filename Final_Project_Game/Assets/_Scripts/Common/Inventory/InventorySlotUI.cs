@@ -32,7 +32,7 @@ namespace Game
             }
             else
             {
-                _itemIcon.sprite = stack._item.GetIcon();
+             //   _itemIcon.sprite = stack._item.GetIcon();
                 _quantity = stack._quantity;
                 _item = stack._item;
             }
@@ -51,7 +51,7 @@ namespace Game
             Vector3 worldPos = NOOD.NoodyCustomCode.ScreenPointToWorldPoint(eventData.position);
             worldPos.z = 0;
             ItemStack itemStack = Instantiate<ItemStack>(_itemStackPref, worldPos, Quaternion.identity);
-            itemStack.SetItemAndQuantity(_item, _quantity);
+            //itemStack.SetItemAndQuantity(_item, _quantity);
             UIManager.Instance.onPlayerDragOutItem?.Invoke(_inventoryStack);
 
             Destroy(_tempImage);

@@ -16,19 +16,19 @@ namespace Game
             return Instantiate(Resources.Load<ItemStack>("Resources/Prefabs/ItemStack"), parent);
         }
 
-        public void SetItemAndQuantity(Item item, int quantity)
-        {
-            _item = item;
-            _icon = item.GetIcon();
-            _quantity = quantity;
-            _sr.sprite = item.GetIcon();
-            _itemNumber.text = quantity.ToString();
-        }
+        //public void SetItemAndQuantity(Item item, int quantity)
+        //{
+        //    _item = item;
+        //    _icon = item.GetIcon();
+        //    _quantity = quantity;
+        //    _sr.sprite = item.GetIcon();
+        //    _itemNumber.text = quantity.ToString();
+        //}
 
-        public override void Pickup(Inventory inventory)
-        {
-            inventory.AddToInventory(this);
-        }
+        //public override void Pickup(Inventory inventory)
+        //{
+        //    inventory.AddToInventory(this);
+        //}
 
         public Item GetItem()
         {

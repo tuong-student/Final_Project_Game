@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1603348720270302002}
   - component: {fileID: 2209044722171935205}
+  - component: {fileID: 933612109047856765}
+  - component: {fileID: 8706188146529715434}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -24,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4368802285906172718}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,3 +47,94 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  inventoryContainer: {fileID: 11400000, guid: ecd0cd9abaedf36459c234977a4eeb80, type: 2}
+--- !u!114 &933612109047856765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368802285906172718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af0251b3285fe942a0ade0e8cdc36f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlighter: {fileID: 0}
+--- !u!114 &8706188146529715434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368802285906172718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c70d2b6c3c88e90449f260f0a2988860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightLightColor: {r: 0.26666668, g: 0.25490198, b: 0.7019608, a: 0}
+  dayLightColor: {r: 1, g: 1, b: 1, a: 1}
+  nightTimeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.00003500955
+      outSlope: -0.00003500955
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3.9992318
+      value: 0.99986
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.08714595
+    - serializedVersion: 3
+      time: 6.5011015
+      value: 0.01156497
+      inSlope: -0.00018818674
+      outSlope: -0.00018818674
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14086513
+      outWeight: 0.00654606
+    - serializedVersion: 3
+      time: 19.494339
+      value: 0.013045073
+      inSlope: -0.0012604147
+      outSlope: -0.0012604147
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1744445
+    - serializedVersion: 3
+      time: 21.02996
+      value: 0.9997741
+      inSlope: 0.0011981496
+      outSlope: 0.0011981496
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3431126
+    - serializedVersion: 3
+      time: 23.999317
+      value: 1
+      inSlope: 0.00007607763
+      outSlope: 0.00007607763
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeScale: 6000
+  text: {fileID: 0}
+  globalLight: {fileID: 0}

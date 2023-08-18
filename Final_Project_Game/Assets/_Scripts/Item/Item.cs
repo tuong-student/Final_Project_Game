@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Interface;
 
-namespace Game
-{
-    public class Item : MonoBehaviour, IInteractable, IPickupable
+
+    [CreateAssetMenu(menuName = "Data/Item")]
+    public class Item : ScriptableObject
     {
-        [SerializeField] protected Sprite _icon;
+        public string Name;
+        public bool stackable;
+        public Sprite icon;
 
-        public void Interact(object interactor)
-        {
+        //[SerializeField] protected Sprite _icon;
+        //public void Interact(object interactor)
+        //{
 
-        }
+        //}
 
-        public virtual void Pickup(Inventory inventory)
-        {
-            inventory.AddToInventory(this);
-        }
+        //public virtual void Pickup(Inventory inventory)
+        //{
+        //    inventory.AddToInventory(this);
+        //}
 
-        public virtual Sprite GetIcon()
-        {
-            return _icon;
-        }
+        //public virtual Sprite GetIcon()
+        //{
+        //    return _icon;
+        //}
     }
-    
-}
+   

@@ -22,26 +22,26 @@ namespace Game
             return _cropState;
         }
 
-        public void NextCropState()
-        {
-            switch(_cropState)
-            {
-                case CropState.Seed:
-                    _icon = _seedIcon;
-                    _cropState = CropState.Prepare;
-                    break;
-                case CropState.Prepare:
-                    _icon = null;
-                    _cropState = CropState.Done;
-                    break;
-                case CropState.Done:
-                    _icon = _doneIcon;
-                    _cropState = CropState.Dead;
-                    break;;
-                case CropState.Dead:
-                    _icon = _deadIcon;
-                    break;
-            }
-        }
+        //public void NextCropState()
+        //{
+        //    switch(_cropState)
+        //    {
+        //        case CropState.Seed:
+        //            _icon = _seedIcon;
+        //            _cropState = CropState.Prepare;
+        //            break;
+        //        case CropState.Prepare:
+        //            _icon = null;
+        //            _cropState = CropState.Done;
+        //            break;
+        //        case CropState.Done:
+        //            _icon = _doneIcon;
+        //            _cropState = CropState.Dead;
+        //            break;;
+        //        case CropState.Dead:
+        //            _icon = _deadIcon;
+        //            break;
+        //    }
+        //}
     }
 }

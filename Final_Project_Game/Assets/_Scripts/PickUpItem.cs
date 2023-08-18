@@ -9,9 +9,11 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] float pickUpDistance = 2.25f; //1.5^2
     [SerializeField] float ttl = 10f;
 
-    private void Awake()
+    public Item item;
+    public int count = 1;
+    private void Start()
     {
-        player = GameManager.instance.player.transform;
+        player = GameManager.instance.GetTranform();
     }
 
 
@@ -31,6 +33,13 @@ public class PickUpItem : MonoBehaviour
             );
         if(distance < 0.1f)
         {
+            //Should be move into specified controller rather than being checked here.
+            if (GameManager.instance.inventoryContainer != null)
+            {
+                Debug.Log("item_____" + item.icon + "______" + item.Name);
+                GameManager.instance.inventoryContainer.Add(item, count);
+            }
+            else Debug.Log("No inventory container attached to the game manager");
             Destroy(gameObject);
         }
     }
