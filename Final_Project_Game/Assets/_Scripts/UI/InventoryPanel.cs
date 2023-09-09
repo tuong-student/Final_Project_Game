@@ -24,18 +24,16 @@ public class InventoryPanel : MonoBehaviour
     {
         Show();
     }
-    private void Show()
+    public void Show()
     {
         for (int i = 0; i < inventory.slots.Count; i++)
         {
             if (inventory.slots[i].item == null)
             {
-                Debug.Log("here");
                 buttons[i].Clean();
             }
             else
             {
-                Debug.Log("here");
                 buttons[i].SetItem(inventory.slots[i]);
             }
         }

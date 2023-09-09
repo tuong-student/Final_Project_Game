@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1603348720270302002}
-  - component: {fileID: 2209044722171935205}
   - component: {fileID: 933612109047856765}
   - component: {fileID: 8706188146529715434}
+  - component: {fileID: 3104280586033574496}
+  - component: {fileID: 5050832018462455713}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -34,20 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2209044722171935205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368802285906172718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2340944667c91204aa20074001dcbd54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  inventoryContainer: {fileID: 11400000, guid: ecd0cd9abaedf36459c234977a4eeb80, type: 2}
 --- !u!114 &933612109047856765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +125,33 @@ MonoBehaviour:
   timeScale: 6000
   text: {fileID: 0}
   globalLight: {fileID: 0}
+--- !u!114 &3104280586033574496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368802285906172718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2340944667c91204aa20074001dcbd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  inventoryContainer: {fileID: 11400000, guid: ecd0cd9abaedf36459c234977a4eeb80, type: 2}
+  dragAndDropController: {fileID: 5050832018462455713}
+--- !u!114 &5050832018462455713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368802285906172718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3766537e79f3548b57e41e8791f022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSlot:
+    item: {fileID: 0}
+    count: 0

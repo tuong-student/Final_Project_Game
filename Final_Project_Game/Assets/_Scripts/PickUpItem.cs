@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
@@ -16,6 +17,14 @@ public class PickUpItem : MonoBehaviour
         player = GameManager.instance.GetTranform();
     }
 
+    public void Set(Item item, int count)
+    {
+        this.item = item;
+        this.count = count;
+
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.sprite = item.icon;
+    }
 
     // Update is called once per frame
     void Update()
