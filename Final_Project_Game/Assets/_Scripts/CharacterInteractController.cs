@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Game;
+using UnityEngine.Timeline;
+
 public class CharacterInteractController : MonoBehaviour
 {
     //Transform player;
@@ -11,6 +13,9 @@ public class CharacterInteractController : MonoBehaviour
     private Character character;
     private Vector2 positionPlayer = Vector2.zero;
     [SerializeReference] HightlightController hightlight;
+    [SerializeField] MarkerManager markerManager;
+    [SerializeField] TileMapReadController tileMapReadController;
+
     private void Awake()
     {
         //player = GameManager.instance.player.transform;
@@ -20,6 +25,7 @@ public class CharacterInteractController : MonoBehaviour
     }
     private void Update()
     {
+        Marker();
         Check();
         if (Input.GetMouseButtonDown(1))
         {
@@ -27,6 +33,13 @@ public class CharacterInteractController : MonoBehaviour
         }
         //positionPlayer.x = player.transform.position.x;
         //positionPlayer.y = player.transform.position.y;
+    }
+
+    private void Marker()
+    {
+        Vector3Int gridPosition = tileMapReadController.GetGridPosition(Input.mousePosition, true);
+        gridPosition.z = 0;
+        markerManager.markedCellPosition = gridPosition;
     }
 
     private void Check()
