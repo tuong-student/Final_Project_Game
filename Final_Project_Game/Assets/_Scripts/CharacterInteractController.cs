@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 
 public class CharacterInteractController : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class CharacterInteractController : MonoBehaviour
     [SerializeReference] HightlightController hightlight;
     [SerializeField] MarkerManager markerManager;
     [SerializeField] TileMapReadController tileMapReadController;
+    [SerializeField] float maxDistance = 1.5f;
+    [SerializeField] CropsManager cropsManager;
+    [SerializeField] TileData plowableTiles;
+    private Vector3Int selectedTilePosition;
+    private bool selectable;
 
     private void Awake()
     {
@@ -25,21 +32,34 @@ public class CharacterInteractController : MonoBehaviour
     }
     private void Update()
     {
+        SelectTile();
+        CanSelectCheck();
         Marker();
         Check();
         if (Input.GetMouseButtonDown(1))
         {
-            Interact();
+            if(Interact()) return;
+            UseToolGrid();
         }
         //positionPlayer.x = player.transform.position.x;
         //positionPlayer.y = player.transform.position.y;
     }
 
+    private void SelectTile()
+    {
+        selectedTilePosition = tileMapReadController.GetGridPosition(Input.mousePosition, true);
+    }
+    private void CanSelectCheck()
+    {
+        Vector2 characterPosition = transform.position;
+        Vector2 cameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        selectable = Vector2.Distance(characterPosition, cameraPosition) < maxDistance;
+        markerManager.Show(selectable);
+    }
     private void Marker()
     {
-        Vector3Int gridPosition = tileMapReadController.GetGridPosition(Input.mousePosition, true);
-        gridPosition.z = 0;
-        markerManager.markedCellPosition = gridPosition;
+        selectedTilePosition.z = 0;
+        markerManager.markedCellPosition = selectedTilePosition;
     }
 
     private void Check()
@@ -58,7 +78,7 @@ public class CharacterInteractController : MonoBehaviour
         }
         hightlight.Hide();
     }
-    private void Interact()
+    private bool Interact()
     {
         Vector2 position = rgbd2d.position * offsetDistance;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(position, sizeOfInteractableArea);
@@ -68,8 +88,22 @@ public class CharacterInteractController : MonoBehaviour
             if(hit != null)
             {
                 hit.Interact(character);
-                break;
+                return true;
             }
+        }
+        return false;
+    }
+    private void UseToolGrid()
+    {
+        if (selectable == true)
+        {
+            TileBase tileBase = tileMapReadController.GetTileBase(selectedTilePosition);
+            TileData tileData = tileMapReadController.GetTileData(tileBase);
+            if (tileData != plowableTiles) return;
+            if (cropsManager.Check(selectedTilePosition))
+                cropsManager.Seed(selectedTilePosition);
+            else
+                cropsManager.Plow(selectedTilePosition);
         }
     }
 }
