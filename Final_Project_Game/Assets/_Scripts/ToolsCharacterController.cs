@@ -14,8 +14,8 @@ public class ToolsCharacterController : MonoBehaviour
     [SerializeField] MarkerManager markerManager;
     [SerializeField] TileMapReadController tileMapReadController;
     [SerializeField] float maxDistance = 1.5f;
-    [SerializeField] CropsManager cropsManager;
-    [SerializeField] TileData plowableTiles;
+    //[SerializeField] CropsManager cropsManager;
+    //[SerializeField] TileData plowableTiles;
 
     private Vector3Int selectedTilePosition;
     private bool selectable;
@@ -64,20 +64,40 @@ public class ToolsCharacterController : MonoBehaviour
         if (item == null) return false;
         if (item.onAction == null) return false;
         bool complete = item.onAction.OnApply(position);
-        return false;
+        if (complete)
+        {
+            if (item.onItemUsed != null)
+            {
+                item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
+            }
+        }
+        return complete;
     }
 
     private void UseToolGrid()
     {
         if (selectable)
         {
-            TileBase tileBase = tileMapReadController.GetTileBase(selectedTilePosition);
-            TileData tileData = tileMapReadController.GetTileData(tileBase);
-            if (tileData != plowableTiles) return;
-            if (cropsManager.Check(selectedTilePosition))
-                cropsManager.Seed(selectedTilePosition);
-            else
-                cropsManager.Plow(selectedTilePosition);
+            //TileBase tileBase = tileMapReadController.GetTileBase(selectedTilePosition);
+            //TileData tileData = tileMapReadController.GetTileData(tileBase);
+            //if (tileData != plowableTiles) return;
+            //if (cropsManager.Check(selectedTilePosition))
+            //    cropsManager.Seed(selectedTilePosition);
+            //else
+            //    cropsManager.Plow(selectedTilePosition);
+
+            Item item = toolbarController.GetItem;
+            if (item == null) return;
+            if (item.onTileMapAction == null) return;
+
+            bool complete = item.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController);
+            if (complete)
+            {
+                if (item.onItemUsed != null)
+                {
+                    item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
+                }
+            }
         }
     }
 }

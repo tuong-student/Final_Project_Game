@@ -5,22 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class TileMapReadController : MonoBehaviour
 {
+
     [SerializeField] Tilemap tilemap;
-    [SerializeField] List<TileData> tileData;
-    Dictionary<TileBase, TileData> dataFromTiles;
-
-    private void Start()
-    {
-        dataFromTiles = new Dictionary<TileBase, TileData>();
-
-        foreach(TileData tileData in tileData)
-        {
-            foreach (TileBase tile in tileData.tiles)
-            {
-                dataFromTiles.Add(tile, tileData);
-            }
-        }
-    }
+    public CropsManager cropsManager;
 
     public Vector3Int GetGridPosition(Vector2 position, bool mousePosition)
     {
@@ -42,10 +29,5 @@ public class TileMapReadController : MonoBehaviour
 
         Debug.Log("Tile in position = " + gridPosition + " os " + tile);
         return tile;
-    }
-
-    public TileData GetTileData(TileBase tilebase)
-    {
-        return dataFromTiles[tilebase];
     }
 }

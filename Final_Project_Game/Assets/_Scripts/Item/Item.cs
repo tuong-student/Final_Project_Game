@@ -11,7 +11,8 @@ public class Item : ScriptableObject
     public bool stackable;
     public Sprite icon;
     public ToolAction onAction;
-
+    public ToolAction onTileMapAction;
+    public ToolAction onItemUsed;
     //[SerializeField] protected Sprite _icon;
     //public void Interact(object interactor)
     //{
