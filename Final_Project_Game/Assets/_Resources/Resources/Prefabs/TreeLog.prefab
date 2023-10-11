@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1937419026193701629}
   - component: {fileID: 3418311079930158981}
   - component: {fileID: 3386068281133984469}
+  - component: {fileID: 3175946865401448956}
+  - component: {fileID: -1892168505606945855}
   m_Layer: 0
   m_Name: TreeLog
   m_TagString: Untagged
@@ -32,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1937419026193701629
 SpriteRenderer:
@@ -149,3 +151,31 @@ MonoBehaviour:
   itemCountInOneDrop: 1
   dropCount: 25
   nodeType: 1
+--- !u!114 &3175946865401448956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829260094257775017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a877ad9fba39e145b9335acb99b2740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1892168505606945855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829260094257775017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526813ffb027749409f629035b3c57fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toSpawn: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
+  count: 1
+  spread: 2
+  probability: 0.5

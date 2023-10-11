@@ -20,7 +20,7 @@ public class ResourceNode : ToolHit
             Vector3 position = transform.position;
             position.x += UnityEngine.Random.value - spread / 2;
             position.y += UnityEngine.Random.value - spread / 2;
-            GameObject go = Instantiate(pickUpDrop);
+            //GameObject go = Instantiate(pickUpDrop);
             ItemSpawnManager.instance.SpawnItem(position, item, itemCountInOneDrop);
         }
         Destroy(gameObject);
