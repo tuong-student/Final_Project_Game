@@ -6201,12 +6201,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49db6b014d1d0ac49aa2aeba7b7fa0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolbarController: {fileID: 0}
+  toolbarController: {fileID: 1440530029}
   offsetDistance: 1
   sizeOfInteractableArea: 1.2
   markerManager: {fileID: 169925099}
   tileMapReadController: {fileID: 1888816114}
   maxDistance: 1.5
+  onTilePickUp: {fileID: 11400000, guid: 75f66cdd688bcf24798b3ff40d758c7c, type: 2}
 --- !u!1 &1467305940
 GameObject:
   m_ObjectHideFlags: 0
