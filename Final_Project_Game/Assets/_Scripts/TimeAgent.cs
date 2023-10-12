@@ -8,9 +8,13 @@ public class TimeAgent : MonoBehaviour
     public Action onTimeTick;
     private void Start()
     {
-        GameManager.instance.timeController.Subcribe(this);
+        Init();
     }
 
+    public void Init()
+    {
+        GameManager.instance.timeController.Subcribe(this);
+    }
     public void Invoke()
     {
         onTimeTick?.Invoke();

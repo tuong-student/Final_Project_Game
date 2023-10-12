@@ -90,7 +90,7 @@ public class ToolsCharacterController : MonoBehaviour
             if (item == null) return;
             if (item.onTileMapAction == null) return;
 
-            bool complete = item.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController);
+            bool complete = item.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController, item);
             if (complete)
             {
                 if (item.onItemUsed != null)
