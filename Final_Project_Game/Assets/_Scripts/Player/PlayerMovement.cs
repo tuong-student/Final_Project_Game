@@ -9,9 +9,11 @@ namespace Game
     {
         private ModifiableValue<float> _speed = new ModifiableValue<float>();
         private Vector3 _playerMove;
+        private Rigidbody2D _rb;
 
         void Awake()
         {
+            _rb = GetComponent<Rigidbody2D>();
             GameInput.onPlayerPressMoveVector2 += GetPlayerMoveDir;
             _speed.initial.value = PlayerConfig._speed;
         }
@@ -31,7 +33,7 @@ namespace Game
         }
         private void Move()
         {
-            this.transform.position += _playerMove * _speed.value * Time.deltaTime;
+            _rb.velocity = _playerMove * _speed.value;
         }
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Game
 {
-    public class Weapon : Item
+    public class Weapon : MonoBehaviour
     {
-        
+        [SerializeField] private Item _itemData;
     }
 
 }

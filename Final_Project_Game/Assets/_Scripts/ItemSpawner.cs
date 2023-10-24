@@ -21,7 +21,7 @@ public class ItemSpawner : MonoBehaviour
             Vector3 position = transform.position;
             position.x += UnityEngine.Random.value - spread / 2;
             position.y += UnityEngine.Random.value - spread / 2;
-            ItemSpawnManager.instance.SpawnItem(position, toSpawn, count);
+            ItemSpawnManager.instance.SpawnItem(position, this.transform, toSpawn, count);
         }
     }
 }

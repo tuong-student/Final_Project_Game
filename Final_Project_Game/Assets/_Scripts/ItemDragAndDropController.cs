@@ -63,7 +63,8 @@ public class ItemDragAndDropController : MonoBehaviour
                     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     worldPosition.z = 0;
                     ItemSpawnManager.instance.SpawnItem(
-                        worldPosition, 
+                        worldPosition,
+                        null, 
                         itemSlot.item, 
                         itemSlot.count);
                     itemSlot.Clear();

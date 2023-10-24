@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SeawispHunter.RolePlay.Attributes;
-using Game.Interface;
 using NOOD;
-using Sirenix.OdinInspector;
-using UnityEngine.Tilemaps;
-using UnityEditor;
 
 namespace Game
 {
@@ -24,13 +20,14 @@ namespace Game
 
         private List<Item> _items = new List<Item>();
 
-        private PreviewHandler previewHandler = new PreviewHandler();
+        private PreviewHandler previewHandler;
 
         void Awake()
         {
             GameInput.Init();
             GameInput.onPlayerPressInteract += Pickup;
             GameInput.onPlayerRequestItem += EquipItem;
+            previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
         }
         void Start()
         {
@@ -46,12 +43,12 @@ namespace Game
         }
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log(TileManager.Instance.IsInteractable(this.transform.position.ToVector3Int()));
-                TileManager.Instance.InteractableHere(this.transform.position.ToVector3Int());
-                TileManager.Instance.AllPos();
-            }
+            // if(Input.GetKeyDown(KeyCode.Space))
+            // {
+            //     Debug.Log(TileManager.Instance.IsInteractable(this.transform.position.ToVector3Int()));
+            //     TileManager.Instance.InteractableHere(this.transform.position.ToVector3Int());
+            //     TileManager.Instance.AllPos();
+            // }
         }
 
         public void SetSpeed(float speed)

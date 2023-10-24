@@ -21,7 +21,7 @@ public class ResourceNode : ToolHit
             position.x += UnityEngine.Random.value - spread / 2;
             position.y += UnityEngine.Random.value - spread / 2;
             //GameObject go = Instantiate(pickUpDrop);
-            ItemSpawnManager.instance.SpawnItem(position, item, itemCountInOneDrop);
+            ItemSpawnManager.instance.SpawnItem(position, this.transform, item, itemCountInOneDrop);
         }
         Destroy(gameObject);
     }

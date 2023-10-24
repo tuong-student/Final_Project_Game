@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class DayTimeController : MonoBehaviour
 {
-    const float secondsinday = 86000f;
+    const float secondsInDay = 86000f;
     const float phaseLength = 900f; // 15 minutes chunk of time
 
     [SerializeField] private Color nightLightColor;
@@ -33,33 +33,33 @@ public class DayTimeController : MonoBehaviour
         time = startAtTime;
     }
 
-    public void Subcribe(TimeAgent timeAgent)
+    public void Subscribe(TimeAgent timeAgent)
     {
         agents.Add(timeAgent);
     }
 
-    public void Unsubcribe(TimeAgent timeAgent)
+    public void Unsubscribe(TimeAgent timeAgent)
     {
         agents.Remove(timeAgent);
     }
-    private float hours
+    private float Hours
     {
         get { return time / 3600f; }
     }
 
-    private float minutes
+    private float Minutes
     {
         get { return time % 3600f / 60f; }
     }
 
     private void Update()
     {
-        time += Time.deltaTime *timeScale;
+        time += Time.deltaTime * timeScale;
 
         TimeValueCalculation();
         DayLight();
 
-        if (time > secondsinday)
+        if (time > secondsInDay)
         {
             NextDay();
         }
@@ -68,8 +68,8 @@ public class DayTimeController : MonoBehaviour
 
     private void TimeValueCalculation()
     {
-        int hh = (int)hours;
-        int mm = (int)minutes;
+        int hh = (int)Hours;
+        int mm = (int)Minutes;
         text.text = hh.ToString("00") + ":" + mm.ToString("00");
     }
 
@@ -88,7 +88,7 @@ public class DayTimeController : MonoBehaviour
     }
     private void DayLight()
     {
-        float v = nightTimeCurve.Evaluate(hours);
+        float v = nightTimeCurve.Evaluate(Hours);
         Color c = Color.Lerp(dayLightColor, nightLightColor, v);
         globalLight.color = c;
     }

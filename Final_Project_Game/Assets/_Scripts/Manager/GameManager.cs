@@ -11,14 +11,13 @@ public class GameManager: MonoBehaviour
     public ItemDragAndDropController dragAndDropController;
     public DayTimeController timeController;
     public DialogueSystem dialogueSystem;
+
     private void Awake()
     {
         instance = this;
     }
 
-
-
-    public Transform GetTranform()
+    public Transform GetTransform()
     {
         return player.transform;
     }

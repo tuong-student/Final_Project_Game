@@ -15,7 +15,397 @@ MonoBehaviour:
   crops:
   - growTimer: 0
     growStage: 0
-    crop: {fileID: 0}
+    crop: {fileID: 11400000, guid: 08036e892426d9440b9d12bfe7141d09, type: 2}
     renderer: {fileID: 0}
     damage: 0
     position: {x: 0, y: 0, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 1.0599996
+    position: {x: -2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 1.0599996
+    position: {x: -3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 1.0599996
+    position: {x: -1, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 1.0399996
+    position: {x: -4, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 1.0399996
+    position: {x: 0, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 1.0199996
+    position: {x: 1, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 1.0199996
+    position: {x: 2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 1.0199996
+    position: {x: 3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -4, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -1, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 0, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 1, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 4, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 4, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 3, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 2, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 2, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 0, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -1, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 1, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -3, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -4, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -4, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -4, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -1, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 0, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -4, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -4, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -1, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 0, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 0, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 4, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 1, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 3, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 4, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 2, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 1, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: 0, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -1, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -3, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -4, y: -5, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -2, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -3, y: -4, z: 0}
+  - growTimer: 0
+    growStage: 0
+    crop: {fileID: 0}
+    renderer: {fileID: 0}
+    damage: 0
+    position: {x: -1, y: -4, z: 0}

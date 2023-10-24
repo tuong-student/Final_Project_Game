@@ -91,6 +91,7 @@ public class TilemapCropsManager : TimeAgent
         {
             ItemSpawnManager.instance.SpawnItem(
                 targetTilemap.CellToWorld(gridPosition),
+                null,
                 tile.crop.yield,
                 tile.crop.count
                 );

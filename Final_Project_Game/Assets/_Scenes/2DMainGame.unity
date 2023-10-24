@@ -269,6 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 117326084}
   - component: {fileID: 117326083}
+  - component: {fileID: 117326085}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -306,6 +307,20 @@ Transform:
   - {fileID: 1565469456}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &117326085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117326082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57edffb3e96c9a549aca5b21003988b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 1601921648}
+  tileBase: {fileID: 11400000, guid: ccead123d638cf3499b16d8c2de6cfcc, type: 2}
 --- !u!1001 &183906599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,17 +643,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554fcb485f17f47b8aae95dd721ee434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  stackable: 0
-  icon: {fileID: 0}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
   _cropState: 0
   _seedIcon: {fileID: 21300000, guid: 3e219d5964d7ef1408da169b0cbdbcb6, type: 3}
   _doneIcon: {fileID: 21300000, guid: 3757151fd001a864bb1f65f8f52f10e6, type: 3}
   _deadIcon: {fileID: 21300000, guid: 00f165b1254df1346b4653643b7997d9, type: 3}
+  _itemData: {fileID: 0}
 --- !u!4 &274364088
 Transform:
   m_ObjectHideFlags: 0
@@ -1493,17 +1502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554fcb485f17f47b8aae95dd721ee434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  stackable: 0
-  icon: {fileID: 0}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
   _cropState: 0
   _seedIcon: {fileID: 21300000, guid: 3e219d5964d7ef1408da169b0cbdbcb6, type: 3}
   _doneIcon: {fileID: 21300000, guid: 3757151fd001a864bb1f65f8f52f10e6, type: 3}
   _deadIcon: {fileID: 21300000, guid: 00f165b1254df1346b4653643b7997d9, type: 3}
+  _itemData: {fileID: 0}
 --- !u!114 &1187558523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1828,17 +1831,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554fcb485f17f47b8aae95dd721ee434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  stackable: 0
-  icon: {fileID: 0}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
   _cropState: 0
   _seedIcon: {fileID: 21300000, guid: 3e219d5964d7ef1408da169b0cbdbcb6, type: 3}
   _doneIcon: {fileID: 21300000, guid: 3757151fd001a864bb1f65f8f52f10e6, type: 3}
   _deadIcon: {fileID: 21300000, guid: 00f165b1254df1346b4653643b7997d9, type: 3}
+  _itemData: {fileID: 0}
 --- !u!4 &1366133499
 Transform:
   m_ObjectHideFlags: 0

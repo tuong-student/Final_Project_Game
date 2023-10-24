@@ -14,7 +14,7 @@ public class PickUpItem : MonoBehaviour
     public int count = 1;
     private void Start()
     {
-        player = GameManager.instance.GetTranform();
+        player = GameManager.instance.GetTransform();
     }
 
     public void Set(Item item, int count)

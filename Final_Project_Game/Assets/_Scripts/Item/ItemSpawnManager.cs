@@ -13,9 +13,10 @@ public class ItemSpawnManager : MonoBehaviour
 
     [SerializeField] GameObject pickupItemPrefab;
 
-    public void SpawnItem(Vector3 position, Item item, int count) 
+    public void SpawnItem(Vector3 position, Transform parent, Item item, int count) 
     {
-        GameObject o = Instantiate(pickupItemPrefab, position, Quaternion.identity);
+        GameObject o = Instantiate(pickupItemPrefab, parent);
+        o.transform.position = position;
         o.GetComponent<PickUpItem>().Set(item, count);
     }
 }
