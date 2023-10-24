@@ -6,7 +6,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
 
-    public Sound[] musicSound, sfxSounds;
+    [SerializeField] public Sound[] musicSound, sfxSounds;
     [SerializeField] private AudioSource musicSource, sfxSource;
     [SerializeField] private AudioClip playOnStart;
     [SerializeField] private float timeToSwitch;
@@ -64,7 +64,7 @@ public class AudioManager : MonoBehaviour
             musicSource.volume = volume;
             yield return new WaitForEndOfFrame();
         }
-        Play(switchTo, true);
+        PlayMusic(switchTo, true);
     }
 
     public void SetMusicVolume(float volume)
