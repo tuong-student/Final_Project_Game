@@ -11512,6 +11512,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemContainerPanel: {fileID: 2108360459}
+  openedChest: {fileID: 0}
+  maxDistance: 0.8
 --- !u!114 &1440530051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16685,7 +16687,7 @@ PrefabInstance:
     - target: {fileID: 3104280586033574496, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
       propertyPath: placeableObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5797465785986593755}
     - target: {fileID: 4368802285906172718, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
       propertyPath: m_Name
       value: GameManager
