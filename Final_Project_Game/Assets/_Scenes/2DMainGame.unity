@@ -460,7 +460,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 274364088}
-  - component: {fileID: 274364087}
   - component: {fileID: 274364086}
   m_Layer: 0
   m_Name: Aubergine (2)
@@ -486,31 +485,6 @@ MonoBehaviour:
   ttl: 10
   item: {fileID: 11400000, guid: eadb90fb97716ab41a9789ebad6e536a, type: 2}
   count: 1
---- !u!114 &274364087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274364085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 554fcb485f17f47b8aae95dd721ee434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  stackable: 0
-  icon: {fileID: 0}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
-  iconHightlight: 0
-  itemPrefab: {fileID: 0}
-  _cropState: 0
-  _seedIcon: {fileID: 21300000, guid: 3e219d5964d7ef1408da169b0cbdbcb6, type: 3}
-  _doneIcon: {fileID: 21300000, guid: 3757151fd001a864bb1f65f8f52f10e6, type: 3}
-  _deadIcon: {fileID: 21300000, guid: 00f165b1254df1346b4653643b7997d9, type: 3}
 --- !u!4 &274364088
 Transform:
   m_ObjectHideFlags: 0
@@ -1288,7 +1262,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1187558521}
-  - component: {fileID: 1187558522}
   - component: {fileID: 1187558523}
   m_Layer: 0
   m_Name: Aubergine
@@ -1315,31 +1288,6 @@ Transform:
   - {fileID: 542030476}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1187558522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187558520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 554fcb485f17f47b8aae95dd721ee434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  stackable: 0
-  icon: {fileID: 0}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
-  iconHightlight: 0
-  itemPrefab: {fileID: 0}
-  _cropState: 0
-  _seedIcon: {fileID: 21300000, guid: 3e219d5964d7ef1408da169b0cbdbcb6, type: 3}
-  _doneIcon: {fileID: 21300000, guid: 3757151fd001a864bb1f65f8f52f10e6, type: 3}
-  _deadIcon: {fileID: 21300000, guid: 00f165b1254df1346b4653643b7997d9, type: 3}
 --- !u!114 &1187558523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,7 +1479,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1366133499}
-  - component: {fileID: 1366133498}
   - component: {fileID: 1366133497}
   m_Layer: 0
   m_Name: Aubergine (1)
@@ -1557,31 +1504,6 @@ MonoBehaviour:
   ttl: 10
   item: {fileID: 11400000, guid: eadb90fb97716ab41a9789ebad6e536a, type: 2}
   count: 1
---- !u!114 &1366133498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366133496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 554fcb485f17f47b8aae95dd721ee434, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  stackable: 0
-  icon: {fileID: 0}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
-  iconHightlight: 0
-  itemPrefab: {fileID: 0}
-  _cropState: 0
-  _seedIcon: {fileID: 21300000, guid: 3e219d5964d7ef1408da169b0cbdbcb6, type: 3}
-  _doneIcon: {fileID: 21300000, guid: 3757151fd001a864bb1f65f8f52f10e6, type: 3}
-  _deadIcon: {fileID: 21300000, guid: 00f165b1254df1346b4653643b7997d9, type: 3}
 --- !u!4 &1366133499
 Transform:
   m_ObjectHideFlags: 0

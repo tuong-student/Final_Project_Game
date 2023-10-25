@@ -46,7 +46,6 @@ public class ToolbarController : MonoBehaviour
     {
         selectedTool = id;
     }
-
     private void UpdateHightlightIcon(int id)
     {
         Item item = GetItem;
