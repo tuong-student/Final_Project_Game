@@ -19,4 +19,14 @@ public class PlaceableObject
 public class PlaceableObjectsContainer : ScriptableObject
 {
     public List<PlaceableObject> placeableObjects;
+
+    public PlaceableObject GetPosition(Vector3Int position)
+    {
+        return placeableObjects.Find(x => x.positionOnGrid == position);
+    }
+
+    public void Remove(PlaceableObject placedObject)
+    {
+        placeableObjects.Remove(placedObject);
+    }
 }
