@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class TilemapCropsManager : TimeAgent
 {
@@ -12,6 +11,8 @@ public class TilemapCropsManager : TimeAgent
     private Tilemap targetTilemap;
     [SerializeField] GameObject cropsSpritePrefab;
     [SerializeField] CropsContainer container;
+    [SerializeField] GameObject harvestIconPref;
+
     private void Start()
     {
         GameManager.instance.GetComponent<CropsManager>().cropsManager = this;
@@ -42,16 +43,23 @@ public class TilemapCropsManager : TimeAgent
             {
                 cropTile.Harvested();
                 targetTilemap.SetTile(cropTile.position, plowed);
+                container.DestroyHarvestIcon(cropTile);
+                container.SetDisplayHarvestIconValue(cropTile, false);
                 continue;
             }
             if (cropTile.Complete)
             {
-                Debug.Log("im done");
+                if(container.IsDisplayHarvestIconAt(cropTile) == false)
+                {
+                    Debug.Log("im done");
+                    CreateHarvestIcon(cropTile);
+                }
                 continue;
             }
 
             cropTile.growTimer += 1;
 
+            Debug.Log("GrowStage: " + cropTile.growStage);
             if (cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
             {
                 cropTile.renderer.gameObject.SetActive(true);
@@ -59,6 +67,15 @@ public class TilemapCropsManager : TimeAgent
                 cropTile.growStage += 1;
             }
         }
+    }
+
+    public void CreateHarvestIcon(CropTile cropTile)
+    {
+        GameObject icon = Instantiate(harvestIconPref, cropTile.WorldPosition, Quaternion.identity);
+        icon.transform.localScale = Vector3.one * 0.25f;
+
+        container.SetDisplayHarvestIconValue(cropTile, true);
+        container.AddHarvestIconDic(cropTile, icon);
     }
 
     public bool Check(Vector3Int position)

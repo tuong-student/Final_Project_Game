@@ -12420,6 +12420,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1478191750}
     - target: {fileID: 8706188146529715434, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
+      propertyPath: timeScale
+      value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8706188146529715434, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
       propertyPath: globalLight
       value: 
       objectReference: {fileID: 2012183366}

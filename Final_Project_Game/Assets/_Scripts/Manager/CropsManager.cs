@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -14,6 +15,7 @@ public class CropTile
     public SpriteRenderer renderer;
     public float damage;
     public Vector3Int position;
+    public Vector3 WorldPosition => renderer.gameObject.transform.position;
     public bool Complete
     {
         get
