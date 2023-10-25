@@ -11058,6 +11058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   cropsManager: {fileID: 1888816119}
+  objectsManager: {fileID: 5797465785986593755}
 --- !u!114 &1888816119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12398,6 +12399,10 @@ PrefabInstance:
       propertyPath: timeController
       value: 
       objectReference: {fileID: 5797465785986593747}
+    - target: {fileID: 3104280586033574496, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
+      propertyPath: placeableObject
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4368802285906172718, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -12434,6 +12439,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4368802285906172718, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5797465785986593751}
+    - targetCorrespondingSourceObject: {fileID: 4368802285906172718, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5797465785986593755}
   m_SourcePrefab: {fileID: 100100000, guid: 76a1b4d2d6c7dd24c915fef8833b065c, type: 3}
 --- !u!114 &5797465785986593747 stripped
 MonoBehaviour:
@@ -12460,6 +12468,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenTint: {fileID: 125079186}
   cameraConfiner: {fileID: 1434959520}
+--- !u!114 &5797465785986593755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888816100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52271f8bb7cb8ab439cb30568ad81187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeableObjectsManager: {fileID: 0}
 --- !u!1001 &6613684888441084220
 PrefabInstance:
   m_ObjectHideFlags: 0
