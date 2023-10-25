@@ -15,6 +15,7 @@ public class ToolsCharacterController : MonoBehaviour
     [SerializeField] TileMapReadController tileMapReadController;
     [SerializeField] float maxDistance = 1.5f;
     [SerializeField] ToolAction onTilePickUp;
+    [SerializeField] IconHightlight iconHightlight;
     //[SerializeField] CropsManager cropsManager;
     //[SerializeField] TileData plowableTiles;
 
@@ -50,11 +51,13 @@ public class ToolsCharacterController : MonoBehaviour
         Vector2 cameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         selectable = Vector2.Distance(characterPosition, cameraPosition) < maxDistance;
         markerManager.Show(selectable);
+        iconHightlight.CanSelect = selectable;
     }
     private void Marker()
     {
         selectedTilePosition.z = 0;
         markerManager.markedCellPosition = selectedTilePosition;
+        iconHightlight.cellPosition = selectedTilePosition;
     }
 
     private bool UseToolWorld()

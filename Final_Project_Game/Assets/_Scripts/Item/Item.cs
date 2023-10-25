@@ -14,6 +14,7 @@ public class Item : ScriptableObject
     public ToolAction onTileMapAction;
     public ToolAction onItemUsed;
     public Crop crop;
+    public bool iconHightlight;
     //[SerializeField] protected Sprite _icon;
     //public void Interact(object interactor)
     //{
