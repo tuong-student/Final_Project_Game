@@ -19,7 +19,7 @@ public class GameManager: MonoBehaviour
 
 
 
-    public Transform GetTranform()
+    public Transform GetTransform()
     {
         return player.transform;
     }
