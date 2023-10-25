@@ -26,7 +26,7 @@ public class ToolbarController : MonoBehaviour
     private void Update()
     {
         float delta = Input.mouseScrollDelta.y;
-        if ( delta != 0)
+        if (delta != 0)
         {
             if (delta > 0)
             {
@@ -46,11 +46,10 @@ public class ToolbarController : MonoBehaviour
     {
         selectedTool = id;
     }
-
-    private void UpdateHightlightIcon(int id)
+    public void UpdateHightlightIcon(int id = 0)
     {
         Item item = GetItem;
-        if(item == null)
+        if (item == null)
         {
             iconHightlight.Show = false;
             return;

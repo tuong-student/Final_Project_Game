@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fc2bf3836e2d7b40bc6e40808653826, type: 3}
-  m_Name: MainScene Objects Container
+  m_Script: {fileID: 11500000, guid: 2416e352668adc1469ddeea957f97953, type: 3}
+  m_Name: Place Object Action
   m_EditorClassIdentifier: 
