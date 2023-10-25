@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d52d75ac8580c749bbc0600de29d55f, type: 3}
-  m_Name: New Plow Tile
+  m_Script: {fileID: 11500000, guid: 2416e352668adc1469ddeea957f97953, type: 3}
+  m_Name: Place Object
   m_EditorClassIdentifier: 
-  canPlow: []

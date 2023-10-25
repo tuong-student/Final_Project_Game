@@ -28,6 +28,15 @@ public class ItemPanel : MonoBehaviour
     {
         Show();
     }
+
+    private void LateUpdate()
+    {
+        if (inventory.isDirty)
+        {
+            Show();
+            inventory.isDirty = false; 
+        }
+    }
     public virtual void Show()
     {
         for (int i = 0; i < inventory.slots.Count && i < buttons.Count; i++)

@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 020c56fdbaad7874f8ac5bf04a0b4e6a, type: 3}
-  m_Name: NotPlowable
+  m_Script: {fileID: 11500000, guid: 9fc2bf3836e2d7b40bc6e40808653826, type: 3}
+  m_Name: MainScene Objects Container
   m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 11400000, guid: 9140d0f10aedfd746bc5c83ae6125cb8, type: 2}
-  polowable: 0

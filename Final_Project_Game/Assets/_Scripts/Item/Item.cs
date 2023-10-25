@@ -14,20 +14,7 @@ public class Item : ScriptableObject
     public ToolAction onTileMapAction;
     public ToolAction onItemUsed;
     public Crop crop;
-    //[SerializeField] protected Sprite _icon;
-    //public void Interact(object interactor)
-    //{
-
-    //}
-
-    //public virtual void Pickup(Inventory inventory)
-    //{
-    //    inventory.AddToInventory(this);
-    //}
-
-    //public virtual Sprite GetIcon()
-    //{
-    //    return _icon;
-    //}
+    public bool iconHightlight;
+    public GameObject itemPrefab;
 }
    
