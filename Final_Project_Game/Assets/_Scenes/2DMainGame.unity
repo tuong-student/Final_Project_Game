@@ -816,6 +816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreeLog (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1937419026193701629, guid: 57ba06764399a6f41a26967fe0e5236f, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8027904711142345780, guid: 57ba06764399a6f41a26967fe0e5236f, type: 3}
       propertyPath: m_RootOrder
       value: 13

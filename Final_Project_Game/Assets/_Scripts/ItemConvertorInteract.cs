@@ -7,30 +7,33 @@ using UnityEngine;
 public class ItemConvertorData
 {
     public  ItemSlot itemSlot;
-    public  float timer;
+    public  int timer;
     public ItemConvertorData()
     {
         itemSlot = new ItemSlot();
     }
 
 }
-
+[RequireComponent(typeof(TimeAgent))]
 public class ItemConvertorInteract : Interactable, IPersistant
 {
     [SerializeField] private Item convertableItem;
     [SerializeField] private Item producedItem;
     [SerializeField] private int producedItemCount = 1;
-    [SerializeField] private float timetoProcess = 5f;
+    [SerializeField] private int timetoProcess = 5;
     private ItemConvertorData data;
     private Animator anim;
 
     private void Start()
     {
+        TimeAgent timeAgent = GetComponent<TimeAgent>();
+        timeAgent.onTimeTick += ItemConvertProcess;
         if (data == null)
         {
             data = new ItemConvertorData();
         }
         anim = GetComponent<Animator>();
+        Animate();
     }
 
     public override void Interact(Character character)
@@ -38,44 +41,70 @@ public class ItemConvertorInteract : Interactable, IPersistant
         if (data.itemSlot.item == null)
         {
             if (GameManager.instance.dragAndDropController.CheckItem(convertableItem))
-                StartItemProcessing();
+            {
+                StartItemProcessing(GameManager.instance.dragAndDropController.itemSlot);
+                return;
+            }
+            ToolbarController toolbar = character.GetComponent<ToolbarController>();
+            if (toolbar == null)
+                return;
+            ItemSlot itemSlot = toolbar.GetItemSlot;
+            if (itemSlot.item == convertableItem)
+            {
+                StartItemProcessing(itemSlot);
+            }
         }
-        if(data.itemSlot.item != null && data.timer < 0f)
+        if(data.itemSlot.item != null && data.timer <= 0f)
         {
             GameManager.instance.inventoryContainer.Add(data.itemSlot.item, data.itemSlot.count);
             data.itemSlot.Clear();
         }
     }
 
-    private void StartItemProcessing()
+    private void StartItemProcessing(ItemSlot toProcess)
     {
-        anim.SetBool("Working", true);
         data.itemSlot.Copy(GameManager.instance.dragAndDropController.itemSlot);
         data.itemSlot.count = 1;
-        GameManager.instance.dragAndDropController.RemoveItem();
-
-        data.timer = timetoProcess;
-    }
-
-    private void Update()
-    {
-        if (data.itemSlot == null)
-            return;
-        if (data.timer > 0f)
+        if (toProcess.item.stackable)
         {
-            data.timer -= Time.deltaTime;
-            if(data.timer <= 0f)
+            toProcess.count -= 1;
+            if(toProcess.count <= 0)
             {
-                CompleteItemConversion();
+                toProcess.Clear();
             }
         }
+        else
+        {
+            toProcess.Clear();
+        }
+        data.timer = timetoProcess;
+        Animate();
+    }
+
+    private void Animate()
+    {
+        anim.SetBool("Working", data.timer > 0f);
     }
 
     private void CompleteItemConversion()
     {
-        anim.SetBool("Working", false);
+        Animate();
         data.itemSlot.Clear();
         data.itemSlot.Set(producedItem, producedItemCount);
+    }
+
+    private void ItemConvertProcess()
+    {
+        if (data.itemSlot == null)
+            return;
+        if (data.timer > 0)
+        {
+            data.timer -= 1;
+            if (data.timer <= 0)
+            {
+                CompleteItemConversion();
+            }
+        }
     }
 
     public string Read()
