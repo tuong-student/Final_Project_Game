@@ -19,10 +19,17 @@ public class PlaceableObjectsManager : MonoBehaviour
     {
         for (int i = 0; i < placeObjects.placeableObjects.Count; i++)
         {
+            if (placeObjects.placeableObjects[i].targetObject == null)
+                continue;
+            IPersistant persistant = placeObjects.placeableObjects[i].targetObject.GetComponent<IPersistant>();
+            if(persistant !=null)
+            {
+                string jsonString = persistant.Read();
+                placeObjects.placeableObjects[i].objectState = jsonString;
+            }
             placeObjects.placeableObjects[i].targetObject = null;
         }
     }
-
     public void VisualizeMap()
     {
         for (int i = 0; i < placeObjects.placeableObjects.Count; i++)
@@ -50,12 +57,18 @@ public class PlaceableObjectsManager : MonoBehaviour
     private void VisualizeItem(PlaceableObject placeableObject)
     {
         GameObject go = Instantiate(placeableObject.placedItem.itemPrefab);
+        go.transform.parent = transform;
         Vector3 position = targetTilemap.CellToWorld(placeableObject.positionOnGrid) 
             + targetTilemap.cellSize / 2;
         go.transform.position = position;
+        IPersistant persistant = go.GetComponent<IPersistant>();
+        if (persistant != null)
+        {
+            persistant.Load(placeableObject.objectState);
+        }
         placeableObject.targetObject = go.transform;
     }
-    
+
     public bool IsThisPositionExist(Vector3Int position)
     {
         return placeObjects.GetPosition(position) != null;

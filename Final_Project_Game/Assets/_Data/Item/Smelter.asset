@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Smelter
   stackable: 0
-  icon: {fileID: 1750919527, guid: 6877efb3c2bb9054ea755e85f8314514, type: 3}
+  icon: {fileID: -132274522, guid: 662a3bc4e41da8f49ae2d29c05a76a13, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 11400000, guid: 0dbc42cdc5da07446b89e7414c45932c, type: 2}
   onItemUsed: {fileID: 11400000, guid: 0dbc42cdc5da07446b89e7414c45932c, type: 2}
   crop: {fileID: 0}
   iconHightlight: 1
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 3340365483047278173, guid: 91d8006fa6e76e44b9ff71cf9b2827ae, type: 3}

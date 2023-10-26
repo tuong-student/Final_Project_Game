@@ -3,56 +3,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemConvertorInteract : Interactable
+[Serializable]
+public class ItemConvertorData
+{
+    public  ItemSlot itemSlot;
+    public  float timer;
+    public ItemConvertorData()
+    {
+        itemSlot = new ItemSlot();
+    }
+
+}
+
+public class ItemConvertorInteract : Interactable, IPersistant
 {
     [SerializeField] private Item convertableItem;
     [SerializeField] private Item producedItem;
     [SerializeField] private int producedItemCount = 1;
-
-    private ItemSlot itemSlot;
-
     [SerializeField] private float timetoProcess = 5f;
-
-    private float timer;
+    private ItemConvertorData data;
     private Animator anim;
 
     private void Start()
     {
-        itemSlot = new ItemSlot();
+        if (data == null)
+        {
+            data = new ItemConvertorData();
+        }
         anim = GetComponent<Animator>();
     }
 
     public override void Interact(Character character)
     {
-        if (itemSlot.item == null)
+        if (data.itemSlot.item == null)
         {
             if (GameManager.instance.dragAndDropController.CheckItem(convertableItem))
                 StartItemProcessing();
         }
-        if(itemSlot.item != null && timer < 0f)
+        if(data.itemSlot.item != null && data.timer < 0f)
         {
-            GameManager.instance.inventoryContainer.Add(itemSlot.item, itemSlot.count);
-            itemSlot.Clear();
+            GameManager.instance.inventoryContainer.Add(data.itemSlot.item, data.itemSlot.count);
+            data.itemSlot.Clear();
         }
     }
 
     private void StartItemProcessing()
     {
         anim.SetBool("Working", true);
-        itemSlot.Copy(GameManager.instance.dragAndDropController.itemSlot);
+        data.itemSlot.Copy(GameManager.instance.dragAndDropController.itemSlot);
+        data.itemSlot.count = 1;
         GameManager.instance.dragAndDropController.RemoveItem();
 
-        timer = timetoProcess;
+        data.timer = timetoProcess;
     }
 
     private void Update()
     {
-        if (itemSlot == null)
+        if (data.itemSlot == null)
             return;
-        if (timer > 0f)
+        if (data.timer > 0f)
         {
-            timer -= Time.deltaTime;
-            if(timer <= 0f)
+            data.timer -= Time.deltaTime;
+            if(data.timer <= 0f)
             {
                 CompleteItemConversion();
             }
@@ -62,7 +74,17 @@ public class ItemConvertorInteract : Interactable
     private void CompleteItemConversion()
     {
         anim.SetBool("Working", false);
-        itemSlot.Clear();
-        itemSlot.Set(producedItem, producedItemCount);
+        data.itemSlot.Clear();
+        data.itemSlot.Set(producedItem, producedItemCount);
+    }
+
+    public string Read()
+    {
+       return JsonUtility.ToJson(data);
+    }
+
+    public void Load(string jsonString)
+    {
+        data = JsonUtility.FromJson<ItemConvertorData>(jsonString);
     }
 }
