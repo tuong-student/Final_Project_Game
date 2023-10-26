@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ItemDragAndDropController : MonoBehaviour
 {
-   [SerializeField] ItemSlot itemSlot;
+    public ItemSlot itemSlot;
     [SerializeField] GameObject ItemIcon;
     RectTransform iconTransform;
     Image itemIconImage;
@@ -19,20 +19,29 @@ public class ItemDragAndDropController : MonoBehaviour
         iconTransform = ItemIcon.GetComponent<RectTransform>();
         itemIconImage = ItemIcon.GetComponent<Image>();
     }
+
     internal void OnClick(ItemSlot itemSlot)
     {
-        if(this.itemSlot.item == null)
+        if (this.itemSlot.item == null)
         {
             this.itemSlot.Copy(itemSlot);
             itemSlot.Clear();
         }
         else
         {
-            Item item = itemSlot.item;
-            int count = itemSlot.count;
+            if(itemSlot.item == this.itemSlot.item)
+            {
+                itemSlot.count += this.itemSlot.count;
+                this.itemSlot.Clear();
+            }
+            else
+            {
+                Item item = itemSlot.item;
+                int count = itemSlot.count;
 
-            itemSlot.Copy(this.itemSlot);
-            this.itemSlot.Set(item, count);
+                itemSlot.Copy(this.itemSlot);
+                this.itemSlot.Set(item, count);
+            }
         }
         UpdateIcon();
     }
@@ -64,13 +73,40 @@ public class ItemDragAndDropController : MonoBehaviour
                     worldPosition.z = 0;
                     ItemSpawnManager.instance.SpawnItem(
                         worldPosition,
-                        null, 
-                        itemSlot.item, 
+                        null,
+                        itemSlot.item,
                         itemSlot.count);
                     itemSlot.Clear();
                     ItemIcon.SetActive(false);
                 }
             }
         }
+    }
+
+    public bool CheckItem(Item item, int count = 1)
+    {
+        if (itemSlot == null)
+            return false;
+        if (item.stackable)
+        {
+            return itemSlot.item == item && itemSlot.count >= count;
+        }
+
+        return itemSlot.item == item;
+    }
+
+    public void RemoveItem(int count = 1)
+    {
+        if (itemSlot == null)
+            return;
+        if (itemSlot.item.stackable)
+        {
+            itemSlot.count -= count;
+            if (itemSlot.count <= 0)
+                itemSlot.Clear();
+        }
+        else
+            itemSlot.Clear();
+        UpdateIcon();
     }
 }
