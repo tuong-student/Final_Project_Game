@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: Weapon
   m_EditorClassIdentifier: 
   Name: Weapon
+  id: 10
   stackable: 0
   icon: {fileID: 21300000, guid: 3888012f433b66f4db2e5c7edebecf27, type: 3}
+  onAction: {fileID: 0}
+  onTileMapAction: {fileID: 0}
+  onItemUsed: {fileID: 0}
+  crop: {fileID: 0}
+  iconHightlight: 0
+  itemPrefab: {fileID: 0}

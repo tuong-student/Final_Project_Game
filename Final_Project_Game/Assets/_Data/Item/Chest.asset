@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Chest
   m_EditorClassIdentifier: 
   Name: Chest
+  id: 1
   stackable: 0
   icon: {fileID: -291677805, guid: 4b745bbe5472b3c42b141eb061e0d79d, type: 3}
   onAction: {fileID: 0}
@@ -20,4 +21,4 @@ MonoBehaviour:
   onItemUsed: {fileID: 11400000, guid: 0dbc42cdc5da07446b89e7414c45932c, type: 2}
   crop: {fileID: 0}
   iconHightlight: 1
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 3286206983607021225, guid: 1e582a3dd83f9614289300dfc1326318, type: 3}

@@ -8,6 +8,7 @@ using Game.Interface;
 public class Item : ScriptableObject
 {
     public string Name;
+    public int id;
     public bool stackable;
     public Sprite icon;
     public ToolAction onAction;
