@@ -19,7 +19,6 @@ namespace Game
             {
                 _interactablePosition.Add(tilePos);
             }
-            base.Awake();
             _interactableTileMap.gameObject.SetActive(false);
         }
 

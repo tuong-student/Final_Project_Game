@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace NOOD
 {
@@ -14,20 +15,20 @@ namespace NOOD
         #region Look, mouse and Vector zone
         public static Vector3 ScreenPointToWorldPoint(Vector2 screenPoint)
         {
-            Camera cam = UnityEngine.GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             return cam.ScreenToWorldPoint(screenPoint);
         }
 
         public static Vector3 MouseToWorldPoint()
         {
-            Camera cam = UnityEngine.GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             Vector3 mousePos = Input.mousePosition;
             return cam.ScreenToWorldPoint(mousePos);
         }
 
         public static Vector3 MouseToWorldPoint2D()
         {
-            Camera cam = UnityEngine.GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             Vector3 mousePos = MouseToWorldPoint();
             Vector3 temp = new Vector3(mousePos.x, mousePos.y, 0f);
             return temp;
@@ -35,7 +36,7 @@ namespace NOOD
 
         public static Vector2 WorldPointToScreenPoint(Vector3 worldPoint)
         {
-            Camera cam = UnityEngine.GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            Camera cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             return cam.WorldToScreenPoint(worldPoint);
         }
 
@@ -59,19 +60,19 @@ namespace NOOD
 
         public static Vector3 GetPointAroundAPosition2D(Vector3 centerPosition, float degrees, float radius)
         {
-            var radians = degrees * Mathf.Deg2Rad;
-            var x = Mathf.Cos(radians);
-            var y = Mathf.Sin(radians);
+            float radians = degrees * Mathf.Deg2Rad;
+            float x = Mathf.Cos(radians);
+            float y = Mathf.Sin(radians);
             Vector3 pos = new Vector3(x, y, centerPosition.z);
             return pos += centerPosition;
         }
 
         public static Vector3 GetPointAroundAPosition2D(Vector3 centerPosition, float radius)
         {
-            var degrees = UnityEngine.Random.Range(0, 360);
-            var radians = degrees * Mathf.Deg2Rad;
-            var x = Mathf.Cos(radians);
-            var y = Mathf.Sin(radians);
+            int degrees = UnityEngine.Random.Range(0, 360);
+            float radians = degrees * Mathf.Deg2Rad;
+            float x = Mathf.Cos(radians);
+            float y = Mathf.Sin(radians);
             Vector3 pos = new Vector3(x, y, centerPosition.z);
             pos *= radius;
             return pos += centerPosition;
@@ -79,19 +80,19 @@ namespace NOOD
 
         public static Vector3 GetPointAroundAPosition3D(Vector3 centerPosition, float degrees, float radius)
         {
-            var radians = degrees * Mathf.Deg2Rad;
-            var x = Mathf.Cos(radians);
-            var z = Mathf.Sin(radians);
+            float radians = degrees * Mathf.Deg2Rad;
+            float x = Mathf.Cos(radians);
+            float z = Mathf.Sin(radians);
             Vector3 pos = new Vector3(x, centerPosition.y, z);
             return pos += centerPosition;
         }
 
         public static Vector3 GetPointAroundAPosition3D(Vector3 centerPosition, float radius)
         {
-            var degrees = UnityEngine.Random.Range(0, 360);
-            var radians = degrees * Mathf.Deg2Rad;
-            var x = Mathf.Cos(radians);
-            var z = Mathf.Sin(radians);
+            int degrees = UnityEngine.Random.Range(0, 360);
+            float radians = degrees * Mathf.Deg2Rad;
+            float x = Mathf.Cos(radians);
+            float z = Mathf.Sin(radians);
             Vector3 pos = new Vector3(x, centerPosition.y, z);
             pos *= radius;
             return pos += centerPosition;
@@ -121,16 +122,21 @@ namespace NOOD
             //! if your function has parameters, use param like this
             //! NoodyCustomCode.RunInBackGround(() => yourFunction(parameters)); 
 
-            Thread t = new Thread(() => {
+            Thread t = new Thread(() =>
+            {
                 if (mainThreadActions != null)
-                    NoodyCustomCode.AddToMainThread(function, mainThreadActions);
+                {
+                    AddToMainThread(function, mainThreadActions);
+                }
                 else
+                {
                     function();
+                }
             });
             t.Start();
         }
 
-        static void AddToMainThread(Action function, Queue<Action> mainThreadActions)
+        private static void AddToMainThread(Action function, Queue<Action> mainThreadActions)
         {
             mainThreadActions.Enqueue(function);
         }
@@ -162,20 +168,27 @@ namespace NOOD
         /// <returns></returns>
         public static (Vector3 center, float size) CalculateOrthoCamSize(Camera _camera, float _buffer)
         {
-            var bound = new Bounds(); //Create bound with center Vector3.zero;
+            Bounds bound = new Bounds(); //Create bound with center Vector3.zero;
 
-            foreach (var col in GameObject.FindObjectsOfType<Collider2D>()) bound.Encapsulate(col.bounds);
-            foreach (var col in GameObject.FindObjectsOfType<Collider>()) bound.Encapsulate(col.bounds);
+            foreach (Collider2D col in FindObjectsOfType<Collider2D>())
+            {
+                bound.Encapsulate(col.bounds);
+            }
+
+            foreach (Collider col in FindObjectsOfType<Collider>())
+            {
+                bound.Encapsulate(col.bounds);
+            }
 
             bound.Expand(_buffer);
 
-            var vertical = bound.size.y;
-            var horizontal = bound.size.x * _camera.pixelHeight / _camera.pixelWidth;
+            float vertical = bound.size.y;
+            float horizontal = bound.size.x * _camera.pixelHeight / _camera.pixelWidth;
 
             //Debug.Log("V: " + vertical + ", H: " + horizontal);
 
-            var size = Mathf.Max(horizontal, vertical) * 0.5f;
-            var center = bound.center + new Vector3(0f, 0f, -10f);
+            float size = Mathf.Max(horizontal, vertical) * 0.5f;
+            Vector3 center = bound.center + new Vector3(0f, 0f, -10f);
 
             return (center, size);
         }
@@ -185,14 +198,17 @@ namespace NOOD
         /// </summary>
         /// <param name="camera">Camera you want to move</param>
         /// <param name="direction">-1 for oposite direction, 1 for follow direction</param>
-        static Vector3 DCMousePostion = Vector3.zero;
-        static Vector3 DCDir;
-        static Vector3 tempPos;
-        static Vector3 campPos;
+        private static Vector3 DCMousePostion = Vector3.zero;
+        private static Vector3 DCDir;
+        private static Vector3 tempPos;
+        private static Vector3 campPos;
         public static void DragCamera(GameObject camera, int direction = 1)
         {
             if (Input.GetMouseButtonDown(0))
+            {
                 DCMousePostion = MouseToWorldPoint2D();
+            }
+
             if (Input.GetMouseButton(0))
             {
                 if (MouseToWorldPoint2D() != DCMousePostion)
@@ -211,7 +227,10 @@ namespace NOOD
         public static void DragCamera(GameObject camera, float minX, float maxX, float minY, float maxY, int direction = 1)
         {
             if (Input.GetMouseButtonDown(0))
+            {
                 DCMousePostion = MouseToWorldPoint2D();
+            }
+
             if (Input.GetMouseButton(0))
             {
                 if (MouseToWorldPoint2D() != DCMousePostion)
@@ -221,11 +240,15 @@ namespace NOOD
                     tempPos = direction * DCDir;
                     campPos = camera.transform.position;
 
-                    if(campPos.x + tempPos.x > minX && campPos.x + tempPos.x < maxX)
+                    if (campPos.x + tempPos.x > minX && campPos.x + tempPos.x < maxX)
+                    {
                         campPos.x += tempPos.x;
-                    if(campPos.y + tempPos.y > minY && campPos.y + tempPos.y < maxY)
-                        campPos.y += tempPos.y;
+                    }
 
+                    if (campPos.y + tempPos.y > minY && campPos.y + tempPos.y < maxY)
+                    {
+                        campPos.y += tempPos.y;
+                    }
 
                     camera.transform.position = campPos;
                 }
@@ -260,10 +283,14 @@ namespace NOOD
                         campPos = camera.transform.position;
 
                         if (campPos.x + tempPos.x > minX && campPos.x + tempPos.x < maxX)
+                        {
                             campPos.x += tempPos.x;
-                        if (campPos.y + tempPos.y > minY && campPos.y + tempPos.y < maxY)
-                            campPos.y += tempPos.y;
+                        }
 
+                        if (campPos.y + tempPos.y > minY && campPos.y + tempPos.y < maxY)
+                        {
+                            campPos.y += tempPos.y;
+                        }
 
                         camera.transform.position = campPos;
                     }
@@ -273,7 +300,7 @@ namespace NOOD
 
         }
 
-        public static void SmoothCameraFollow(UnityEngine.GameObject camera, float smoothTime, Transform targetTransform, Vector3 offset,
+        public static void SmoothCameraFollow(GameObject camera, float smoothTime, Transform targetTransform, Vector3 offset,
         float maxX, float maxY, float minX, float minY)
         {
 
@@ -282,14 +309,20 @@ namespace NOOD
             Vector3 currentSpeed = Vector3.zero;
             Vector3 smoothPosition = Vector3.SmoothDamp(camera.transform.position, targetPosition, ref currentSpeed, smoothTime);
             if (smoothPosition.x < maxX && smoothPosition.x > minX)
+            {
                 temp.x = smoothPosition.x;
+            }
+
             if (smoothPosition.y < maxY && smoothPosition.y > minY)
+            {
                 temp.y = smoothPosition.y;
+            }
+
             temp.z = smoothPosition.z;
             camera.transform.position = temp;
         }
 
-        public static void SmoothCameraFollow(UnityEngine.GameObject camera, float smoothTime, Transform targetTransform, Vector3 offset)
+        public static void SmoothCameraFollow(GameObject camera, float smoothTime, Transform targetTransform, Vector3 offset)
         {
 
             Vector3 temp = camera.transform.position;
@@ -305,14 +338,14 @@ namespace NOOD
             camera.transform.position = temp;
         }
 
-        public static void LerpSmoothCameraFollow(UnityEngine.GameObject camera, float smoothTime, Transform targetTransform, Vector3 offset)
+        public static void LerpSmoothCameraFollow(GameObject camera, float smoothTime, Transform targetTransform, Vector3 offset)
         {
 
             Vector3 temp = camera.transform.position;
             Vector3 targetPosition = targetTransform.position + offset;
             Vector3 currentSpeed = Vector3.zero;
             //Vector3 smoothPosition = Vector3.SmoothDamp(camera.transform.position, targetPosition, ref currentSpeed, smoothTime);
-            Vector3 smoothPosition = Vector3.Lerp(temp, targetPosition, smoothTime*Time.fixedDeltaTime);
+            Vector3 smoothPosition = Vector3.Lerp(temp, targetPosition, smoothTime * Time.fixedDeltaTime);
 
             temp.x = smoothPosition.x;
             temp.y = smoothPosition.y;
@@ -321,7 +354,7 @@ namespace NOOD
             camera.transform.position = temp;
         }
 
-        public static IEnumerator ObjectShake(UnityEngine.GameObject @object, float duration, float magnitude)
+        public static IEnumerator ObjectShake(GameObject @object, float duration, float magnitude)
         {
             Vector3 OriginalPos = @object.transform.localPosition;
             float elapsed = 0.0f;
@@ -329,7 +362,7 @@ namespace NOOD
             while (elapsed < duration)
             {
                 float x, y;
-                if ((elapsed / duration) * 100 < 80)
+                if (elapsed / duration * 100 < 80)
                 {
                     //Starting shake
                     x = UnityEngine.Random.Range(-range, range) * magnitude;
@@ -360,8 +393,7 @@ namespace NOOD
         /// <returns>Color with RGBA form</returns>
         public static Color HexToColor(string hexCode)
         {
-            Color color;
-            ColorUtility.TryParseHtmlString(hexCode, out color);
+            _ = ColorUtility.TryParseHtmlString(hexCode, out Color color);
 
             return color;
         }
@@ -384,6 +416,185 @@ namespace NOOD
         public static string ColorToHex(Color color)
         {
             return ColorUtility.ToHtmlStringRGB(color);
+        }
+        //----------------------------//
+        /// <summary>
+        /// reduce alpha to 0 over Time.deltaTime
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public static void FadeOutImage(Image image)
+        {
+            FadeOutImage(image, 0, Time.deltaTime);
+        }
+        /// <summary>
+        /// reduce alpha to 0
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="pauseTimePerLoop"></param>
+        public static void FadeOutImage(Image image, float pauseTimePerLoop)
+        {
+            FadeOutImage(image, 0, pauseTimePerLoop);
+        }
+        /// <summary>
+        /// reduce alpha to the end value
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="endValue">the stop value</param>
+        /// <param name="pauseTimePerLoop">time between loop</param>
+        public static void FadeOutImage(Image image, float endValue, float pauseTimePerLoop)
+        {
+            GameObject fadeOutObj = new GameObject("FadeOutObj");
+            CoroutineScript coroutineScript = fadeOutObj.AddComponent<CoroutineScript>();
+
+            coroutineScript.StartCoroutineLoop(() =>
+            {
+                Color color = image.color;
+                color.a -= Time.deltaTime;
+                image.color = color;
+                if (color.a <= endValue)
+                {
+                    image.gameObject.SetActive(false);
+                    coroutineScript.Complete();
+                }
+            }, pauseTimePerLoop);
+        }
+        //----------------------------//
+        /// <summary>
+        /// Fade in the image by crease color over Time.deltaTime
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        public static void FadeInImage(Image image)
+        {
+            FadeInImage(image, 1, Time.deltaTime);
+        }
+        /// <summary>
+        /// increase alpha to 1
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="pauseTimePerLoop"></param>
+        public static void FadeInImage(Image image, float pauseTimePerLoop)
+        {
+            FadeInImage(image, 1, pauseTimePerLoop);
+        }
+        /// <summary>
+        /// increase alpha to the maxValue
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="pauseTimePerLoop">time between loop</param>
+        public static void FadeInImage(Image image, float maxValue, float pauseTimePerLoop)
+        {
+            GameObject fadeInObj = new GameObject("FadeInObj");
+            image.gameObject.SetActive(true);
+            CoroutineScript coroutineScript = fadeInObj.AddComponent<CoroutineScript>();
+
+            coroutineScript.StartCoroutineLoop(() =>
+            {
+                Color color = image.color;
+                color.a += Time.deltaTime;
+                image.color = color;
+                if(image.color.a >= maxValue)
+                {
+                    coroutineScript.Complete();
+                }
+            }, pauseTimePerLoop);
+        }
+        //----------------------------//
+        /// <summary>
+        /// decrease alpha to 0 over Time.deltaTime
+        /// </summary>
+        /// <param name="textMeshProUGUI"></param>
+        public static void FadeOutTextMeshUGUI(TextMeshProUGUI textMeshProUGUI)
+        {
+            FadeOutTextMeshUGUI(textMeshProUGUI, 0, Time.deltaTime);
+        }
+        /// <summary>
+        /// increase alpha to 0
+        /// </summary>
+        /// <param name="textMeshProUGUI"></param>
+        /// <param name="pauseTimePerLoop">time between loop</param>
+        public static void FadeOutTextMeshUGUI(TextMeshProUGUI textMeshProUGUI, float pauseTimePerLoop)
+        {
+            FadeOutTextMeshUGUI(textMeshProUGUI, 0, pauseTimePerLoop);
+        }
+        /// <summary>
+        /// decrease alpha to endValue
+        /// </summary>
+        /// <param name="textMeshProUGUI"></param>
+        /// <param name="endValue"></param>
+        /// <param name="pauseTimePerLoop">Time between loop</param>
+        public static void FadeOutTextMeshUGUI(TextMeshProUGUI textMeshProUGUI, float endValue,float pauseTimePerLoop)
+        {
+            GameObject fadeOutObj = new GameObject("FadeOutObj");
+            CoroutineScript coroutineScript = fadeOutObj.AddComponent<CoroutineScript>();
+
+            coroutineScript.StartCoroutineLoop(() =>
+            {
+                Color color = textMeshProUGUI.color;
+                color.a -= Time.deltaTime;
+                textMeshProUGUI.color = color;
+                if(textMeshProUGUI.color.a <= endValue)
+                {
+                    textMeshProUGUI.gameObject.SetActive(false);
+                    coroutineScript.Complete();
+                }
+            }, pauseTimePerLoop);
+        }
+        //----------------------------//
+        /// <summary>
+        /// increase alpha to 1 over Time.deltaTime
+        /// </summary>
+        /// <param name="textMeshProUGUI"></param>
+        public static void FadeInTextMeshUGUI(TextMeshProUGUI textMeshProUGUI)
+        {
+            FadeInTextMeshUGUI(textMeshProUGUI, 1, Time.deltaTime);
+        }
+        /// <summary>
+        /// increase alpha to 1
+        /// </summary>
+        /// <param name="textMeshProUGUI"></param>
+        /// <param name="pauseTimePerLoop"></param>
+        public static void FadeInTextMeshUGUI(TextMeshProUGUI textMeshProUGUI, float pauseTimePerLoop)
+        {
+            FadeInTextMeshUGUI(textMeshProUGUI, 1, pauseTimePerLoop);
+        }
+        /// <summary>
+        /// increase alpha to maxValue
+        /// </summary>
+        /// <param name="textMeshProUGUI"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="pauseTimePerLoop"></param>
+        public static void FadeInTextMeshUGUI(TextMeshProUGUI textMeshProUGUI, float maxValue, float pauseTimePerLoop)
+        {
+            textMeshProUGUI.gameObject.SetActive(true);
+            GameObject fadeInObj = new GameObject("FadeInObj");
+            CoroutineScript coroutineScript = fadeInObj.AddComponent<CoroutineScript>();
+
+            coroutineScript.StartCoroutineLoop(() =>
+            {
+                Color color = textMeshProUGUI.color;
+                color.a += Time.deltaTime;
+                textMeshProUGUI.color = color;
+                if(textMeshProUGUI.color.a >= maxValue)
+                {
+                    coroutineScript.Complete();
+                }
+            }, pauseTimePerLoop);
+        }
+        #endregion
+    
+        #region CoroutineFunction
+        /// <summary>
+        /// Create a coroutineScript for coroutine loop function
+        /// </summary>
+        /// <returns></returns>
+        public static CoroutineScript CreateNewCoroutineObj()
+        {
+            GameObject fadeInObj = new GameObject("CoroutineObj");
+            CoroutineScript coroutineScript = fadeInObj.AddComponent<CoroutineScript>();
+            return coroutineScript;
         }
         #endregion
     }
