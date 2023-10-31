@@ -44,7 +44,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -19976,7 +19976,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_946
+      name: PlowableDirt_TopLeft
       rect:
         serializedVersion: 2
         x: 0
@@ -19997,7 +19997,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_947
+      name: PlowableDirt_Top
       rect:
         serializedVersion: 2
         x: 16
@@ -20018,7 +20018,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_948
+      name: PlowableDirt_TopRight
       rect:
         serializedVersion: 2
         x: 32
@@ -20459,7 +20459,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_969
+      name: PlowableDirt_Left
       rect:
         serializedVersion: 2
         x: 0
@@ -20501,7 +20501,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_971
+      name: PlowableDirt_Right
       rect:
         serializedVersion: 2
         x: 32
@@ -20942,7 +20942,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_992
+      name: PlowableDirt_BottomLeft
       rect:
         serializedVersion: 2
         x: 0
@@ -20963,7 +20963,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_993
+      name: PlowableDirt_Bottom
       rect:
         serializedVersion: 2
         x: 16
@@ -20984,7 +20984,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_994
+      name: PlowableDirt_BottomRight
       rect:
         serializedVersion: 2
         x: 32
@@ -21488,7 +21488,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_1018
+      name: PlowableDirt_InnerCorner_BottomRight
       rect:
         serializedVersion: 2
         x: 0
@@ -21509,7 +21509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_1019
+      name: PlowableDirt_InnerCorner_BottomLeft
       rect:
         serializedVersion: 2
         x: 16
@@ -22034,7 +22034,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_1044
+      name: PlowableDirt_InnerCorner_TopRight
       rect:
         serializedVersion: 2
         x: 0
@@ -22055,7 +22055,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Overworld_1045
+      name: PlowableDirt_InnerCorner_TopLeft
       rect:
         serializedVersion: 2
         x: 16
@@ -22676,8 +22676,6 @@ TextureImporter:
       Overworld_1015: -106016531
       Overworld_1016: 423652091
       Overworld_1017: -979150374
-      Overworld_1018: 47077052
-      Overworld_1019: 1407838642
       Overworld_102: -95654187
       Overworld_1020: 672654547
       Overworld_1021: -1992267773
@@ -22705,8 +22703,6 @@ TextureImporter:
       Overworld_1041: 419151873
       Overworld_1042: -1228785869
       Overworld_1043: 560738206
-      Overworld_1044: 1711217846
-      Overworld_1045: -654818406
       Overworld_1046: 936260990
       Overworld_1047: -1202063222
       Overworld_1048: -1538705567
@@ -23667,9 +23663,6 @@ TextureImporter:
       Overworld_943: -1586845453
       Overworld_944: -1405413218
       Overworld_945: -332144862
-      Overworld_946: -1949145412
-      Overworld_947: -731319179
-      Overworld_948: -1732229510
       Overworld_949: -385189855
       Overworld_95: -1335319046
       Overworld_950: -1346242805
@@ -23692,9 +23685,7 @@ TextureImporter:
       Overworld_966: 1302921469
       Overworld_967: -1607113788
       Overworld_968: -598975562
-      Overworld_969: -1239845359
       Overworld_97: 1843088615
-      Overworld_971: 576691752
       Overworld_972: 929365983
       Overworld_973: 989894713
       Overworld_974: 309211182
@@ -23717,15 +23708,24 @@ TextureImporter:
       Overworld_99: 249712529
       Overworld_990: 738573883
       Overworld_991: 642766358
-      Overworld_992: 1196206641
-      Overworld_993: -2035523613
-      Overworld_994: 815411799
       Overworld_995: 2111416085
       Overworld_996: -1655721901
       Overworld_997: -1536953314
       Overworld_998: 814820284
       Overworld_999: -730240611
       PlowableDirt: 1626632286
+      PlowableDirt_Bottom: -2035523613
+      PlowableDirt_BottomLeft: 1196206641
+      PlowableDirt_BottomRight: 815411799
+      PlowableDirt_InnerCorner_BottomLeft: 1407838642
+      PlowableDirt_InnerCorner_BottomRight: 47077052
+      PlowableDirt_InnerCorner_TopLeft: -654818406
+      PlowableDirt_InnerCorner_TopRight: 1711217846
+      PlowableDirt_Left: -1239845359
+      PlowableDirt_Right: 576691752
+      PlowableDirt_Top: -731319179
+      PlowableDirt_TopLeft: -1949145412
+      PlowableDirt_TopRight: -1732229510
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
