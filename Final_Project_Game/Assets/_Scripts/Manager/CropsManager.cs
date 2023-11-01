@@ -28,7 +28,6 @@ public class CropTile
     internal void Harvested()
     {
         OnHarvest?.Invoke();
-        Debug.Log("OnHarvest: " + OnHarvest != null);
         growTimer = 0;
         growStage = 0;
         crop = null;
