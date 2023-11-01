@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Game;
-using UnityEngine.Timeline;
-using UnityEngine.UI;
-using UnityEngine.Tilemaps;
 using System;
 
 public class CharacterInteractController : MonoBehaviour

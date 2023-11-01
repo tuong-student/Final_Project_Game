@@ -43,7 +43,6 @@ public class TilemapCropsManager : TimeAgent
             {
                 cropTile.Harvested();
                 targetTilemap.SetTile(cropTile.position, plowed);
-                container.DestroyHarvestIcon(cropTile);
                 container.SetDisplayHarvestIconValue(cropTile, false);
                 continue;
             }
@@ -53,6 +52,7 @@ public class TilemapCropsManager : TimeAgent
                 {
                     Debug.Log("im done");
                     CreateHarvestIcon(cropTile);
+                    cropTile.OnHarvest = () => container.DestroyHarvestIcon(cropTile);
                 }
                 continue;
             }

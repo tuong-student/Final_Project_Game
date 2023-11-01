@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Game;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 [Serializable]
 public class CropTile
 {
+    public Action OnHarvest;
     public int growTimer;
     public int growStage;
     public Crop crop;
@@ -28,11 +27,14 @@ public class CropTile
 
     internal void Harvested()
     {
+        OnHarvest?.Invoke();
+        Debug.Log("OnHarvest: " + OnHarvest != null);
         growTimer = 0;
         growStage = 0;
         crop = null;
         renderer.gameObject.SetActive(false);
         damage = 0;
+        OnHarvest = null;
     }
 }
 

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using static SeawispHunter.RolePlay.Attributes.Samples.Main;
 
 public class ToolsCharacterController : MonoBehaviour
 {
