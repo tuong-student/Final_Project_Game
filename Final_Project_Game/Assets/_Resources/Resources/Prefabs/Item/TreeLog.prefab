@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829260094257775017}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.1, y: 3.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1937419026193701629
 SpriteRenderer:
@@ -178,4 +178,4 @@ MonoBehaviour:
   toSpawn: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
   count: 1
   spread: 2
-  probability: 0.5
+  probability: 0.005
