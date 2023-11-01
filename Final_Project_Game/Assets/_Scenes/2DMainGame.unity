@@ -1005,6 +1005,51 @@ MonoBehaviour:
   ttl: 10
   item: {fileID: 11400000, guid: 3bb55b88c4ac90d478008785abeffe57, type: 2}
   count: 1
+--- !u!1 &1190131678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1190131680}
+  - component: {fileID: 1190131679}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1190131679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190131678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a3fa8cdda727442ba4fa840bf33dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _plowTileEffect: {fileID: 6701268207400412825, guid: de112b413436cf241a785101b4fd6721, type: 3}
+--- !u!4 &1190131680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190131678}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07981232, y: -2.4968288, z: 1.6149513}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1212430889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,6 +1933,67 @@ MonoBehaviour:
   cropsSpritePrefab: {fileID: 2002287741187624059, guid: a6da228b1e74c764f904a12fbf9218f6, type: 3}
   container: {fileID: 11400000, guid: d147ea3982230c544891dd534557cf08, type: 2}
   harvestIconPref: {fileID: 1199007867642263750, guid: 8b54e0ec9e4594baaba4ec8c5a4b92c8, type: 3}
+--- !u!1001 &1695595401
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117431588562530045, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744656754923300663, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_Name
+      value: PlowTileEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744656754923300663, guid: de112b413436cf241a785101b4fd6721, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de112b413436cf241a785101b4fd6721, type: 3}
 --- !u!1 &1702680831 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6666659179590992697, guid: a88daddfc6af041ebad3ddd8a86aa962, type: 3}
@@ -6343,3 +6449,5 @@ SceneRoots:
   - {fileID: 20061688}
   - {fileID: 544521658604515047}
   - {fileID: 1286473719}
+  - {fileID: 1190131680}
+  - {fileID: 1695595401}
