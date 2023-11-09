@@ -10,6 +10,7 @@ public class DayTimeController : MonoBehaviour
 {
     const float secondsInDay = 86000f;
     const float phaseLength = 900f; // 15 minutes chunk of time
+    const float phaseInDay = 96f ;//secondsInDay divided by phaseLength
 
     [SerializeField] private Color nightLightColor;
     [SerializeField] private Color dayLightColor = Color.white;
@@ -21,7 +22,7 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] private float startAtTime = 28800f; // in second
     [SerializeField] private Text text;
     [SerializeField] Light2D globalLight;
-    private int day;
+    private int days;
 
     private List<TimeAgent> agents;
     private void Awake()
@@ -73,19 +74,30 @@ public class DayTimeController : MonoBehaviour
         text.text = hh.ToString("00") + ":" + mm.ToString("00");
     }
 
-    private int oldPhase = 0;
+    private int oldPhase = -1;
     private void TimeAgents()
     {
-        int currentPhase = (int) (time / phaseLength);
-        if(oldPhase != currentPhase)
+        if(oldPhase == 1)
         {
-            oldPhase = currentPhase;
+            oldPhase = CalculatePhase();
+        }
+
+        int currentPhase = CalculatePhase();
+        while (oldPhase < currentPhase)
+        {
+            oldPhase += 1;
             for (int i = 0; i < agents.Count; i++)
             {
                 agents[i].Invoke();
             }
         }
     }
+
+    private int CalculatePhase()
+    {
+        return (int)(time / phaseLength) + (int)(days*phaseInDay);
+    }
+
     private void DayLight()
     {
         float v = nightTimeCurve.Evaluate(Hours);
@@ -95,6 +107,6 @@ public class DayTimeController : MonoBehaviour
     private void NextDay()
     {
         time = 0;
-        day += 1;
+        days += 1;
      }
 }
