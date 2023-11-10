@@ -22,7 +22,7 @@ public class InventoryController : MonoBehaviour
     public void Open()
     {
         panel.SetActive(true);
-        statusPanel.SetActive(true);
+        //statusPanel.SetActive(true);
         toolbarPanel.SetActive(false);
     }
     public void Close()
