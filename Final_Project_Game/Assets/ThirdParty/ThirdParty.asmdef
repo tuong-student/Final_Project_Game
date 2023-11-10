@@ -1,0 +1,16 @@
+{
+    "name": "ThirdParty",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c725aad1967f49db9e59182d788a0592"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

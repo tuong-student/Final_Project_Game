@@ -50,7 +50,7 @@ MonoBehaviour:
   closeChest: {fileID: 5739685685825562700}
   openChest: {fileID: 4104005271151170224}
   isOpen: 0
-  itemContainer: {fileID: 0}
+  itemContainer: {fileID: 11400000, guid: ecd0cd9abaedf36459c234977a4eeb80, type: 2}
 --- !u!61 &5178661571766488282
 BoxCollider2D:
   m_ObjectHideFlags: 0

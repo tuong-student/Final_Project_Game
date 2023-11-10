@@ -12,17 +12,6 @@ namespace Game
         private IPickupable _pickupableObject;
         public event Action<object> onPlayerTriggerEnter;
 
-        void OnTriggerEnter(Collider other)
-        {
-            if(other.GetComponent<IInteractable>() != null)
-            {
-                _interactableObject = other.GetComponent<IInteractable>();
-            } 
-            if(other.GetComponent<IPickupable>() != null)
-            {
-                _pickupableObject = other.GetComponent<IPickupable>();
-            }
-        }
         void OnTriggerEnter2D(Collider2D other)
         {
             if(other.GetComponent<IInteractable>() != null)
@@ -32,17 +21,6 @@ namespace Game
             if(other.GetComponent<IPickupable>() != null)
             {
                 _pickupableObject = other.GetComponent<IPickupable>();
-            }
-        }
-        void OnTriggerExit(Collider other)
-        {
-            if(other.GetComponent<IInteractable>() != null)
-            {
-                _interactableObject = null;
-            }
-            if(other.GetComponent<IPickupable>() != null)
-            {
-                _pickupableObject = null;
             }
         }
         void OnTriggerExit2D(Collider2D other)
