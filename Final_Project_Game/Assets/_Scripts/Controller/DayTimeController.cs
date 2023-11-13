@@ -88,7 +88,7 @@ public class DayTimeController : MonoBehaviour
             oldPhase += 1;
             for (int i = 0; i < agents.Count; i++)
             {
-                agents[i].Invoke();
+                agents[i].Invoke((int)Hours, (int)Minutes);
             }
         }
     }

@@ -18,7 +18,7 @@ public class PlowTile : ToolAction
             return false;
         }
         tileMapReadController.cropsManager.Plow(gridPosition);
-        EffectManager.Instance.CreateEffect(EffectType.Plow, gridPosition);
+        // EffectManager.Instance.CreateEffect(EffectType.Plow, gridPosition);
         return true;
     }
 }

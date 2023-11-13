@@ -155,7 +155,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.Final-Project-Game
   buildNumber:
     Bratwurst: 0
     Standalone: 0
@@ -832,7 +833,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: IMPOSSIBLE_ODDS_LOGGING_EDITOR_INFO;IMPOSSIBLE_ODDS_LOGGING_INFO;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1
+    Standalone: IMPOSSIBLE_ODDS_LOGGING_EDITOR_INFO;IMPOSSIBLE_ODDS_LOGGING_INFO;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

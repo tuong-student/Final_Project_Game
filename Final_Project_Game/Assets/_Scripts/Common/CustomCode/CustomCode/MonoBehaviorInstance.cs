@@ -12,7 +12,6 @@ namespace NOOD
 
         public static void AddToDic(object instance)
         {
-            Debug.Log(instance.GetType());
             if(InstanceDic.ContainsKey(instance.GetType()))
             {
                 InstanceDic[instance.GetType()] = instance;

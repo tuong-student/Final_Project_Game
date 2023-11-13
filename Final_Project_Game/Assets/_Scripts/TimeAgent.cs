@@ -6,6 +6,8 @@ using UnityEngine;
 public class TimeAgent : MonoBehaviour
 {
     public Action onTimeTick;
+    public Action<int, int> onDayTime;
+
     private void Start()
     {
         Init();
@@ -15,9 +17,10 @@ public class TimeAgent : MonoBehaviour
     {
         GameManager.instance.timeController.Subscribe(this);
     }
-    public void Invoke()
+    public void Invoke(int hour, int minute)
     {
         onTimeTick?.Invoke();
+        onDayTime?.Invoke(hour, minute);
     }
 
     private void OnDestroy()

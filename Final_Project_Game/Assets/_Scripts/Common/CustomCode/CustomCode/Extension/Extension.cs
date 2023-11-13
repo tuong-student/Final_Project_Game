@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 namespace NOOD.Extension
 {
@@ -32,6 +33,15 @@ namespace NOOD.Extension
 
             T result;
             return Enum.TryParse<T>(value, out result) ? result : defaultValue;
+        }
+    }
+
+    public static class CollectorExtension
+    {
+        public static T GetRandom<T>(this List<T> list) where T : class
+        {
+            int r = UnityEngine.Random.Range(0, list.Count - 1);
+            return list[r];
         }
     }
 
