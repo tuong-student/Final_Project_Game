@@ -13,19 +13,19 @@ namespace Game
 
         void Awake()
         {
-            GameInput.onPlayerPressMoveVector2 += SetAnim;
+            // GameInput.onPlayerPressMoveVector2 += SetAnim;
         }
         void Start()
         {
-            _originalScale = this.transform.parent.transform.localScale;
+            // _originalScale = this.transform.parent.transform.localScale;
         }
         void Update()
         {
-            _animator.SetBool("Run", _run);
-            _animator.SetBool("Side", _side);
-            _animator.SetBool("Up", _up);
-            _animator.SetBool("Down", _down); 
-            _animator.SetBool("Hold", _hold);
+            // _animator.SetBool("Run", _run);
+            // _animator.SetBool("Side", _side);
+            // _animator.SetBool("Up", _up);
+            // _animator.SetBool("Down", _down); 
+            // _animator.SetBool("Hold", _hold);
         }
 
         private void SetAnim(Vector2 playerInput)
