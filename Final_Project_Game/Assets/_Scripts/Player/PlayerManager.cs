@@ -8,8 +8,6 @@ namespace Game
 {
     public class PlayerManager : MonoBehaviour
     {
-        public static PlayerManager instance;
-
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerAnimation _playerAnimation;
         [SerializeField] private PlayerOnCollision _playerOnCollision;
@@ -23,12 +21,9 @@ namespace Game
         private List<Item> _items = new List<Item>();
 
         private PreviewHandler previewHandler;
-        public ItemContainer inventoryContainer;
-
 
         void Awake()
         {
-            instance = this;
             GameInput.Init();
             GameInput.onPlayerPressInteract += Pickup;
             GameInput.onPlayerRequestItem += EquipItem;

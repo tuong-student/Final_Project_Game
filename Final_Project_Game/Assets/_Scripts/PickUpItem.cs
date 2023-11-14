@@ -1,4 +1,3 @@
-using Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,10 +44,10 @@ public class PickUpItem : MonoBehaviour
         if(distance < 0.1f)
         {
             //Should be move into specified controller rather than being checked here.
-            if (PlayerManager.instance.inventoryContainer != null)
+            if (GameManager.instance.inventoryContainer != null)
             {
                 Debug.Log("item_____" + item.icon + "______" + item.Name);
-                PlayerManager.instance.inventoryContainer.Add(item, count);
+                GameManager.instance.inventoryContainer.Add(item, count);
             }
             else Debug.Log("No inventory container attached to the game manager");
             Destroy(gameObject);

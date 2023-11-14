@@ -7,6 +7,7 @@ public class GameManager: MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
+    public ItemContainer inventoryContainer;
     public ItemDragAndDropController dragAndDropController;
     public DayTimeController timeController;
     public DialogueSystem dialogueSystem;

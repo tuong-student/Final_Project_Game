@@ -1,4 +1,3 @@
-using Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -71,7 +70,7 @@ public class ToolsCharacterController : MonoBehaviour
         {
             if (item.onItemUsed != null)
             {
-                item.onItemUsed.OnItemUsed(item, PlayerManager.instance.inventoryContainer);
+                item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
             }
         }
         return complete;
@@ -103,7 +102,7 @@ public class ToolsCharacterController : MonoBehaviour
             {
                 if (item.onItemUsed != null)
                 {
-                    item.onItemUsed.OnItemUsed(item, PlayerManager.instance.inventoryContainer);
+                    item.onItemUsed.OnItemUsed(item, GameManager.instance.inventoryContainer);
                 }
             }
         }
