@@ -1,3 +1,4 @@
+using Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,14 +15,14 @@ public class ToolbarController : MonoBehaviour
     {
         get
         {
-            return GameManager.instance.inventoryContainer.slots[selectedTool];
+            return PlayerManager.instance.inventoryContainer.slots[selectedTool];
         }
     }
     public Item GetItem
     {
         get
         {
-            return GameManager.instance.inventoryContainer.slots[selectedTool].item;
+            return PlayerManager.instance.inventoryContainer.slots[selectedTool].item;
         }
     }
     private void Start()
