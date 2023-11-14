@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class TileMapReadController : MonoBehaviour
 {
 
-    [SerializeField] Tilemap tilemap;
+    public Tilemap tilemap;
     public CropsManager cropsManager;
     public PlaceableObjectReferenceManager objectsManager;
 
