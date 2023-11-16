@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunHolder : MonoBehaviour
 {
     [SerializeField] private Gun _currentGun;
-    [SerializeField] private Transform _bulletPoolingHolder;
+    private Transform _bulletPoolingHolder;
     public Transform BulletTransformHolder  
     {
         get

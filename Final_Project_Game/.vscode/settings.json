@@ -57,6 +57,6 @@
         "Seawisp",
         "stackable"
     ],
-    "dotnet.preferCSharpExtension": true,
+    "dotnet.preferCSharpExtension": false,
     "dotnet.defaultSolution": "Final_Project_Game.sln"
 }
