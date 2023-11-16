@@ -12,6 +12,8 @@ namespace Game
         public static event Action<Vector2> onPlayerPressMoveVector2;
         public static event Action<int> onPlayerRequestItem;
         public static event Action onPlayerPressInteract;
+        public static event Action onPlayerShoot;
+        public static event Action onPlayerStopShooting;
         #endregion
         private static GameInputSystem _gameInputSystem;
 
@@ -33,6 +35,9 @@ namespace Game
             _gameInputSystem.Player.Inventory6.performed += (InputAction.CallbackContext callbackContext) => onPlayerRequestItem?.Invoke(5);
             _gameInputSystem.Player.Inventory7.performed += (InputAction.CallbackContext callbackContext) => onPlayerRequestItem?.Invoke(6);
             _gameInputSystem.Player.Inventory8.performed += (InputAction.CallbackContext callbackContext) => onPlayerRequestItem?.Invoke(7);
+
+            _gameInputSystem.Player.Shoot.performed += (InputAction.CallbackContext callbackContext) => onPlayerShoot?.Invoke();
+            _gameInputSystem.Player.Shoot.canceled += (InputAction.CallbackContext callbackContext) => onPlayerStopShooting?.Invoke();
         }
     }
 

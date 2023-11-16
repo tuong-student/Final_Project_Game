@@ -21,10 +21,6 @@ public class GunHolder : MonoBehaviour
     void Update()
     {
         RotateToMouse();
-        if(Input.GetMouseButton(0))
-        {
-            _currentGun.Shoot();
-        }
     }
 
     private void RotateToMouse()

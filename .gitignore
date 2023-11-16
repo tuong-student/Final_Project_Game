@@ -72,4 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Final_Project_Game/.vsconfig
 Final_Project_Game/ignore.conf
-Final_Project_Game/.plastic/
+Final_Project_Game/.plastic/plastic.selector
+Final_Project_Game/.plastic/plastic.wktree
+Final_Project_Game/.plastic/plastic.workspace

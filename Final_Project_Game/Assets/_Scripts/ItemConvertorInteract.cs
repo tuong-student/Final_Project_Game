@@ -1,3 +1,4 @@
+using Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ public class ItemConvertorInteract : Interactable, IPersistant
         }
         if(data.itemSlot.item != null && data.timer <= 0f)
         {
-            GameManager.instance.inventoryContainer.Add(data.itemSlot.item, data.itemSlot.count);
+            PlayerManager.instance.inventoryContainer.Add(data.itemSlot.item, data.itemSlot.count);
             data.itemSlot.Clear();
         }
     }

@@ -9,17 +9,24 @@ public class Bat : BaseEnemy
 {
     private CropTile _targetCropTile = null;
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+        if(_isTest) return;
         Move();
     }
 
-    protected override void FindTarget()
+    protected override void FindCrop()
     {
         if(_targetCropTile == null)
         {
             CropsContainer cropsContainer = GameObject.Find("CropsTilemap").transform.GetComponent<TilemapCropsManager>().GetCropContainer();
             _targetCropTile = cropsContainer.crops.GetRandom();
+            _targetCropTile.OnHarvest += () => 
+            {
+                Debug.Log("Enemy Harvest");
+                _targetCropTile = null;
+            };
         }
         else
         {
@@ -34,13 +41,23 @@ public class Bat : BaseEnemy
     }
     protected override void Move()
     {
-        FindTarget();
+        FindCrop();
         Vector3 direction = (_targetPos - this.transform.position).normalized;
         this.transform.position += _moveSpeed * direction * Time.deltaTime;
-    }
 
-    protected override void PlayDeadEffect()
+        if(Vector3.Distance(this.transform.position, _targetPos) > 0.5)
+        {
+            Attack();
+        }
+    }
+    protected override void Attack()
     {
+        // _attackTime will be compute in base class
+        if(_attackTime >= _nextAttackTime)
+        {
+            _targetCropTile.damage += 1;
+            base.Attack();
+            Debug.Log("Attack");
+        }
     }
-
 }

@@ -1,35 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game;
 using TMPro;
 using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
-    private GunHolder _gunHolder;
-    public float _gunForce = 3;
-    public GameObject _bulletPref;
+    [SerializeField] private GunSO _data;
+    [SerializeField] protected float _attackRate = 2;
+    public BulletMono _bulletPref;
+    public BulletSO _bulletData;
     public Transform _bulletSpawnTrans;
+    public float _gunForce = 3;
+    private GunHolder _gunHolder;
+    protected float _attackTime, _nextAttackTime;
+    protected bool _isAuto;
+    protected bool _isShot;
 
     protected virtual void Awake()
     {
         _gunHolder = GetComponentInParent<GunHolder>();
     }
 
-    public abstract void Shoot();
-    protected virtual GameObject SpawnBullet()
+    protected virtual void Start()
     {
-        GameObject bulletGO;
+        GameInput.onPlayerShoot += () => 
+        {
+            _isAuto = true;
+        };
+        GameInput.onPlayerStopShooting += () => {_isAuto = false;};
+        _nextAttackTime = Time.time;
+        _attackTime = Time.time;
+    }
+
+    private void Update()
+    {
+        _attackTime += Time.deltaTime;
+        if(_isAuto == true)
+        {
+            if(_attackTime >= _nextAttackTime)
+            {
+                Shoot();
+                _attackTime = Time.time;
+                _nextAttackTime = Time.time + 1/_attackRate;
+            }
+        }
+        else
+        {
+            StopShooting();
+        }
+    }
+
+    public abstract void Shoot();
+    public abstract void StopShooting();
+    protected virtual BulletMono SpawnBullet()
+    {
+        BulletMono bulletMono = null;
         foreach(Transform child in _gunHolder.BulletTransformHolder)
         {
             if(child.gameObject.activeInHierarchy == false)
             {
-                bulletGO = child.gameObject;
-                return bulletGO;
+                child.gameObject.SetActive(true);
+                bulletMono = child.gameObject.GetComponent<BulletMono>();
             }
         }
-        bulletGO = Instantiate(_bulletPref, _gunHolder.BulletTransformHolder);
+        if(bulletMono == null)
+            bulletMono = Instantiate<BulletMono>(_bulletPref, _gunHolder.BulletTransformHolder);
 
-        return bulletGO;
+        bulletMono.SetData(_bulletData);
+
+        return bulletMono;
     }
 }
