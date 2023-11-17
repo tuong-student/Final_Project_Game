@@ -14,7 +14,7 @@ public class CropTile
     public SpriteRenderer renderer;
     public float damage;
     public Vector3Int position;
-    public Vector3 WorldPosition => renderer.gameObject.transform.position;
+    public Vector3 worldPosition;
     public bool Complete
     {
         get

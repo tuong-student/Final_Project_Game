@@ -30,6 +30,11 @@ public class TilemapCropsManager : TimeAgent
         }
     }
 
+    public CropsContainer GetCropContainer()
+    {
+        return container;
+    }
+
     public void Tick()
     {
         if (targetTilemap == null)
@@ -71,7 +76,7 @@ public class TilemapCropsManager : TimeAgent
 
     public void CreateHarvestIcon(CropTile cropTile)
     {
-        GameObject icon = Instantiate(harvestIconPref, cropTile.WorldPosition, Quaternion.identity);
+        GameObject icon = Instantiate(harvestIconPref, cropTile.worldPosition, Quaternion.identity);
         icon.transform.localScale = Vector3.one * 0.25f;
 
         container.SetDisplayHarvestIconValue(cropTile, true);
@@ -80,7 +85,7 @@ public class TilemapCropsManager : TimeAgent
 
     public bool Check(Vector3Int position)
     {
-        return container.Get(position) != null;
+        return container.GetCropTile(position) != null;
     }
 
     public void Plow(Vector3Int position)
@@ -93,7 +98,7 @@ public class TilemapCropsManager : TimeAgent
 
     public void Seed(Vector3Int position, Crop toSeed)
     {
-        CropTile tile = container.Get(position);
+        CropTile tile = container.GetCropTile(position);
         if (tile == null)
             return;
 
@@ -103,14 +108,15 @@ public class TilemapCropsManager : TimeAgent
 
     public void VisualizeTile(CropTile cropTile)
     {
-
         targetTilemap.SetTile(cropTile.position, cropTile.crop != null ? seeded : plowed);
         if (cropTile.renderer == null)
         {
-            GameObject go = Instantiate(cropsSpritePrefab, transform);
-            go.transform.position = targetTilemap.CellToWorld(cropTile.position);
-            go.transform.position -= Vector3.forward * 0.01f;
-            cropTile.renderer = go.GetComponent<SpriteRenderer>();
+            GameObject cropSpriteGO = Instantiate(cropsSpritePrefab, transform);
+            cropSpriteGO.transform.position = targetTilemap.CellToWorld(cropTile.position);
+            cropSpriteGO.transform.position -= Vector3.forward * 0.01f;
+            
+            cropTile.renderer = cropSpriteGO.GetComponent<SpriteRenderer>();
+            cropTile.worldPosition = targetTilemap.CellToWorld(cropTile.position);
         }
         
         bool growing = cropTile.crop != null && cropTile.growTimer >= cropTile.crop.growthStageTime[0];
@@ -141,7 +147,7 @@ public class TilemapCropsManager : TimeAgent
     public void PickUp(Vector3Int gridPosition)
     {
         Vector2Int position = (Vector2Int)gridPosition;
-        CropTile tile = container.Get(gridPosition);
+        CropTile tile = container.GetCropTile(gridPosition);
         if (tile == null)
             return;
         if (tile.Complete)

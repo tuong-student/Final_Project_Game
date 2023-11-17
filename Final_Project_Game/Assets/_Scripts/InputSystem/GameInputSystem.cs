@@ -125,6 +125,15 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8d33cb2-81c2-4983-b5bb-b3be8fbb2d7f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -292,6 +301,17 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Inventory9"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcf6226f-e48b-44db-b305-5445f0bd7063"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -311,6 +331,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         m_Player_Inventory7 = m_Player.FindAction("Inventory7", throwIfNotFound: true);
         m_Player_Inventory8 = m_Player.FindAction("Inventory8", throwIfNotFound: true);
         m_Player_Inventory9 = m_Player.FindAction("Inventory9", throwIfNotFound: true);
+        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -383,6 +404,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Inventory7;
     private readonly InputAction m_Player_Inventory8;
     private readonly InputAction m_Player_Inventory9;
+    private readonly InputAction m_Player_Shoot;
     public struct PlayerActions
     {
         private @GameInputSystem m_Wrapper;
@@ -398,6 +420,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Inventory7 => m_Wrapper.m_Player_Inventory7;
         public InputAction @Inventory8 => m_Wrapper.m_Player_Inventory8;
         public InputAction @Inventory9 => m_Wrapper.m_Player_Inventory9;
+        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -440,6 +463,9 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
             @Inventory9.started += instance.OnInventory9;
             @Inventory9.performed += instance.OnInventory9;
             @Inventory9.canceled += instance.OnInventory9;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -477,6 +503,9 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
             @Inventory9.started -= instance.OnInventory9;
             @Inventory9.performed -= instance.OnInventory9;
             @Inventory9.canceled -= instance.OnInventory9;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -507,5 +536,6 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         void OnInventory7(InputAction.CallbackContext context);
         void OnInventory8(InputAction.CallbackContext context);
         void OnInventory9(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

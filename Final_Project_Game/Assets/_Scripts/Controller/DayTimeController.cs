@@ -88,7 +88,7 @@ public class DayTimeController : MonoBehaviour
             oldPhase += 1;
             for (int i = 0; i < agents.Count; i++)
             {
-                agents[i].Invoke();
+                agents[i].Invoke((int)Hours, (int)Minutes);
             }
         }
     }
@@ -102,7 +102,9 @@ public class DayTimeController : MonoBehaviour
     {
         float v = nightTimeCurve.Evaluate(Hours);
         Color c = Color.Lerp(dayLightColor, nightLightColor, v);
+        float intensity = Mathf.Lerp(1, 0.5f, v);
         globalLight.color = c;
+        globalLight.intensity = intensity;
     }
     private void NextDay()
     {

@@ -8,7 +8,7 @@ public class CropsContainer : ScriptableObject
     public List<CropTile> crops;
     Dictionary<CropTile, bool> DisplayHarvestIconDic = new Dictionary<CropTile, bool>();
     Dictionary<CropTile, GameObject> harvestIconDic = new Dictionary<CropTile, GameObject>();
-    public CropTile Get(Vector3 position)
+    public CropTile GetCropTile(Vector3 position)
     {
         return crops.Find(x => x.position == position);
     }
@@ -31,7 +31,7 @@ public class CropsContainer : ScriptableObject
     }
     public bool IsDisplayHarvestIconAt(CropTile cropTile)
     {
-        if(Get(cropTile.position) != null)
+        if(GetCropTile(cropTile.position) != null)
         {
             if(DisplayHarvestIconDic.TryGetValue(cropTile, out bool value))
             {

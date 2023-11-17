@@ -19,7 +19,7 @@ public class PlaceableObject
         positionOnGrid = pos;
     }
 }
-[CreateAssetMenu(menuName ="Data/Pleaceable Objects Container")]
+[CreateAssetMenu(menuName ="Data/Placeable Objects Container")]
 public class PlaceableObjectsContainer : ScriptableObject
 {
     public List<PlaceableObject> placeableObjects;
