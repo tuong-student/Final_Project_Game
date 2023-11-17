@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Game;
+using NOOD;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public abstract class Gun : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public abstract class Gun : MonoBehaviour
     protected float _attackTime, _nextAttackTime;
     protected bool _isAuto;
     protected bool _isShot;
+    public Light2D _flashLight;
 
     protected virtual void Awake()
     {
@@ -42,6 +45,11 @@ public abstract class Gun : MonoBehaviour
             if(_attackTime >= _nextAttackTime)
             {
                 Shoot();
+                _flashLight.intensity = 3;
+                NoodyCustomCode.StartDelayFunction(() =>
+                {
+                    _flashLight.intensity = 0;
+                }, 0.1f);
                 _attackTime = Time.time;
                 _nextAttackTime = Time.time + 1/_attackRate;
             }
