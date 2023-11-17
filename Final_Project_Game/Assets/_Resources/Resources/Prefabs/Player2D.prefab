@@ -408,6 +408,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 8670535835832282832, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: _data
+      value: 
+      objectReference: {fileID: 11400000, guid: b3f92460141622942b9baaf12aa0338b, type: 2}
+    - target: {fileID: 8670535835832282832, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: _gunForce
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670535835832282832, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: _bulletData
+      value: 
+      objectReference: {fileID: 11400000, guid: 09304b7452145df4d8746820a493d531, type: 2}
+    - target: {fileID: 8670535835832282832, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: _bulletPref
+      value: 
+      objectReference: {fileID: 1513319267336815652, guid: 7901e1ea95bc49e4fbbbc724cfc35528, type: 3}
     - target: {fileID: 8949189229435274485, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.86300087

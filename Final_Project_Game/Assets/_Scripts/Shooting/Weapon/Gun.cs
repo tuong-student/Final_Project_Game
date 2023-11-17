@@ -67,6 +67,7 @@ public abstract class Gun : MonoBehaviour
         }
         if(bulletMono == null)
             bulletMono = Instantiate<BulletMono>(_bulletPref, _gunHolder.BulletTransformHolder);
+        bulletMono.transform.rotation = this.transform.rotation;
 
         bulletMono.SetData(_bulletData);
 

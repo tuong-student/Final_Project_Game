@@ -14,7 +14,8 @@ public enum Difficulty
     level1,
     level2,
     level3,
-    level4
+    level4,
+    level5
 }
 
 [RequireComponent(typeof(TimeAgent))]
@@ -44,6 +45,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemyBaseOnHour(int hour, int minute)
     {
+        Debug.Log("SpawnEnemy");
         if(hour == _hoursToSpawn && _isCompleteSpawning == false)
         {
             int number = _enemyToSpawn + (int)_difficulty;

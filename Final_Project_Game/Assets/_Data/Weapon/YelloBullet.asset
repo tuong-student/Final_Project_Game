@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35ef2627c9b53374b942ccfb8b377929, type: 3}
-  m_Name: WhiteBullet
+  m_Name: YelloBullet
   m_EditorClassIdentifier: 
-  _bulletSprite: {fileID: 21300000, guid: 8f66c60fb167a0f4299a9865ef4badc9, type: 3}
+  _bulletSprite: {fileID: 417894154, guid: ca9065110b0cd4e94bb616d59ad16b93, type: 3}
   _damage: 10
+  _bulletEffect: {fileID: 2256595962170131226, guid: 432230ecfccf0458181f6870fe1bfdd2, type: 3}

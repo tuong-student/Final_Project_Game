@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311924, g: 0.38073963, b: 0.3587269, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -241,46 +241,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &115232027 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4327841735415632780, guid: 8e3b854e9f9ad694dacc6a43deb0c785, type: 3}
-  m_PrefabInstance: {fileID: 638017022}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &115232030
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115232027}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.32
 --- !u!1001 &638017022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -292,14 +252,6 @@ PrefabInstance:
     - target: {fileID: 4327841735415632780, guid: 8e3b854e9f9ad694dacc6a43deb0c785, type: 3}
       propertyPath: m_Name
       value: Bat
-      objectReference: {fileID: 0}
-    - target: {fileID: 7156277605756794916, guid: 8e3b854e9f9ad694dacc6a43deb0c785, type: 3}
-      propertyPath: _isTest
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7156277605756794916, guid: 8e3b854e9f9ad694dacc6a43deb0c785, type: 3}
-      propertyPath: _attackRate
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7863779173342416380, guid: 8e3b854e9f9ad694dacc6a43deb0c785, type: 3}
       propertyPath: m_LocalPosition.x
@@ -344,10 +296,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4327841735415632780, guid: 8e3b854e9f9ad694dacc6a43deb0c785, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 115232030}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e3b854e9f9ad694dacc6a43deb0c785, type: 3}
 --- !u!1 &711810943
 GameObject:

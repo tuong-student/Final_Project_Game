@@ -18,7 +18,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     void Awake()
     {
-        _myCollider = this.gameObject.GetComponent<CircleCollider2D>();
+        _myCollider = this.gameObject.GetComponent<Collider2D>();
         Init();
     }
 

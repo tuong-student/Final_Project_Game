@@ -7,4 +7,5 @@ public class BulletSO : ScriptableObject
 {
     public Sprite _bulletSprite;
     public float _damage;
+    public ParticleSystem _bulletEffect;
 }

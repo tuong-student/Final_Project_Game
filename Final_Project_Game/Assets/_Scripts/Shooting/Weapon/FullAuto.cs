@@ -9,7 +9,6 @@ public class FullAuto : Gun
 
     public override void Shoot()
     {
-        Debug.Log("Child Shoot");
         BulletMono bullet = SpawnBullet();
         _gunView.SetBool("Play", true);
         _casing.SetBool("Play", true);
