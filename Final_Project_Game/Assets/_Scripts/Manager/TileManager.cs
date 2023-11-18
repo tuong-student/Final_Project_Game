@@ -13,14 +13,14 @@ namespace Game
         private List<Vector3Int> _interactablePosition = new List<Vector3Int>();
         private List<Vector3Int> _interactablePosition2 = new List<Vector3Int>();
         private GameObject _HightLight;
-        protected override void Awake() 
-        {
-            foreach(var tilePos in _interactableTileMap.cellBounds.allPositionsWithin)
-            {
-                _interactablePosition.Add(tilePos);
-            }
-            _interactableTileMap.gameObject.SetActive(false);
-        }
+        // protected override void Awake() 
+        // {
+        //     foreach(var tilePos in _interactableTileMap.cellBounds.allPositionsWithin)
+        //     {
+        //         _interactablePosition.Add(tilePos);
+        //     }
+        //     _interactableTileMap.gameObject.SetActive(false);
+        // }
 
         public bool IsInteractable(Vector3Int position)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Weapon/GunSO")]
 public class GunSO : ScriptableObject
 {
-    public Animator _gunView, _casing, _flash;
+    public RuntimeAnimatorController _gunViewController, _casingController, _flashController;
     public Sprite _gunIdleSprite;
     public BulletSO _bulletData;
 

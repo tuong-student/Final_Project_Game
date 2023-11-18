@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using MoreMountains.Feedbacks;
 using UnityEngine;
 
 public class FullAuto : Gun
 {
-    public Animator _gunView, _casing, _flash;
-
     public override void Shoot()
     {
         BulletMono bullet = SpawnBullet();
@@ -22,5 +17,6 @@ public class FullAuto : Gun
         _gunView.SetBool("Play", false);
         _casing.SetBool("Play", false);
         _flash.SetBool("Play", false);
+        _gunViewIdle.sprite = _data._gunIdleSprite;
     }
 }

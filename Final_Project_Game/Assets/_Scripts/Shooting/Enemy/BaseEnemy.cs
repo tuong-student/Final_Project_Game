@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game;
+using NOOD;
 using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
@@ -9,12 +10,14 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] protected bool _isTest;
     [SerializeField] protected float _moveSpeed = 4;
     [SerializeField] protected float _hp = 30;
-    [SerializeField] protected object _reward; // No define reward at current
+    [SerializeField] protected Item _reward; 
     [SerializeField] protected EnemyAnimation _enemyAnimation;
     [SerializeField] protected float _attackRate;
+    [SerializeField] protected float _damage = 1;
     protected float _attackTime, _nextAttackTime;
     private Collider2D _myCollider;
     protected bool _isDead;
+    protected bool _isAttacking;
 
     void Awake()
     {
@@ -34,6 +37,7 @@ public abstract class BaseEnemy : MonoBehaviour
     }
 
     protected abstract void Move();
+    protected abstract void ChildAttack();
     public virtual void Damage(float damage)
     {
         _enemyAnimation.PlayHurtAnimation();
@@ -48,6 +52,8 @@ public abstract class BaseEnemy : MonoBehaviour
         _isDead = true;
         _enemyAnimation.PlayDeadAnimation();
         _myCollider.enabled = false;
+        ItemSpawnManager.instance.SpawnManyItem(this.transform.position, null, _reward, UnityEngine.Random.Range(0, 3));
+        Destroy(this.gameObject, 1f);
     }
     protected virtual void DropReward()
     {
@@ -55,9 +61,18 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     protected virtual void Attack()
     {
-        _enemyAnimation.PlayAttackAnimation();
-        _attackTime = Time.time;
-        _nextAttackTime = Time.time + 1/_attackRate;
+        if(_attackTime >= _nextAttackTime && _isAttacking == false)
+        {
+            _enemyAnimation.PlayAttackAnimation();
+            ChildAttack();
+            _attackTime = Time.time;
+            _nextAttackTime = Time.time + 1/_attackRate;
+            _isAttacking = true;
+            NoodyCustomCode.StartDelayFunction(() =>
+            {
+                _isAttacking = false;
+            }, _enemyAnimation.GetAttackDuration());
+        }
     }
     protected virtual void FindPlayer()
     {

@@ -11,8 +11,9 @@ public class BulletMono : MonoBehaviour
     {
         if(other.gameObject.TryGetComponent<BaseEnemy>(out BaseEnemy enemy))
         {
-            enemy.Damage(GetDamage());
+            enemy.Damage(this.GetDamage());
             PlayBulletEffect();
+            FeedbackManager.Instance.PlayPlayerBulletExplodeFB();
         }
         this.gameObject.SetActive(false);
     }
@@ -27,7 +28,7 @@ public class BulletMono : MonoBehaviour
     }
     private void PlayBulletEffect()
     {
-        GameObject bulletEffectHolderGO = GameObject.Find("BulletEffectHolder") ?? new GameObject("BulletEffectHOlder");
+        GameObject bulletEffectHolderGO = GameObject.Find("BulletEffectHolder") ?? new GameObject("BulletEffectHolder");
         Transform bulletEffectHolder = bulletEffectHolderGO.transform;
         
         ParticleSystem effect = null;
