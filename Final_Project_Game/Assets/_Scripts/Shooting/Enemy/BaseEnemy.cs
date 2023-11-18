@@ -34,6 +34,7 @@ public abstract class BaseEnemy : MonoBehaviour
     }
 
     protected abstract void Move();
+    protected abstract void ChildAttack();
     public virtual void Damage(float damage)
     {
         _enemyAnimation.PlayHurtAnimation();
@@ -48,6 +49,7 @@ public abstract class BaseEnemy : MonoBehaviour
         _isDead = true;
         _enemyAnimation.PlayDeadAnimation();
         _myCollider.enabled = false;
+        Destroy(this.gameObject, 1f);
     }
     protected virtual void DropReward()
     {
@@ -55,9 +57,14 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     protected virtual void Attack()
     {
-        _enemyAnimation.PlayAttackAnimation();
-        _attackTime = Time.time;
-        _nextAttackTime = Time.time + 1/_attackRate;
+
+        if(_attackTime >= _nextAttackTime)
+        {
+            _enemyAnimation.PlayAttackAnimation();
+            ChildAttack();
+            _attackTime = Time.time;
+            _nextAttackTime = Time.time + 1/_attackRate;
+        }
     }
     protected virtual void FindPlayer()
     {

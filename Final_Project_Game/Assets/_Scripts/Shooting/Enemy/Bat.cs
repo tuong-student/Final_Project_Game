@@ -22,6 +22,7 @@ public class Bat : BaseEnemy
         {
             CropsContainer cropsContainer = GameObject.Find("CropsTilemap").transform.GetComponent<TilemapCropsManager>().GetCropContainer();
             _targetCropTile = cropsContainer.crops.GetRandom();
+
             _targetCropTile.OnHarvest += () => 
             {
                 Debug.Log("Enemy Harvest");
@@ -45,19 +46,18 @@ public class Bat : BaseEnemy
         Vector3 direction = (_targetPos - this.transform.position).normalized;
         this.transform.position += _moveSpeed * direction * Time.deltaTime;
 
-        if(Vector3.Distance(this.transform.position, _targetPos) > 0.5)
+        float distance = Vector3.Distance(this.transform.position, _targetPos); 
+        Debug.Log(distance);
+
+        if(distance < 0.5)
         {
             Attack();
         }
     }
-    protected override void Attack()
+
+    protected override void ChildAttack()
     {
-        // _attackTime will be compute in base class
-        if(_attackTime >= _nextAttackTime)
-        {
-            _targetCropTile.damage += 1;
-            base.Attack();
-            Debug.Log("Attack");
-        }
+        _targetCropTile.damage += 1;
+        Debug.Log("Attack");
     }
 }
