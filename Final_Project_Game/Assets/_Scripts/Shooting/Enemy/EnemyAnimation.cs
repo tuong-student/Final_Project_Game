@@ -22,6 +22,7 @@ public class EnemyAnimation : MonoBehaviour
     public void PlayAttackAnimation()
     {
         _anim.SetTrigger("Attack");
-        _attackDuration = _anim.GetCurrentAnimatorStateInfo(0).length;
+        if(_attackDuration == 0)
+            _attackDuration = _anim.GetCurrentAnimatorStateInfo(0).length;
     }
 }

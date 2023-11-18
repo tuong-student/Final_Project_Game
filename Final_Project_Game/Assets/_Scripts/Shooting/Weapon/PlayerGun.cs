@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FullAuto : Gun
+public class PlayerGun : Gun
 {
     public override void Shoot()
     {
@@ -18,5 +18,6 @@ public class FullAuto : Gun
         _casing.SetBool("Play", false);
         _flash.SetBool("Play", false);
         _gunViewIdle.sprite = _data._gunIdleSprite;
+        Debug.Log(_data._gunIdleSprite.name);
     }
 }

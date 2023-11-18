@@ -10,7 +10,7 @@ using UnityEngine.Rendering.Universal;
 public abstract class Gun : MonoBehaviour
 {
     [SerializeField] protected GunSO _data;
-    [SerializeField] protected float _attackRate = 2;
+    [SerializeField] protected float _attackRate;
     public BulletMono _bulletPref;
     public BulletSO _bulletData;
     public Transform _bulletSpawnTrans;
@@ -27,6 +27,7 @@ public abstract class Gun : MonoBehaviour
     {
         _gunHolder = GetComponentInParent<GunHolder>();
         ChangeGun();
+        _attackRate = _data._shootingRate;
     }
 
     public void ChangeGun()
@@ -67,6 +68,7 @@ public abstract class Gun : MonoBehaviour
         else
         {
             StopShooting();
+            Debug.Log("StopShooting");
         }
     }
 

@@ -9,16 +9,18 @@ public class EnemyAttackCrop : BaseEnemy
 {
     private CropTile _targetCropTile = null;
 
-    protected override void Update()
+    protected override void ChildUpdate()
     {
-        base.Update();
         if(_isTest) return;
-        Move();
 
         float distance = Vector3.Distance(this.transform.position, _targetPos); 
         if(distance < 0.5)
         {
             Attack();
+        }
+        else
+        {
+            Move();
         }
     }
 
@@ -31,7 +33,7 @@ public class EnemyAttackCrop : BaseEnemy
         }
         else
         {
-            if (_targetCropTile.growStage != 0)
+            if (_targetCropTile.damage < 1)
             {
                 _targetCropTile.OnHarvest += () => 
                 {
@@ -39,6 +41,10 @@ public class EnemyAttackCrop : BaseEnemy
                     _targetCropTile = null;
                 };
                 _targetPos = _targetCropTile.worldPosition + new Vector3(0.5f, 0.5f, 0f);
+            }
+            else
+            {
+                _targetCropTile = null;
             }
         }
 
@@ -50,7 +56,6 @@ public class EnemyAttackCrop : BaseEnemy
     }
     protected override void Move()
     {
-        FindCrop();
         Vector3 direction = (_targetPos - this.transform.position).normalized;
         this.transform.position += _moveSpeed * direction * Time.deltaTime;
     }
