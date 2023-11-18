@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SeawispHunter.RolePlay.Attributes;
+using NOOD.ModifiableStats;
 using NOOD;
 
 namespace Game
 {
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : MonoBehaviorInstance<PlayerManager>
     {
-        public static PlayerManager instance;
 
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerAnimation _playerAnimation;
@@ -16,9 +15,9 @@ namespace Game
         [SerializeField] private Inventory _inventory;
         // [SerializeField] private Transform _itemHolderTransform;
 
-        private ModifiableValue<float> _health = new ModifiableValue<float>();
-        private ModifiableValue<float> _strength = new ModifiableValue<float>();
-        private ModifiableValue<float> _speed = new ModifiableValue<float>();
+        private ModifiableStats<float> _health = new ModifiableStats<float>();
+        private ModifiableStats<float> _strength = new ModifiableStats<float>();
+        private ModifiableStats<float> _speed = new ModifiableStats<float>();
 
         private List<Item> _items = new List<Item>();
 
@@ -28,7 +27,6 @@ namespace Game
 
         void Awake()
         {
-            instance = this;
             GameInput.Init();
             GameInput.onPlayerPressInteract += Pickup;
             GameInput.onPlayerRequestItem += EquipItem;
@@ -36,9 +34,9 @@ namespace Game
         }
         void Start()
         {
-            _health.initial.value = PlayerConfig._maxHealth;
-            _strength.initial.value = PlayerConfig._strength;
-            _speed.initial.value = PlayerConfig._speed;
+            _health.SetInitValue(PlayerConfig._maxHealth);
+            _strength.SetInitValue(PlayerConfig._strength);
+            _speed.SetInitValue(PlayerConfig._speed);
             UIManager.Instance.onPlayerDragOutItem += RemoveInventoryStack;
         }
 
@@ -63,7 +61,12 @@ namespace Game
 
         public void MinusHealth(float amount)
         {
-            Debug.Log("MinusHealth");
+            _health.AddModifier(ModifyType.Subtract, amount);
+            FeedbackManager.Instance.PlayPlayerHurtFeedback();
+            if(_health.Value <= 0)
+            {
+                Debug.Log("Death");
+            }
         }
 
         public void Pickup()

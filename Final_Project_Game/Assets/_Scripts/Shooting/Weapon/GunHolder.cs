@@ -36,11 +36,11 @@ public class GunHolder : MonoBehaviour
     {
         if(this.transform.localEulerAngles.z < 270 && this.transform.localEulerAngles.z > 155)
         {
-            this.transform.localScale = new Vector3(1, -1, 1);
+            _currentGun.transform.localScale = new Vector3(1, -1, 1);
         }
         else
         {
-            this.transform.localScale = Vector3.one;
+            _currentGun.transform.localScale = Vector3.one;
         }
     }
 }

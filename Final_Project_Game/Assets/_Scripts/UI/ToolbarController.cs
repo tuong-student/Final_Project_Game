@@ -15,14 +15,14 @@ public class ToolbarController : MonoBehaviour
     {
         get
         {
-            return PlayerManager.instance.inventoryContainer.slots[selectedTool];
+            return PlayerManager.Instance.inventoryContainer.slots[selectedTool];
         }
     }
     public Item GetItem
     {
         get
         {
-            return PlayerManager.instance.inventoryContainer.slots[selectedTool].item;
+            return PlayerManager.Instance.inventoryContainer.slots[selectedTool].item;
         }
     }
     private void Start()

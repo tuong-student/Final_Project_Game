@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SeawispHunter.RolePlay.Attributes;
+using NOOD.ModifiableStats;
 
 namespace Game
 {
     public class HealthSystem : MonoBehaviour
     {
-        private ModifiableValue<float> _health;
+        private ModifiableStats<float> _health;
 
         public void SetHealth(float health)
         {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8236301277198724923}
   - component: {fileID: 191059384698174050}
   - component: {fileID: 2805961093957755003}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BatView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 7863779173342416380}
   - component: {fileID: 7156277605756794916}
   - component: {fileID: 1929911697676241110}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,8 +169,10 @@ MonoBehaviour:
   _isTest: 1
   _moveSpeed: 4
   _hp: 30
+  _reward: {fileID: 11400000, guid: b32ef40573ffc44c9a990fea9a8b8640, type: 2}
   _enemyAnimation: {fileID: 2805961093957755003}
   _attackRate: 0.5
+  _damage: 1
 --- !u!58 &1929911697676241110
 CircleCollider2D:
   m_ObjectHideFlags: 0

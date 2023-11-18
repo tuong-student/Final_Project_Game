@@ -71,7 +71,7 @@ public class ToolsCharacterController : MonoBehaviour
         {
             if (item.onItemUsed != null)
             {
-                item.onItemUsed.OnItemUsed(item, PlayerManager.instance.inventoryContainer);
+                item.onItemUsed.OnItemUsed(item, PlayerManager.Instance.inventoryContainer);
             }
         }
         return complete;
@@ -103,7 +103,7 @@ public class ToolsCharacterController : MonoBehaviour
             {
                 if (item.onItemUsed != null)
                 {
-                    item.onItemUsed.OnItemUsed(item, PlayerManager.instance.inventoryContainer);
+                    item.onItemUsed.OnItemUsed(item, PlayerManager.Instance.inventoryContainer);
                 }
             }
         }

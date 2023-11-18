@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using NOOD.ModifiableStats;
 using UnityEngine;
-using SeawispHunter.RolePlay.Attributes;
 
 namespace Game
 {
     public class PlayerMovement : MonoBehaviour
     {
-        private ModifiableValue<float> _speed = new ModifiableValue<float>();
+        private ModifiableStats<float> _speed = new ModifiableStats<float>();
         private Vector3 _playerMove;
         private Rigidbody2D _rb;
 
@@ -15,7 +15,7 @@ namespace Game
         {
             _rb = GetComponent<Rigidbody2D>();
             GameInput.onPlayerPressMoveVector2 += GetPlayerMoveDir;
-            _speed.initial.value = PlayerConfig._speed;
+            _speed.SetInitValue(PlayerConfig._speed);
         }
         void Update()
         {
@@ -33,7 +33,7 @@ namespace Game
         }
         private void Move()
         {
-            _rb.velocity = _playerMove * _speed.value;
+            _rb.velocity = _playerMove * _speed.Value;
         }
     }
 }
