@@ -18,6 +18,5 @@ public class PlayerGun : Gun
         _casing.SetBool("Play", false);
         _flash.SetBool("Play", false);
         _gunViewIdle.sprite = _data._gunIdleSprite;
-        Debug.Log(_data._gunIdleSprite.name);
     }
 }

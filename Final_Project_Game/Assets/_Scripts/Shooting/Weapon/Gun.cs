@@ -68,7 +68,6 @@ public abstract class Gun : MonoBehaviour
         else
         {
             StopShooting();
-            Debug.Log("StopShooting");
         }
     }
 

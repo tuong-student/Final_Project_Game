@@ -11,6 +11,8 @@ public enum FeedbackType
     PlayerHurt,
     PlayerGetItem,
     BulletExplode,
+    EnemyComing,
+    NextDay,
 }
 
 public class FeedbackManager : MonoBehaviorInstance<FeedbackManager>
@@ -34,6 +36,7 @@ public class FeedbackManager : MonoBehaviorInstance<FeedbackManager>
     private void PlayFeedback()
     {
         MMF_Player fb = _feedbackDic.Dictionary[_feedbackType];
-        fb.PlayFeedbacks();
+        if(fb != null)
+            fb.PlayFeedbacks();
     }
 }
