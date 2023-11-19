@@ -98,7 +98,7 @@ public class ToolsCharacterController : MonoBehaviour
                 PickUpTile();
                 return;
             }
-            Item item = (Item) toolbarController.GetPlayerSelected;
+            Item item = storable as Item;
             if (item.onTileMapAction == null) 
                 return;
 

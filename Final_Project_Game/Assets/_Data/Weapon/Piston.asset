@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f67376d52d4c14aad59e1a4c01b542, type: 3}
   m_Name: Piston
   m_EditorClassIdentifier: 
-  _shootingRate: 2
+  _shootingRate: 1.75
   _gunViewController: {fileID: 9100000, guid: f92a953d8ed244049ae0eed4ba6f1c73, type: 2}
   _casingController: {fileID: 9100000, guid: f72a3fbdac307264580a2c9bc9653642, type: 2}
   _flashController: {fileID: 9100000, guid: 97550ec898944244b90b9d3a49765f3b, type: 2}
   _gunIdleSprite: {fileID: -1062886487, guid: b3ec131e77b071c4db134286db83e03c, type: 3}
+  _icon: {fileID: -1062886487, guid: b3ec131e77b071c4db134286db83e03c, type: 3}
   _bulletData: {fileID: 11400000, guid: 09304b7452145df4d8746820a493d531, type: 2}
+  _bulletForce: 400

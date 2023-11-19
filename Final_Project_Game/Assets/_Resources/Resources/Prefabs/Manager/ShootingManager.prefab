@@ -705,6 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6586560655344943482}
+  - component: {fileID: 7899770417563706530}
   - component: {fileID: 6734980130604967508}
   - component: {fileID: 6064041485653847029}
   - component: {fileID: 6419171240807956491}
@@ -732,6 +733,26 @@ Transform:
   - {fileID: 5740239805876573292}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7899770417563706530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6416402221677971628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ebc41a57a824e4ea8c1f1aa483fa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headerSettings:
+    headerText: Shooting Manager
+    headerColor: {r: 1, g: 0.3066038, b: 0.3066038, a: 1}
+    textAlignmentOptions: 1
+    fontStyleOptions: 0
+    fontSize: 12
+    fontColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
+    dropShadow: 0
 --- !u!114 &6734980130604967508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,6 +786,7 @@ MonoBehaviour:
   _dayNumber: {fileID: 0}
   _hourToSpawnEnemy: 22
   _enemyToSpawn: 5
+  _tilemapCropsManager: {fileID: 0}
 --- !u!114 &6419171240807956491
 MonoBehaviour:
   m_ObjectHideFlags: 0

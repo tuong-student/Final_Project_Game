@@ -73,6 +73,11 @@ public class ToolbarController : MonoBehaviour
             {
                 iconHightlight.SetIcon(item.icon);
             }
+            PlayerManager.Instance.ChangeGun(null);
+        }
+        if(storable.StorageType == StorageType.Weapon)
+        {
+            PlayerManager.Instance.ChangeGun((GunSO)storable);
         }
     }
 }

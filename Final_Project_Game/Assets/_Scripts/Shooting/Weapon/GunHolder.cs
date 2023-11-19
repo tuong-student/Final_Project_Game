@@ -20,7 +20,8 @@ public class GunHolder : MonoBehaviour
 
     void Update()
     {
-        RotateToMouse();
+        if(_currentGun.IsHasData)
+            RotateToMouse();
     }
 
     private void RotateToMouse()

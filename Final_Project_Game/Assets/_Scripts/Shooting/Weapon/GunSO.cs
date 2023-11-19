@@ -11,6 +11,7 @@ public class GunSO : Storable
     public Sprite _gunIdleSprite;
     public Sprite _icon;
     public BulletSO _bulletData;
+    public float _bulletForce;
 
     public override bool Stackable => false;
 
