@@ -63,8 +63,11 @@ public class ToolsCharacterController : MonoBehaviour
     {
         Vector2 position = rgbd2d.position * offsetDistance;
 
-        Item item = toolbarController.GetItem;
-        if (item == null) return false;
+        Storable storable = toolbarController.GetPlayerSelected;
+        if(storable == null) return false;
+        if(storable.StorageType != StorageType.FarmItem) return false;
+
+        Item item = (Item) toolbarController.GetPlayerSelected;
         if (item.onAction == null) return false;
         bool complete = item.onAction.OnApply(position);
         if (complete)
@@ -89,15 +92,17 @@ public class ToolsCharacterController : MonoBehaviour
             //else
             //    cropsManager.Plow(selectedTilePosition);
 
-            Item item = toolbarController.GetItem;
-            if (item == null)
+            Storable storable = toolbarController.GetPlayerSelected;
+            if (storable == null)
             {
                 PickUpTile();
                 return;
             }
+            Item item = (Item) toolbarController.GetPlayerSelected;
             if (item.onTileMapAction == null) 
                 return;
 
+            if(storable.StorageType != StorageType.FarmItem) return;
             bool complete = item.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController, item);
             if (complete)
             {

@@ -23,13 +23,29 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         _myCollider = this.gameObject.GetComponent<Collider2D>();
         Init();
+        StartCoroutine(FindTarget());
     }
 
-    protected virtual void Update()
+    private void Update()
     {
         _attackTime += Time.deltaTime;
+        ChildUpdate();
     }
 
+    protected virtual void ChildUpdate()
+    {
+
+    }
+
+    protected virtual IEnumerator FindTarget()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            FindPlayer();
+            FindCrop();
+        }
+    }
 
     protected void Init()
     {

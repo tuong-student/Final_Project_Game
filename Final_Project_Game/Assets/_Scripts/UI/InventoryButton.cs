@@ -19,9 +19,9 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
     public void SetItem(ItemSlot slot)
     {
         icon.gameObject.SetActive(true);
-        icon.sprite = slot.item.icon;
+        icon.sprite = slot.storable.Icon;
 
-        if (slot.item.stackable)
+        if (slot.storable.Stackable)
         {
             text.gameObject.SetActive(true);
             text.text = slot.count.ToString();

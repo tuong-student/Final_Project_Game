@@ -15,7 +15,7 @@ public class ItemSpawnManager : MonoBehaviour
 
     [SerializeField] GameObject pickupItemPrefab;
 
-    public void SpawnItem(Vector3 position, Transform parent, Item item, int count) 
+    public void SpawnItem(Vector3 position, Transform parent, Storable item, int count) 
     {
         GameObject o = Instantiate(pickupItemPrefab, parent);
         o.transform.position = position;

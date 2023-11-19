@@ -23,8 +23,8 @@ public class Crafting : MonoBehaviour
 
         for (int i = 0; i < recipe.elements.Count; i++)
         {
-            inventory.Remove(recipe.elements[i].item, recipe.elements[i].count);
+            inventory.Remove(recipe.elements[i].storable, recipe.elements[i].count);
         }
-        inventory.Add(recipe.output.item, recipe.output.count);
+        inventory.Add(recipe.output.storable, recipe.output.count);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FullAuto : Gun
+public class PlayerGun : Gun
 {
     public override void Shoot()
     {

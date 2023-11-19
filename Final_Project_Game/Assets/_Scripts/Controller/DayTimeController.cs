@@ -8,9 +8,11 @@ using UnityEngine.UI;
 
 public class DayTimeController : MonoBehaviour
 {
+    public static Action<int> onNextDay;
     const float secondsInDay = 86000f;
     const float phaseLength = 900f; // 15 minutes chunk of time
     const float phaseInDay = 96f ;//secondsInDay divided by phaseLength
+
 
     [SerializeField] private Color nightLightColor;
     [SerializeField] private Color dayLightColor = Color.white;
@@ -55,7 +57,14 @@ public class DayTimeController : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime * timeScale;
+        if(Input.GetKey(KeyCode.C))
+        {
+            time += Time.deltaTime * timeScale * 100;
+        }
+        else
+        {
+            time += Time.deltaTime * timeScale;
+        }
 
         TimeValueCalculation();
         DayLight();
@@ -110,5 +119,6 @@ public class DayTimeController : MonoBehaviour
     {
         time = 0;
         days += 1;
-     }
+        onNextDay?.Invoke(days);
+    }
 }

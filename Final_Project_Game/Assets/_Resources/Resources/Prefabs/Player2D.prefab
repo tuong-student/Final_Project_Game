@@ -176,7 +176,7 @@ MonoBehaviour:
   - {x: -0.06049061, y: -0.00066161156, z: 0}
   m_ShapePathHash: 500576805
   m_Mesh: {fileID: 0}
-  m_InstanceId: 37070
+  m_InstanceId: -6528
   m_LocalBounds:
     m_Center: {x: -0.00219059, y: 0.4996044, z: 0}
     m_Extent: {x: 0.3780079, y: 0.5012701, z: 0}
@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 7255119667809988209}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.6280003, y: -0.031999987, z: 0}
+  m_LocalPosition: {x: 1.534, y: -0.069, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0.48377457, b: 0, a: 0.39607844}
-  m_Intensity: 3
+  m_Intensity: 0
   m_LightVolumeIntensity: 0.17
   m_LightVolumeIntensityEnabled: 1
   m_ApplyToSortingLayers: 0000000097522649796ebddfe7485f74118e6155
@@ -557,6 +557,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 1241438309182315630, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241438309182315630, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241438309182315630, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -527957316, guid: b3ec131e77b071c4db134286db83e03c, type: 3}
     - target: {fileID: 1914151247717517082, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: m_Controller
       value: 
@@ -564,15 +576,15 @@ PrefabInstance:
     - target: {fileID: 6044425141827028013, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: f92a953d8ed244049ae0eed4ba6f1c73, type: 2}
     - target: {fileID: 7213342637282750046, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: m_Name
-      value: Gun
+      value: PlayerGun
       objectReference: {fileID: 0}
     - target: {fileID: 8670535835832282832, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: _data
       value: 
-      objectReference: {fileID: 11400000, guid: b3f92460141622942b9baaf12aa0338b, type: 2}
+      objectReference: {fileID: 11400000, guid: 0945bb376867c7e489136bbdc25c3245, type: 2}
     - target: {fileID: 8670535835832282832, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: _gunForce
       value: 300
@@ -595,11 +607,11 @@ PrefabInstance:
       objectReference: {fileID: 7989150563556303105}
     - target: {fileID: 8949189229435274485, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.86300087
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8949189229435274485, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.463
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8949189229435274485, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -637,7 +649,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8949189229435274485, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1896271311930690730}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}

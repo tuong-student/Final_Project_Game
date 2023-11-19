@@ -53,3 +53,6 @@ TagManager:
   - name: Enemy
     uniqueID: 1432456721
     locked: 0
+  - name: Light
+    uniqueID: 2097775123
+    locked: 0

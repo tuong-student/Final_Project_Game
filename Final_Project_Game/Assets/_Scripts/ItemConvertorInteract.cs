@@ -39,7 +39,7 @@ public class ItemConvertorInteract : Interactable, IPersistant
 
     public override void Interact(Character character)
     {
-        if (data.itemSlot.item == null)
+        if (data.itemSlot.storable == null)
         {
             if (GameManager.instance.dragAndDropController.CheckItem(convertableItem))
             {
@@ -50,14 +50,14 @@ public class ItemConvertorInteract : Interactable, IPersistant
             if (toolbar == null)
                 return;
             ItemSlot itemSlot = toolbar.GetItemSlot;
-            if (itemSlot.item == convertableItem)
+            if (itemSlot.storable == convertableItem)
             {
                 StartItemProcessing(itemSlot);
             }
         }
-        if(data.itemSlot.item != null && data.timer <= 0f)
+        if(data.itemSlot.storable != null && data.timer <= 0f)
         {
-            PlayerManager.Instance.inventoryContainer.Add(data.itemSlot.item, data.itemSlot.count);
+            PlayerManager.Instance.inventoryContainer.Add(data.itemSlot.storable, data.itemSlot.count);
             data.itemSlot.Clear();
         }
     }
@@ -66,7 +66,7 @@ public class ItemConvertorInteract : Interactable, IPersistant
     {
         data.itemSlot.Copy(GameManager.instance.dragAndDropController.itemSlot);
         data.itemSlot.count = 1;
-        if (toProcess.item.stackable)
+        if (toProcess.storable.Stackable)
         {
             toProcess.count -= 1;
             if(toProcess.count <= 0)
