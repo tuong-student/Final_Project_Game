@@ -6,23 +6,23 @@ using UnityEngine;
 [System.Serializable]
 public class ItemSlot
 {
-    public Item item;
+    public Storable storable;
     public int count;
 
     public void Copy(ItemSlot slot)
     {
-        item = slot.item;
+        storable = slot.storable;
         count = slot.count;
     }
 
-    public void Set(Item item, int count)
+    public void Set(Storable item, int count)
     {
-        this.item = item;
+        this.storable = item;
         this.count = count;
     }
     public void Clear()
     {
-        item = null;
+        storable = null;
         count = 0;
     }
 }
@@ -41,22 +41,22 @@ public class ItemContainer : ScriptableObject
         }
     }
 
-    public void Add(Item item, int count = 1)
+    public void Add(Storable item, int count = 1)
     {
         isDirty = true;
-        if (item.stackable)
+        if (item.Stackable)
         {
-            ItemSlot itemSlot = slots.Find(x => x.item == item);
+            ItemSlot itemSlot = slots.Find(x => x.storable == item);
             if (itemSlot != null)
             {
                 itemSlot.count += count;
             }
             else
             {
-                itemSlot = slots.Find(x => x.item == null);
+                itemSlot = slots.Find(x => x.storable == null);
                 if(itemSlot != null)
                 {
-                    itemSlot.item = item;
+                    itemSlot.storable = item;
                     itemSlot.count = count;
                 }
             }
@@ -64,19 +64,19 @@ public class ItemContainer : ScriptableObject
         else
         {
             //add non stackable item to ours item container
-            ItemSlot itemSlot = slots.Find(x => x.item == null);
+            ItemSlot itemSlot = slots.Find(x => x.storable == null);
             if (itemSlot != null)
             {
-                itemSlot.item = item;
+                itemSlot.storable = item;
             }
         }
     }
-    public void Remove(Item itemtoRemove, int count = 1)
+    public void Remove(Storable itemtoRemove, int count = 1)
     {
         isDirty = true;
-        if (itemtoRemove.stackable)
+        if (itemtoRemove.Stackable)
         {
-            ItemSlot itemSlot = slots.Find(x => x.item == itemtoRemove);
+            ItemSlot itemSlot = slots.Find(x => x.storable == itemtoRemove);
             if (itemSlot == null) return;
             itemSlot.count -= count;
             if (itemSlot.count <= 0)
@@ -87,7 +87,7 @@ public class ItemContainer : ScriptableObject
             while (count > 0)
             {
                 count -= 1;
-                ItemSlot itemSlot = slots.Find(x => x.item == itemtoRemove);
+                ItemSlot itemSlot = slots.Find(x => x.storable == itemtoRemove);
                 if (itemSlot == null) break;
 
                 itemSlot.Clear();
@@ -99,7 +99,7 @@ public class ItemContainer : ScriptableObject
     {
         for (int i = 0; i < slots.Count; i++)
         {
-            if (slots[i].item == null)
+            if (slots[i].storable == null)
             {
                 return true;
             }
@@ -109,10 +109,10 @@ public class ItemContainer : ScriptableObject
 
     public bool CheckItem(ItemSlot checkingItem)
     {
-        ItemSlot itemSlot = slots.Find(x => x.item == checkingItem.item);
+        ItemSlot itemSlot = slots.Find(x => x.storable == checkingItem.storable);
         if (itemSlot == null) 
             return false;
-        if (checkingItem.item.stackable)
+        if (checkingItem.storable.Stackable)
             return itemSlot.count >= checkingItem.count;
         return true;
     }

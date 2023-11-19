@@ -79,14 +79,14 @@ public class LootContainerInteract : Interactable, IPersistant
 
         for (int i = 0; i < itemContainer.slots.Count; i++)
         {
-            if (itemContainer.slots[i].item == null)
+            if (itemContainer.slots[i].storable == null)
             {
                 toSave.itemDatas.Add(new SaveLootItemData(-1, 0));
             }
             else
             {
                 toSave.itemDatas.Add(new SaveLootItemData(
-                    itemContainer.slots[i].item.id,
+                    itemContainer.slots[i].storable.Id,
                     itemContainer.slots[i].count));
             }
         }
@@ -109,7 +109,7 @@ public class LootContainerInteract : Interactable, IPersistant
             }
             else
             {
-                itemContainer.slots[i].item = GameManager.instance.itemDB.items[toLoad.itemDatas[i].itemId];
+                itemContainer.slots[i].storable = GameManager.instance.itemDB.items[toLoad.itemDatas[i].itemId];
                 itemContainer.slots[i].count = toLoad.itemDatas[i].count;
             }
         }

@@ -13,76 +13,76 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   slots:
-  - item: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
+  - storable: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
     count: 99983
-  - item: {fileID: 11400000, guid: d3675901f60260d459a8687178e4dd87, type: 2}
+  - storable: {fileID: 11400000, guid: d3675901f60260d459a8687178e4dd87, type: 2}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
-  - item: {fileID: 0}
+  - storable: {fileID: 0}
     count: 0
   isDirty: 0

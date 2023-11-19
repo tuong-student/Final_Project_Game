@@ -9,14 +9,16 @@ public class EnemyAttackCrop : BaseEnemy
 {
     private CropTile _targetCropTile = null;
 
-    protected override void Update()
+    protected override void ChildUpdate()
     {
-        base.Update();
         if(_isTest) return;
-        Move();
 
         float distance = Vector3.Distance(this.transform.position, _targetPos); 
-        if(distance < 0.5)
+        if(distance > 0.5 && _isAttacking == false)
+        {
+            Move();
+        }
+        else
         {
             Attack();
         }
@@ -26,31 +28,34 @@ public class EnemyAttackCrop : BaseEnemy
     {
         if(_targetCropTile == null)
         {
-            CropsContainer cropsContainer = GameObject.Find("CropsTilemap").transform.GetComponent<TilemapCropsManager>().GetCropContainer();
-            _targetCropTile = cropsContainer.crops.GetRandom();
+            // if don't have crop tile attack player instead
+            _targetPos = FindObjectOfType<PlayerManager>().transform.position;
         }
-        else
+
+        if(_targetCropTile == null)
         {
-            if (_targetCropTile.growStage != 0)
+            CropsContainer cropsContainer = ShootingManager.Instance._tilemapCropsManager.GetCropContainer();
+            _targetCropTile = cropsContainer.crops.GetRandom();
+            if(_targetCropTile.growStage == 0)
+            {
+                _targetCropTile = null;
+            }
+            else
             {
                 _targetCropTile.OnHarvest += () => 
                 {
-                    Debug.Log("Enemy Harvest");
                     _targetCropTile = null;
                 };
                 _targetPos = _targetCropTile.worldPosition + new Vector3(0.5f, 0.5f, 0f);
             }
         }
-
-        if(_targetCropTile == null)
+        else
         {
-            // if don't have crop tile attack player instead
-            _targetPos = FindObjectOfType<PlayerManager>().transform.position;
+            _targetPos = _targetCropTile.worldPosition + new Vector3(0.5f, 0.5f, 0f);
         }
     }
     protected override void Move()
     {
-        FindCrop();
         Vector3 direction = (_targetPos - this.transform.position).normalized;
         this.transform.position += _moveSpeed * direction * Time.deltaTime;
     }
@@ -59,7 +64,12 @@ public class EnemyAttackCrop : BaseEnemy
     {
         if(_targetCropTile != null)
         {
-            _targetCropTile.damage += 1;
+            _targetCropTile.damage += 0.2f;
+            if(_targetCropTile.damage >= 1)
+            {
+                ShootingManager.Instance._tilemapCropsManager.HarvestCropTile(_targetCropTile);
+            }
+            Debug.Log("Enemy Attack Crop");
         }
         else
         {

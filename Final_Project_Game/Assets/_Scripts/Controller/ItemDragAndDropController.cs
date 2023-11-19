@@ -22,21 +22,21 @@ public class ItemDragAndDropController : MonoBehaviour
 
     internal void OnClick(ItemSlot itemSlot)
     {
-        if (this.itemSlot.item == null)
+        if (this.itemSlot.storable == null)
         {
             this.itemSlot.Copy(itemSlot);
             itemSlot.Clear();
         }
         else
         {
-            if(itemSlot.item == this.itemSlot.item)
+            if(itemSlot.storable == this.itemSlot.storable)
             {
                 itemSlot.count += this.itemSlot.count;
                 this.itemSlot.Clear();
             }
             else
             {
-                Item item = itemSlot.item;
+                Storable item = itemSlot.storable;
                 int count = itemSlot.count;
 
                 itemSlot.Copy(this.itemSlot);
@@ -48,14 +48,14 @@ public class ItemDragAndDropController : MonoBehaviour
 
     private void UpdateIcon()
     {
-        if (itemSlot.item == null)
+        if (itemSlot.storable == null)
         {
             ItemIcon.SetActive(false);
         }
         else
         {
             ItemIcon.SetActive(true);
-            itemIconImage.sprite = itemSlot.item.icon;
+            itemIconImage.sprite = itemSlot.storable.Icon;
         }
     }
 
@@ -74,7 +74,7 @@ public class ItemDragAndDropController : MonoBehaviour
                     ItemSpawnManager.instance.SpawnItem(
                         worldPosition,
                         null,
-                        itemSlot.item,
+                        itemSlot.storable,
                         itemSlot.count);
                     itemSlot.Clear();
                     ItemIcon.SetActive(false);
@@ -89,17 +89,17 @@ public class ItemDragAndDropController : MonoBehaviour
             return false;
         if (item.stackable)
         {
-            return itemSlot.item == item && itemSlot.count >= count;
+            return itemSlot.storable == item && itemSlot.count >= count;
         }
 
-        return itemSlot.item == item;
+        return itemSlot.storable == item;
     }
 
     public void RemoveItem(int count = 1)
     {
         if (itemSlot == null)
             return;
-        if (itemSlot.item.stackable)
+        if (itemSlot.storable.Stackable)
         {
             itemSlot.count -= count;
             if (itemSlot.count <= 0)

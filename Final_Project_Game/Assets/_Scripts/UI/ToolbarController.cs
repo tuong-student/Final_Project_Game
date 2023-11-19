@@ -1,5 +1,6 @@
 using Game;
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,11 +19,11 @@ public class ToolbarController : MonoBehaviour
             return PlayerManager.Instance.inventoryContainer.slots[selectedTool];
         }
     }
-    public Item GetItem
+    public Storable GetPlayerSelected
     {
         get
         {
-            return PlayerManager.Instance.inventoryContainer.slots[selectedTool].item;
+            return PlayerManager.Instance.inventoryContainer.slots[selectedTool].storable;
         }
     }
     private void Start()
@@ -56,17 +57,22 @@ public class ToolbarController : MonoBehaviour
     }
     public void UpdateHightlightIcon(int id = 0)
     {
-        Item item = GetItem;
-        if (item == null)
+        Storable storable = GetPlayerSelected;
+        if(storable == null) return;
+        if(storable.StorageType == StorageType.FarmItem)
         {
-            iconHightlight.Show = false;
-            return;
-        }
+            Item item = storable as Item;
+            if (item == null)
+            {
+                iconHightlight.Show = false;
+                return;
+            }
 
-        iconHightlight.Show = item.iconHightlight;
-        if (item.iconHightlight)
-        {
-            iconHightlight.SetIcon(item.icon);
+            iconHightlight.Show = item.iconHightlight;
+            if (item.iconHightlight)
+            {
+                iconHightlight.SetIcon(item.icon);
+            }
         }
     }
 }
