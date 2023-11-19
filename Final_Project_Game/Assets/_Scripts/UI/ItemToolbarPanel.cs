@@ -16,6 +16,7 @@ public class ItemToolbarPanel : ItemPanel
     {
         toolbarController.Set(id);
         Hightlight(id);
+        toolbarController.UpdateHightlightIcon();
     }
 
     int currentSelectedTool;

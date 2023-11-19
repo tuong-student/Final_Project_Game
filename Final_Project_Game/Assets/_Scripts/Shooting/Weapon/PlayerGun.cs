@@ -9,7 +9,7 @@ public class PlayerGun : Gun
         _casing.SetBool("Play", true);
         _flash.SetBool("Play", true);
         bullet.transform.position = _bulletSpawnTrans.position;
-        bullet.GetComponent<Rigidbody2D>().AddForce(this.transform.right * _gunForce);
+        bullet.GetComponent<Rigidbody2D>().AddForce(this.transform.right * _data._bulletForce);
     }
 
     public override void StopShooting()

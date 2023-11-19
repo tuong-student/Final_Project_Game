@@ -75,3 +75,5 @@ Final_Project_Game/ignore.conf
 Final_Project_Game/.plastic/plastic.selector
 Final_Project_Game/.plastic/plastic.wktree
 Final_Project_Game/.plastic/plastic.workspace
+Final_Project_Game/.plastic/plastic.changes
+Final_Project_Game/Assets/_Scripts/Game.asmdef

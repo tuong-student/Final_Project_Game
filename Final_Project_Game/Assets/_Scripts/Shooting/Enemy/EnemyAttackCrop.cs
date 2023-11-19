@@ -36,6 +36,7 @@ public class EnemyAttackCrop : BaseEnemy
         {
             CropsContainer cropsContainer = ShootingManager.Instance._tilemapCropsManager.GetCropContainer();
             _targetCropTile = cropsContainer.crops.GetRandom();
+            if(_targetCropTile == null) return;
             if(_targetCropTile.growStage == 0)
             {
                 _targetCropTile = null;

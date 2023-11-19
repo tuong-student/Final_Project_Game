@@ -13,7 +13,7 @@ namespace Game
         [SerializeField] private PlayerAnimation _playerAnimation;
         [SerializeField] private PlayerOnCollision _playerOnCollision;
         [SerializeField] private Inventory _inventory;
-        // [SerializeField] private Transform _itemHolderTransform;
+        [SerializeField] private PlayerGun _playerGun;
 
         private ModifiableStats<float> _health = new ModifiableStats<float>();
         private ModifiableStats<float> _strength = new ModifiableStats<float>();
@@ -52,6 +52,11 @@ namespace Game
             //     TileManager.Instance.InteractableHere(this.transform.position.ToVector3Int());
             //     TileManager.Instance.AllPos();
             // }
+        }
+
+        public void ChangeGun(GunSO data)
+        {
+            _playerGun.ChangeGunData(data);
         }
 
         public void SetSpeed(float speed)

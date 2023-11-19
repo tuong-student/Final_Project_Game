@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using NOOD;
 using UnityEngine;
 
 public class BulletMono : MonoBehaviour
 {
     BulletSO data;
     [SerializeField] private SpriteRenderer _sr;
+
+    void OnEnable()
+    {
+        Invoke(nameof(DeactivateSelf), 10f);
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -15,6 +21,10 @@ public class BulletMono : MonoBehaviour
             PlayBulletEffect();
             FeedbackManager.Instance.PlayPlayerBulletExplodeFB();
         }
+        Invoke(nameof(DeactivateSelf), 0.1f);
+    }
+    private void DeactivateSelf()
+    {
         this.gameObject.SetActive(false);
     }
     public float GetDamage()
