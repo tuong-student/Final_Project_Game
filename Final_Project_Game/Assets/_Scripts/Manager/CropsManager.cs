@@ -8,11 +8,24 @@ using UnityEngine;
 public class CropTile
 {
     public Action OnHarvest;
+    public Action<CropTile> OnDamage;
     public int growTimer;
     public int growStage;
     public Crop crop;
     public SpriteRenderer renderer;
-    public float damage;
+    private float damage;
+    public float Damage
+    {
+        get
+        {
+            return damage;
+        }  
+        set
+        {
+            damage = value;
+            OnDamage?.Invoke(this);
+        }
+    }
     public Vector3Int position;
     public Vector3 worldPosition;
     public bool Complete
@@ -32,7 +45,7 @@ public class CropTile
         growStage = 0;
         crop = null;
         renderer.gameObject.SetActive(false);
-        damage = 0;
+        Damage = 0;
         OnHarvest = null;
     }
 }

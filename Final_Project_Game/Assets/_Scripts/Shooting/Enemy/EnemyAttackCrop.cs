@@ -37,17 +37,17 @@ public class EnemyAttackCrop : BaseEnemy
             CropsContainer cropsContainer = ShootingManager.Instance._tilemapCropsManager.GetCropContainer();
             _targetCropTile = cropsContainer.crops.GetRandom();
             if(_targetCropTile == null) return;
-            if(_targetCropTile.growStage == 0)
+            if(_targetCropTile.crop == null)
             {
                 _targetCropTile = null;
             }
             else
             {
+                _targetPos = _targetCropTile.worldPosition + new Vector3(0.5f, 0.5f, 0f);
                 _targetCropTile.OnHarvest += () => 
                 {
                     _targetCropTile = null;
                 };
-                _targetPos = _targetCropTile.worldPosition + new Vector3(0.5f, 0.5f, 0f);
             }
         }
         else
@@ -65,12 +65,12 @@ public class EnemyAttackCrop : BaseEnemy
     {
         if(_targetCropTile != null)
         {
-            _targetCropTile.damage += 0.2f;
-            if(_targetCropTile.damage >= 1)
+            _targetCropTile.Damage += 0.2f;
+            if(_targetCropTile.Damage >= 1)
             {
                 ShootingManager.Instance._tilemapCropsManager.HarvestCropTile(_targetCropTile);
             }
-            Debug.Log("Enemy Attack Crop");
+            Debug.Log("Enemy Attack Crop index " + ShootingManager.Instance._tilemapCropsManager.GetCropContainer().crops.IndexOf(_targetCropTile));
         }
         else
         {

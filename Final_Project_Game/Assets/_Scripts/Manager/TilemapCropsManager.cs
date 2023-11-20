@@ -28,6 +28,7 @@ public class TilemapCropsManager : TimeAgent
         {
             container.crops[i].renderer = null;
         }
+        container.ClearDatas();
     }
 
     public CropsContainer GetCropContainer()
@@ -43,13 +44,13 @@ public class TilemapCropsManager : TimeAgent
         {
             if (cropTile.crop == null)
                 continue;
-            cropTile.damage += 0.02f;
-            if (cropTile.damage > 1f)
+            if (cropTile.Damage > 1f)
             {
                 HarvestCropTile(cropTile);
                 continue;
             }
             cropTile.growTimer += 1;
+            container.UpdateCropCircleSlider(cropTile);
 
             Debug.Log("GrowStage: " + cropTile.growStage);
             if (cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
@@ -61,6 +62,7 @@ public class TilemapCropsManager : TimeAgent
 
             if (cropTile.Complete)
             {
+                cropTile.Damage += 0.05f;
                 if(container.IsDisplayHarvestIconAt(cropTile) == false)
                 {
                     Debug.Log("im done");
@@ -77,6 +79,7 @@ public class TilemapCropsManager : TimeAgent
         cropTile.Harvested();
         targetTilemap.SetTile(cropTile.position, plowed);
         container.SetDisplayHarvestIconValue(cropTile, false);
+        container.ShowCropCircleSlider(cropTile, false);
     }
 
     public void CreateHarvestIcon(CropTile cropTile)
@@ -109,6 +112,7 @@ public class TilemapCropsManager : TimeAgent
 
         targetTilemap.SetTile(position, seeded);
         tile.crop = toSeed;
+        container.AddCropCircleSlider(tile);
     }
 
     public void VisualizeTile(CropTile cropTile)
@@ -163,7 +167,7 @@ public class TilemapCropsManager : TimeAgent
                 tile.crop.yield,
                 tile.crop.count
                 );
-            tile.Harvested();
+            HarvestCropTile(tile);
             VisualizeTile(tile);
         }
     }

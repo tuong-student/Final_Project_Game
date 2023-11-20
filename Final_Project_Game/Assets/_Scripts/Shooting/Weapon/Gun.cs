@@ -26,8 +26,6 @@ public abstract class Gun : MonoBehaviour
     protected virtual void Awake()
     {
         _gunHolder = GetComponentInParent<GunHolder>();
-        ChangeGun();
-        _attackRate = _data._shootingRate;
     }
 
     public void ChangeGunData(GunSO data)
@@ -52,6 +50,7 @@ public abstract class Gun : MonoBehaviour
 
     private void ChangeGun()
     {
+        if(_data == null) return;
         _gunViewIdle.sprite = _data._gunIdleSprite;
         _gunView.runtimeAnimatorController = _data._gunViewController;
         _casing.runtimeAnimatorController = _data._casingController;
