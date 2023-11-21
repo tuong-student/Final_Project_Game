@@ -111,8 +111,8 @@ public class DayTimeController : MonoBehaviour
     {
         float v = nightTimeCurve.Evaluate(Hours);
         Color c = Color.Lerp(dayLightColor, nightLightColor, v);
-        float intensity = Mathf.Lerp(1, 0.5f, v);
-        //globalLight.color = c;
+        globalLight.color = c;
+        // float intensity = Mathf.Lerp(1, 0.5f, v);
         //globalLight.intensity = intensity;
     }
     private void NextDay()

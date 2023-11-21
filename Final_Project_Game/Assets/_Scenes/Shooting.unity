@@ -4922,8 +4922,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 4.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
       propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
       propertyPath: m_ApplyToSortingLayers.Array.data[5]
@@ -5628,12 +5632,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
+      propertyPath: m_LightOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
       propertyPath: m_BlendStyleIndex
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
       propertyPath: m_OverlapOperation
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 4.62
       objectReference: {fileID: 0}
     - target: {fileID: 324304112142208169, guid: 104b5d6c7ae6d0247a50fe9ba78ee56c, type: 3}
       propertyPath: m_ApplyToSortingLayers.Array.size

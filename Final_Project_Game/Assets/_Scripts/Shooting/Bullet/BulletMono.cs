@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NOOD;
@@ -5,8 +6,19 @@ using UnityEngine;
 
 public class BulletMono : MonoBehaviour
 {
+    #region Events
+    public Action onDisable;
+    #endregion
+
     BulletSO data;
     [SerializeField] private SpriteRenderer _sr;
+    [SerializeField] private TrailRenderer _bulletTrail;
+    private Rigidbody2D _myBody;
+
+    void Awake()
+    {
+        _myBody = GetComponent<Rigidbody2D>();
+    }
 
     void OnEnable()
     {
@@ -21,11 +33,27 @@ public class BulletMono : MonoBehaviour
             PlayBulletEffect();
             FeedbackManager.Instance.PlayPlayerBulletExplodeFB();
         }
-        Invoke(nameof(DeactivateSelf), 0.1f);
+        DeactivateSelf();
+    }
+    void OnDisable()
+    {
+        CancelInvoke(nameof(DeactivateSelf));
+        onDisable?.Invoke();
     }
     private void DeactivateSelf()
     {
+        _myBody.velocity = Vector3.zero;
+        _bulletTrail.emitting = false;
         this.gameObject.SetActive(false);
+    }
+    public void ShowTrail()
+    {
+        StartCoroutine(ShowTrailCR());
+    }
+    private IEnumerator ShowTrailCR()
+    {
+        yield return null;
+        _bulletTrail.emitting = true;
     }
     public float GetDamage()
     {

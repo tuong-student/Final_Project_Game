@@ -21,6 +21,7 @@ public abstract class Gun : MonoBehaviour
     public Animator _gunView, _casing, _flash;
     public SpriteRenderer _gunViewIdle;
     public bool IsHasData => _data != null;
+    private Queue<BulletMono> _disableBulletQueue = new Queue<BulletMono>();
 
     protected virtual void Awake()
     {
@@ -29,7 +30,6 @@ public abstract class Gun : MonoBehaviour
 
     public void ChangeGunData(GunSO data)
     {
-        Debug.Log("ChangeGunData");
         if(data == null)
         {
             _data = null;
@@ -70,7 +70,6 @@ public abstract class Gun : MonoBehaviour
     private void Update()
     {
         _attackTime += Time.deltaTime;
-        Debug.Log(_data == null);
         if(_isAuto == true && _data != null)
         {
             if(_attackTime >= _nextAttackTime)
@@ -108,17 +107,17 @@ public abstract class Gun : MonoBehaviour
     protected virtual BulletMono SpawnBullet()
     {
         BulletMono bulletMono = null;
-        foreach(Transform child in _gunHolder.BulletTransformHolder)
+
+        if(_disableBulletQueue.TryDequeue(out bulletMono) == false)
         {
-            if(child.gameObject.activeInHierarchy == false)
-            {
-                child.gameObject.SetActive(true);
-                bulletMono = child.gameObject.GetComponent<BulletMono>();
-                break;
-            }
-        }
-        if(bulletMono == null)
             bulletMono = Instantiate<BulletMono>(_bulletPref, _gunHolder.BulletTransformHolder);
+            bulletMono.onDisable += () => 
+            {
+                _disableBulletQueue.Enqueue(bulletMono);
+            };
+        }
+
+        bulletMono.gameObject.SetActive(true);
         bulletMono.transform.rotation = this.transform.rotation;
 
         bulletMono.SetData(_bulletData);
