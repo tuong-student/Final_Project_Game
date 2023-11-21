@@ -30,8 +30,8 @@ public class ObjectSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        if (Random.value > probability)
-            return;
+        //if (Random.value > probability)
+        //    return;
         if (spawnList.Count == count)
             return;
         GameObject go = Instantiate(spawn);

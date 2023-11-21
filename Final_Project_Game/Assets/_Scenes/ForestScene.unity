@@ -17733,6 +17733,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
+      propertyPath: targetPosition.x
+      value: 9.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
+      propertyPath: targetPosition.y
+      value: 13.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
       propertyPath: sceneNameToTransition
       value: 2DMainGame
       objectReference: {fileID: 0}
@@ -40937,6 +40945,10 @@ PrefabInstance:
     - target: {fileID: 933395416700577654, guid: 97089877cb4e48b41a82a1720fa72f97, type: 3}
       propertyPath: m_Name
       value: ObjectSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979060576065108608, guid: 97089877cb4e48b41a82a1720fa72f97, type: 3}
+      propertyPath: count
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1979060576065108608, guid: 97089877cb4e48b41a82a1720fa72f97, type: 3}
       propertyPath: idInList
