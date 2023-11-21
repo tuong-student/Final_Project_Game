@@ -4,6 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using NOOD.Extension;
 using Game;
+using System.Linq;
 
 public class EnemyAttackCrop : BaseEnemy
 {
@@ -26,28 +27,29 @@ public class EnemyAttackCrop : BaseEnemy
 
     protected override void FindCrop()
     {
-        if(_targetCropTile == null)
+        if(IsCropNullOrEmpty())
         {
             // if don't have crop tile attack player instead
             _targetPos = FindObjectOfType<PlayerManager>().transform.position;
         }
 
-        if(_targetCropTile == null)
+        if(IsCropNullOrEmpty())
         {
             CropsContainer cropsContainer = ShootingManager.Instance._tilemapCropsManager.GetCropContainer();
-            _targetCropTile = cropsContainer.crops.GetRandom();
+            List<CropTile> targetList = cropsContainer.crops.Where(x => x.crop != null).ToList();
+            _targetCropTile = targetList.GetRandom();
             if(_targetCropTile == null) return;
-            if(_targetCropTile.growStage == 0)
+            if(_targetCropTile.crop == null)
             {
                 _targetCropTile = null;
             }
             else
             {
+                _targetPos = _targetCropTile.worldPosition + new Vector3(0.5f, 0.5f, 0f);
                 _targetCropTile.OnHarvest += () => 
                 {
                     _targetCropTile = null;
                 };
-                _targetPos = _targetCropTile.worldPosition + new Vector3(0.5f, 0.5f, 0f);
             }
         }
         else
@@ -63,18 +65,23 @@ public class EnemyAttackCrop : BaseEnemy
 
     protected override void ChildAttack()
     {
-        if(_targetCropTile != null)
+        if(!IsCropNullOrEmpty())
         {
-            _targetCropTile.damage += 0.2f;
-            if(_targetCropTile.damage >= 1)
+            _targetCropTile.Damage += 0.2f;
+            if(_targetCropTile.Damage >= 1)
             {
                 ShootingManager.Instance._tilemapCropsManager.HarvestCropTile(_targetCropTile);
+                _targetCropTile = null;
             }
-            Debug.Log("Enemy Attack Crop");
         }
         else
         {
             PlayerManager.Instance.MinusHealth(_damage);
         }
+    }
+
+    private bool IsCropNullOrEmpty() 
+    {
+        return (_targetCropTile == null || _targetCropTile.crop == null);
     }
 }

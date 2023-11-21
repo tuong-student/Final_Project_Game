@@ -10,7 +10,6 @@ using UnityEngine.Rendering.Universal;
 public abstract class Gun : MonoBehaviour
 {
     [SerializeField] protected GunSO _data;
-    protected float _attackRate;
     public BulletMono _bulletPref;
     public BulletSO _bulletData;
     public Transform _bulletSpawnTrans;
@@ -26,13 +25,11 @@ public abstract class Gun : MonoBehaviour
     protected virtual void Awake()
     {
         _gunHolder = GetComponentInParent<GunHolder>();
-        ChangeGun();
-        _attackRate = _data._shootingRate;
     }
 
     public void ChangeGunData(GunSO data)
     {
-            Debug.Log("ChangeGunData");
+        Debug.Log("ChangeGunData");
         if(data == null)
         {
             _data = null;
@@ -52,6 +49,7 @@ public abstract class Gun : MonoBehaviour
 
     private void ChangeGun()
     {
+        if(_data == null) return;
         _gunViewIdle.sprite = _data._gunIdleSprite;
         _gunView.runtimeAnimatorController = _data._gunViewController;
         _casing.runtimeAnimatorController = _data._casingController;
@@ -72,6 +70,7 @@ public abstract class Gun : MonoBehaviour
     private void Update()
     {
         _attackTime += Time.deltaTime;
+        Debug.Log(_data == null);
         if(_isAuto == true && _data != null)
         {
             if(_attackTime >= _nextAttackTime)
@@ -83,7 +82,7 @@ public abstract class Gun : MonoBehaviour
                     _flashLight.intensity = 0;
                 }, 0.1f);
                 _attackTime = Time.time;
-                _nextAttackTime = Time.time + 1/_attackRate;
+                _nextAttackTime = Time.time + 1/_data._shootingRate;
             }
         }
         else

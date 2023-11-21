@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: MainSceneCropsContainer
   m_EditorClassIdentifier: 
   crops: []
+  _fieldCanvas: {fileID: 3423231878804648561, guid: 91aaa94af0b653f4d9e2de94a9d25ede, type: 3}
