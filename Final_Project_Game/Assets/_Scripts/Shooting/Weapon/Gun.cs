@@ -70,7 +70,7 @@ public abstract class Gun : MonoBehaviour
     private void Update()
     {
         _attackTime += Time.deltaTime;
-        Debug.Log(_data == null);
+        //Debug.Log(_data == null);
         if(_isAuto == true && _data != null)
         {
             if(_attackTime >= _nextAttackTime)

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d52d75ac8580c749bbc0600de29d55f, type: 3}
-  m_Name: PlowDirtAction
+  m_Script: {fileID: 11500000, guid: 55d2a2a42965e324db82754e9dc57544, type: 3}
+  m_Name: FarmSceneJSONStrings
   m_EditorClassIdentifier: 
-  canPlow:
-  - {fileID: 11400000, guid: eaf4383761eb65d4ea9906b9c5288742, type: 2}
-  - {fileID: 11400000, guid: 4a7ddb7d6e33b00419f612b3f91b972f, type: 2}
+  strings:
+  - 
