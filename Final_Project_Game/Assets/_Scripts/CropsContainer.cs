@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NOOD;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Data/Crops Container")]
@@ -29,7 +30,6 @@ public class CropsContainer : ScriptableObject
         {
             circleSlider = _cropCircleSlider[cropTile];
             circleSlider.Init(0, cropTile.crop.timeToGrow);
-            ShowCropCircleSlider(cropTile, true);
         }
         else
         {
@@ -37,10 +37,10 @@ public class CropsContainer : ScriptableObject
             canvas.transform.position = cropTile.worldPosition;
             circleSlider = canvas.GetComponentInChildren<CircleSlider>();
             circleSlider.Init(0, cropTile.crop.timeToGrow);
-            cropTile.OnDamage += PlayCircleSliderDamage;
 
             _cropCircleSlider.Add(cropTile, circleSlider);
         }
+        ShowCropCircleSlider(cropTile, true);
     }
     public void UpdateCropCircleSlider(CropTile cropTile)
     {
@@ -57,13 +57,22 @@ public class CropsContainer : ScriptableObject
     {
         if(_cropCircleSlider.TryGetValue(cropTile, out CircleSlider circleSlider))
         {
-            circleSlider.ChangeColor(Color.red);
-            circleSlider.Init(cropTile.Damage, 1);
-            circleSlider.onAnimationComplete += () => 
+            if(cropTile.Complete)
             {
-                circleSlider.ReturnOldColor();
-                circleSlider.Init(cropTile.growTimer, cropTile.crop.timeToGrow);
-            };
+                circleSlider.ChangeColor(NoodyCustomCode.HexToColor("#ff140099"));
+                circleSlider.Init(cropTile.Damage, 1);
+            }
+            else
+            {
+                circleSlider.ChangeColor(Color.red);
+                circleSlider.Init(cropTile.Damage, 1);
+                NoodyCustomCode.StartDelayFunction(() => 
+                {
+                    if(cropTile == null || cropTile.crop == null) return;
+                    circleSlider.ReturnOldColor();
+                    circleSlider.Init(cropTile.growTimer, cropTile.crop.timeToGrow);
+                }, circleSlider.AnimationTime);
+            }
         }
     }
     public void ShowCropCircleSlider(CropTile cropTile, bool isShow)
@@ -71,6 +80,13 @@ public class CropsContainer : ScriptableObject
         if(_cropCircleSlider.TryGetValue(cropTile, out CircleSlider circleSlider))
         {
             circleSlider.gameObject.SetActive(isShow);
+            if(isShow)
+            {
+                cropTile.OnDamage += PlayCircleSliderDamage;
+                circleSlider.ChangeColor(NoodyCustomCode.HexToColor("#9bfd9b99"));
+            }
+            else
+                cropTile.OnDamage -= PlayCircleSliderDamage;
         }
     }
     #endregion

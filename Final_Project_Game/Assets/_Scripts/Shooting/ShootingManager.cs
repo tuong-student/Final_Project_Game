@@ -12,9 +12,14 @@ public class ShootingManager : MonoBehaviorInstance<ShootingManager>
     [SerializeField] private TextMeshProUGUI _dayNumber;
     [SerializeField] private int _hourToSpawnEnemy = 22;
     [SerializeField] private int _enemyToSpawn = 5;
+    [HideInInspector] public TilemapCropsManager _tilemapCropsManager;
     private bool _isSpawnEnemy;
     private EnemySpawner _enemySpawner;
-    public TilemapCropsManager _tilemapCropsManager;
+
+    public static ShootingManager Create()
+    {
+        return Instantiate<ShootingManager>(Resources.Load<ShootingManager>("Prefabs/Manager/ShootingManager.prefab"), null);
+    }
 
     void Awake()
     {

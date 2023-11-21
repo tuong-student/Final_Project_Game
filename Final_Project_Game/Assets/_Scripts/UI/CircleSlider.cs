@@ -11,7 +11,6 @@ public class CircleSlider : MonoBehaviour
     #region Events
     public Action onComplete;
     public Action onValueChange;
-    public Action onAnimationComplete;
     #endregion
 
     [SerializeField] private Image _sliderContent;
@@ -21,11 +20,22 @@ public class CircleSlider : MonoBehaviour
     private float _value, _maxValue;
     public float Value => _value;
     public float MaxValue => _maxValue;
+    public float AnimationTime 
+    {
+        get
+        {
+            return _popAnimation.TotalDuration;
+        }
+    }
 
     void Awake()
     {
         _originalColor = _sliderContent.color;
-        _popAnimation.Events.OnComplete.AddListener(() => onAnimationComplete?.Invoke());
+    }
+
+    void OnDestroy()
+    {
+        _popAnimation.Events.OnComplete.RemoveAllListeners();
     }
 
     public void Init(float value, float maxValue)
@@ -64,6 +74,7 @@ public class CircleSlider : MonoBehaviour
     {
         _sliderContent.fillAmount = _value / _maxValue;
         _popAnimation.PlayFeedbacks();
+        Debug.Log("Circle Update");
     }
     public void ReturnOldColor()
     {

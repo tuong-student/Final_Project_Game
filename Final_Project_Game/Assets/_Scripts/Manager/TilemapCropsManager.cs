@@ -1,6 +1,7 @@
 using Game;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -53,11 +54,13 @@ public class TilemapCropsManager : TimeAgent
             container.UpdateCropCircleSlider(cropTile);
 
             Debug.Log("GrowStage: " + cropTile.growStage);
+
             if (cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
             {
                 cropTile.renderer.gameObject.SetActive(true);
                 cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
                 cropTile.growStage += 1;
+                cropTile.growStage = Mathf.Clamp(cropTile.growStage, 0, cropTile.crop.growthStageTime.Count - 1);
             }
 
             if (cropTile.Complete)

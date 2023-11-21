@@ -4,6 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using NOOD.Extension;
 using Game;
+using System.Linq;
 
 public class EnemyAttackCrop : BaseEnemy
 {
@@ -26,16 +27,17 @@ public class EnemyAttackCrop : BaseEnemy
 
     protected override void FindCrop()
     {
-        if(_targetCropTile == null)
+        if(IsCropNullOrEmpty())
         {
             // if don't have crop tile attack player instead
             _targetPos = FindObjectOfType<PlayerManager>().transform.position;
         }
 
-        if(_targetCropTile == null)
+        if(IsCropNullOrEmpty())
         {
             CropsContainer cropsContainer = ShootingManager.Instance._tilemapCropsManager.GetCropContainer();
-            _targetCropTile = cropsContainer.crops.GetRandom();
+            List<CropTile> targetList = cropsContainer.crops.Where(x => x.crop != null).ToList();
+            _targetCropTile = targetList.GetRandom();
             if(_targetCropTile == null) return;
             if(_targetCropTile.crop == null)
             {
@@ -63,18 +65,23 @@ public class EnemyAttackCrop : BaseEnemy
 
     protected override void ChildAttack()
     {
-        if(_targetCropTile != null)
+        if(!IsCropNullOrEmpty())
         {
             _targetCropTile.Damage += 0.2f;
             if(_targetCropTile.Damage >= 1)
             {
                 ShootingManager.Instance._tilemapCropsManager.HarvestCropTile(_targetCropTile);
+                _targetCropTile = null;
             }
-            Debug.Log("Enemy Attack Crop index " + ShootingManager.Instance._tilemapCropsManager.GetCropContainer().crops.IndexOf(_targetCropTile));
         }
         else
         {
             PlayerManager.Instance.MinusHealth(_damage);
         }
+    }
+
+    private bool IsCropNullOrEmpty() 
+    {
+        return (_targetCropTile == null || _targetCropTile.crop == null);
     }
 }
