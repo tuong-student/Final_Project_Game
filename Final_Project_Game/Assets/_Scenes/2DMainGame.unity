@@ -714,11 +714,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
       propertyPath: targetPosition.x
-      value: 0
+      value: -15.8
       objectReference: {fileID: 0}
     - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
       propertyPath: targetPosition.y
-      value: 0
+      value: 17.2
       objectReference: {fileID: 0}
     - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
       propertyPath: sceneNameToTransition
@@ -10436,6 +10436,14 @@ PrefabInstance:
     - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
       propertyPath: transitionType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
+      propertyPath: targetPosition.x
+      value: -0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
+      propertyPath: targetPosition.y
+      value: -5.14
       objectReference: {fileID: 0}
     - target: {fileID: 7619515450558740307, guid: cac295ebfedb5c24eaf19dddb9d8ac5f, type: 3}
       propertyPath: sceneNameToTransition
