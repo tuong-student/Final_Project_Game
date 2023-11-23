@@ -1,11 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
+    #region Events
+    public UnityEvent OnFinishDialogue;
+    public UnityEvent OnInit;
+    #endregion
+    
     [SerializeField] Text targetText;
     [SerializeField] Text nameText;
     [SerializeField] Image portrait;
@@ -15,11 +22,13 @@ public class DialogueSystem : MonoBehaviour
     [Range(0f,1f)]
     [SerializeField] float visibleTextPercent;
     [SerializeField] float timePereLetter = 0.05f;
-    float totalTimeTotype, currentTime;
+    float totalTimeToType, currentTime;
     string lineToShow;
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if(targetText.gameObject.activeInHierarchy == false) return;
+        if (Input.GetMouseButtonDown(0) )
         {
             PushText();
         }
@@ -30,7 +39,7 @@ public class DialogueSystem : MonoBehaviour
     {
         if (visibleTextPercent >= 1f) return;
         currentTime += Time.deltaTime;
-        visibleTextPercent = currentTime / totalTimeTotype;
+        visibleTextPercent = currentTime / totalTimeToType;
         visibleTextPercent = Mathf.Clamp(visibleTextPercent, 0, 1f);
         UpdateText();
     }
@@ -61,7 +70,7 @@ public class DialogueSystem : MonoBehaviour
     private void CycleLine()
     {
         lineToShow = currentDialogue.line[currentTextLine];
-        totalTimeTotype = lineToShow.Length * timePereLetter;
+        totalTimeToType = lineToShow.Length * timePereLetter;
         currentTime = 0f;
         visibleTextPercent = 0f;
         targetText.text = "";
@@ -73,10 +82,11 @@ public class DialogueSystem : MonoBehaviour
         currentDialogue = dialogueContainer;
         currentTextLine = 0;
         CycleLine();
-        UpdatePortrail();
+        UpdatePortrait();
+        OnInit?.Invoke();
     }
 
-    private void UpdatePortrail()
+    private void UpdatePortrait()
     {
         portrait.sprite = currentDialogue.actor.portrait;
         nameText.text = currentDialogue.actor.Name;
@@ -85,11 +95,12 @@ public class DialogueSystem : MonoBehaviour
     private void Show(bool v)
     {
         gameObject.SetActive(v);
+        this.gameObject.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
     }
 
     private void Conclude()
     {
         Debug.Log("ending");
-        Show(false);
+        OnFinishDialogue?.Invoke();
     }
 }

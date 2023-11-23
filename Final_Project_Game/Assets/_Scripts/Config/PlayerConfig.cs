@@ -11,4 +11,8 @@ namespace Game
         public static float _speed = 5f;
     }
 
+    public static class GlobalConfig
+    {
+        public static bool _isBlockInput;
+    }
 }
