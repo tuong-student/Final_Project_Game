@@ -6,6 +6,7 @@ using NOOD;
 
 namespace Game
 {
+    [RequireComponent(typeof(PlayerMovement), typeof(PlayerOnCollision), typeof(PlayerAnimation))]
     public class PlayerManager : MonoBehaviorInstance<PlayerManager>
     {
 
@@ -30,14 +31,13 @@ namespace Game
             GameInput.Init();
             GameInput.onPlayerPressInteract += Pickup;
             GameInput.onPlayerRequestItem += EquipItem;
-            previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
+            // previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
         }
         void Start()
         {
             _health.SetInitValue(PlayerConfig._maxHealth);
             _strength.SetInitValue(PlayerConfig._strength);
             _speed.SetInitValue(PlayerConfig._speed);
-            UIManager.Instance.onPlayerDragOutItem += RemoveInventoryStack;
         }
 
         private void SelectObj()
@@ -79,17 +79,14 @@ namespace Game
             Item tempItem = _playerOnCollision.GetPickupableObject() as Item;
             if(tempItem == null) return;
             //tempItem.Pickup(_inventory);
-            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
         }
         public void AddToInventory(Item item)
         {
             _inventory.AddToInventory(item);
-            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
         }
         public void RemoveInventoryStack(InventoryStack stack)
         {
             _inventory.RemoveFromInventory(stack);
-            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
         }
 
         private void EquipItem(int inventoryIndex)

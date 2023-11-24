@@ -920,6 +920,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_1_32x32_38
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1298
+        width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 19, y: 14, z: 16, w: 19}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f8f5dfa10e5b341a19c738bdc225e7
+      internalID: 1512963646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -963,6 +984,7 @@ TextureImporter:
       Modern_UI_Style_1_32x32_35: -1749365476
       Modern_UI_Style_1_32x32_36: 1143574107
       Modern_UI_Style_1_32x32_37: 813654773
+      Modern_UI_Style_1_32x32_38: 1512963646
       Modern_UI_Style_1_32x32_4: -1223910239
       Modern_UI_Style_1_32x32_5: -340076915
       Modern_UI_Style_1_32x32_6: -222924137

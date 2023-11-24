@@ -52,7 +52,6 @@ namespace Game
             worldPos.z = 0;
             ItemStack itemStack = Instantiate<ItemStack>(_itemStackPref, worldPos, Quaternion.identity);
             //itemStack.SetItemAndQuantity(_item, _quantity);
-            UIManager.Instance.onPlayerDragOutItem?.Invoke(_inventoryStack);
 
             Destroy(_tempImage);
         }

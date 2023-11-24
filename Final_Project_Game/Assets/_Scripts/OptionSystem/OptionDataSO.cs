@@ -6,6 +6,7 @@ public enum ActionType
 {
     Shop,
     Close,
+    Sell,
 }
 
 [CreateAssetMenu(menuName = "Data/Dialogue/OptionData")]
