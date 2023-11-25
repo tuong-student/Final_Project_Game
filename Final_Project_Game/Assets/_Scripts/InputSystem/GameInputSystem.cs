@@ -332,6 +332,17 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""PlayerChoseOption"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe1ab1da-4bdd-4e2a-9c45-638c95ccf1b7"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerChoseOption"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }

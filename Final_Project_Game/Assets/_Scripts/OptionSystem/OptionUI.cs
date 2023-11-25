@@ -121,6 +121,11 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>
 
 
     #region MovePointer
+    public void SelectOptionObject(GameObject selectObject)
+    {
+        _currentIndex = _optionObjects.IndexOf(selectObject);
+        UpdateUI();
+    }
     private void UpdateUI()
     {
         // Update base on index
