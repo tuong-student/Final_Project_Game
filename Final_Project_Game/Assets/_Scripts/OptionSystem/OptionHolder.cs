@@ -9,7 +9,9 @@ public class OptionHolder : MonoBehaviour
 
     public void DisplayOptions()
     {
-        GameObject currentSelectedObj = EventSystem.current.currentSelectedGameObject;
+        GameObject currentSelectedObj = CustomEventSystem.Instance.LastSelectedObject;
+        if (currentSelectedObj == null)
+            return;
         OptionUI.Instance.MoveToPosition(currentSelectedObj.transform.position);
         OptionUI.Instance.Open();
         OptionUI.Instance.DisplayOptions(_optionDataSOs, this);

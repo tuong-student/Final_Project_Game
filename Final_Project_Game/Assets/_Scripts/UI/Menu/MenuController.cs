@@ -4,6 +4,7 @@ using System.Linq;
 using Game;
 using ImpossibleOdds;
 using NOOD;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -53,7 +54,7 @@ public class MenuController : MonoBehaviour
 
     private void DisplayItem()
     {
-        if(_itemContainer.slots.Count <= 24 * _page)
+        if(_itemContainer.slots.Count <= 24 * (_page + 1) || _page < 0)
             _page = 0;
 
         foreach(var element in _menuElements)
@@ -83,10 +84,18 @@ public class MenuController : MonoBehaviour
     private void SubscribeEvents() 
     {
         GameInput.onPlayerAccept += PlayerAccept;
+        GameInput.onPlayerPressMoveVector2 += PlayerMoveHandler;
     }
     private void UnSubscribeEvents()
     {
-        NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
+        // NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
+        GameInput.onPlayerAccept -= PlayerAccept;
+        GameInput.onPlayerPressMoveVector2 -= PlayerMoveHandler;
+    }
+
+    public void SetLastSelectedObject(MenuElement element)
+    {
+        _lastMenuElementSelected = element;
     }
 
     private void SelectElement(MenuElement menuElement)
@@ -94,8 +103,17 @@ public class MenuController : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(menuElement.gameObject);
     }
 
+    private void PlayerMoveHandler(Vector2 playerInput)
+    {
+        if(playerInput != Vector2.zero && _lastMenuElementSelected != null && EventSystem.current.currentSelectedGameObject == null)
+        {
+            SelectElement(_lastMenuElementSelected);
+        }
+    }
+
     private void PlayerAccept()
     {
+        if (EventSystem.current.currentSelectedGameObject == null) return;
         if(EventSystem.current.currentSelectedGameObject.TryGetComponent<MenuElement>(out MenuElement currentMenuElement))
         {
             if(currentMenuElement != null && _menuElements.Contains(currentMenuElement))
@@ -104,13 +122,14 @@ public class MenuController : MonoBehaviour
                 _lastMenuElementSelected = currentMenuElement;
                 currentMenuElement._optionHolder.DisplayOptions();
             }
+            OptionLogic.OnPlayerChooseClose += OnOptionMenuClose;
+            if(_canvasGroup != null)
+                _canvasGroup.interactable = false;
         }
-        OptionLogic.OnPlayerChooseClose += OnPlayerChooseClose;
-        _canvasGroup.interactable = false;
         UnSubscribeEvents();
     }
 
-    private void OnPlayerChooseClose()
+    private void OnOptionMenuClose()
     {
         if(_canvasGroup != null)
             _canvasGroup.interactable = true;

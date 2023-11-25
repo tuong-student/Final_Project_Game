@@ -12,11 +12,23 @@ namespace Game
     public enum UI
     {
         Shop,
-        OptionUI,
     }
 
     public class UIManager : MonoBehaviorInstance<UIManager>
     {
-        
+        [SerializeField] private SerializableDictionary<UI, GameObject> _uiDic = new SerializableDictionary<UI, GameObject>();
+
+        public void LoadUI(UI ui)
+        {
+            switch (ui)
+            {
+                case UI.Shop:
+                    if(_uiDic.ContainsKey(ui))
+                    {
+                        _uiDic.Dictionary[ui].SetActive(true);
+                    }
+                    break;
+            }
+        }
     }
 }

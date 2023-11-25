@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using Game;
+using DG.Tweening;
 using NOOD;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public enum SellOption
 {
@@ -24,12 +22,43 @@ public enum BuyOption
 
 public class ShopController : MonoBehaviorInstance<ShopController>
 {
+    [SerializeField] private Button _doneBtn;
     [SerializeField] private MenuController _playerInventoryMenu, _shopMenu;
     [SerializeField] private OptionHolder _sellOption, _buyOption;
     [SerializeField] private Storable _money;
+    private CanvasGroup _canvasGroup;
     private MenuElement _playerItem, _shopItem;
     ItemSlot _currentItemSlot;
 
+    #region Unity Functions
+    void Awake()
+    {
+        if(this.TryGetComponent<CanvasGroup>(out _canvasGroup) == false)
+        {
+            _canvasGroup = this.gameObject.AddComponent<CanvasGroup>();
+        }
+        _doneBtn.onClick.AddListener(Close);
+    }
+    void OnEnable()
+    {
+        Open();
+    }
+    #endregion
+
+    #region Open Close
+    public void Open()
+    {
+        this.gameObject.transform.DOScale(1, 1f);
+        _canvasGroup.DOFade(1, 0.7f);
+    }
+    public void Close()
+    {
+        this.gameObject.transform.DOScale(0.3f, 1f);
+        _canvasGroup.DOFade(0, 0.7f).OnComplete(() => this.gameObject.SetActive(false));
+    }
+    #endregion
+
+    #region Sell
     public void Sell(SellOption sellOption)
     {
 
@@ -37,7 +66,7 @@ public class ShopController : MonoBehaviorInstance<ShopController>
         {
             case SellOption.Prepare:
                 _sellOption.DisplayOptions();
-                _playerItem = EventSystem.current.currentSelectedGameObject.GetComponent<MenuElement>();
+                _playerItem = CustomEventSystem.Instance.LastSelectedObject.GetComponent<MenuElement>();
                 _currentItemSlot = _playerItem.GetItemSlot();
                 break;
             case SellOption.All:
@@ -55,32 +84,6 @@ public class ShopController : MonoBehaviorInstance<ShopController>
         }
         _playerInventoryMenu.UpdateUI();
     }
-    public void Buy(BuyOption buyOption)
-    {
-        switch (buyOption)
-        {
-            case BuyOption.Prepare:
-                _buyOption.DisplayOptions();
-                _shopItem = EventSystem.current.currentSelectedGameObject.GetComponent<MenuElement>();
-                _currentItemSlot = _shopItem.GetItemSlot();
-                break;
-            case BuyOption.One:
-                Debug.Log("Buy 1");
-                Buy1(_currentItemSlot.storable as ItemSO);
-                break;
-            case BuyOption.Ten:
-                Debug.Log("Buy 10");
-                Buy10(_currentItemSlot.storable as ItemSO);
-                break;
-            case BuyOption.OneHundred:
-                Debug.Log("Buy 100");
-                Buy100(_currentItemSlot.storable as ItemSO);
-                break;
-        }
-        _playerInventoryMenu.UpdateUI();
-    }
-
-    #region Sell
     private void SellAll(ItemSlot itemSlot)
     {
         if(itemSlot.count > 0 && itemSlot.storable != null)
@@ -115,6 +118,30 @@ public class ShopController : MonoBehaviorInstance<ShopController>
     #endregion
 
     #region Buy
+    public void Buy(BuyOption buyOption)
+    {
+        switch (buyOption)
+        {
+            case BuyOption.Prepare:
+                _buyOption.DisplayOptions();
+                _shopItem = CustomEventSystem.Instance.LastSelectedObject.GetComponent<MenuElement>();
+                _currentItemSlot = _shopItem.GetItemSlot();
+                break;
+            case BuyOption.One:
+                Debug.Log("Buy 1");
+                Buy1(_currentItemSlot.storable as ItemSO);
+                break;
+            case BuyOption.Ten:
+                Debug.Log("Buy 10");
+                Buy10(_currentItemSlot.storable as ItemSO);
+                break;
+            case BuyOption.OneHundred:
+                Debug.Log("Buy 100");
+                Buy100(_currentItemSlot.storable as ItemSO);
+                break;
+        }
+        _playerInventoryMenu.UpdateUI();
+    }
     private void Buy1(ItemSO item)
     {
         int cost = item.price;

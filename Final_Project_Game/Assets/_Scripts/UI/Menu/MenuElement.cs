@@ -66,11 +66,11 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void Select()
     {
-        this.transform.DOScale(1.15f, 0.3f).SetEase(Ease.OutBounce);
+        this.transform.DOScale(1.15f, 0.3f).SetEase(Ease.OutCubic);
     }
     public void Deselect()
     {
-        this.transform.DOScale(1, 0.3f).SetEase(Ease.InBounce);
+        this.transform.DOScale(1, 0.3f).SetEase(Ease.InCubic);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -81,7 +81,8 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        eventData.selectedObject = this.gameObject;
+        _parentMenuController.SetLastSelectedObject(this);
+        eventData.selectedObject = null;
         Deselect();
     }
 

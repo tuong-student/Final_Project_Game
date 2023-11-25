@@ -60,7 +60,6 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>
     }
     public void Close()
     {
-        Debug.Log("close");
         foreach(var obj in _optionObjects)
         {
             obj.SetActive(false);
@@ -80,7 +79,6 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>
     }
     private void UnSubscribeEvents()
     {
-        Debug.Log("UnSubscribe");
         NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
     }
     #endregion
