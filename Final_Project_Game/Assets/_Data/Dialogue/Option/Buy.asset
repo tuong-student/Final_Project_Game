@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Buy
   m_EditorClassIdentifier: 
   _displayText: Buy
-  _actionToActive: 3
+  _actionToActive: 6

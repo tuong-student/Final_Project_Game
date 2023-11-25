@@ -28,8 +28,6 @@ namespace Game
 
         void Awake()
         {
-            GameInput.Init();
-            GameInput.onPlayerPressInteract += Pickup;
             // previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
         }
         void Start()
@@ -38,6 +36,17 @@ namespace Game
             _strength.SetInitValue(PlayerConfig._strength);
             _speed.SetInitValue(PlayerConfig._speed);
         }
+        void OnEnable()
+        {
+            GameInput.Init();
+            GameInput.onPlayerPressInteract += Pickup;
+        }
+        void OnDestroy()
+        {
+            NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
+            GameInput.Dispose();
+        }
+
 
         private void SelectObj()
         {

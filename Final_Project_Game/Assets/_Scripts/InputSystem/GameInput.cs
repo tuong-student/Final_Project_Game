@@ -18,6 +18,11 @@ namespace Game
         #endregion
         private static GameInputSystem _gameInputSystem;
 
+        public static void Dispose()
+        {
+            _gameInputSystem = null;
+        }
+
         public static void Init()
         {
             _gameInputSystem = new GameInputSystem();

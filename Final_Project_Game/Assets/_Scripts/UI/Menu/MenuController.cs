@@ -17,6 +17,7 @@ public class MenuController : MonoBehaviour
     private CanvasGroup _canvasGroup;
     private int _page;
     private int _lastIndex;
+    private MenuElement _lastMenuElementSelected;
 
     void Awake()
     {
@@ -100,19 +101,22 @@ public class MenuController : MonoBehaviour
             if(currentMenuElement != null && _menuElements.Contains(currentMenuElement))
             {
                 // Check if current menu element belong to this menu controller
+                _lastMenuElementSelected = currentMenuElement;
                 currentMenuElement._optionHolder.DisplayOptions();
-                OptionLogic.OnPlayerChooseClose += OnPlayerChooseClose;
             }
         }
+        OptionLogic.OnPlayerChooseClose += OnPlayerChooseClose;
         _canvasGroup.interactable = false;
         UnSubscribeEvents();
     }
 
     private void OnPlayerChooseClose()
     {
-
-        _canvasGroup.interactable = true;
-        SubscribeEvents();
+        if(_canvasGroup != null)
+            _canvasGroup.interactable = true;
+        if(_lastMenuElementSelected != null)
+            EventSystem.current.SetSelectedGameObject(_lastMenuElementSelected.gameObject);
         NoodyCustomCode.UnSubscribeFromStatic(typeof(OptionLogic), this);
+        SubscribeEvents();
     }
 }
