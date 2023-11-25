@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using ImpossibleOdds;
+using NOOD;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
     [SerializeField] private List<MenuElement> _menuElements = new List<MenuElement>();
+    [SerializeField] private ItemContainer _itemContainer;
+    public ItemContainer ItemContainer => _itemContainer;
+    [SerializeField] private Button _previousPage, _nextPage; 
     private CanvasGroup _canvasGroup;
-    private MenuElement _currentSelectedElement;
-    private int _index;
-    private bool _isBlock;
+    private int _page;
+    private int _lastIndex;
 
     void Awake()
     {
@@ -21,6 +25,13 @@ public class MenuController : MonoBehaviour
         {
             _canvasGroup = this.gameObject.AddComponent<CanvasGroup>();
         }
+        _page = 0;
+        DisplayItem();
+
+        if(_previousPage != null)
+            _previousPage.onClick.AddListener(PreviousPage);
+        if(_nextPage != null)
+            _nextPage.onClick.AddListener(NextPage);
     }
 
     void OnEnable()
@@ -31,57 +42,77 @@ public class MenuController : MonoBehaviour
 
     void OnDisable()
     {
-        
+        UnSubscribeEvents();
     }
 
-    private void SubscribeEvents()
+    public void UpdateUI()
     {
-        GameInput.onPlayerPressMoveVector2 += PlayerInputHandler;
+        DisplayItem();
+    }
+
+    private void DisplayItem()
+    {
+        if(_itemContainer.slots.Count <= 24 * _page)
+            _page = 0;
+
+        foreach(var element in _menuElements)
+        {
+            element.SetItemSlot(null);
+        }
+
+        for(int i = _page * 24, j = 0; i < 24; i++)
+        {
+            if(i >= _itemContainer.slots.Count) break;
+            _menuElements[j].SetItemSlot(_itemContainer.slots[i]);
+            j++;
+            _lastIndex = i;
+        }
+    }
+    private void NextPage()
+    {
+        _page++;
+        DisplayItem();
+    }
+    private void PreviousPage()
+    {
+        _page--;
+        DisplayItem();
+    }
+
+    private void SubscribeEvents() 
+    {
         GameInput.onPlayerAccept += PlayerAccept;
     }
     private void UnSubscribeEvents()
     {
-        Type gameInput = typeof(GameInput);
-        gameInput.PurgeDelegatesOf(this);
-    }
-
-    private void PlayerInputHandler(Vector2 playerInput)
-    {
-        // if(_isBlock) return;
-        // if(playerInput.x > 0)
-        // {
-        //     _index += 1;
-        // }
-        // else if(playerInput.x < 0)
-        // {
-        //     _index -= 1;
-        // }
-        // else if(playerInput.y > 0)
-        // {
-        //     _index += 6;
-        // }
-        // else if(playerInput.y < 0)
-        // {
-        //     _index -= 6;
-        // }
-        // _index = Mathf.Clamp(_index, 0, 23);
-        // SelectElement(_menuElements[_index]);
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
     }
 
     private void SelectElement(MenuElement menuElement)
     {
-        // menuElement.Select();
-        // _currentSelectedElement = menuElement;
         EventSystem.current.SetSelectedGameObject(menuElement.gameObject);
     }
 
     private void PlayerAccept()
     {
-        // _currentSelectedElement._optionLogic.DisplayOption();
-        // _isBlock = true;
-
-        EventSystem.current.currentSelectedGameObject.GetComponent<OptionLogic>().DisplayOption();
+        if(EventSystem.current.currentSelectedGameObject.TryGetComponent<MenuElement>(out MenuElement currentMenuElement))
+        {
+            if(currentMenuElement != null && _menuElements.Contains(currentMenuElement))
+            {
+                // Check if current menu element belong to this menu controller
+                currentMenuElement._optionHolder.DisplayOptions();
+                OptionLogic.OnPlayerChooseClose += OnPlayerChooseClose;
+            }
+        }
         _canvasGroup.interactable = false;
         UnSubscribeEvents();
+    }
+
+    private void OnPlayerChooseClose()
+    {
+
+        _canvasGroup.interactable = true;
+        SubscribeEvents();
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(OptionLogic), this);
     }
 }

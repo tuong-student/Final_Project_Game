@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/ToolAction/Place Object")]
 public class PlaceObject : ToolAction
 {
-    public override bool OnApplyTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, Item item)
+    public override bool OnApplyTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, ItemSO item)
     {
         if (tileMapReadController.objectsManager.CheckPosition(gridPosition))
             return false;
@@ -13,7 +13,7 @@ public class PlaceObject : ToolAction
         return true;
     }
 
-    public override void OnItemUsed(Item usedItem, ItemContainer inventory)
+    public override void OnItemUsed(ItemSO usedItem, ItemContainer inventory)
     {
         inventory.Remove(usedItem);
     }

@@ -6,11 +6,13 @@ using Game.Interface;
 
 [CreateAssetMenu(menuName = "Data/Item")]
 [System.Serializable]
-public class Item : Storable
+public class ItemSO : Storable
 {
     public string Name;
     public int id;
+    public int price;
     public bool stackable;
+    public bool tradeable;
     public Sprite icon;
     public ToolAction onAction;
     public ToolAction onTileMapAction;
@@ -23,5 +25,7 @@ public class Item : Storable
     public override Sprite Icon => icon;
     public override int Id => id;
     public override StorageType StorageType => StorageType.FarmItem;
+    public override int Price => price;
+    public override bool Tradable => tradeable;
 }
    

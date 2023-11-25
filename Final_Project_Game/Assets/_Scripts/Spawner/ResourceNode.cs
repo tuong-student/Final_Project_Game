@@ -7,7 +7,7 @@ public class ResourceNode : ToolHit
 {
     [SerializeField] GameObject pickUpDrop;
     [SerializeField] float spread = 0.7f;
-    [SerializeField] Item item;
+    [SerializeField] ItemSO item;
     [SerializeField] int itemCountInOneDrop = 1;
     [SerializeField] int dropCount = 5;
     [SerializeField] ResourceNodeType nodeType;

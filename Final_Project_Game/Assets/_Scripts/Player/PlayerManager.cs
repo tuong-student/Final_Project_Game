@@ -13,24 +13,23 @@ namespace Game
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerAnimation _playerAnimation;
         [SerializeField] private PlayerOnCollision _playerOnCollision;
-        [SerializeField] private Inventory _inventory;
         [SerializeField] private PlayerGun _playerGun;
 
         private ModifiableStats<float> _health = new ModifiableStats<float>();
         private ModifiableStats<float> _strength = new ModifiableStats<float>();
         private ModifiableStats<float> _speed = new ModifiableStats<float>();
 
-        private List<Item> _items = new List<Item>();
+        private List<ItemSO> _items = new List<ItemSO>();
 
         private PreviewHandler previewHandler;
         public ItemContainer inventoryContainer;
+        public ItemContainer InventoryContainer => inventoryContainer;
 
 
         void Awake()
         {
             GameInput.Init();
             GameInput.onPlayerPressInteract += Pickup;
-            GameInput.onPlayerRequestItem += EquipItem;
             // previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
         }
         void Start()
@@ -76,25 +75,17 @@ namespace Game
 
         public void Pickup()
         {
-            Item tempItem = _playerOnCollision.GetPickupableObject() as Item;
+            ItemSO tempItem = _playerOnCollision.GetPickupableObject() as ItemSO;
             if(tempItem == null) return;
             //tempItem.Pickup(_inventory);
         }
-        public void AddToInventory(Item item)
+        public void AddToInventory(Storable item, int count = 1)
         {
-            _inventory.AddToInventory(item);
+            inventoryContainer.Add(item, count);
         }
-        public void RemoveInventoryStack(InventoryStack stack)
+        public void RemoveFromInventory(Storable item, int count)
         {
-            _inventory.RemoveFromInventory(stack);
-        }
-
-        private void EquipItem(int inventoryIndex)
-        {
-            // Item item = _inventory.GetItemBaseOnIndex(inventoryIndex);
-            // Item cloneItem = Instantiate(item, _itemHolderTransform); // Create Item GameObject
-            // cloneItem.transform.position = _itemHolderTransform.position;
-            // _playerAnimation.SetHold(true);
+            inventoryContainer.Remove(item, count);
         }
     }
 }

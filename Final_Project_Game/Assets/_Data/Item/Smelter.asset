@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Smelter
   id: 7
+  price: 20
   stackable: 0
+  tradeable: 1
   icon: {fileID: -132274522, guid: 662a3bc4e41da8f49ae2d29c05a76a13, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 11400000, guid: 0dbc42cdc5da07446b89e7414c45932c, type: 2}

@@ -22,7 +22,7 @@ public class ItemSpawnManager : MonoBehaviour
         o.GetComponent<PickUpItem>().Set(item, count);
     }
 
-    public void SpawnManyItem(Vector3 position, Transform parent, Item item, int count)
+    public void SpawnManyItem(Vector3 position, Transform parent, ItemSO item, int count)
     {
         for(int i = 0; i < count; i++)
         {

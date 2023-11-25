@@ -10,7 +10,7 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] protected bool _isTest;
     [SerializeField] protected float _moveSpeed = 4;
     [SerializeField] protected float _hp = 30;
-    [SerializeField] protected Item _reward; 
+    [SerializeField] protected ItemSO _reward; 
     [SerializeField] protected EnemyAnimation _enemyAnimation;
     [SerializeField] protected float _attackRate;
     [SerializeField] protected float _damage = 1;

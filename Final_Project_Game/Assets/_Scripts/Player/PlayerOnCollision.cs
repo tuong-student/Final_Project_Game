@@ -35,9 +35,9 @@ namespace Game
             }
         }
 
-        public Item GetGroundItem()
+        public ItemSO GetGroundItem()
         {
-            return _interactableObject as Item;
+            return _interactableObject as ItemSO;
         }
         public IPickupable GetPickupableObject()
         {

@@ -12,7 +12,7 @@ namespace Game
         [SerializeField] private Image _itemIcon;
         [SerializeField] private TMPro.TextMeshProUGUI _quantityText;
         [SerializeField] private ItemStack _itemStackPref;
-        private Item _item;
+        private ItemSO _item;
         private int _quantity;
         private Image _tempImage;
         private InventoryStack _inventoryStack;

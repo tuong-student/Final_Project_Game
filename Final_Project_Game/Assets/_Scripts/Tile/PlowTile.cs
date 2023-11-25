@@ -10,7 +10,7 @@ public class PlowTile : ToolAction
 
     //TODO: Audio here;
 
-    public override bool OnApplyTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, Item item)
+    public override bool OnApplyTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, ItemSO item)
     {
         TileBase tileToPlow = tileMapReadController.GetTileBase(gridPosition);
         if (!canPlow.Contains(tileToPlow))

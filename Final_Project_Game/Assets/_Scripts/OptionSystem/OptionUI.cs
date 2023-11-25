@@ -9,87 +9,113 @@ using Game;
 using UnityEngine.PlayerLoop;
 using System.Security.Cryptography;
 using ImpossibleOdds;
+using System;
+using Unity.VisualScripting;
 
 public class OptionUI : MonoBehaviorInstance<OptionUI>
 {
     [SerializeField] private GameObject _optionPointer;
     [SerializeField] private GameObject _optionPref;
     private List<GameObject> _optionObjects = new List<GameObject>();
+    private int _maxIndex;
     private int _currentIndex;
-    private OptionLogic _currentOptionLogic;
+    private OptionHolder _currentOptionHolder;
+    public bool IsOpen {get; set;}
 
     void Awake()
+    {
+        _optionPref.gameObject.SetActive(false);
+    }
+
+    void Start()
     {
         Close();
     }
 
     void OnDisable()
-    {
+    {  
         foreach(var obj in _optionObjects)
         {
             obj.SetActive(false);
         }
-        _optionObjects.Clear();
         UnSubscribeEvents();
     }
 
     public void MoveToPosition(Vector3 position)
     {
-        this.transform.DOMove(position, 0);
+        this.transform.position = position;
     }
 
     #region Open Close
     public void Open()
     {
-        this.transform.DOScaleY(1, 0.5f).SetEase(Ease.OutCirc);
+        this.transform.DOKill();
+        this.transform.DOScaleY(1, 0.5f).SetEase(Ease.OutCirc).OnComplete(UpdateUI);
+        if(IsOpen == false)
+        {
+            IsOpen = true;
+            SubscribeEvents();
+        }
+
     }
     public void Close()
     {
+        Debug.Log("close");
+        foreach(var obj in _optionObjects)
+        {
+            obj.SetActive(false);
+        }
         this.transform.DOScaleY(0, 0.5f).SetEase(Ease.InCirc);
+        UnSubscribeEvents();
+        IsOpen = false;
     }
     #endregion
 
     #region Events Function
     private void SubscribeEvents()
     {
+        Debug.Log("Subscribe");
         GameInput.onPlayerPressMoveVector2 += PlayerInputHandler;
         GameInput.onPlayerAccept += PlayerAcceptHandler;
     }
     private void UnSubscribeEvents()
     {
-        GameInput.onPlayerPressMoveVector2 -= PlayerInputHandler;
-        GameInput.onPlayerAccept -= PlayerAcceptHandler;
+        Debug.Log("UnSubscribe");
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
     }
     #endregion
 
     #region DisplayOption
-    public void DisplayOptions(List<OptionDataSO> optionDataSOs, OptionLogic sender)
+    public void DisplayOptions(List<OptionDataSO> optionDataSOs, OptionHolder sender)
     {
-        _currentOptionLogic = sender;
-        foreach(OptionDataSO optionDataSO in optionDataSOs)
-        {
-            GameObject optionObject = GetOptionObject();
-            optionObject.GetComponentInChildren<TextMeshProUGUI>().text = optionDataSO._displayText;
-            _optionObjects.Add(optionObject);
-        }
         _currentIndex = 0;
-        UpdateUI();
-        SubscribeEvents();
+        _currentOptionHolder = sender;
+        _maxIndex = optionDataSOs.Count - 1;
+        foreach(GameObject go in _optionObjects)
+        {
+            go.SetActive(false);
+        }
+
+        for(int i = 0; i < optionDataSOs.Count; i++)
+        {
+            GameObject optionObject = GetOptionObject(i);
+            optionObject.GetComponentInChildren<TextMeshProUGUI>().text = optionDataSOs[i]._displayText;
+        }
     }
 
-    private GameObject GetOptionObject()
+    private GameObject GetOptionObject(int index)
     {
-        foreach(Transform transform in this.transform)
+        GameObject child;
+        if(_optionObjects.Count > index)
         {
-            if(transform.gameObject.activeInHierarchy == false)
-            {
-                transform.gameObject.SetActive(true);
-                return transform.gameObject;
-            }
+            child = _optionObjects[index];
+            child.SetActive(true);
+            return child;
         }
-        GameObject newObject = Instantiate(_optionPref, this.transform);
-        newObject.SetActive(true);
-        return newObject;
+        child = Instantiate(_optionPref, this.transform);
+        child.SetActive(true);
+        _optionObjects.Add(child);
+        return child;
     }
     #endregion
 
@@ -98,23 +124,22 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>
     private void UpdateUI()
     {
         // Update base on index
-        Debug.Log("Player choose index: " + _currentIndex);
         GameObject optionObject = _optionObjects[_currentIndex];
         _optionPointer.transform.DOMoveY(optionObject.transform.position.y, 0.3f);
     }
     private void PlayerInputHandler(Vector2 playerInput)
     {
-        if(playerInput.y > 1) // Move up
+        if(playerInput.y > 0) // Move up
         {
-            _currentIndex += 1;
+            _currentIndex--;
         }
-        else if(playerInput.y < 1) // Move down
+        else if(playerInput.y < 0) // Move down
         {
-            _currentIndex -= 1;
+            _currentIndex++;
         }
         
-        _currentIndex = _currentIndex < 0 ? _optionObjects.Count-1 : _currentIndex;
-        _currentIndex = _currentIndex > _optionObjects.Count-1 ? 0 : _currentIndex;
+        if(playerInput.y == 0) return;
+        _currentIndex = Mathf.Clamp(_currentIndex, 0, _maxIndex);
         UpdateUI();
     }
     #endregion
@@ -122,9 +147,7 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>
     #region PlayerAccept
     private void PlayerAcceptHandler()
     {
-        if(_currentOptionLogic == null) return;
-        _currentOptionLogic.PlayerAccept(_currentIndex);
-        _currentOptionLogic = null;
+        _currentOptionHolder.PlayerChooseOption(_currentIndex);
     }
     #endregion
 }

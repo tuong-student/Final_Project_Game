@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(TimeAgent))]
 public class ItemSpawner : MonoBehaviour
 {
-    [SerializeField] Item toSpawn;
+    [SerializeField] ItemSO toSpawn;
     [SerializeField] int count;
     [SerializeField] private float spread = 2f;
     [SerializeField] private float probability = 0.5f;

@@ -7,7 +7,7 @@ public class PlaceableObjectReferenceManager : MonoBehaviour
 {
     public PlaceableObjectsManager placeableObjectsManager;
 
-    public void PlaceObject(Item item,Vector3Int pos)
+    public void PlaceObject(ItemSO item,Vector3Int pos)
     {
         if(placeableObjectsManager == null)
         {

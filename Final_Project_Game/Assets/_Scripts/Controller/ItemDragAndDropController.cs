@@ -83,7 +83,7 @@ public class ItemDragAndDropController : MonoBehaviour
         }
     }
 
-    public bool CheckItem(Item item, int count = 1)
+    public bool CheckItem(ItemSO item, int count = 1)
     {
         if (itemSlot == null)
             return false;

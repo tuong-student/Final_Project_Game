@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Coin
   id: 12
+  price: 0
   stackable: 1
+  tradeable: 1
   icon: {fileID: 21300000, guid: d2c0dc76eca05bb4eb4f3fc4a37f258d, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

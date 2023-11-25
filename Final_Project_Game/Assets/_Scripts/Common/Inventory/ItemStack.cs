@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Game
 {
-    public class ItemStack : Item
+    public class ItemStack : ItemSO
     {
         [SerializeField] private SpriteRenderer _sr;
         [SerializeField] private TMPro.TextMeshPro _itemNumber;
-        private Item _item;
+        private ItemSO _item;
         private int _quantity;
 
         public static ItemStack Create(Transform parent = null)
@@ -30,7 +30,7 @@ namespace Game
         //    inventory.AddToInventory(this);
         //}
 
-        public Item GetItem()
+        public ItemSO GetItem()
         {
             return _item;
         }

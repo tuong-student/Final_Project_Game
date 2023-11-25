@@ -11,10 +11,10 @@ namespace Game
     [Serializable]
     public class InventoryStack 
     {
-        public Item _item;
+        public ItemSO _item;
         public int _quantity;
         public int _maxQuantity = 20;
-        public InventoryStack(Item item, int quantity = 1)
+        public InventoryStack(ItemSO item, int quantity = 1)
         {
             this._item = item;
             this._quantity = quantity;
@@ -40,7 +40,7 @@ namespace Game
             return _inventory;
         }
 
-        public void AddToInventory(Item item)
+        public void AddToInventory(ItemSO item)
         {
             if(TryToGetInventoryStackables(item, out List<InventoryStack> stackableList))
             {
@@ -60,7 +60,7 @@ namespace Game
         {
             AddToInventory(itemStack.GetItem(), itemStack.GetQuantity());
         }
-        public void AddToInventory(Item item, int quantity)
+        public void AddToInventory(ItemSO item, int quantity)
         {
             if(TryToGetInventoryStackables(item, out List<InventoryStack> stackableList))
             {
@@ -85,7 +85,7 @@ namespace Game
             _inventory.Remove(stack);
         }
 
-        public bool TryToGetInventoryStackables(Item item, out List<InventoryStack> stacks)
+        public bool TryToGetInventoryStackables(ItemSO item, out List<InventoryStack> stacks)
         {
             stacks = null;
             List<InventoryStack> tempItemStack = new List<InventoryStack>();
@@ -101,7 +101,7 @@ namespace Game
             }
         }
 
-        public Item GetItemBaseOnIndex(int index)
+        public ItemSO GetItemBaseOnIndex(int index)
         {
             return _inventory[index]._item;
         }

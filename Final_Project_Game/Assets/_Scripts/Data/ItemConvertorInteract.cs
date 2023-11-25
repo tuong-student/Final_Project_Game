@@ -18,8 +18,8 @@ public class ItemConvertorData
 [RequireComponent(typeof(TimeAgent))]
 public class ItemConvertorInteract : Interactable, IPersistant
 {
-    [SerializeField] private Item convertableItem;
-    [SerializeField] private Item producedItem;
+    [SerializeField] private ItemSO convertableItem;
+    [SerializeField] private ItemSO producedItem;
     [SerializeField] private int producedItemCount = 1;
     [SerializeField] private int timetoProcess = 5;
     private ItemConvertorData data;
