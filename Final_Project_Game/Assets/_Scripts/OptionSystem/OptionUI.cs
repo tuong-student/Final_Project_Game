@@ -99,7 +99,8 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>
     {
         // Update base on index
         Debug.Log("Player choose index: " + _currentIndex);
-        _optionPointer.transform.DOMoveY(_optionObjects[_currentIndex].transform.position.y, 0.3f);
+        GameObject optionObject = _optionObjects[_currentIndex];
+        _optionPointer.transform.DOMoveY(optionObject.transform.position.y, 0.3f);
     }
     private void PlayerInputHandler(Vector2 playerInput)
     {

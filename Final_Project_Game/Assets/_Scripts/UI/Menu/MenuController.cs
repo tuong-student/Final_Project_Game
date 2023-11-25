@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game;
+using ImpossibleOdds;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -27,6 +29,11 @@ public class MenuController : MonoBehaviour
         SelectElement(_menuElements[0]);
     }
 
+    void OnDisable()
+    {
+        
+    }
+
     private void SubscribeEvents()
     {
         GameInput.onPlayerPressMoveVector2 += PlayerInputHandler;
@@ -34,8 +41,8 @@ public class MenuController : MonoBehaviour
     }
     private void UnSubscribeEvents()
     {
-        GameInput.onPlayerPressMoveVector2 -= PlayerInputHandler;
-        GameInput.onPlayerAccept -= PlayerAccept;
+        Type gameInput = typeof(GameInput);
+        gameInput.PurgeDelegatesOf(this);
     }
 
     private void PlayerInputHandler(Vector2 playerInput)
