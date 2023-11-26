@@ -13,6 +13,6 @@ namespace Game
 
     public static class GlobalConfig
     {
-        public static bool _isBlockInput;
+        public static bool _isBlockInput = false;
     }
 }

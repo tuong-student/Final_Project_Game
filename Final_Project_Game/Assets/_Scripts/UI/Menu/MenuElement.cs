@@ -72,27 +72,25 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         this.transform.DOScale(1, 0.3f).SetEase(Ease.InCubic);
     }
-
+    #region Events Functions
     public void OnPointerEnter(PointerEventData eventData)
     {
         eventData.selectedObject = this.gameObject;
         Select();
     }
-
     public void OnPointerExit(PointerEventData eventData)
     {
         _parentMenuController.SetLastSelectedObject(this);
         eventData.selectedObject = null;
         Deselect();
     }
-
     public void OnSelect(BaseEventData eventData)
     {
         Select();
     }
-
     public void OnDeselect(BaseEventData eventData)
     {
         Deselect();
     }
+    #endregion
 }

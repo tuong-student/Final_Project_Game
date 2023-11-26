@@ -74,12 +74,10 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>, IOptionUIBase
         Debug.Log("Subscribe");
         GameInput.onPlayerPressMoveVector2 += PlayerInputHandler;
         GameInput.onPlayerAccept += PlayerAcceptHandler;
-        GlobalConfig._isBlockInput = true;
     }
     private void UnSubscribeEvents()
     {
         NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
-        GlobalConfig._isBlockInput = false;
     }
     #endregion
 

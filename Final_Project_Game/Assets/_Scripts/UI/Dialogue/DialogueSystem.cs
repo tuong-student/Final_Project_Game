@@ -39,10 +39,6 @@ public class DialogueSystem : MonoBehaviour
     {
         dialogueOptionUI.OnPlayerChoose += () => Show(false);
     }
-    void Start()
-    {
-        Show(false);
-    }
     private void Update()
     {
         if(targetText.gameObject.activeInHierarchy == false) return;
@@ -119,10 +115,10 @@ public class DialogueSystem : MonoBehaviour
     private void Conclude()
     {
         Debug.Log("End conversation");
+        OnFinishDialogue?.Invoke();
         dialogueOptionUI.gameObject.SetActive(true);
         dialogueOptionUI.Open();
         dialogueOptionUI.DisplayOptions(optionHolder._optionDataSOs, optionHolder);
-        OnFinishDialogue?.Invoke();
     }
     #endregion
 
@@ -132,11 +128,12 @@ public class DialogueSystem : MonoBehaviour
         if(v)
         {
             _showFeedback.PlayFeedbacks();
-            GlobalConfig._isBlockInput = true;
+            UIManager.Instance.AddToUIList(this);
         }
         else
         {
             _hideFeedback.PlayFeedbacks();
+            UIManager.Instance.RemoveToUIList(this);
         }
     }
     #endregion

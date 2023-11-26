@@ -1,34 +1,26 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NOOD;
 using NOOD.SerializableDictionary;
-using UnityEngine.EventSystems;
-using DG.Tweening;
 
 namespace Game
 {
-    public enum UI
-    {
-        Shop,
-    }
 
     public class UIManager : MonoBehaviorInstance<UIManager>
     {
-        [SerializeField] private SerializableDictionary<UI, GameObject> _uiDic = new SerializableDictionary<UI, GameObject>();
+        private static List<object> _uiList = new List<object>();
 
-        public void LoadUI(UI ui)
+        #region UIList
+        public void AddToUIList(object obj)
         {
-            switch (ui)
-            {
-                case UI.Shop:
-                    if(_uiDic.ContainsKey(ui))
-                    {
-                        _uiDic.Dictionary[ui].SetActive(true);
-                    }
-                    break;
-            }
+            _uiList.Add(obj);
+            GlobalConfig._isBlockInput = _uiList.Count > 0;
         }
+        public void RemoveToUIList(object obj)
+        {
+            _uiList.Remove(obj);
+            GlobalConfig._isBlockInput = _uiList.Count > 0;
+        }
+        #endregion
     }
 }

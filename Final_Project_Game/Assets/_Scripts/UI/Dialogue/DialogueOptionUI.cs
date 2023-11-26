@@ -44,13 +44,11 @@ public class DialogueOptionUI : MonoBehaviour, IOptionUIBase
     {
         SubscribeEvents();
         _optionPointer.gameObject.SetActive(true);
-        GlobalConfig._isBlockInput = true;
     }
     public void Close()
     {
         UnSubscribeEvents();
         this.gameObject.SetActive(false);
-        GlobalConfig._isBlockInput = false;
     }
     #endregion
 
@@ -84,7 +82,6 @@ public class DialogueOptionUI : MonoBehaviour, IOptionUIBase
             optionObject.GetComponentInChildren<TextMeshProUGUI>().text = optionDataSOs[i]._displayText;
         }
     }
-
     private GameObject GetOptionObject(int index)
     {
         GameObject child;

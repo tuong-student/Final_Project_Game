@@ -17,7 +17,8 @@ public class OptionLogic
         {
             case ActionType.Shop:
                 Debug.Log("Shop");
-                UIManager.Instance.LoadUI(UI.Shop);
+                ShopController.Instance.gameObject.SetActive(true);
+                ShopController.Instance.Open();
                 break;
             case ActionType.Close:
                 Debug.Log("Close");

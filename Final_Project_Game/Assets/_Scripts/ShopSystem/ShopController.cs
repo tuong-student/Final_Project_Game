@@ -1,5 +1,6 @@
 using System.Linq;
 using DG.Tweening;
+using Game;
 using NOOD;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -38,10 +39,7 @@ public class ShopController : MonoBehaviorInstance<ShopController>
             _canvasGroup = this.gameObject.AddComponent<CanvasGroup>();
         }
         _doneBtn.onClick.AddListener(Close);
-    }
-    void OnEnable()
-    {
-        Open();
+        _canvasGroup.alpha = 0;
     }
     #endregion
 
@@ -50,11 +48,13 @@ public class ShopController : MonoBehaviorInstance<ShopController>
     {
         this.gameObject.transform.DOScale(1, 1f);
         _canvasGroup.DOFade(1, 0.7f);
+        UIManager.Instance.AddToUIList(this);
     }
     public void Close()
     {
         this.gameObject.transform.DOScale(0.3f, 1f);
         _canvasGroup.DOFade(0, 0.7f).OnComplete(() => this.gameObject.SetActive(false));
+        UIManager.Instance.RemoveToUIList(this);
     }
     #endregion
 
@@ -150,6 +150,10 @@ public class ShopController : MonoBehaviorInstance<ShopController>
             _playerInventoryMenu.ItemContainer.Add(item, 1);
             _playerInventoryMenu.ItemContainer.Remove(_money, cost);
         }
+        else
+        {
+            WarningUI.Instance.ShowWarning(WarningType.NotEnoughMoney);
+        }
     }
     private void Buy10(ItemSO item)
     {
@@ -161,7 +165,7 @@ public class ShopController : MonoBehaviorInstance<ShopController>
         }
         else
         {
-
+            WarningUI.Instance.ShowWarning(WarningType.NotEnoughMoney);
         }
     }
     private void Buy100(ItemSO item)
@@ -174,7 +178,7 @@ public class ShopController : MonoBehaviorInstance<ShopController>
         }
         else
         {
-
+            WarningUI.Instance.ShowWarning(WarningType.NotEnoughMoney);
         }
     }
     private int GetMoney()
