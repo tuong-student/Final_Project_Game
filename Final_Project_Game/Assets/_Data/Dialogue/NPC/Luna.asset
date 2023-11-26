@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d511711ab425e254eae4493262c59f7a, type: 3}
-  m_Name: New Actor
+  m_Name: Luna
   m_EditorClassIdentifier: 
-  Name: Kevin
+  Name: Luna
   portrait: {fileID: -6131185593638097393, guid: 2f90eb840bd0cf4438d49759bc08d718, type: 3}

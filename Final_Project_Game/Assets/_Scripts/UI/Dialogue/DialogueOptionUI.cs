@@ -1,42 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using DG.Tweening;
 using UnityEngine;
-using NOOD;
 using TMPro;
+using DG.Tweening;
 using Game;
+using NOOD;
+using System;
 
-public class OptionUI : MonoBehaviorInstance<OptionUI>, IOptionUIBase
+public class DialogueOptionUI : MonoBehaviour, IOptionUIBase
 {
-    [SerializeField] private CanvasGroup _canvasGroup;
+    #region Events
+    public Action OnPlayerChoose;
+    #endregion
+
     [SerializeField] private GameObject _optionPointer;
     [SerializeField] private GameObject _optionPref;
     private List<GameObject> _optionObjects = new List<GameObject>();
     private int _maxIndex;
     private int _currentIndex;
     private OptionHolder _currentOptionHolder;
-    public bool IsOpen {get; set;}
+    private DialogueSystem _parentDialogueSystem;
 
+    #region Unity Events
     void Awake()
     {
         _optionPref.gameObject.SetActive(false);
-        _canvasGroup.alpha = 0;
+        _optionPointer.gameObject.SetActive(false);
+        OnPlayerChoose += Close;
     }
-
-    void Start()
+    void OnDisable()
     {
         Close();
     }
-
-    void OnDisable()
-    {  
-        foreach(var obj in _optionObjects)
-        {
-            obj.SetActive(false);
-        }
-        UnSubscribeEvents();
-    }
+    #endregion
 
     public void MoveToPosition(Vector3 position)
     {
@@ -46,25 +42,15 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>, IOptionUIBase
     #region Open Close
     public void Open()
     {
-        _canvasGroup.alpha = 1;
-        this.transform.DOKill();
-        this.transform.DOScaleY(1, 0.5f).SetEase(Ease.OutCirc).OnComplete(UpdateUI);
-        if(IsOpen == false)
-        {
-            IsOpen = true;
-            SubscribeEvents();
-        }
-
+        SubscribeEvents();
+        _optionPointer.gameObject.SetActive(true);
+        GlobalConfig._isBlockInput = true;
     }
     public void Close()
     {
-        foreach(var obj in _optionObjects)
-        {
-            obj.SetActive(false);
-        }
-        this.transform.DOScaleY(0, 0.5f).SetEase(Ease.InCirc);
         UnSubscribeEvents();
-        IsOpen = false;
+        this.gameObject.SetActive(false);
+        GlobalConfig._isBlockInput = false;
     }
     #endregion
 
@@ -74,12 +60,10 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>, IOptionUIBase
         Debug.Log("Subscribe");
         GameInput.onPlayerPressMoveVector2 += PlayerInputHandler;
         GameInput.onPlayerAccept += PlayerAcceptHandler;
-        GlobalConfig._isBlockInput = true;
     }
     private void UnSubscribeEvents()
     {
         NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
-        GlobalConfig._isBlockInput = false;
     }
     #endregion
 
@@ -117,7 +101,6 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>, IOptionUIBase
     }
     #endregion
 
-
     #region MovePointer
     public void SelectOptionObject(GameObject selectObject)
     {
@@ -151,6 +134,7 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>, IOptionUIBase
     private void PlayerAcceptHandler()
     {
         _currentOptionHolder.PlayerChooseOption(_currentIndex);
+        OnPlayerChoose?.Invoke();
     }
     #endregion
 }

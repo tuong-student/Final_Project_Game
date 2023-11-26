@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 928891393}
   - component: {fileID: 928891392}
   m_Layer: 0
-  m_Name: Luna 0
+  m_Name: NPCShoper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

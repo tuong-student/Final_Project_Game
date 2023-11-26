@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Game;
+using MoreMountains.Feedbacks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -13,18 +16,33 @@ public class DialogueSystem : MonoBehaviour
     public UnityEvent OnInit;
     #endregion
     
-    [SerializeField] Text targetText;
-    [SerializeField] Text nameText;
+    #region Editor parameters Zone
+    [SerializeField] MMF_Player _showFeedback, _hideFeedback;
+    [SerializeField] TextMeshProUGUI targetText;
+    [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] Image portrait;
+    [SerializeField] private DialogueOptionUI dialogueOptionUI;
+    [SerializeField] private OptionHolder optionHolder;
+    [SerializeField] float visibleTextPercent;
+    [SerializeField] float timePereLetter = 0.05f;
+    #endregion
+
     int currentTextLine;
     DialogueContainer currentDialogue;
 
     [Range(0f,1f)]
-    [SerializeField] float visibleTextPercent;
-    [SerializeField] float timePereLetter = 0.05f;
     float totalTimeToType, currentTime;
     string lineToShow;
 
+    #region Unity functions
+    void Awake()
+    {
+        dialogueOptionUI.OnPlayerChoose += () => Show(false);
+    }
+    void Start()
+    {
+        Show(false);
+    }
     private void Update()
     {
         if(targetText.gameObject.activeInHierarchy == false) return;
@@ -34,7 +52,21 @@ public class DialogueSystem : MonoBehaviour
         }
         TypeOutText();
     }
+    #endregion
 
+    #region Init
+    public void Initialize(DialogueContainer dialogueContainer)
+    {
+        Show(true);
+        currentDialogue = dialogueContainer;
+        currentTextLine = 0;
+        CycleLine();
+        UpdatePortrait();
+        OnInit?.Invoke();
+    }
+    #endregion
+
+    #region Update Text
     private void TypeOutText()
     {
         if (visibleTextPercent >= 1f) return;
@@ -76,31 +108,48 @@ public class DialogueSystem : MonoBehaviour
         targetText.text = "";
         currentTextLine += 1;
     }
-    public void Initialize(DialogueContainer dialogueContainer)
-    {
-        Show(true);
-        currentDialogue = dialogueContainer;
-        currentTextLine = 0;
-        CycleLine();
-        UpdatePortrait();
-        OnInit?.Invoke();
-    }
+    #endregion
 
+    #region Active Functions
     private void UpdatePortrait()
     {
         portrait.sprite = currentDialogue.actor.portrait;
         nameText.text = currentDialogue.actor.Name;
     }
-
-    private void Show(bool v)
-    {
-        gameObject.SetActive(v);
-        this.gameObject.transform.DOScale(Vector3.one, 1f).SetEase(Ease.OutBounce);
-    }
-
     private void Conclude()
     {
-        Debug.Log("ending");
+        Debug.Log("End conversation");
+        dialogueOptionUI.gameObject.SetActive(true);
+        dialogueOptionUI.Open();
+        dialogueOptionUI.DisplayOptions(optionHolder._optionDataSOs, optionHolder);
         OnFinishDialogue?.Invoke();
     }
+    #endregion
+
+    #region Open Close
+    private void Show(bool v)
+    {
+        if(v)
+        {
+            _showFeedback.PlayFeedbacks();
+            GlobalConfig._isBlockInput = true;
+        }
+        else
+        {
+            _hideFeedback.PlayFeedbacks();
+        }
+    }
+    #endregion
 }
+
+
+
+
+
+
+
+
+
+
+
+

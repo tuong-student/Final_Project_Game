@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94a73314e232d3449ae0849916df7bf7, type: 3}
-  m_Name: New Dialogue Container
+  m_Name: ShoperDialogue
   m_EditorClassIdentifier: 
   line:
-  - 'First line First line First line First line First line First line '
-  - 'Second line Second line Second line Second line Second line '
-  - 'Third line Third line Third line Third line Third line '
+  - My name is Luna
+  - I'm a shopper, if you have anything value, you can sell me
+  - For exchange, I will sell you something too
   actor: {fileID: 11400000, guid: 52089cb8e3e79aa418364dc55da97dee, type: 2}

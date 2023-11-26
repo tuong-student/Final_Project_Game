@@ -25,7 +25,7 @@ namespace Game
         public ItemContainer inventoryContainer;
         public ItemContainer InventoryContainer => inventoryContainer;
 
-
+        #region Unity Events
         void Awake()
         {
             // previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
@@ -46,20 +46,13 @@ namespace Game
             NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
             GameInput.Dispose();
         }
-
+        void Update()
+        {
+        }
+        #endregion
 
         private void SelectObj()
         {
-//            previewHandler.UpdateTile(tilemap, tileBase);
-        }
-        void Update()
-        {
-            // if(Input.GetKeyDown(KeyCode.Space))
-            // {
-            //     Debug.Log(TileManager.Instance.IsInteractable(this.transform.position.ToVector3Int()));
-            //     TileManager.Instance.InteractableHere(this.transform.position.ToVector3Int());
-            //     TileManager.Instance.AllPos();
-            // }
         }
 
         public void ChangeGun(GunSO data)

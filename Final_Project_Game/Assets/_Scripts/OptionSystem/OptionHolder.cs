@@ -7,12 +7,12 @@ public class OptionHolder : MonoBehaviour
 {
     public List<OptionDataSO> _optionDataSOs = new List<OptionDataSO>();
 
-    public void DisplayOptions()
+    public void DisplayOptions(Vector2 positionOnScreen)
     {
         GameObject currentSelectedObj = CustomEventSystem.Instance.LastSelectedObject;
         if (currentSelectedObj == null)
             return;
-        OptionUI.Instance.MoveToPosition(currentSelectedObj.transform.position);
+        OptionUI.Instance.MoveToPosition(positionOnScreen);
         OptionUI.Instance.Open();
         OptionUI.Instance.DisplayOptions(_optionDataSOs, this);
     }

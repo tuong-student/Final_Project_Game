@@ -65,7 +65,7 @@ public class ShopController : MonoBehaviorInstance<ShopController>
         switch (sellOption)
         {
             case SellOption.Prepare:
-                _sellOption.DisplayOptions();
+                _sellOption.DisplayOptions(CustomEventSystem.Instance.LastSelectedObject.transform.position);
                 _playerItem = CustomEventSystem.Instance.LastSelectedObject.GetComponent<MenuElement>();
                 _currentItemSlot = _playerItem.GetItemSlot();
                 break;
@@ -123,7 +123,7 @@ public class ShopController : MonoBehaviorInstance<ShopController>
         switch (buyOption)
         {
             case BuyOption.Prepare:
-                _buyOption.DisplayOptions();
+                _buyOption.DisplayOptions(CustomEventSystem.Instance.LastSelectedObject.transform.position);
                 _shopItem = CustomEventSystem.Instance.LastSelectedObject.GetComponent<MenuElement>();
                 _currentItemSlot = _shopItem.GetItemSlot();
                 break;

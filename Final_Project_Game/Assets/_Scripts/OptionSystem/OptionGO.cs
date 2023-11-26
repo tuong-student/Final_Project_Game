@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 
 public class OptionGO : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField] private OptionUI _parentOptionUI;
+    [SerializeField] private IOptionUIBase _parentOptionUI;
 
     void Awake()
     {
-        _parentOptionUI = GetComponentInParent<OptionUI>();
+        _parentOptionUI = GetComponentInParent<IOptionUIBase>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

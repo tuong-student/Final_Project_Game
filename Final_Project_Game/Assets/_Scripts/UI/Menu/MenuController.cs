@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
     private int _lastIndex;
     private MenuElement _lastMenuElementSelected;
 
+    #region Unity Functions
     void Awake()
     {
         _menuElements = GetComponentsInChildren<MenuElement>().ToList();
@@ -36,8 +37,7 @@ public class MenuController : MonoBehaviour
             _nextPage.onClick.AddListener(NextPage);
     }
 
-    void OnEnable()
-    {
+    void OnEnable() {
         SubscribeEvents();
         SelectElement(_menuElements[0]);
     }
@@ -46,12 +46,9 @@ public class MenuController : MonoBehaviour
     {
         UnSubscribeEvents();
     }
+    #endregion
 
-    public void UpdateUI()
-    {
-        DisplayItem();
-    }
-
+    #region DisplayItem
     private void DisplayItem()
     {
         if(_itemContainer.slots.Count <= 24 * (_page + 1) || _page < 0)
@@ -80,7 +77,9 @@ public class MenuController : MonoBehaviour
         _page--;
         DisplayItem();
     }
+    #endregion
 
+    #region Events
     private void SubscribeEvents() 
     {
         GameInput.onPlayerAccept += PlayerAccept;
@@ -92,17 +91,29 @@ public class MenuController : MonoBehaviour
         GameInput.onPlayerAccept -= PlayerAccept;
         GameInput.onPlayerPressMoveVector2 -= PlayerMoveHandler;
     }
+    private void OnOptionMenuClose()
+    {
+        if(_canvasGroup != null)
+            _canvasGroup.interactable = true;
+        if(_lastMenuElementSelected != null)
+            EventSystem.current.SetSelectedGameObject(_lastMenuElementSelected.gameObject);
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(OptionLogic), this);
+        SubscribeEvents();
+    }
+    #endregion
 
+    #region Select 
     public void SetLastSelectedObject(MenuElement element)
     {
         _lastMenuElementSelected = element;
     }
-
     private void SelectElement(MenuElement menuElement)
     {
         EventSystem.current.SetSelectedGameObject(menuElement.gameObject);
     }
+    #endregion
 
+    #region Player Input
     private void PlayerMoveHandler(Vector2 playerInput)
     {
         if(playerInput != Vector2.zero && _lastMenuElementSelected != null && EventSystem.current.currentSelectedGameObject == null)
@@ -110,7 +121,6 @@ public class MenuController : MonoBehaviour
             SelectElement(_lastMenuElementSelected);
         }
     }
-
     private void PlayerAccept()
     {
         if (EventSystem.current.currentSelectedGameObject == null) return;
@@ -120,7 +130,7 @@ public class MenuController : MonoBehaviour
             {
                 // Check if current menu element belong to this menu controller
                 _lastMenuElementSelected = currentMenuElement;
-                currentMenuElement._optionHolder.DisplayOptions();
+                currentMenuElement._optionHolder.DisplayOptions(CustomEventSystem.Instance.LastSelectedObject.transform.position);
             }
             OptionLogic.OnPlayerChooseClose += OnOptionMenuClose;
             if(_canvasGroup != null)
@@ -128,14 +138,10 @@ public class MenuController : MonoBehaviour
         }
         UnSubscribeEvents();
     }
+    #endregion
 
-    private void OnOptionMenuClose()
+    public void UpdateUI()
     {
-        if(_canvasGroup != null)
-            _canvasGroup.interactable = true;
-        if(_lastMenuElementSelected != null)
-            EventSystem.current.SetSelectedGameObject(_lastMenuElementSelected.gameObject);
-        NoodyCustomCode.UnSubscribeFromStatic(typeof(OptionLogic), this);
-        SubscribeEvents();
+        DisplayItem();
     }
 }
