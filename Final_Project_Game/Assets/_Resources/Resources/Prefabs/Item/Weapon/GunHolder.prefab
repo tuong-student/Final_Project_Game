@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8949189229435274485}
   - component: {fileID: 1613521466529851435}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: GunHolder
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b84ba11fd68fb46b516ef0e5640bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentGun: {fileID: 0}
+  _currentGun: {fileID: 4229367242317689273}
 --- !u!1 &2381712575762659699
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,11 +170,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 263197468469104092, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
       propertyPath: m_Size.x
-      value: 0.4375
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 263197468469104092, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
       propertyPath: m_Size.y
-      value: 0.28125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 263197468469104092, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
       propertyPath: m_Sprite
@@ -315,17 +315,31 @@ PrefabInstance:
     - {fileID: 4508322592039704922, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
     - {fileID: 5526050360269067299, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
     - {fileID: 3508250023517070920, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
+    - {fileID: 7696237539680485218, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1761053617300941386, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3587742605464233954, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8555382200823839016}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8540964312449515500, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4229367242317689273}
   m_SourcePrefab: {fileID: 100100000, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
+--- !u!95 &605997403036562783 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1942606484088038637, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
+  m_PrefabInstance: {fileID: 1341343864828301746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1241438309182315630 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 263197468469104092, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
+  m_PrefabInstance: {fileID: 1341343864828301746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1914151247717517082 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 580127934534080168, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
   m_PrefabInstance: {fileID: 1341343864828301746}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2546594031329572432 stripped
@@ -333,3 +347,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3587742605464233954, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
   m_PrefabInstance: {fileID: 1341343864828301746}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &6044425141827028013 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4719620157771077023, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
+  m_PrefabInstance: {fileID: 1341343864828301746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7213342637282750046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8540964312449515500, guid: 7ad6f5b80e15dbf47b3c7018f589cd05, type: 3}
+  m_PrefabInstance: {fileID: 1341343864828301746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4229367242317689273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213342637282750046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b086615c1da7104788f9ccd84d48ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: b3f92460141622942b9baaf12aa0338b, type: 2}
+  _bulletPref: {fileID: 1513319267336815652, guid: 7901e1ea95bc49e4fbbbc724cfc35528, type: 3}
+  _bulletData: {fileID: 11400000, guid: 09304b7452145df4d8746820a493d531, type: 2}
+  _bulletSpawnTrans: {fileID: 8555382200823839016}
+  _flashLight: {fileID: 2886813989973442583}
+  _gunView: {fileID: 6044425141827028013}
+  _casing: {fileID: 1914151247717517082}
+  _flash: {fileID: 605997403036562783}
+  _gunViewIdle: {fileID: 1241438309182315630}

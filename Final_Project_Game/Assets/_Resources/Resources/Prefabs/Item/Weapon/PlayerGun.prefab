@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 4508322592039704922}
   - component: {fileID: 5526050360269067299}
   m_Layer: 0
-  m_Name: FullAuto
+  m_Name: PlayerGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
