@@ -14,12 +14,11 @@ public class GunSO : Storable
     public float _bulletForce;
 
     public override bool Stackable => false;
-
     public override Sprite Icon => _icon;
-
     public override StorageType StorageType => StorageType.Weapon;
-
     public override int Id => 0;
+    public override int Price => 9999;
+    public override bool Tradable => false;
 
     public BulletSO GetBulletData()
     {

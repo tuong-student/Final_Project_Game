@@ -67,7 +67,7 @@ public class ToolsCharacterController : MonoBehaviour
         if(storable == null) return false;
         if(storable.StorageType != StorageType.FarmItem) return false;
 
-        Item item = (Item) toolbarController.GetPlayerSelected;
+        ItemSO item = (ItemSO) toolbarController.GetPlayerSelected;
         if (item.onAction == null) return false;
         bool complete = item.onAction.OnApply(position);
         if (complete)
@@ -98,7 +98,7 @@ public class ToolsCharacterController : MonoBehaviour
                 PickUpTile();
                 return;
             }
-            Item item = storable as Item;
+            ItemSO item = storable as ItemSO;
             if (item.onTileMapAction == null) 
                 return;
 

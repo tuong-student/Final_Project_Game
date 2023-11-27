@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Iron Ingot
   id: 2
+  price: 10
   stackable: 1
+  tradeable: 1
   icon: {fileID: 21300000, guid: 39c5835c5bc828148b44cdff45a30dd5, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

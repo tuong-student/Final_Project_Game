@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -431,7 +431,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 928891391}
   - {fileID: 1286473720}
   - {fileID: 1381139019}
   - {fileID: 249893144}
@@ -804,7 +803,7 @@ GameObject:
   - component: {fileID: 928891393}
   - component: {fileID: 928891392}
   m_Layer: 0
-  m_Name: Luna 0
+  m_Name: NPCShoper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -871,11 +870,11 @@ Transform:
   m_GameObject: {fileID: 928891388}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.420485, y: 1.8202155, z: -0.040654123}
+  m_LocalPosition: {x: 3.0699997, y: 2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 567965328}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &928891392
 BoxCollider2D:
@@ -18775,6 +18774,7 @@ SceneRoots:
   - {fileID: 275416470}
   - {fileID: 1565469456}
   - {fileID: 117326084}
+  - {fileID: 928891391}
   - {fileID: 567965328}
   - {fileID: 852191632}
   - {fileID: 1774457354}

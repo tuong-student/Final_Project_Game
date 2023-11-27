@@ -74,7 +74,7 @@ public class PlaceableObjectsManager : MonoBehaviour
         return placeObjects.GetPosition(position) != null;
     }
 
-    public void PlaceObject(Item item, Vector3Int positionOnGrid)
+    public void PlaceObject(ItemSO item, Vector3Int positionOnGrid)
     {
         if (IsThisPositionExist(positionOnGrid))
             return;

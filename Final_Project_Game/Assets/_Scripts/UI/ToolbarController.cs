@@ -61,7 +61,7 @@ public class ToolbarController : MonoBehaviour
         if(storable == null) return;
         if(storable.StorageType == StorageType.FarmItem)
         {
-            Item item = storable as Item;
+            ItemSO item = storable as ItemSO;
             if (item == null)
             {
                 iconHightlight.Show = false;

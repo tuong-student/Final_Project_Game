@@ -12,7 +12,7 @@ namespace Game
         [SerializeField] private Image _itemIcon;
         [SerializeField] private TMPro.TextMeshProUGUI _quantityText;
         [SerializeField] private ItemStack _itemStackPref;
-        private Item _item;
+        private ItemSO _item;
         private int _quantity;
         private Image _tempImage;
         private InventoryStack _inventoryStack;
@@ -52,7 +52,6 @@ namespace Game
             worldPos.z = 0;
             ItemStack itemStack = Instantiate<ItemStack>(_itemStackPref, worldPos, Quaternion.identity);
             //itemStack.SetItemAndQuantity(_item, _quantity);
-            UIManager.Instance.onPlayerDragOutItem?.Invoke(_inventoryStack);
 
             Destroy(_tempImage);
         }

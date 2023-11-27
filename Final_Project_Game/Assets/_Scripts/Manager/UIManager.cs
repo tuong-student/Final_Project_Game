@@ -1,30 +1,26 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NOOD;
+using NOOD.SerializableDictionary;
 
 namespace Game
 {
+
     public class UIManager : MonoBehaviorInstance<UIManager>
     {
-        public Action<InventoryStack> onPlayerDragOutItem;
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-            
-        }
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
+        private static List<object> _uiList = new List<object>();
 
-        public void UpdateInventoryUI(List<InventoryStack> inventoryStacks)
+        #region UIList
+        public void AddToUIList(object obj)
         {
-            // _inventoryUI.SetInventoryStacks(inventoryStacks);
+            _uiList.Add(obj);
+            GlobalConfig._isBlockInput = _uiList.Count > 0;
         }
+        public void RemoveToUIList(object obj)
+        {
+            _uiList.Remove(obj);
+            GlobalConfig._isBlockInput = _uiList.Count > 0;
+        }
+        #endregion
     }
-
 }

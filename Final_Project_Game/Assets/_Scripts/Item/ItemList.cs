@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ItemList : ScriptableObject
 {
-    public List<Item> items;
+    public List<ItemSO> items;
 }

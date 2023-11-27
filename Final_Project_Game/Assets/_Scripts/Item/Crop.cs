@@ -16,7 +16,7 @@ namespace Game
     {
         [SerializeField] private CropState _cropState;
         [SerializeField] private Sprite _seedIcon, _doneIcon, _deadIcon;
-        [SerializeField] private Item _itemData;
+        [SerializeField] private ItemSO _itemData;
 
         public CropState GetCropState()
         {

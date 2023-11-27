@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Iron Ore
   id: 3
+  price: 10
   stackable: 1
+  tradeable: 1
   icon: {fileID: 21300000, guid: 9e3850ff9c22c0949954069e855a2a44, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}

@@ -19,6 +19,7 @@ namespace Game
         }
         void Update()
         {
+            if(GlobalConfig._isBlockInput == true) return;
             Move();
         }
 

@@ -6,52 +6,53 @@ using NOOD;
 
 namespace Game
 {
+    [RequireComponent(typeof(PlayerMovement), typeof(PlayerOnCollision), typeof(PlayerAnimation))]
     public class PlayerManager : MonoBehaviorInstance<PlayerManager>
     {
 
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerAnimation _playerAnimation;
         [SerializeField] private PlayerOnCollision _playerOnCollision;
-        [SerializeField] private Inventory _inventory;
         [SerializeField] private PlayerGun _playerGun;
 
         private ModifiableStats<float> _health = new ModifiableStats<float>();
         private ModifiableStats<float> _strength = new ModifiableStats<float>();
         private ModifiableStats<float> _speed = new ModifiableStats<float>();
 
-        private List<Item> _items = new List<Item>();
+        private List<ItemSO> _items = new List<ItemSO>();
 
         private PreviewHandler previewHandler;
         public ItemContainer inventoryContainer;
+        public ItemContainer InventoryContainer => inventoryContainer;
 
-
+        #region Unity Events
         void Awake()
         {
-            GameInput.Init();
-            GameInput.onPlayerPressInteract += Pickup;
-            GameInput.onPlayerRequestItem += EquipItem;
-            previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
+            // previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
         }
         void Start()
         {
             _health.SetInitValue(PlayerConfig._maxHealth);
             _strength.SetInitValue(PlayerConfig._strength);
             _speed.SetInitValue(PlayerConfig._speed);
-            UIManager.Instance.onPlayerDragOutItem += RemoveInventoryStack;
         }
-
-        private void SelectObj()
+        void OnEnable()
         {
-//            previewHandler.UpdateTile(tilemap, tileBase);
+            GameInput.Init();
+            GameInput.onPlayerPressInteract += Pickup;
+        }
+        void OnDestroy()
+        {
+            NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
+            GameInput.Dispose();
         }
         void Update()
         {
-            // if(Input.GetKeyDown(KeyCode.Space))
-            // {
-            //     Debug.Log(TileManager.Instance.IsInteractable(this.transform.position.ToVector3Int()));
-            //     TileManager.Instance.InteractableHere(this.transform.position.ToVector3Int());
-            //     TileManager.Instance.AllPos();
-            // }
+        }
+        #endregion
+
+        private void SelectObj()
+        {
         }
 
         public void ChangeGun(GunSO data)
@@ -76,28 +77,17 @@ namespace Game
 
         public void Pickup()
         {
-            Item tempItem = _playerOnCollision.GetPickupableObject() as Item;
+            ItemSO tempItem = _playerOnCollision.GetPickupableObject() as ItemSO;
             if(tempItem == null) return;
             //tempItem.Pickup(_inventory);
-            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
         }
-        public void AddToInventory(Item item)
+        public void AddToInventory(Storable item, int count = 1)
         {
-            _inventory.AddToInventory(item);
-            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
+            inventoryContainer.Add(item, count);
         }
-        public void RemoveInventoryStack(InventoryStack stack)
+        public void RemoveFromInventory(Storable item, int count)
         {
-            _inventory.RemoveFromInventory(stack);
-            UIManager.Instance.UpdateInventoryUI(_inventory.GetInventoryStack());
-        }
-
-        private void EquipItem(int inventoryIndex)
-        {
-            // Item item = _inventory.GetItemBaseOnIndex(inventoryIndex);
-            // Item cloneItem = Instantiate(item, _itemHolderTransform); // Create Item GameObject
-            // cloneItem.transform.position = _itemHolderTransform.position;
-            // _playerAnimation.SetHold(true);
+            inventoryContainer.Remove(item, count);
         }
     }
 }

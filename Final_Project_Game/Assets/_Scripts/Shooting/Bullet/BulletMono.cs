@@ -18,9 +18,9 @@ public class BulletMono : MonoBehaviour
         if(other.gameObject.TryGetComponent<BaseEnemy>(out BaseEnemy enemy))
         {
             enemy.Damage(this.GetDamage());
-            PlayBulletEffect();
             FeedbackManager.Instance.PlayPlayerBulletExplodeFB();
         }
+        PlayBulletEffect();
         Invoke(nameof(DeactivateSelf), 0.1f);
     }
     private void DeactivateSelf()

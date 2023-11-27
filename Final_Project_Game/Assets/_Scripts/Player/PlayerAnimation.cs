@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -21,6 +19,7 @@ namespace Game
         }
         void Update()
         {
+            if(GlobalConfig._isBlockInput == true) return;
             // _animator.SetBool("Run", _run);
             // _animator.SetBool("Side", _side);
             // _animator.SetBool("Up", _up);

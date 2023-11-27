@@ -6,14 +6,14 @@ using UnityEngine;
 [Serializable]
 public class PlaceableObject
 {
-    public Item placedItem;
+    public ItemSO placedItem;
     public Transform targetObject;
     public Vector3Int positionOnGrid;
     /// <summary>
     /// serialized JSON string which contains the state of the object
     /// </summary>
     public string objectState;
-    public PlaceableObject(Item item, Vector3Int pos)
+    public PlaceableObject(ItemSO item, Vector3Int pos)
     {
         placedItem = item;
         positionOnGrid = pos;

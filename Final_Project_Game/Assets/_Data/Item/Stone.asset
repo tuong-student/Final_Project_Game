@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Stone
   id: 8
+  price: 10
   stackable: 1
+  tradeable: 1
   icon: {fileID: 21300000, guid: b5d18da0feaf51a4b8e21fbaf5e63933, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 0}
