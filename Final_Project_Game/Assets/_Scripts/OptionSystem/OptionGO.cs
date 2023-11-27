@@ -14,6 +14,7 @@ public class OptionGO : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("PointerEnter");
         _parentOptionUI.SelectOptionObject(this.gameObject);
     }
 }

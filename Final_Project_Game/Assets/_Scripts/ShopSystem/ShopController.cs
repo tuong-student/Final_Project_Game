@@ -48,12 +48,16 @@ public class ShopController : MonoBehaviorInstance<ShopController>
     {
         this.gameObject.transform.DOScale(1, 1f);
         _canvasGroup.DOFade(1, 0.7f);
+        _playerInventoryMenu.gameObject.SetActive(true);
+        _shopMenu.gameObject.SetActive(true);
         UIManager.Instance.AddToUIList(this);
     }
     public void Close()
     {
         this.gameObject.transform.DOScale(0.3f, 1f);
         _canvasGroup.DOFade(0, 0.7f).OnComplete(() => this.gameObject.SetActive(false));
+        _playerInventoryMenu.gameObject.SetActive(false);
+        _shopMenu.gameObject.SetActive(false);
         UIManager.Instance.RemoveToUIList(this);
     }
     #endregion

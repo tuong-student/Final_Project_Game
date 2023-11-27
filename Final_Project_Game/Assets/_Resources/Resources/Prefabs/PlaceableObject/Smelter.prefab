@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -541233543
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -132274522, guid: 662a3bc4e41da8f49ae2d29c05a76a13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1194484197189002749}
   - component: {fileID: 6787098546767571095}
   - component: {fileID: 8469307142222124188}
+  - component: {fileID: 1225328384486529358}
   m_Layer: 0
   m_Name: Smelter
   m_TagString: Untagged
@@ -201,3 +202,15 @@ MonoBehaviour:
   producedItem: {fileID: 11400000, guid: f3e909fa282184a4aa5be3fd9288f6af, type: 2}
   producedItemCount: 1
   timetoProcess: 30
+--- !u!114 &1225328384486529358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3340365483047278173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a877ad9fba39e145b9335acb99b2740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

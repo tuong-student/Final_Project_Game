@@ -34,7 +34,8 @@ public class MenuController : MonoBehaviour
             _nextPage.onClick.AddListener(NextPage);
     }
 
-    void OnEnable() {
+    void OnEnable() 
+    {
         SubscribeEvents();
         SelectElement(_menuElements[0]);
     }
