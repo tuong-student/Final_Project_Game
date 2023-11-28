@@ -15,6 +15,7 @@ namespace Game
         public static event Action onPlayerShoot;
         public static event Action onPlayerStopShooting;
         public static event Action onPlayerAccept;
+        public static event Action onPlayerReleaseAccept;
         #endregion
         private static GameInputSystem _gameInputSystem;
 
@@ -46,6 +47,7 @@ namespace Game
             _gameInputSystem.Player.Shoot.canceled += (InputAction.CallbackContext callbackContext) => onPlayerStopShooting?.Invoke();
 
             _gameInputSystem.Player.PlayerChoseOption.performed += (InputAction.CallbackContext callbackContext) => onPlayerAccept?.Invoke();
+            _gameInputSystem.Player.PlayerChoseOption.canceled += (InputAction.CallbackContext callbackContext) => onPlayerReleaseAccept?.Invoke();
         }
     }
 }

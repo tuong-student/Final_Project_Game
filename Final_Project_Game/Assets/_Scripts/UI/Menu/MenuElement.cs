@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(OptionHolder))]
-public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
+public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerMenu
 {
     public OptionHolder _optionHolder;
     [SerializeField] private Image _icon;
@@ -75,6 +75,7 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     #region Events Functions
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(_storableData == null || _storableData.Tradable == false ) return;
         eventData.selectedObject = this.gameObject;
         Select();
     }
@@ -86,10 +87,12 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
     public void OnSelect(BaseEventData eventData)
     {
+        _parentMenuController.SetCurrentSelectedObject(this);
         Select();
     }
     public void OnDeselect(BaseEventData eventData)
     {
+        _parentMenuController.SetCurrentSelectedObject(null);
         Deselect();
     }
     #endregion

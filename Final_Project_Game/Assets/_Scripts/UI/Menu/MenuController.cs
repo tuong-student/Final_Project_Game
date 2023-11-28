@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using NOOD;
+using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ public class MenuController : MonoBehaviour
     private int _page;
     private int _lastIndex;
     private MenuElement _lastMenuElementSelected;
+    private MenuElement _currentMenuElementSelected;
 
     #region Unity Functions
     void Awake()
@@ -101,6 +103,14 @@ public class MenuController : MonoBehaviour
     #endregion
 
     #region Select 
+    public MenuElement GetCurrentSelectedObject()
+    {
+        return _currentMenuElementSelected;
+    }
+    public void SetCurrentSelectedObject(MenuElement menuElement)
+    {
+        _currentMenuElementSelected = menuElement;
+    }
     public void SetLastSelectedObject(MenuElement element)
     {
         _lastMenuElementSelected = element;

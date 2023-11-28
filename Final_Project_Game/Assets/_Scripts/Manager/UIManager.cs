@@ -10,6 +10,12 @@ namespace Game
     {
         private static List<object> _uiList = new List<object>();
 
+        void OnDisable()
+        {
+            _uiList.Clear();
+            GlobalConfig._isBlockInput = false;
+        }
+
         #region UIList
         public void AddToUIList(object obj)
         {
