@@ -27,6 +27,7 @@ public class ShopController : MonoBehaviorInstance<ShopController>
     [SerializeField] private MenuController _playerInventoryMenu, _shopMenu;
     [SerializeField] private OptionHolder _sellOption, _buyOption;
     [SerializeField] private Storable _money;
+    [SerializeField] private Image _chooseImage;
     private CanvasGroup _canvasGroup;
     private MenuElement _playerItem, _shopItem;
     ItemSlot _currentItemSlot;
@@ -41,6 +42,10 @@ public class ShopController : MonoBehaviorInstance<ShopController>
         _doneBtn.onClick.AddListener(Close);
         _canvasGroup.alpha = 0;
     }
+    void Update()
+    {
+        MoveChooseImageTo();
+    }
     #endregion
 
     #region Open Close
@@ -50,14 +55,18 @@ public class ShopController : MonoBehaviorInstance<ShopController>
         _canvasGroup.DOFade(1, 0.7f);
         _playerInventoryMenu.gameObject.SetActive(true);
         _shopMenu.gameObject.SetActive(true);
+        _chooseImage.gameObject.SetActive(true);
         UIManager.Instance.AddToUIList(this);
     }
     public void Close()
     {
         this.gameObject.transform.DOScale(0.3f, 1f);
-        _canvasGroup.DOFade(0, 0.7f).OnComplete(() => this.gameObject.SetActive(false));
-        _playerInventoryMenu.gameObject.SetActive(false);
-        _shopMenu.gameObject.SetActive(false);
+        _canvasGroup.DOFade(0, 0.7f).OnComplete(() => this.gameObject.SetActive(false)).OnComplete(() => 
+        {
+            _playerInventoryMenu.gameObject.SetActive(false);
+            _shopMenu.gameObject.SetActive(false);
+        });
+        _chooseImage.gameObject.SetActive(false);
         UIManager.Instance.RemoveToUIList(this);
     }
     #endregion
@@ -189,6 +198,20 @@ public class ShopController : MonoBehaviorInstance<ShopController>
     {
         ItemSlot montySlot = _playerInventoryMenu.ItemContainer.slots.First(x => x.storable == _money);
         return montySlot.count;
+    }
+    #endregion
+
+    #region UI
+    private void MoveChooseImageTo()
+    {
+        if(_playerInventoryMenu.GetCurrentSelectedObject() != null)
+        {
+            _chooseImage.transform.DOMove(_playerInventoryMenu.GetCurrentSelectedObject().transform.position, 0.5f);
+        }
+        else if(_shopMenu.GetCurrentSelectedObject() != null)
+        {
+            _chooseImage.transform.DOMove(_shopMenu.GetCurrentSelectedObject().transform.position, 0.5f);
+        }
     }
     #endregion
 }
