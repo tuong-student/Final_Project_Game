@@ -40,10 +40,9 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
         Vector3 mousePos = Input.mousePosition;
         _mouseImage.transform.position = mousePos;
 
-        if(EventSystem.current.IsPointerOverGameObject())
+        _currentInteractableGameObject = NoodyCustomCode.GetCurrentPointObject();
+        if(_currentInteractableGameObject != null)
         {
-
-            _currentInteractableGameObject = NoodyCustomCode.GetCurrentPointObject();
             if(_currentInteractableGameObject.TryGetComponent<IPointerInteractable>(out IPointerInteractable interactable))
             {
                 if(_pointerStage != PointerType.Choose)
