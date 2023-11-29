@@ -94,7 +94,13 @@ public class MenuController : MonoBehaviour
     private void OnOptionMenuClose()
     {
         if(_canvasGroup != null)
+        {
             _canvasGroup.interactable = true;
+            foreach(MenuElement menuElement in _menuElements)
+            {
+                menuElement.SetInteractable(true);
+            }
+        }
         if(_lastMenuElementSelected != null)
             EventSystem.current.SetSelectedGameObject(_lastMenuElementSelected.gameObject);
         NoodyCustomCode.UnSubscribeFromStatic(typeof(OptionLogic), this);
@@ -142,7 +148,13 @@ public class MenuController : MonoBehaviour
             }
             OptionLogic.OnPlayerChooseClose += OnOptionMenuClose;
             if(_canvasGroup != null)
+            {
                 _canvasGroup.interactable = false;
+                foreach(MenuElement menuElement in _menuElements)
+                {
+                    menuElement.SetInteractable(false);
+                }
+            }
         }
         UnSubscribeEvents();
     }

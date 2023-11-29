@@ -15,6 +15,9 @@ public class CustomEventSystem : MonoBehaviorInstance<CustomEventSystem>
     }
     void Update()
     {
+        if (eventSystem == null)
+            eventSystem = EventSystem.current;
+
         if(eventSystem.currentSelectedGameObject != null)
         {
             if(eventSystem.currentSelectedGameObject != LastSelectedObject || LastSelectedObject == null)

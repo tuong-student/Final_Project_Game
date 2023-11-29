@@ -14,11 +14,13 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private MenuController _parentMenuController;
     private Storable _storableData;
     private ItemSlot _itemSlot;
+    private Image _background;
 
     void Awake()
     {
         _optionHolder = GetComponent<OptionHolder>();
         _parentMenuController = GetComponentInParent<MenuController>();
+        _background = GetComponent<Image>();
     }
 
     public void SetItemSlot(ItemSlot itemSlot)
@@ -72,6 +74,18 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         this.transform.DOScale(1, 0.3f).SetEase(Ease.InCubic);
     }
+    public void SetInteractable(bool isInteractable)
+    {
+        if(isInteractable)
+        {
+            _background.raycastTarget = true;
+        }
+        else
+        {
+            _background.raycastTarget = false;
+        }
+    }
+
     #region Events Functions
     public void OnPointerEnter(PointerEventData eventData)
     {
