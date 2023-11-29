@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: New Sprite Sheet Configuration
   m_EditorClassIdentifier: 
   _animations:
-  - _name: Piston
-    _length: 61
+  - _name: RunRight
+    _length: 6
     _loop: 1
     _autoFramerate: 1
-    _frameRate: 61
+    _frameRate: 6
+  - _name: RunUp
+    _length: 6
+    _loop: 1
+    _autoFramerate: 1
+    _frameRate: 6
+  - _name: RunLeft
+    _length: 6
+    _loop: 1
+    _autoFramerate: 1
+    _frameRate: 6
+  - _name: RunDown
+    _length: 5
+    _loop: 1
+    _autoFramerate: 1
+    _frameRate: 5

@@ -6,7 +6,7 @@ using NOOD;
 
 namespace Game
 {
-    [RequireComponent(typeof(PlayerMovement), typeof(PlayerOnCollision), typeof(PlayerAnimation))]
+    [RequireComponent(typeof(PlayerMovement), typeof(PlayerOnCollision))]
     public class PlayerManager : MonoBehaviorInstance<PlayerManager>
     {
 
@@ -45,9 +45,6 @@ namespace Game
         {
             NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
             GameInput.Dispose();
-        }
-        void Update()
-        {
         }
         #endregion
 

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using NOOD;
 using UnityEngine;
 
-public class GunHolder : MonoBehaviour
+public class GunHolder : MonoBehaviorInstance<GunHolder>
 {
     [SerializeField] private Gun _currentGun;
+    #region Pooling Transform
     private Transform _bulletPoolingHolder;
     public Transform BulletTransformHolder  
     {
@@ -17,13 +19,29 @@ public class GunHolder : MonoBehaviour
             return _bulletPoolingHolder;
         }
     }
+    private Transform _damageTextTransformHolder;
+    public Transform DamageTextTransformHolder
+    {
+        get
+        {
+            if(_damageTextTransformHolder == null)
+            {
+                _damageTextTransformHolder = new GameObject("DamageTextTransformHolder").transform;
+            }
+            return _damageTextTransformHolder;
+        }
+    }
+    #endregion
 
+    #region Unity Functions
     void Update()
     {
         if(_currentGun.IsHasData)
             RotateToMouse();
     }
+    #endregion
 
+    #region Main Functions
     private void RotateToMouse()
     {
         Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -44,4 +62,5 @@ public class GunHolder : MonoBehaviour
             _currentGun.transform.localScale = Vector3.one;
         }
     }
+    #endregion
 }

@@ -98,11 +98,12 @@ public class ToolsCharacterController : MonoBehaviour
                 PickUpTile();
                 return;
             }
+            if(storable.StorageType != StorageType.FarmItem) return;
+
             ItemSO item = storable as ItemSO;
             if (item.onTileMapAction == null) 
                 return;
 
-            if(storable.StorageType != StorageType.FarmItem) return;
             bool complete = item.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController, item);
             if (complete)
             {
