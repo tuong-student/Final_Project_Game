@@ -14,7 +14,7 @@ public class PickUpItem : MonoBehaviour
     public int count = 1;
     private void Start()
     {
-        player = GameManager.instance.GetTransform();
+        player = PlayerManager.Instance.transform;
     }
 
     public void Set(Storable item, int count)
@@ -41,7 +41,7 @@ public class PickUpItem : MonoBehaviour
             transform.position,
             player.position,
             speed * Time.deltaTime
-            );
+        );
         if(distance < 0.1f)
         {
             //Should be move into specified controller rather than being checked here.
