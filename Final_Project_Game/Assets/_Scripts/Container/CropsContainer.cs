@@ -11,6 +11,7 @@ public class CropsContainer : ScriptableObject
     Dictionary<CropTile, GameObject> _harvestIconDic = new Dictionary<CropTile, GameObject>();
     Dictionary<CropTile, CircleSlider> _cropCircleSlider = new Dictionary<CropTile, CircleSlider>();
     [SerializeField] private GameObject _fieldCanvas;
+    
     public CropTile GetCropTile(Vector3 position)
     {
         return crops.Find(x => x.position == position);

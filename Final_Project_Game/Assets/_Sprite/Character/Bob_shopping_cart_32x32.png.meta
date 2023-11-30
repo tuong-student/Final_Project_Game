@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -106,9 +106,526 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 12
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50605eb5a343018429cf0bb59badd8c8
+      internalID: 2146834672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 14
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d60370aba9b7ec41918b7f8c507c55a
+      internalID: 1705853723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 12
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7445d06a83423c6498a7b864b975ae56
+      internalID: -689683731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 12
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 048f6a9eab9a6aa40bc652804725a9a8
+      internalID: 147718766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_4
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 14
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac4556eadbcc4744b65e657d0f5e823
+      internalID: 1256148162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_5
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 12
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ffac50e9264b440962fe2e0e2f45bc
+      internalID: -648589377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_6
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 2
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 094446da7848b954eb95b2a70103f1a3
+      internalID: 1674381121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_7
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 2
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 025761cf61769f346a7e085d831cf868
+      internalID: -1995770240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_8
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 2
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb33a21d8cf47d44bfbb4e28852e3af
+      internalID: 1644960243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_9
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 2
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c84398073af7f4d8d1533b622a0ee6
+      internalID: 152720898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_10
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 2
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cffbca74a6e8634db44dcac92f8901a
+      internalID: 1888744508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_11
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 2
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd6ab8cb927ab2f43bc2b0089dd5ab08
+      internalID: -1678409762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_12
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 12
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf53d40d386579549836f773fe4fce4a
+      internalID: 1859359534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_13
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 14
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87642befb14870c45b471a3e27892df4
+      internalID: -178616424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_14
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 12
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7178719a1f7832c4691506e64e3d1e42
+      internalID: 770449616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_15
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 12
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6391d0f3a973677459e02addb25aa8ee
+      internalID: -71643674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_16
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 14
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b51db96881f3e74095e850e417f2f81
+      internalID: 1736777878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_17
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 12
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a9b12d306d28d442b206ed81af7c2f7
+      internalID: 1917070315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_18
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 2
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a0d8428b4908eb4da5b420fac96b0af
+      internalID: -684406675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_19
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 0
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1d376ca90c02e544a07618cb8dbe3d7
+      internalID: -1130326454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_20
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 2
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb536763e72e7eb45a8c54ee163f8965
+      internalID: 698820696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_21
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 2
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f6f797cbd6b5604bb67c8a73e4c28ce
+      internalID: 1065285455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_22
+      rect:
+        serializedVersion: 2
+        x: 1426
+        y: 0
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c561d720404c74da5e74d453bb5cc8
+      internalID: 1122821515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bob_shopping_cart_32x32_23
+      rect:
+        serializedVersion: 2
+        x: 1492
+        y: 2
+        width: 28
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186c108e637c5244c8c74b693b3e459c
+      internalID: -392130716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +636,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bob_shopping_cart_32x32_0: 2146834672
+      Bob_shopping_cart_32x32_1: 1705853723
+      Bob_shopping_cart_32x32_10: 1888744508
+      Bob_shopping_cart_32x32_11: -1678409762
+      Bob_shopping_cart_32x32_12: 1859359534
+      Bob_shopping_cart_32x32_13: -178616424
+      Bob_shopping_cart_32x32_14: 770449616
+      Bob_shopping_cart_32x32_15: -71643674
+      Bob_shopping_cart_32x32_16: 1736777878
+      Bob_shopping_cart_32x32_17: 1917070315
+      Bob_shopping_cart_32x32_18: -684406675
+      Bob_shopping_cart_32x32_19: -1130326454
+      Bob_shopping_cart_32x32_2: -689683731
+      Bob_shopping_cart_32x32_20: 698820696
+      Bob_shopping_cart_32x32_21: 1065285455
+      Bob_shopping_cart_32x32_22: 1122821515
+      Bob_shopping_cart_32x32_23: -392130716
+      Bob_shopping_cart_32x32_3: 147718766
+      Bob_shopping_cart_32x32_4: 1256148162
+      Bob_shopping_cart_32x32_5: -648589377
+      Bob_shopping_cart_32x32_6: 1674381121
+      Bob_shopping_cart_32x32_7: -1995770240
+      Bob_shopping_cart_32x32_8: 1644960243
+      Bob_shopping_cart_32x32_9: 152720898
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

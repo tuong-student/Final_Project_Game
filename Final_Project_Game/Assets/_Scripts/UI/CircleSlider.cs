@@ -28,23 +28,31 @@ public class CircleSlider : MonoBehaviour
         }
     }
 
+    #region Unity functions
     void Awake()
     {
         _originalColor = _sliderContent.color;
     }
-
     void OnDestroy()
     {
         _popAnimation.Events.OnComplete.RemoveAllListeners();
     }
+    void OnEnable()
+    {
+        UpdateUI();
+    }
+    #endregion
 
+    #region Setup
     public void Init(float value, float maxValue)
     {
         _value = value;
         _maxValue = maxValue;
         UpdateUI();
     }
+    #endregion
 
+    #region Get Set
     public void SetValue(float value)
     {
         _value = value;
@@ -55,6 +63,9 @@ public class CircleSlider : MonoBehaviour
         _maxValue = value;
         UpdateUI();
     }
+    #endregion
+
+    #region Logic
     public void IncreaseValue(float value)
     {
         _value += value;
@@ -65,19 +76,21 @@ public class CircleSlider : MonoBehaviour
         }
         onValueChange?.Invoke();
     }
+    #endregion
+    
+    #region UI
     public void ChangeColor(Color color)
     {
         _sliderContent.color = color;
     }
-    
     private void UpdateUI()
     {
         _sliderContent.fillAmount = _value / _maxValue;
         _popAnimation.PlayFeedbacks();
-        Debug.Log("Circle Update");
     }
     public void ReturnOldColor()
     {
         _sliderContent.color = _originalColor;
     }
+    #endregion
 }

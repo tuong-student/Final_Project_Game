@@ -6,33 +6,33 @@ namespace Game
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _sr;
-        private bool _run, _side, _up, _down, _hold;
+        private bool _run, _left, _right, _up, _down;
         private Vector3 _originalScale;
 
         void Awake()
         {
-            // GameInput.onPlayerPressMoveVector2 += SetAnim;
+            GameInput.onPlayerPressMoveVector2 += SetAnim;
         }
         void Start()
         {
-            // _originalScale = this.transform.parent.transform.localScale;
+            _originalScale = this.transform.parent.transform.localScale;
         }
         void Update()
         {
             if(GlobalConfig._isBlockInput == true) return;
-            // _animator.SetBool("Run", _run);
-            // _animator.SetBool("Side", _side);
-            // _animator.SetBool("Up", _up);
-            // _animator.SetBool("Down", _down); 
-            // _animator.SetBool("Hold", _hold);
+            _animator.SetBool("Run", _run);
+            _animator.SetBool("Left", _left);
+            _animator.SetBool("Right", _right);
+            _animator.SetBool("Up", _up);
+            _animator.SetBool("Down", _down); 
         }
 
         private void SetAnim(Vector2 playerInput)
         {
-            _side = false;
             _up = false;
             _down = false;
-            FlipX(false);
+            _left= false;
+            _right = false;
             if(playerInput == Vector2.zero) 
             {
                 _run = false;
@@ -45,11 +45,13 @@ namespace Game
 
             if(playerInput.x < 0)
             {
-                FlipX(true);
+                _left = true;
+                _right = false;
             }
-            if(playerInput.x != 0)
+            else if(playerInput.x > 0)
             {
-                _side = true;
+                _left = false;
+                _right = true;
             }
             else
             {
@@ -61,25 +63,6 @@ namespace Game
                 {
                     _down = true;
                 }
-            }
-        }
-
-        public void SetHold(bool value)
-        {
-            _hold = value;
-        }
-
-        private void FlipX (bool value)
-        {
-            if(value == true)
-            {
-                Vector3 temp = this.transform.parent.transform.localScale;
-                temp.x *= -1;
-                this.transform.parent.transform.localScale = temp;
-            }
-            else
-            {
-                this.transform.parent.transform.localScale = _originalScale;
             }
         }
     }
