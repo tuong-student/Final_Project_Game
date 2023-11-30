@@ -17,7 +17,7 @@ MonoBehaviour:
   price: 0
   stackable: 0
   tradeable: 1
-  icon: {fileID: -16975900, guid: 58b24ec8d6133ec4689652a52dae6ca6, type: 3}
+  icon: {fileID: 21300000, guid: 2118f34d278a0a5488b880a3b5f0d03e, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 11400000, guid: 49a2efb2e0e9b2342aa0448cea4cbf34, type: 2}
   onItemUsed: {fileID: 0}

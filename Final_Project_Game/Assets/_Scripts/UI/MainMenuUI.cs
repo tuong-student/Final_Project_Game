@@ -42,9 +42,6 @@ public class MainMenuUI : MonoBehaviour
 
     private void ResetToDefault()
     {
-        for (int i = 0; i < 36; i++)
-        {
-            PlayerManager.Instance.InventoryContainer.slots[i].Clear();
-        }
+      
     }
 }
