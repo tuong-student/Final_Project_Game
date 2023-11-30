@@ -125,6 +125,7 @@ public class TilemapCropsManager : TimeAgent
         {
             GameObject cropSpriteGO = Instantiate(cropsSpritePrefab, transform);
             cropSpriteGO.transform.position = targetTilemap.CellToWorld(cropTile.position);
+            cropSpriteGO.transform.position = new Vector3(cropSpriteGO.transform.position.x + 0.5f, cropSpriteGO.transform.position.y + 0.5f, cropSpriteGO.transform.position.z);
             cropSpriteGO.transform.position -= Vector3.forward * 0.01f;
             
             cropTile.renderer = cropSpriteGO.GetComponent<SpriteRenderer>();

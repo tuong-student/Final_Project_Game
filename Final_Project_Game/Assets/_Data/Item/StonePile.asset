@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StonePile
   m_EditorClassIdentifier: 
   Name: Stone pile
-  id: 9
+  id: 8
   price: 0
   stackable: 0
   tradeable: 1

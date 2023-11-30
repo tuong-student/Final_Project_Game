@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9751579a27bfcf649afaaf2ed573f152, type: 3}
-  m_Name: CrorratoCrop
+  m_Name: CauliviolCrop
   m_EditorClassIdentifier: 
   timeToGrow: 30
-  yield: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
+  yield: {fileID: 11400000, guid: 2b36fcbcf59e3f545a4238d87c6ad560, type: 2}
   count: 6
   sprites:
-  - {fileID: 1071614847, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
-  - {fileID: 106988322, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
-  - {fileID: 2120152669, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
-  - {fileID: 706008071, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
-  - {fileID: -901328367, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: -1801765162, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: -1474401143, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: 1373853685, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: 953361680, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: -1811768159, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
   growthStageTime: 04000000070000000d000000140000001e000000
