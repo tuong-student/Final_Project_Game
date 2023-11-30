@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4885adbcb6707441ca512c29ab0bb1f4, type: 3}
   m_Name: Corrato
   m_EditorClassIdentifier: 
-  Name: Seeds
-  id: 6
+  Name: Corrato
+  id: 16
   price: 1
   stackable: 1
   tradeable: 1

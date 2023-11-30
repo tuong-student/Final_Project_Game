@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   Name: Wood
-  id: 11
+  id: 9
   price: 10
   stackable: 1
   tradeable: 1

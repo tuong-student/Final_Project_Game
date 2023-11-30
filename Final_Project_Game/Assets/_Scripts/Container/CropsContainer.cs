@@ -36,6 +36,7 @@ public class CropsContainer : ScriptableObject
         {
             GameObject canvas = Instantiate(_fieldCanvas, null);
             canvas.transform.position = cropTile.worldPosition;
+            canvas.transform.position = new Vector3(canvas.transform.position.x, canvas.transform.position.y + 0.3f, canvas.transform.position.z);
             circleSlider = canvas.GetComponentInChildren<CircleSlider>();
             circleSlider.Init(0, cropTile.crop.timeToGrow);
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smelter
   m_EditorClassIdentifier: 
   Name: Smelter
-  id: 7
+  id: 6
   price: 20
   stackable: 0
   tradeable: 1

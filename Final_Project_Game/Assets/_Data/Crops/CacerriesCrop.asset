@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9751579a27bfcf649afaaf2ed573f152, type: 3}
-  m_Name: CrorratoCrop
+  m_Name: CacerriesCrop
   m_EditorClassIdentifier: 
   timeToGrow: 30
-  yield: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
+  yield: {fileID: 11400000, guid: 2d40a09002e2dfb4ba0e3825695e2e20, type: 2}
   count: 6
   sprites:
-  - {fileID: 1071614847, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
-  - {fileID: 106988322, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
-  - {fileID: 2120152669, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
-  - {fileID: 706008071, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
-  - {fileID: -901328367, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: 1597125665, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: 1736567107, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: 1001193363, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: -1081744199, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
+  - {fileID: 1469575358, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
   growthStageTime: 04000000070000000d000000140000001e000000

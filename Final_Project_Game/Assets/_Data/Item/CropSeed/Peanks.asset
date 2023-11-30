@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4885adbcb6707441ca512c29ab0bb1f4, type: 3}
-  m_Name: Stone
+  m_Name: Peanks
   m_EditorClassIdentifier: 
-  Name: Stone
-  id: 7
-  price: 10
+  Name: Peanks
+  id: 18
+  price: 1
   stackable: 1
   tradeable: 1
-  icon: {fileID: 21300000, guid: b5d18da0feaf51a4b8e21fbaf5e63933, type: 3}
+  icon: {fileID: 1133562354, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
   onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
+  onTileMapAction: {fileID: 11400000, guid: 3efed6b40999235499e8f4aa4fe0210c, type: 2}
+  onItemUsed: {fileID: 11400000, guid: 3efed6b40999235499e8f4aa4fe0210c, type: 2}
+  crop: {fileID: 11400000, guid: 1c1ca71ffb96b174d9967890a7a9e521, type: 2}
   iconHightlight: 0
   itemPrefab: {fileID: 0}
