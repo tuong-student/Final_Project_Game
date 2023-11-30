@@ -76,7 +76,10 @@ public class EnemyAttackCrop : BaseEnemy
         }
         else
         {
-            PlayerManager.Instance.MinusHealth(_damage);
+            if(PlayerManager.Instance.GetHealth() > 0)
+            {
+                PlayerManager.Instance.MinusHealth(_damage);
+            }
         }
     }
 

@@ -69,7 +69,7 @@ public abstract class BaseEnemy : MonoBehaviour
         _enemyAnimation.PlayDeadAnimation();
         _myCollider.enabled = false;
         ItemSpawnManager.instance.SpawnManyItem(this.transform.position, null, _reward, UnityEngine.Random.Range(0, 3));
-        Destroy(this.gameObject, 1f);
+        Destroy(this.gameObject, 2f);
     }
     protected virtual void DropReward()
     {
