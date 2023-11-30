@@ -31,7 +31,7 @@ namespace Game
         #region Unity Events
         void Awake()
         {
-            // previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
+            previewHandler = GameObject.Find("Grid").GetComponent<PreviewHandler>();
         }
         void Start()
         {
@@ -66,7 +66,8 @@ namespace Game
             FeedbackManager.Instance.PlayPlayerHurtFeedback();
             if(_health.Value <= 0)
             {
-                Debug.Log("Death");
+                NoodyCustomCode.StartDelayFunction(_playerAnimation.PlayDeadAnimation, 0.2f);
+                NoodyCustomCode.StartDelayFunction(() => this.gameObject.SetActive(false), 1.5f);
             }
         }
         #endregion

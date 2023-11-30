@@ -1,3 +1,5 @@
+using NOOD;
+using Unity.Collections;
 using UnityEngine;
 
 namespace Game
@@ -9,6 +11,7 @@ namespace Game
         private bool _run, _left, _right, _up, _down;
         private Vector3 _originalScale;
 
+        #region Unity Functions
         void Awake()
         {
             GameInput.onPlayerPressMoveVector2 += SetAnim;
@@ -19,20 +22,25 @@ namespace Game
         }
         void Update()
         {
-            if(GlobalConfig._isBlockInput == true) return;
+            if (PlayerManager.Instance.GetHealth() <= 0) return;
             _animator.SetBool("Run", _run);
             _animator.SetBool("Left", _left);
             _animator.SetBool("Right", _right);
             _animator.SetBool("Up", _up);
             _animator.SetBool("Down", _down); 
         }
+        #endregion
 
+        #region Animation
         private void SetAnim(Vector2 playerInput)
         {
             _up = false;
             _down = false;
             _left= false;
             _right = false;
+            _run = false;
+            if (GlobalConfig._isBlockInput == true) return;
+            if (PlayerManager.Instance.GetHealth() <= 0) return;
             if(playerInput == Vector2.zero) 
             {
                 _run = false;
@@ -65,5 +73,24 @@ namespace Game
                 }
             }
         }
+        public void PlayDeadAnimation()
+        {
+            NoodyCustomCode.StartUpdater(() =>
+            {
+                Color color = _sr.color;
+                if(color.a > 0)
+                {
+                    color.a -= Time.deltaTime;
+                    _sr.color = color;
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            });
+            FeedbackManager.Instance.PlayPlayerDeadFB();
+        }
+        #endregion
     }
 }

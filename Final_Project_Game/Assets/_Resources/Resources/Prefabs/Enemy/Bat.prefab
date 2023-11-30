@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 191059384698174050}
+  _sr: {fileID: 0}
 --- !u!1 &4327841735415632780
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTest: 0
-  _moveSpeed: 4
+  _moveSpeed: 2
   _hp: 30
   _reward: {fileID: 11400000, guid: b32ef40573ffc44c9a990fea9a8b8640, type: 2}
   _enemyAnimation: {fileID: 2805961093957755003}

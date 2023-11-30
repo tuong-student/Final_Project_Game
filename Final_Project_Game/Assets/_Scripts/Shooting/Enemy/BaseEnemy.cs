@@ -23,7 +23,11 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         _myCollider = this.gameObject.GetComponent<Collider2D>();
         Init();
-        StartCoroutine(FindTarget());
+        NoodyCustomCode.CreateNewCoroutineLoop(() =>
+        {
+            FindPlayer();
+            FindCrop();
+        }, 0.2f);
     }
 
     private void Update()
@@ -32,20 +36,7 @@ public abstract class BaseEnemy : MonoBehaviour
         ChildUpdate();
     }
 
-    protected virtual void ChildUpdate()
-    {
-
-    }
-
-    protected virtual IEnumerator FindTarget()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(0.2f);
-            FindPlayer();
-            FindCrop();
-        }
-    }
+    protected virtual void ChildUpdate(){}
 
     protected void Init()
     {
@@ -77,6 +68,10 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     protected virtual void Attack()
     {
+        if(PlayerManager.Instance.GetHealth() <= 0) 
+        {
+            
+        }
         if(_attackTime >= _nextAttackTime && _isAttacking == false)
         {
             _enemyAnimation.PlayAttackAnimation();

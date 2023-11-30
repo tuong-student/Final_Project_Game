@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTest: 0
-  _moveSpeed: 4
+  _moveSpeed: 2
   _hp: 30
   _reward: {fileID: 11400000, guid: b32ef40573ffc44c9a990fea9a8b8640, type: 2}
   _enemyAnimation: {fileID: 5663475940339780180}
@@ -208,3 +208,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 779432328088233792}
+  _sr: {fileID: 0}

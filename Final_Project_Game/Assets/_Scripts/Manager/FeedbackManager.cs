@@ -9,6 +9,7 @@ public enum FeedbackType
 {
     CameraShake,
     PlayerHurt,
+    PlayerDead,
     PlayerGetItem,
     BulletExplode,
     EnemyComing,
@@ -30,6 +31,12 @@ public class FeedbackManager : MonoBehaviorInstance<FeedbackManager>
     public void PlayPlayerBulletExplodeFB()
     {
         _feedbackType = FeedbackType.BulletExplode;
+        PlayFeedback();
+    }
+
+    public void PlayPlayerDeadFB()
+    {
+        _feedbackType = FeedbackType.PlayerDead;
         PlayFeedback();
     }
 

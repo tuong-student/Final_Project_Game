@@ -20,6 +20,7 @@ namespace Game
         void Update()
         {
             if(GlobalConfig._isBlockInput == true) return;
+            if (PlayerManager.Instance.GetHealth() <= 0) return;
             Move();
         }
 
