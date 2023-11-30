@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots:
   - storable: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
-    count: 99975
+    count: 6
   - storable: {fileID: 11400000, guid: e60c8994d3e5d9743866fe9c309feb6e, type: 2}
     count: 1
   - storable: {fileID: 11400000, guid: 0945bb376867c7e489136bbdc25c3245, type: 2}
