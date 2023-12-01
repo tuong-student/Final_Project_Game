@@ -24,7 +24,7 @@ public class ShootingManager : MonoBehaviorInstance<ShootingManager>
     void Awake()
     {
         TimeAgent timeAgent = GetComponent<TimeAgent>();
-        timeAgent.onDayTime = CheckTimeToSpawnEnemies;
+        timeAgent.onDayTimer = CheckTimeToSpawnEnemies;
         _enemySpawner = GetComponent<EnemySpawner>();
         _enemySpawner.ChangeDifficulty(Difficulty.level1);
     }
@@ -33,6 +33,11 @@ public class ShootingManager : MonoBehaviorInstance<ShootingManager>
     {
         DayTimeController.onNextDay += PlayNextDayFB;
         _tilemapCropsManager = FindObjectOfType<TilemapCropsManager>();
+    }
+    
+    void OnDestroy()
+    {
+        DayTimeController.onNextDay -= PlayNextDayFB;
     }
 
     private void CheckTimeToSpawnEnemies(int hours, int minute)

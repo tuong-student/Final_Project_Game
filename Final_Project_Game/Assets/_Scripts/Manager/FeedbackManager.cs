@@ -11,7 +11,7 @@ public enum FeedbackType
     PlayerHurt,
     PlayerDead,
     PlayerGetItem,
-    BulletExplode,
+    Shoot,
     EnemyComing,
     NextDay,
 }
@@ -28,9 +28,9 @@ public class FeedbackManager : MonoBehaviorInstance<FeedbackManager>
         PlayFeedback();
     }
 
-    public void PlayPlayerBulletExplodeFB()
+    public void PlayPlayerShootFB()
     {
-        _feedbackType = FeedbackType.BulletExplode;
+        _feedbackType = FeedbackType.Shoot;
         PlayFeedback();
     }
 

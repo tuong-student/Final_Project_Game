@@ -24,7 +24,7 @@ public class BulletMono : MonoBehaviour
         if(other.gameObject.TryGetComponent<BaseEnemy>(out BaseEnemy enemy))
         {
             enemy.Damage(this.GetDamage());
-            FeedbackManager.Instance.PlayPlayerBulletExplodeFB();
+            FeedbackManager.Instance.PlayPlayerShootFB();
             SpawnDamageText(this.GetDamage());
         }
         PlayBulletEffect();

@@ -83,6 +83,7 @@ public abstract class Gun : MonoBehaviour
                 }, 0.1f);
                 _attackTime = Time.time;
                 _nextAttackTime = Time.time + 1/_data._shootingRate;
+                FeedbackManager.Instance.PlayPlayerShootFB();
             }
         }
         else

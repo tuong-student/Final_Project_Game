@@ -10,7 +10,7 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] protected bool _isTest;
     [SerializeField] protected float _moveSpeed = 4;
     [SerializeField] protected float _hp = 30;
-    [SerializeField] protected ItemSO _reward; 
+    [SerializeField] protected ItemSO _reward;
     [SerializeField] protected EnemyAnimation _enemyAnimation;
     [SerializeField] protected float _attackRate;
     [SerializeField] protected float _damage = 1;
@@ -36,7 +36,7 @@ public abstract class BaseEnemy : MonoBehaviour
         ChildUpdate();
     }
 
-    protected virtual void ChildUpdate(){}
+    protected virtual void ChildUpdate() { }
 
     protected void Init()
     {
@@ -49,7 +49,7 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         _enemyAnimation.PlayHurtAnimation();
         _hp -= damage;
-        if(_hp <= 0 && _isDead == false)
+        if (_hp <= 0 && _isDead == false)
         {
             Dead();
         }
@@ -68,10 +68,8 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     protected virtual void Attack()
     {
-        if(PlayerManager.Instance.GetHealth() <= 0) 
-        {
-            
-        }
+        if (PlayerManager.Instance.GetHealth() <= 0 || _isDead == true)
+            return;
         if(_attackTime >= _nextAttackTime && _isAttacking == false)
         {
             _enemyAnimation.PlayAttackAnimation();

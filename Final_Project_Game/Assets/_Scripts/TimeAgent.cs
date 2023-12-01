@@ -6,7 +6,7 @@ using UnityEngine;
 public class TimeAgent : MonoBehaviour
 {
     public Action onTimeTick;
-    public Action<int, int> onDayTime;
+    public Action<int, int> onDayTimer;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class TimeAgent : MonoBehaviour
     public void Invoke(int hour, int minute)
     {
         onTimeTick?.Invoke();
-        onDayTime?.Invoke(hour, minute);
+        onDayTimer?.Invoke(hour, minute);
     }
 
     private void OnDestroy()

@@ -8,25 +8,36 @@ using UnityEngine.UI;
 
 public class DayTimeController : MonoBehaviour
 {
+    private List<TimeAgent> agents;
+
+    #region Events
     public static Action<int> onNextDay;
+    public static Action onNightTime;
+    public static Action onDayTime;
+    #endregion
+
+    #region Const
     const float secondsInDay = 86000f;
     const float phaseLength = 900f; // 15 minutes chunk of time
     const float phaseInDay = 96f ;//secondsInDay divided by phaseLength
+    #endregion
 
-
+    #region SerializeField
     [SerializeField] private Color nightLightColor;
     [SerializeField] private Color dayLightColor = Color.white;
     [SerializeField] private AnimationCurve nightTimeCurve;
-    
-    float time;
-
     [SerializeField] float timeScale = 60f;
     [SerializeField] private float startAtTime = 28800f; // in second
     [SerializeField] private Text text;
     [SerializeField] Light2D globalLight;
-    private int days;
+    #endregion
 
-    private List<TimeAgent> agents;
+    #region Private 
+    private int days;
+    private float time;
+    private bool _isNight, _isDay = true; // _isDay = true because game start at morning
+    #endregion
+
     private void Awake()
     {
         agents = new List<TimeAgent>();
@@ -112,13 +123,28 @@ public class DayTimeController : MonoBehaviour
         float v = nightTimeCurve.Evaluate(Hours);
         Color c = Color.Lerp(dayLightColor, nightLightColor, v);
         globalLight.color = c;
+        if(Hours > 4 && _isDay == false)
+        {
+            Debug.Log("OnDay");
+            _isDay = true;
+            onDayTime?.Invoke();
+        }
+        if(Hours > 18 && _isNight == false)
+        {
+            Debug.Log("OnNight");
+            _isNight = true;
+            onNightTime?.Invoke();
+        }
         // float intensity = Mathf.Lerp(1, 0.5f, v);
         //globalLight.intensity = intensity;
     }
+
     private void NextDay()
     {
         time = 0;
         days += 1;
+        _isDay = false;
+        _isDay = false;
         onNextDay?.Invoke(days);
     }
 }
