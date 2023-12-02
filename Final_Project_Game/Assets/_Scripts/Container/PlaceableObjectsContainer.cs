@@ -33,4 +33,11 @@ public class PlaceableObjectsContainer : ScriptableObject
     {
         placeableObjects.Remove(placedObject);
     }
+    public void ClearAllObj()
+    {
+        for (int i = 0; i < placeableObjects.Count; i++)
+        {
+            placeableObjects.Clear();
+        }
+    }
 }
