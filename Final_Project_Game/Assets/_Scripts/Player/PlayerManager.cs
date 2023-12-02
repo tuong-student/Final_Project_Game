@@ -94,6 +94,13 @@ namespace Game
         {
             inventoryContainer.Remove(item, count);
         }
+        public void ClearAllInventory()
+        {
+            for (int i = 0; i < inventoryContainer.slots.Count; i++)
+            {
+                inventoryContainer.slots[i].Clear();
+            }
+        }
         #endregion
     }
 }

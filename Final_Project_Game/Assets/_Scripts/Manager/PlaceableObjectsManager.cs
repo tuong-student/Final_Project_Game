@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class PlaceableObjectsManager : MonoBehaviour
 {
-    [SerializeField] PlaceableObjectsContainer placeObjects;
+    [SerializeField] public PlaceableObjectsContainer placeObjects;
     [SerializeField] Tilemap targetTilemap;
 
     private void Start()

@@ -599,6 +599,7 @@ MonoBehaviour:
   exitGameBtn: {fileID: 466640028}
   nameEssentialScene: Essential
   nameNewGameStartScene: 2DMainGame
+  gamestatus: {fileID: 11400000, guid: 717ae3f20d2b6454ea86a49e4db19c12, type: 2}
 --- !u!114 &1695699219
 MonoBehaviour:
   m_ObjectHideFlags: 0

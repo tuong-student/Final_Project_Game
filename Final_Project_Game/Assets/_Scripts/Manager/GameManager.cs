@@ -1,3 +1,4 @@
+using Game;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,15 +12,30 @@ public class GameManager: MonoBehaviour
     public DayTimeController timeController;
     public DialogueSystem dialogueSystem;
     public ItemList itemDB;
+    public GameStatus gamestatus;
+    public PlaceableObjectsContainer placeableObjectsContainer;
     private void Awake()
     {
         instance = this;
     }
-
-
+    private void Start()
+    {
+        if (gamestatus.isNewGame)
+        {
+            NewGame();
+        }   
+    }
 
     public Transform GetTransform()
     {
         return player.transform;
+    }
+
+    public void NewGame()
+    {
+        player.transform.position = new Vector3(-9.93f, 10.68f, 0f);
+        player.GetComponent<PlayerManager>().ClearAllInventory();
+        placeableObjectsContainer.ClearAllObj();
+        gamestatus.isNewGame = false;
     }
 }

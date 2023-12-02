@@ -13,18 +13,27 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button exitGameBtn;
     [SerializeField] private string nameEssentialScene;
     [SerializeField] private string nameNewGameStartScene;
+    public GameStatus gamestatus;
+
     private void Start()
     {
         startNewBtn.onClick.AddListener(StartNewGame);
         loadGameBtn.onClick.AddListener(LoadGame);
         exitGameBtn.onClick.AddListener(ExitGame);
+        if (gamestatus.isNewGame)
+        {
+            loadGameBtn.gameObject.SetActive(false);
+        }
+        else
+            loadGameBtn.gameObject.SetActive(true);
+
     }
 
     private void LoadGame()
     {
         Debug.Log("Load Game");
-        SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Single);
-        SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Additive);
+        SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
+        SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
     }
 
     public void ExitGame()
@@ -35,13 +44,8 @@ public class MainMenuUI : MonoBehaviour
     public void StartNewGame()
     {
         Debug.Log("New Game");
-        ResetToDefault();
-        SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Single);
-        SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Additive);
-    }
-
-    private void ResetToDefault()
-    {
-      
+        gamestatus.isNewGame = true;
+        SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
+        SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
     }
 }
