@@ -962,6 +962,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Panel
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 980
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 12, z: 10, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48f91552b39231340aa4508c045ffbb7
+      internalID: 1496548295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBG
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 1346
+        width: 48
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 4, y: 6, z: 6, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6febccc8e9ac14fbf7c6d83ed22a30
+      internalID: 180573053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -973,6 +1015,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      ButtonBG: 180573053
       Modern_UI_Style_1_32x32_0: 2017681641
       Modern_UI_Style_1_32x32_1: -625919351
       Modern_UI_Style_1_32x32_10: 2003270486
@@ -1013,6 +1056,7 @@ TextureImporter:
       Modern_UI_Style_1_32x32_7: -870533923
       Modern_UI_Style_1_32x32_8: -229244397
       Modern_UI_Style_1_32x32_9: 680486252
+      Panel: 1496548295
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
