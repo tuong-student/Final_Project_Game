@@ -6,4 +6,5 @@ using UnityEngine;
 public class GameStatus : ScriptableObject
 {
     public bool isNewGame;
+    public string nameScene;
 }

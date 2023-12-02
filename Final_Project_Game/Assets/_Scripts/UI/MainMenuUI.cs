@@ -51,7 +51,7 @@ public class MainMenuUI : MonoBehaviour
         Debug.Log("Load Game");
         SoundManager.PlaySound(SoundEnum.ClickButton);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
-        SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
+        SceneManager.LoadScene(gamestatus.nameScene, LoadSceneMode.Additive);
     }
 
   

@@ -40,5 +40,6 @@ public class GameManager: MonoBehaviour
         player.GetComponent<PlayerManager>().ClearAllInventory();
         placeableObjectsContainer.ClearAllObj();
         gamestatus.isNewGame = false;
+        gamestatus.nameScene = "2DMainGame";
     }
 }
