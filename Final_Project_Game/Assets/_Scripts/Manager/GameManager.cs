@@ -1,4 +1,5 @@
 using Game;
+using NOOD.Sound;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -23,7 +24,9 @@ public class GameManager: MonoBehaviour
         if (gamestatus.isNewGame)
         {
             NewGame();
-        }   
+        }
+        SoundManager.PlayMusic(MusicEnum.Theme);
+
     }
 
     public Transform GetTransform()
@@ -37,5 +40,6 @@ public class GameManager: MonoBehaviour
         player.GetComponent<PlayerManager>().ClearAllInventory();
         placeableObjectsContainer.ClearAllObj();
         gamestatus.isNewGame = false;
+        gamestatus.nameScene = "2DMainGame";
     }
 }
