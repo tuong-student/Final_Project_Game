@@ -40,7 +40,7 @@ public class MainMenuUI : MonoBehaviour
     public void StartNewGame()
     {
         Debug.Log("New Game");
-        SoundManager.PlaySound(SoundEnum.ClickButton);
+        // SoundManager.PlaySound(SoundEnum.ClickButton);
         gamestatus.isNewGame = true;
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
@@ -49,7 +49,7 @@ public class MainMenuUI : MonoBehaviour
     private void LoadGame()
     {
         Debug.Log("Load Game");
-        SoundManager.PlaySound(SoundEnum.ClickButton);
+        // SoundManager.PlaySound(SoundEnum.ClickButton);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(gamestatus.nameScene, LoadSceneMode.Additive);
     }
@@ -58,19 +58,19 @@ public class MainMenuUI : MonoBehaviour
 
     public void SettingGame()
     {
-        SoundManager.PlaySound(SoundEnum.ClickButton);
+        // SoundManager.PlaySound(SoundEnum.ClickButton);
     }
 
     public void Creadits()
     {
-        SoundManager.PlaySound(SoundEnum.ClickButton);
+        // SoundManager.PlaySound(SoundEnum.ClickButton);
     }
 
  
 
     public void ExitGame()
     {
-        SoundManager.PlaySound(SoundEnum.ClickButton);
+        // SoundManager.PlaySound(SoundEnum.ClickButton);
         Application.Quit();
     }
 }

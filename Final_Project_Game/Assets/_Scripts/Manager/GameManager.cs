@@ -25,7 +25,7 @@ public class GameManager: MonoBehaviour
         {
             NewGame();
         }
-        SoundManager.PlayMusic(MusicEnum.Theme);
+        // SoundManager.PlayMusic(MusicEnum.Theme);
 
     }
 
