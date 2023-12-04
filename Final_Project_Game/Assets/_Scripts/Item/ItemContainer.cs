@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -115,5 +116,14 @@ public class ItemContainer : ScriptableObject
         if (checkingItem.storable.Stackable)
             return itemSlot.count >= checkingItem.count;
         return true;
+    }
+    public bool ContainItem(Storable item)
+    {
+        return slots.Any(x => x.storable == item);
+    }
+
+    public ItemSlot GetSlot(Storable item)
+    {
+        return slots.First(x => x.storable == item);
     }
 }

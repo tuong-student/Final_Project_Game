@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NOOD.ModifiableStats;
 using NOOD;
+using Unity.VisualScripting;
 
 namespace Game
 {
@@ -93,6 +94,22 @@ namespace Game
         public void RemoveFromInventory(Storable item, int count)
         {
             inventoryContainer.Remove(item, count);
+        }
+        public bool TryRemoveInventory(Storable item, int count)
+        {
+            if(inventoryContainer.ContainItem(item) == false)
+            {
+                return false;
+            }
+            else
+            {
+                if(inventoryContainer.GetSlot(item).count < count)
+                {
+                    return false;
+                }
+            }
+            RemoveFromInventory(item, count);
+            return true;
         }
         public void ClearAllInventory()
         {
