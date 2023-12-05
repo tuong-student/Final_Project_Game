@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8dd95462f99e2f8478ac3e88762dec63, type: 3}
-  m_Name: New Game Status
+  m_Name: GameStatus
   m_EditorClassIdentifier: 
-  isNewGame: 1
+  isNewGame: 0
+  nameScene: 2DMainGame

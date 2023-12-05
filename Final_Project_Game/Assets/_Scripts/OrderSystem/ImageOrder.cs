@@ -6,9 +6,16 @@ using TMPro;
 using System;
 using UnityEngine.EventSystems;
 using Game;
+using MoreMountains.Feedbacks;
+using AssetKits.ParticleImage;
 
 public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    #region SerializeField
+    [SerializeField] private MMF_Player _minusFB;
+    [SerializeField] private MMF_Player _completeFB;
+    #endregion
+
     #region Private
     private OrderItem _orderItemData;
     private bool _isPress;
@@ -64,6 +71,7 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void CompleteLogic()
     {
         OrderManager.Instance.CheckComplete();
+        GetComponentInParent<OrderElementUI>().CheckComplete();
     }
     #endregion
 
@@ -71,6 +79,7 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void CompleteUI()
     {
         // Play complete feedback
+        _completeFB.PlayFeedbacks();
     }
     private bool MinusOne()
     {
@@ -79,6 +88,7 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             _orderItemData.quantity -= 1;
             UpdateUI();
+            _minusFB.PlayFeedbacks();
         }
         return value;
     }

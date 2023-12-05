@@ -1,22 +1,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class OrderElementUI : MonoBehaviour
 {
+    #region SerializeField
     [SerializeField] private ImageOrder _imageOrderPref;
     [SerializeField] private Transform _orderItemHolder;
     [SerializeField] private TextMeshProUGUI _money;
+    [SerializeField] private MMF_Player _completeFB;
+    #endregion
+
+    #region private
     private List<ImageOrder> _imageOrders = new List<ImageOrder>();
     private Order _orderData;
+    #endregion
 
     #region Unity functions
     void Start()
     {
         _imageOrderPref.gameObject.SetActive(false);
+        _completeFB.Events.OnComplete.AddListener(Hide);
     }
     #endregion
 
@@ -57,10 +65,26 @@ public class OrderElementUI : MonoBehaviour
     }
     #endregion
 
+    #region Check complete
+    public void CheckComplete()
+    {
+        if(_orderData.IsComplete)
+        {
+            _completeFB.PlayFeedbacks();
+        }
+    }
+    #endregion
+
     #region Show Hide
     public void Show()
     {
         // Play feedback
+    }
+    public void Hide()
+    {
+        // Play feedback and disable
+        Debug.Log("Hide");
+        this.gameObject.SetActive(false);
     }
     #endregion
 }

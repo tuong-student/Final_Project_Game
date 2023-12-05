@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using MoreMountains.Feedbacks;
+using Game;
 
 
 public class OrderPanelUI : MonoBehaviour
@@ -13,19 +14,23 @@ public class OrderPanelUI : MonoBehaviour
     [SerializeField] private OrderElementUI _orderElementPref;
     [SerializeField] private Transform _orderElementHolder;
     [SerializeField] private MMF_Player _showFeedback, _hideFeedback;
+    [SerializeField] private Button _goBtn, _closeBtn;
     #endregion
 
     #region private Lists
     private List<Order> _orderDatas = new List<Order>();
     private List<OrderElementUI> _orderElements = new List<OrderElementUI>();
+    private bool _isShowed = false;
     #endregion
 
     #region Unity Functions
     void Start()
     {
-        _orderElementPref.gameObject.SetActive(false);
         OrderManager.Instance.onPlayerOpenOrderPanel += UpdateUI;
         OrderManager.Instance.onPlayerOpenOrderPanel += Show;
+        _orderElementPref.gameObject.SetActive(false);
+        _goBtn.onClick.AddListener(GoAction);
+        _closeBtn.onClick.AddListener(Hide);
     }
     #endregion
 
@@ -62,16 +67,27 @@ public class OrderPanelUI : MonoBehaviour
     }
     #endregion
 
+    #region GoAction
+    private void GoAction()
+    {
+        OrderManager.Instance.onPlayerPressGO?.Invoke();
+        Hide();
+    }
+    #endregion
+
     #region Show Hide
     public void Show()
     {
         // Play feedback
+        if (_isShowed == true) return;
         _showFeedback.PlayFeedbacks();
+        UIManager.Instance.AddToUIList(this);
     }
     public void Hide()
     {
         // Play feedback
         _hideFeedback.PlayFeedbacks();
+        UIManager.Instance.RemoveToUIList(this);
         // Deactivate all element when off
     }
     #endregion

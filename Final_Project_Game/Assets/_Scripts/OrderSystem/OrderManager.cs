@@ -29,6 +29,7 @@ public class OrderManager : MonoBehaviorInstance<OrderManager>
 {
     #region Events
     public Action onPlayerOpenOrderPanel;
+    public Action onPlayerPressGO;
     public Action<int> onPlayerCompleteOrder;
     #endregion
 

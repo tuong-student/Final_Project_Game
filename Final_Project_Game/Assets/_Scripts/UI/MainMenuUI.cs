@@ -1,12 +1,10 @@
 using Game;
-using NOOD;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using NOOD;
 using NOOD.SerializableDictionary;
 using TMPro;
 using NOOD.Sound;
@@ -20,16 +18,16 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button exitGameBtn;
     [SerializeField] private string nameEssentialScene;
     [SerializeField] private string nameNewGameStartScene;
-    public GameStatus gamestatus;
+    public GameStatus gameStatus;
 
     private void Start()
     {
         startNewBtn.onClick.AddListener(StartNewGame);
         loadGameBtn.onClick.AddListener(LoadGame);
         settingGameBtn.onClick.AddListener(SettingGame);
-        creditsGameBtn.onClick.AddListener(Creadits);
+        creditsGameBtn.onClick.AddListener(Credits);
         exitGameBtn.onClick.AddListener(ExitGame);
-        if (gamestatus.isNewGame)
+        if (gameStatus.isNewGame)
         {
             loadGameBtn.gameObject.SetActive(false);
         }
@@ -41,7 +39,7 @@ public class MainMenuUI : MonoBehaviour
     {
         Debug.Log("New Game");
         // SoundManager.PlaySound(SoundEnum.ClickButton);
-        gamestatus.isNewGame = true;
+        gameStatus.isNewGame = true;
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
     }
@@ -51,7 +49,7 @@ public class MainMenuUI : MonoBehaviour
         Debug.Log("Load Game");
         // SoundManager.PlaySound(SoundEnum.ClickButton);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
-        SceneManager.LoadScene(gamestatus.nameScene, LoadSceneMode.Additive);
+        SceneManager.LoadScene(gameStatus.nameScene, LoadSceneMode.Additive);
     }
 
   
@@ -61,7 +59,7 @@ public class MainMenuUI : MonoBehaviour
         // SoundManager.PlaySound(SoundEnum.ClickButton);
     }
 
-    public void Creadits()
+    public void Credits()
     {
         // SoundManager.PlaySound(SoundEnum.ClickButton);
     }
