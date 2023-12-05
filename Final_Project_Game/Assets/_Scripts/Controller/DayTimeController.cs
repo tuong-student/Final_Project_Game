@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -28,7 +29,7 @@ public class DayTimeController : MonoBehaviour
     [SerializeField] private AnimationCurve nightTimeCurve;
     [SerializeField] float timeScale = 60f;
     [SerializeField] private float startAtTime = 28800f; // in second
-    [SerializeField] private Text text;
+    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] Light2D globalLight;
     #endregion
 
