@@ -4,6 +4,7 @@ using UnityEngine;
 using NOOD.ModifiableStats;
 using NOOD;
 using Unity.VisualScripting;
+using NOOD.Sound;
 
 namespace Game
 {
@@ -49,6 +50,13 @@ namespace Game
         {
             NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
             GameInput.Dispose();
+        }
+        void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
+            }
         }
         #endregion
 
