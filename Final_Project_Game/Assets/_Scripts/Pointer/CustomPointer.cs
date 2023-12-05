@@ -30,7 +30,7 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
     {
         _mouseImage = GetComponent<Image>();
         Cursor.visible = false;
-        _pointerStage = PointerType.Choose;
+        _pointerStage = PointerType.Idle;
         _mouseImage.transform.localScale = _normalScale;
         GameInput.onPlayerAccept += PlayerChoose;
         GameInput.onPlayerReleaseAccept += PlayerReleaseChoose;
