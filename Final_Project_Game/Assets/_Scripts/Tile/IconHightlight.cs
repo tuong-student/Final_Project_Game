@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class IconHightlight : MonoBehaviour
+public class IconHighlight : MonoBehaviour
 {
     public Vector3Int cellPosition;
     private Vector3 targetPosition;

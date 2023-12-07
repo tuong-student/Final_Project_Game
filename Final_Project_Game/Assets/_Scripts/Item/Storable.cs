@@ -5,8 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public enum StorageType
 {
+    None,
     FarmItem,
-    Weapon
+    Crop,
+    Weapon,
 }
 
 public abstract class Storable : ScriptableObject

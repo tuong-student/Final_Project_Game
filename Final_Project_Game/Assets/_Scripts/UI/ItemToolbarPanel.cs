@@ -9,20 +9,20 @@ public class ItemToolbarPanel : ItemPanel
     private void Start()
     {
         Init();
-        toolbarController.onChange += Hightlight;
-        Hightlight(0);
+        toolbarController.onChange += Highlight;
+        Highlight(0);
     }
     public override void OnClick(int id)
     {
         toolbarController.Set(id);
-        Hightlight(id);
-        toolbarController.UpdateHightlightIcon();
+        Highlight(id);
+        toolbarController.UpdateHighlightIcon();
     }
 
     int currentSelectedTool;
 
 
-    public void Hightlight(int id)
+    public void Highlight(int id)
     {
         buttons[currentSelectedTool].Highlight(false);
         currentSelectedTool = id;
@@ -32,6 +32,6 @@ public class ItemToolbarPanel : ItemPanel
     public override void Show()
     {
         base.Show();
-        toolbarController.UpdateHightlightIcon();
+        toolbarController.UpdateHighlightIcon();
     }
 }

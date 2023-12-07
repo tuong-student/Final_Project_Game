@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using NOOD;
 using UnityEngine;
 
-public class GunHolder : MonoBehaviorInstance<GunHolder>
+[Tooltip("This is use to rotate Item to the mouse")]
+public class AbstractItemHolder : MonoBehaviorInstance<AbstractItemHolder>
 {
-    [SerializeField] private Gun _currentGun;
+    [SerializeField] private AbstractItem _currentGun;
+
     #region Pooling Transform
     private Transform _bulletPoolingHolder;
     public Transform BulletTransformHolder  

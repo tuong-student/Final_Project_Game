@@ -4,13 +4,14 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class ToolbarController : MonoBehaviour
 {
     [SerializeField] int toolbarSize = 12;
     private int selectedTool;
     public Action<int> onChange;
-    [SerializeField] IconHightlight iconHightlight;
+    [SerializeField] IconHighlight iconHighlight;
 
     public ItemSlot GetItemSlot
     {
@@ -28,8 +29,8 @@ public class ToolbarController : MonoBehaviour
     }
     private void Start()
     {
-        onChange += UpdateHightlightIcon;
-        UpdateHightlightIcon(selectedTool);
+        onChange += UpdateHighlightIcon;
+        UpdateHighlightIcon(selectedTool);
     }
 
     private void Update()
@@ -55,7 +56,7 @@ public class ToolbarController : MonoBehaviour
     {
         selectedTool = id;
     }
-    public void UpdateHightlightIcon(int id = 0)
+    public void UpdateHighlightIcon(int id = 0)
     {
         Storable storable = GetPlayerSelected;
         if(storable == null) return;
@@ -64,20 +65,21 @@ public class ToolbarController : MonoBehaviour
             ItemSO item = storable as ItemSO;
             if (item == null)
             {
-                iconHightlight.Show = false;
+                iconHighlight.Show = false;
                 return;
             }
 
-            iconHightlight.Show = item.iconHightlight;
-            if (item.iconHightlight)
+            iconHighlight.Show = item.iconHighlight;
+            if (item.iconHighlight)
             {
-                iconHightlight.SetIcon(item.icon);
+                iconHighlight.SetIcon(item.icon);
             }
-            PlayerManager.Instance.ChangeGun(null);
+            PlayerManager.Instance.ChangeItem(item);
         }
         if(storable.StorageType == StorageType.Weapon)
         {
-            PlayerManager.Instance.ChangeGun((GunSO)storable);
+            GunSO gunSO = storable as GunSO;
+            PlayerManager.Instance.ChangeItem(gunSO);
         }
     }
 }

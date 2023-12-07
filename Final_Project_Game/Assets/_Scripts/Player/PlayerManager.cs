@@ -16,7 +16,7 @@ namespace Game
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerAnimation _playerAnimation;
         [SerializeField] private PlayerOnCollision _playerOnCollision;
-        [SerializeField] private PlayerGun _playerGun;
+        [SerializeField] private AbstractItem _playerGun;
         #endregion
 
         #region Private parameter
@@ -80,9 +80,9 @@ namespace Game
         #endregion
 
         #region SupportFunctions
-        public void ChangeGun(GunSO data)
+        public void ChangeItem(IHoldableItem data)
         {
-            _playerGun.ChangeGunData(data);
+            _playerGun.ChangeItemData(data);
         }
         public void Pickup()
         {

@@ -38,7 +38,7 @@ public class MainMenuUI : MonoBehaviour
     public void StartNewGame()
     {
         Debug.Log("New Game");
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         gameStatus.isNewGame = true;
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
@@ -47,7 +47,7 @@ public class MainMenuUI : MonoBehaviour
     private void LoadGame()
     {
         Debug.Log("Load Game");
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(gameStatus.nameScene, LoadSceneMode.Additive);
     }
@@ -56,17 +56,17 @@ public class MainMenuUI : MonoBehaviour
 
     public void SettingGame()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
     }
 
     public void Credits()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
     }
 
     public void ExitGame()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         Application.Quit();
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Crop : ScriptableObject
 {
     public int timeToGrow = 10;
-    public ItemSO yield;
+    public CropSO yield;
     public int count = 1;
 
     public List<Sprite> sprites;
