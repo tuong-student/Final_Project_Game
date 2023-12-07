@@ -5,6 +5,7 @@ using NOOD.ModifiableStats;
 using NOOD;
 using Unity.VisualScripting;
 using NOOD.Sound;
+using System.Linq;
 
 namespace Game
 {
@@ -53,10 +54,7 @@ namespace Game
         }
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
-            }
+
         }
         #endregion
 
@@ -73,7 +71,7 @@ namespace Game
         {
             _health.AddModifier(ModifyType.Subtract, amount);
             FeedbackManager.Instance.PlayPlayerHurtFeedback();
-            if(_health.Value <= 0)
+            if (_health.Value <= 0)
             {
                 NoodyCustomCode.StartDelayFunction(_playerAnimation.PlayDeadAnimation, 0.2f);
                 NoodyCustomCode.StartDelayFunction(() => this.gameObject.SetActive(false), 1.5f);
