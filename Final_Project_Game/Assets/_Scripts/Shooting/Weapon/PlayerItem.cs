@@ -14,7 +14,8 @@ public class PlayerItem : AbstractItem
 
     public override void StopPerform()
     {
-        StopShooting();
+        if(_data.StorageType == StorageType.Weapon)
+            StopShooting();
     }
     #endregion
 

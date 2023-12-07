@@ -15,6 +15,4 @@ MonoBehaviour:
   soundDic:
     _pairs: []
   musicDic:
-    _pairs:
-    - _key: Theme
-      _value: {fileID: 8300000, guid: ccdc1026f90774226b4c0759093380b3, type: 3}
+    _pairs: []

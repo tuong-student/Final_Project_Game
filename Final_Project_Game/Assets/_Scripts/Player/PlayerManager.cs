@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using NOOD.ModifiableStats;
 using NOOD;
+using Unity.VisualScripting;
+using NOOD.Sound;
+using System.Linq;
 
 namespace Game
 {
@@ -13,13 +16,15 @@ namespace Game
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerAnimation _playerAnimation;
         [SerializeField] private PlayerOnCollision _playerOnCollision;
-        [SerializeField] private PlayerItem _playerGun;
+        [SerializeField] private AbstractItem _playerGun;
         #endregion
 
         #region Private parameter
         private ModifiableStats<float> _health = new ModifiableStats<float>();
         private ModifiableStats<float> _strength = new ModifiableStats<float>();
         private ModifiableStats<float> _speed = new ModifiableStats<float>();
+
+        private List<ItemSO> _items = new List<ItemSO>();
 
         private PreviewHandler previewHandler;
         public ItemContainer inventoryContainer;
@@ -47,6 +52,10 @@ namespace Game
             NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
             GameInput.Dispose();
         }
+        void Update()
+        {
+
+        }
         #endregion
 
         #region Get Set
@@ -62,7 +71,7 @@ namespace Game
         {
             _health.AddModifier(ModifyType.Subtract, amount);
             FeedbackManager.Instance.PlayPlayerHurtFeedback();
-            if(_health.Value <= 0)
+            if (_health.Value <= 0)
             {
                 NoodyCustomCode.StartDelayFunction(_playerAnimation.PlayDeadAnimation, 0.2f);
                 NoodyCustomCode.StartDelayFunction(() => this.gameObject.SetActive(false), 1.5f);
