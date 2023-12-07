@@ -25,8 +25,7 @@ public class GameManager: MonoBehaviour
         {
             NewGame();
         }
-        // SoundManager.PlayMusic(MusicEnum.Theme);
-
+        SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
     }
 
     public Transform GetTransform()

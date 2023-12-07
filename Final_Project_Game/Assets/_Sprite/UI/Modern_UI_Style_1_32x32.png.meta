@@ -1013,7 +1013,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
@@ -1021,6 +1021,174 @@ TextureImporter:
       bones: []
       spriteID: e7b78225678ea7c45a875f722672e208
       internalID: 897968147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FullHP
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 938
+        width: 34
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e96149d07177c284caefa438f606e3b3
+      internalID: -1944427054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneFourHP
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 906
+        width: 34
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95392c40a293b7b4d9bb935ea8c98fab
+      internalID: 987578092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneTwoHP
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 874
+        width: 34
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76a3b0647751abb43a9a98fb09f186a2
+      internalID: 1482461155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NoHP
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 906
+        width: 34
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea675723386e44e4f9dc255be0fce7a9
+      internalID: 245631736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ThreeFourHP
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 874
+        width: 34
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d88cd4411629438458a31a9e5fa1ce90
+      internalID: -1337359684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_1_32x32_41
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 728
+        width: 44
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 8, z: 6, w: 7}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: decd2697f3b05fa4585f9f2deacb5cd4
+      internalID: 1477052497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundOn
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1216
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12e5f011c0bf1b4fb8b26d269465cb0
+      internalID: -1012046073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundOff
+      rect:
+        serializedVersion: 2
+        x: 1312
+        y: 1216
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6726cea305b156c4095359871ae041be
+      internalID: 707555119
       vertices: []
       indices: 
       edges: []
@@ -1037,6 +1205,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       ButtonBG: 180573053
+      FullHP: -1944427054
       Modern_UI_Style_1_32x32_0: 2017681641
       Modern_UI_Style_1_32x32_1: -625919351
       Modern_UI_Style_1_32x32_10: 2003270486
@@ -1073,12 +1242,19 @@ TextureImporter:
       Modern_UI_Style_1_32x32_39: -672022413
       Modern_UI_Style_1_32x32_4: -1223910239
       Modern_UI_Style_1_32x32_40: 897968147
+      Modern_UI_Style_1_32x32_41: 1477052497
       Modern_UI_Style_1_32x32_5: -340076915
       Modern_UI_Style_1_32x32_6: -222924137
       Modern_UI_Style_1_32x32_7: -870533923
       Modern_UI_Style_1_32x32_8: -229244397
       Modern_UI_Style_1_32x32_9: 680486252
+      NoHP: 245631736
+      OneFourHP: 987578092
+      OneTwoHP: 1482461155
       Panel: 1496548295
+      SoundOff: 707555119
+      SoundOn: -1012046073
+      ThreeFourHP: -1337359684
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
