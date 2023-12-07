@@ -9,18 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4885adbcb6707441ca512c29ab0bb1f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a29cb4380b5f4441b99c6da8705da23, type: 3}
   m_Name: Mooam
   m_EditorClassIdentifier: 
-  Name: Mooam
-  id: 17
-  price: 1
-  stackable: 1
-  tradeable: 1
   icon: {fileID: -916945032, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 11400000, guid: 3efed6b40999235499e8f4aa4fe0210c, type: 2}
   onItemUsed: {fileID: 11400000, guid: 3efed6b40999235499e8f4aa4fe0210c, type: 2}
   crop: {fileID: 11400000, guid: 1778c810819121249981e7f1f0edab76, type: 2}
-  iconHightlight: 0
   itemPrefab: {fileID: 0}
+  animator: {fileID: 0}
+  Name: Mooam
+  id: 17
+  price: 1
+  stackable: 1
+  tradeable: 1
+  iconHighlight: 0
+  interactRate: 0

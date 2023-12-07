@@ -14,7 +14,7 @@ public class ToolsCharacterController : MonoBehaviour
     [SerializeField] TileMapReadController tileMapReadController;
     [SerializeField] float maxDistance = 1.5f;
     [SerializeField] ToolAction onTilePickUp;
-    [SerializeField] IconHightlight iconHightlight;
+    [SerializeField] IconHighlight iconHightlight;
     //[SerializeField] CropsManager cropsManager;
     //[SerializeField] TileData plowableTiles;
 

@@ -83,7 +83,7 @@ public class BulletMono : MonoBehaviour
     }
     private void SpawnDamageText(float damage)
     {
-        Transform damageTextHolder = GunHolder.Instance.DamageTextTransformHolder;
+        Transform damageTextHolder = AbstractItemHolder.Instance.DamageTextTransformHolder;
         TextMeshPro damageText = null;
         foreach(Transform child in damageTextHolder)
         {

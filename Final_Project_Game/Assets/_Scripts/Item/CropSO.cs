@@ -6,7 +6,7 @@ using Game.Interface;
 
 [CreateAssetMenu(menuName = "Data/Item")]
 [System.Serializable]
-public class ItemSO : Storable, IHoldableItem
+public class CropSO : Storable, IHoldableItem
 {
     #region original parameter
     public Sprite icon;
@@ -29,7 +29,7 @@ public class ItemSO : Storable, IHoldableItem
     public override bool Stackable => stackable;
     public override Sprite Icon => icon;
     public override int Id => id;
-    public override StorageType StorageType => StorageType.FarmItem;
+    public override StorageType StorageType => StorageType.Crop;
     public override int Price => price;
     public override bool Tradable => tradeable;
     public float InteractRate => interactRate;

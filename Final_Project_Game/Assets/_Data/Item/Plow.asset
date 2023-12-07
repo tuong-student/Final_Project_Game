@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4885adbcb6707441ca512c29ab0bb1f4, type: 3}
   m_Name: Plow
   m_EditorClassIdentifier: 
-  Name: Plow
-  id: 5
-  price: 0
-  stackable: 0
-  tradeable: 1
   icon: {fileID: 21300000, guid: 2118f34d278a0a5488b880a3b5f0d03e, type: 3}
   onAction: {fileID: 0}
   onTileMapAction: {fileID: 11400000, guid: 49a2efb2e0e9b2342aa0448cea4cbf34, type: 2}
   onItemUsed: {fileID: 0}
   crop: {fileID: 0}
-  iconHightlight: 0
   itemPrefab: {fileID: 0}
+  animator: {fileID: 9100000, guid: f1fa3177c4de18f4ebdb28d16b1dd999, type: 2}
+  Name: Plow
+  id: 5
+  price: 0
+  stackable: 0
+  tradeable: 1
+  iconHighlight: 0
+  interactRate: 2

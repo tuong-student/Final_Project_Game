@@ -37,16 +37,16 @@ MonoBehaviour:
     count: 99960
   - storable: {fileID: 11400000, guid: b32ef40573ffc44c9a990fea9a8b8640, type: 2}
     count: 57
-  - storable: {fileID: 0}
-    count: 0
-  - storable: {fileID: 0}
-    count: 0
-  - storable: {fileID: 0}
-    count: 0
-  - storable: {fileID: 0}
-    count: 0
-  - storable: {fileID: 0}
-    count: 0
+  - storable: {fileID: 11400000, guid: 9ca6de1a43380054eacf31ca629148fd, type: 2}
+    count: 1
+  - storable: {fileID: 11400000, guid: e60c8994d3e5d9743866fe9c309feb6e, type: 2}
+    count: 1
+  - storable: {fileID: 11400000, guid: d3675901f60260d459a8687178e4dd87, type: 2}
+    count: 1
+  - storable: {fileID: 11400000, guid: b3f92460141622942b9baaf12aa0338b, type: 2}
+    count: 1
+  - storable: {fileID: 11400000, guid: 0945bb376867c7e489136bbdc25c3245, type: 2}
+    count: 1
   - storable: {fileID: 0}
     count: 0
   - storable: {fileID: 0}
