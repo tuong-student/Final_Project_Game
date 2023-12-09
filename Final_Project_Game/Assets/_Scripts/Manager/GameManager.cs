@@ -13,7 +13,7 @@ public class GameManager: MonoBehaviour
     public DayTimeController timeController;
     public DialogueSystem dialogueSystem;
     public ItemList itemDB;
-    public GameStatus gamestatus;
+    public GameStatusSO gameStatus;
     public PlaceableObjectsContainer placeableObjectsContainer;
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class GameManager: MonoBehaviour
     }
     private void Start()
     {
-        if (gamestatus.isNewGame)
+        if (gameStatus.isNewGame)
         {
             NewGame();
         }
@@ -38,7 +38,7 @@ public class GameManager: MonoBehaviour
         player.transform.position = new Vector3(-9.93f, 10.68f, 0f);
         player.GetComponent<PlayerManager>().ClearAllInventory();
         placeableObjectsContainer.ClearAllObj();
-        gamestatus.isNewGame = false;
-        gamestatus.nameScene = "2DMainGame";
+        gameStatus.isNewGame = false;
+        gameStatus.nameScene = "2DMainGame";
     }
 }
