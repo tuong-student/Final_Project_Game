@@ -34,7 +34,7 @@ namespace NOOD
         {
             while( isComplete == false)
             {
-                yield return pauseTimePerLoop;
+                yield return new WaitForSeconds(pauseTimePerLoop);
                 performTime++;
                 if(performTime == loopTime || func?.Invoke() == true)
                 {

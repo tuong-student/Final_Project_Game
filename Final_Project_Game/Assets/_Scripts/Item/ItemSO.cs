@@ -27,13 +27,13 @@ public class ItemSO : Storable, IHoldableItem
 
     #region Interface parameter
     public override bool Stackable => stackable;
-    public override Sprite Icon => icon;
+    public override Sprite IconImage => icon;
     public override int Id => id;
     public override StorageType StorageType => StorageType.FarmItem;
     public override int Price => price;
     public override bool Tradable => tradeable;
     public float InteractRate => interactRate;
-    public Sprite HoldImage => icon;
+    public Sprite Icon => icon;
     public Storable StorableData => this;
     #endregion
 }

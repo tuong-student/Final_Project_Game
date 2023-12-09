@@ -699,7 +699,7 @@ namespace NOOD
                 delegateObject.PurgeDelegatesOf(functionObject);
         }
         /// <summary>
-        /// UnSubscribe all function belong to currentObject from instance of <T> object
+        /// UnSubscribe all function belong to currentObject from instance of object
         /// </summary>
         /// <typeparam name="T"> The type of instance object </typeparam>
         /// <param name="currentObject"></param>

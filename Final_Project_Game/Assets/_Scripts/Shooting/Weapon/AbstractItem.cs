@@ -51,7 +51,12 @@ public abstract class AbstractItem : MonoBehaviour
         {
             _isAuto = true;
         };
-        GameInput.onPlayerStopShooting += () => {_isAuto = false;};
+        GameInput.onPlayerStopShooting += () =>
+        {
+            _isAuto = false;
+            if(_data != null)
+                StopPerform();
+        };
         _nextPerformTime = Time.time;
         _performTimer = Time.time;
     }
@@ -77,21 +82,18 @@ public abstract class AbstractItem : MonoBehaviour
                 FeedbackManager.Instance.PlayPlayerShootFB();
             }
         }
-        else
-        {
-            if(_data != null)
-            {
-                StopPerform();
-            }
-        }
+    }
+    void OnDisable()
+    {
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
     }
     #endregion
 
     #region Change item
     public void ChangeItemData(IHoldableItem data)
     {
-        Debug.Log("ChangeGunData");
-        if(data == null)
+        Debug.Log("ChangeItemData");
+        if(data == null || data.StorableData.StorageType == StorageType.Crop || data.StorableData.StorageType == StorageType.None)
         {
             _data = null;
             _itemViewIdle.sprite = null;
@@ -113,14 +115,15 @@ public abstract class AbstractItem : MonoBehaviour
                 // This is tool
                 ChangeTool();
             }
+            _itemViewIdle.sprite = HoldableItem.IconImage;
             Show();
         }
     }
     private void ChangeGun()
     {
         if(_data == null) return;
+
         GunSO gunSO = _data as GunSO;
-        _itemViewIdle.sprite = gunSO.Icon;
         _itemView.runtimeAnimatorController = gunSO._gunViewController;
         _casing.runtimeAnimatorController = gunSO._casingController;
         _flash.runtimeAnimatorController = gunSO._flashController;
@@ -128,8 +131,8 @@ public abstract class AbstractItem : MonoBehaviour
     private void ChangeTool()
     {
         if (_data == null) return;
+
         ItemSO itemSO = _data as ItemSO;
-        _itemViewIdle.sprite = itemSO.icon;
         if(itemSO.animator != null)
             _itemView.runtimeAnimatorController = itemSO.animator;
         else
@@ -140,7 +143,7 @@ public abstract class AbstractItem : MonoBehaviour
     }
     #endregion
 
-    #region abstract function
+    #region Abstract function
     public abstract void PerformAction();
     public abstract void StopPerform();
     #endregion

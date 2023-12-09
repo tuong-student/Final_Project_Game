@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using Codice.CM.SEIDInfo;
 using UnityEngine;
 
 namespace NOOD.Sound
@@ -56,6 +54,7 @@ namespace NOOD.Sound
             {
                 soundPlayer = disableSoundPlayers.First(x => x.soundType == soundEnum);
                 soundAudioPayer = soundPlayer.GetComponent<AudioSource>();
+                soundPlayer.gameObject.SetActive(true);
 
                 // Remove when get
                 disableSoundPlayers.Remove(soundPlayer);
@@ -63,6 +62,7 @@ namespace NOOD.Sound
             else
             {
                 GameObject newObj = new GameObject("SoundPlayer" + soundEnum.ToString());
+                newObj.transform.SetParent(soundManagerGlobal.transform);
                 soundPlayer = newObj.AddComponent<SoundPlayer>();
                 soundPlayer.soundType = soundEnum;
                 soundAudioPayer = newObj.AddComponent<AudioSource>();
@@ -158,13 +158,24 @@ namespace NOOD.Sound
 
             if (activeMusicPlayers.Any(x => x.musicType == musicEnum)) return;
 
-            GameObject newObj = new GameObject("MusicPlayer");
+            MusicPlayer musicPlayer;
+            if(disableMusicPlayers.Any(x => x.musicType == musicEnum))
+            {
+                musicPlayer = disableMusicPlayers.First(x => x.musicType == musicEnum);
+                musicPlayer.gameObject.SetActive(true);
+                disableMusicPlayers.Remove(musicPlayer);
+            }
+            else
+            {
+                GameObject newObj = new GameObject("MusicPlayer");
+                newObj.transform.SetParent(soundManagerGlobal.transform);
+                musicPlayer = newObj.AddComponent<MusicPlayer>();
+            }
 
-            AudioSource musicAudioSource;
-            MusicPlayer musicPlayer = newObj.AddComponent<MusicPlayer>();
             musicPlayer.musicType = musicEnum;
             activeMusicPlayers.Add(musicPlayer);
 
+            AudioSource musicAudioSource;
             musicAudioSource = musicPlayer.gameObject.AddComponent<AudioSource>();
             AudioClip audioClip = musicAudioSource.clip = soundData.musicDic.Dictionary[musicEnum.ToString()];
 
@@ -277,11 +288,6 @@ namespace NOOD.Sound
                 FindSoundData();
             }
             return soundData.musicDic.Dictionary[musicEnum.ToString()].length;
-        }
-
-        public static void PlaySound(SoundEnum buttonClicked, bool isMusicMute)
-        {
-            throw new NotImplementedException();
         }
         #endregion
     }

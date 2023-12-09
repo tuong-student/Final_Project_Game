@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IHoldableItem 
 {
     public float InteractRate { get; }
-    public Sprite HoldImage { get; }
+    public Sprite IconImage { get; }
     public Storable StorableData { get; }
 }

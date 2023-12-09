@@ -23,7 +23,7 @@ public class PickUpItem : MonoBehaviour
         this.count = count;
 
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
-        renderer.sprite = item.Icon;
+        renderer.sprite = item.IconImage;
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class PickUpItem : MonoBehaviour
             //Should be move into specified controller rather than being checked here.
             if (PlayerManager.Instance.inventoryContainer != null)
             {
-                Debug.Log("item_____" + item.Icon+ "______" + item.ToString());
+                Debug.Log("item_____" + item.IconImage+ "______" + item.ToString());
                 PlayerManager.Instance.inventoryContainer.Add(item, count);
             }
             else Debug.Log("No inventory container attached to the game manager");

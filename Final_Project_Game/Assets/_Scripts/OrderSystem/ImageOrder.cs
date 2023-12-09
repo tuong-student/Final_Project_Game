@@ -94,7 +94,7 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     private void UpdateUI()
     {
-        _itemIcon.sprite = _orderItemData.storable.Icon;
+        _itemIcon.sprite = _orderItemData.storable.IconImage;
         _itemQuantity.text = _orderItemData.quantity.ToString("0");
     }
     #endregion
