@@ -45,18 +45,18 @@ public class SettingPanel : MonoBehaviour
 
     private void AdjustMusic()
     {
+        isMuteMusic = !isMuteMusic;
         if(isMuteMusic)
             SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
-        isMuteMusic = !isMuteMusic;
         musicImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
         SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, isMuteMusic?0:1);
     }
 
     private void AdjustSound()
     {
+        isMuteSound = !isMuteSound;
         if(isMuteSound == false)
             SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
-        isMuteSound = !isMuteSound;
         soundImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
     }
 
