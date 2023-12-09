@@ -14,17 +14,20 @@ namespace NOOD.Sound
         }
 
 #region SoundRegion
-        public static void PlaySound(SoundEnum soundEnum)
+        public static void PlaySound(SoundEnum soundEnum, bool isMute)
         {
             if(soundData == null)
             {
                 FindSoundData();
             }
-
             GameObject newObj = new GameObject("SoundPlayer" + soundEnum.ToString());
             newObj.AddComponent<SoundPlayer>();
             AudioSource soundAudioPayer = newObj.AddComponent<AudioSource>();
             AudioClip audioClip = soundAudioPayer.clip = soundData.soundDic.Dictionary[soundEnum.ToString()];
+            if (isMute)
+                soundAudioPayer.volume = 0;
+            else
+                soundAudioPayer.volume = 1;
             soundAudioPayer.clip = audioClip;
             soundAudioPayer.Play();
             UnityEngine.Object.Destroy(soundAudioPayer.gameObject, audioClip.length);
@@ -64,7 +67,7 @@ namespace NOOD.Sound
         /// Play sound with the MusicPlayer gameObject if exists else create one then play music
         /// </summary>
         /// <param name="musicEnum"></param>
-        public static void PlayMusic(MusicEnum musicEnum)
+        public static void PlayMusic(MusicEnum musicEnum, bool isMute)
         {
             if(soundData == null)
             {
@@ -79,13 +82,33 @@ namespace NOOD.Sound
                 musicPlayer = newObj.AddComponent<AudioSource>();
             }
             else
-            {
                 musicPlayer = musicPlayerObject.GetComponent<AudioSource>();
-            }
             AudioClip audioClip = musicPlayer.clip = soundData.musicDic.Dictionary[musicEnum.ToString()];
+            if (isMute)
+                musicPlayer.volume = 0;
+            else
+                musicPlayer.volume = 1;
             musicPlayer.clip = audioClip;
             musicPlayer.loop = true;
             musicPlayer.Play();
+        }
+
+
+        public static void AdjustMusicTemporary(bool isMute)
+        {
+            AudioSource musicPlayer;
+            MusicPlayer musicPlayerObject = GameObject.FindObjectOfType<MusicPlayer>();
+            if (musicPlayerObject == null)
+            {
+                Debug.Log("Music Player Object is Null");
+                return;
+            }
+            else
+                musicPlayer = musicPlayerObject.GetComponent<AudioSource>();
+            if (isMute)
+                musicPlayer.volume = 0;
+            else
+                musicPlayer.volume = 1;
         }
         /// <summary>
         /// Play one more music in background

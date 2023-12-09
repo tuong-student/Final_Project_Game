@@ -1,13 +1,9 @@
-using Game;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using NOOD.SerializableDictionary;
-using TMPro;
 using NOOD.Sound;
+using System.Collections.Generic;
+using DG.Tweening;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -16,10 +12,12 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button settingGameBtn;
     [SerializeField] private Button creditsGameBtn;
     [SerializeField] private Button exitGameBtn;
+    [SerializeField] private GameObject settingPanel;
+    [SerializeField] private GameObject creditsPanel;
     [SerializeField] private string nameEssentialScene;
     [SerializeField] private string nameNewGameStartScene;
     public GameStatus gameStatus;
-
+    private bool isMute;
     private void Start()
     {
         startNewBtn.onClick.AddListener(StartNewGame);
@@ -33,21 +31,23 @@ public class MainMenuUI : MonoBehaviour
         }
         else
             loadGameBtn.gameObject.SetActive(true);
+        isMute = gameStatus.isSoundMute;
     }
 
     public void StartNewGame()
     {
         Debug.Log("New Game");
-        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, isMute);
         gameStatus.isNewGame = true;
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
+        
     }
 
     private void LoadGame()
     {
         Debug.Log("Load Game");
-        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, isMute);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(gameStatus.nameScene, LoadSceneMode.Additive);
     }
@@ -56,17 +56,19 @@ public class MainMenuUI : MonoBehaviour
 
     public void SettingGame()
     {
-        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, isMute);
+        this.gameObject.SetActive(false);
+        settingPanel.SetActive(true);
     }
 
     public void Credits()
     {
-        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, isMute);
     }
 
     public void ExitGame()
     {
-        // SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, isMute);
         Application.Quit();
     }
 }
