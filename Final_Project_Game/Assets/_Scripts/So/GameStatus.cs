@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/GameStatus")]
-public class GameStatus : ScriptableObject
+public class GameStatusSO : ScriptableObject
 {
     public bool isNewGame;
     public string nameScene;

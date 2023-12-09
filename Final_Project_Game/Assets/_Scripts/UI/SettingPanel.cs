@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using NOOD.Sound;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 public class SettingPanel : MonoBehaviour
 {
+    #region SerializeField
     [SerializeField] private Button musicBtn;
     [SerializeField] private Button soundBtn;
     [SerializeField] private Button confirmBtn;
@@ -14,51 +16,65 @@ public class SettingPanel : MonoBehaviour
     [SerializeField] private Image musicImg;
     [SerializeField] private Image soundImg;
     [SerializeField] private List<Sprite> listSprite;
-    private bool isMuteMusic = GameManager.instance.gamestatus.isMusicMute;
-    private bool isMuteSound = GameManager.instance.gamestatus.isSoundMute;
-    private DOTween tweenl;
+    [SerializeField] private GameStatusSO gameStatus;
+    [SerializeField] private MMF_Player showFB;
+    [SerializeField] private MMF_Player hideFB;
+    #endregion
+    private bool isMuteMusic;
+    private bool isMuteSound;
+
+    void Awake()
+    {
+        isMuteMusic = gameStatus.isMusicMute;
+        isMuteSound = gameStatus.isSoundMute;
+    }
 
     private void Start()
     {
-        transform.DOMoveY(0, 2f);
+        if (showFB != null)
+            showFB.PlayFeedbacks();
         musicBtn.onClick.AddListener(AdjustMusic);
         soundBtn.onClick.AddListener(AdjustSound);
         confirmBtn.onClick.AddListener(OnConfirm);
         exitBtn.onClick.AddListener(OnExit);
         musicImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
         soundImg.sprite = isMuteSound ? listSprite[0] : listSprite[1];
-        SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme,isMuteMusic);
+        if(isMuteSound == false)
+            SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
     }
 
     private void AdjustMusic()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, isMuteSound);
+        if(isMuteMusic)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         isMuteMusic = !isMuteMusic;
         musicImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
-        SoundManager.AdjustMusicTemporary(isMuteMusic);
+        SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, isMuteMusic?0:1);
     }
 
     private void AdjustSound()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, isMuteSound);
+        if(isMuteSound == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         isMuteSound = !isMuteSound;
         soundImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
     }
 
     private void OnConfirm()
     {
-        GameManager.instance.gamestatus.isMusicMute = isMuteMusic;
-        GameManager.instance.gamestatus.isSoundMute = isMuteSound;
-        SoundManager.AdjustMusicTemporary(GameManager.instance.gamestatus.isMusicMute);
-        this.gameObject.transform.DOMoveY(-2000, 1f);
-        this.gameObject.SetActive(false);
-        
+        gameStatus.isMusicMute = isMuteMusic;
+        gameStatus.isSoundMute = isMuteSound;
+        SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, gameStatus.isMusicMute?0:1);
+        if (hideFB != null)
+            hideFB.PlayFeedbacks();
     }
 
     private void OnExit()
     {
-        this.gameObject.transform.DOMoveY(-2000, 1f);
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, GameManager.instance.gamestatus.isMusicMute);
+        if (hideFB != null)
+            hideFB.PlayFeedbacks();
+        if(isMuteSound == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         this.gameObject.SetActive(false);
     }
 

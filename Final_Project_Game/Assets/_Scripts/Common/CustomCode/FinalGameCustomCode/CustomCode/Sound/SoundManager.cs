@@ -1,57 +1,138 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using Codice.CM.SEIDInfo;
 using UnityEngine;
 
 namespace NOOD.Sound
 {
     public class SoundManager
     {
+        #region Object Init
         private static SoundDataSO soundData;
+        private static GameObject soundManagerGlobal;
+        #endregion
+
+        #region List
+        private static List<MusicPlayer> activeMusicPlayers;
+        private static List<SoundPlayer> activeSoundPlayers;
+        private static List<MusicPlayer> disableMusicPlayers;
+        private static List<SoundPlayer> disableSoundPlayers;
+        #endregion
 
         public static void FindSoundData()
         {
-            soundData = Resources.FindObjectsOfTypeAll<SoundDataSO>()[0];
+            soundData = Resources.FindObjectsOfTypeAll<SoundDataSO>().First();
             if(soundData == null)
                 Debug.LogError("Can't find SoundData, please create one in Resources folder using Create -> SoundData");
         }
 
-#region SoundRegion
-        public static void PlaySound(SoundEnum soundEnum, bool isMute)
+        private static void InitIfNeed()
         {
+            if(soundManagerGlobal == null)
+            {
+                Debug.Log("SoundManager Init");
+                soundManagerGlobal = new GameObject("SoundManagerGlobal");
+                disableMusicPlayers = new List<MusicPlayer>();
+                disableSoundPlayers = new List<SoundPlayer>();
+                activeMusicPlayers = new List<MusicPlayer>();
+                activeSoundPlayers = new List<SoundPlayer>();
+            }
+        }
+
+#region SoundRegion
+        public static void PlaySound(SoundEnum soundEnum, float volume = 1)
+        {
+            InitIfNeed();
             if(soundData == null)
             {
                 FindSoundData();
             }
-            GameObject newObj = new GameObject("SoundPlayer" + soundEnum.ToString());
-            newObj.AddComponent<SoundPlayer>();
-            AudioSource soundAudioPayer = newObj.AddComponent<AudioSource>();
-            AudioClip audioClip = soundAudioPayer.clip = soundData.soundDic.Dictionary[soundEnum.ToString()];
-            if (isMute)
-                soundAudioPayer.volume = 0;
+
+            AudioSource soundAudioPayer;
+            SoundPlayer soundPlayer;
+            if (disableSoundPlayers.Any(x => x.soundType == soundEnum))
+            {
+                soundPlayer = disableSoundPlayers.First(x => x.soundType == soundEnum);
+                soundAudioPayer = soundPlayer.GetComponent<AudioSource>();
+
+                // Remove when get
+                disableSoundPlayers.Remove(soundPlayer);
+            }
             else
-                soundAudioPayer.volume = 1;
+            {
+                GameObject newObj = new GameObject("SoundPlayer" + soundEnum.ToString());
+                soundPlayer = newObj.AddComponent<SoundPlayer>();
+                soundPlayer.soundType = soundEnum;
+                soundAudioPayer = newObj.AddComponent<AudioSource>();
+            }
+            AudioClip audioClip = soundData.soundDic.Dictionary[soundEnum.ToString()];
+
+            soundAudioPayer.playOnAwake = false;
+            soundAudioPayer.volume = volume;
             soundAudioPayer.clip = audioClip;
             soundAudioPayer.Play();
-            UnityEngine.Object.Destroy(soundAudioPayer.gameObject, audioClip.length);
+            activeSoundPlayers.Add(soundPlayer);
+
+            // Add to list when disable
+            NoodyCustomCode.StartDelayFunction(() =>
+            {
+                soundAudioPayer.gameObject.SetActive(false);
+                activeSoundPlayers.Remove(soundPlayer);
+                disableSoundPlayers.Add(soundPlayer);
+            }, audioClip.length);
         }
+        /// <summary>
+        /// Stop all soundPlayers has the same soundEnum
+        /// </summary>
+        /// <param name="soundEnum"></param>
         public static void StopSound(SoundEnum soundEnum)
         {
+            InitIfNeed();
             if(soundData == null)
             {
                 FindSoundData();
             }
-            GameObject soundPlayerObj = GameObject.Find("SoundPlayer" + soundEnum.ToString());
-            UnityEngine.Object.Destroy(soundPlayerObj);
+            SoundPlayer[] soundPlayerArray = GameObject.FindObjectsByType<SoundPlayer>(sortMode: FindObjectsSortMode.None).Where(x => x.soundType == soundEnum).ToArray();
+
+            foreach(var soundPlayer in soundPlayerArray)
+            {
+                if(soundPlayer.isActiveAndEnabled)
+                {
+                    soundPlayer.gameObject.SetActive(false);
+                    activeSoundPlayers.Remove(soundPlayer);
+                    disableSoundPlayers.Add(soundPlayer);
+                }
+            }
         }
+        /// <summary>
+        /// Stop all soundPlayer found
+        /// </summary>
         public static void StopAllSound()
         {
+            InitIfNeed();
             if(soundData == null)
             {
                 FindSoundData();
             }
+
             foreach(var soundPlayer in GameObject.FindObjectsOfType<SoundPlayer>())
             {
-                UnityEngine.Object.Destroy(soundPlayer);
+                if(soundPlayer.isActiveAndEnabled)
+                {
+                    soundPlayer.gameObject.SetActive(false);
+
+                    activeSoundPlayers.Remove(soundPlayer);
+                    disableSoundPlayers.Add(soundPlayer);
+                }
             }
         }
+        /// <summary>
+        /// Get the sound length base on soundEnum (data from soundData)
+        /// </summary>
+        /// <param name="soundEnum"></param>
+        /// <returns></returns>
         public static float GetSoundLength(SoundEnum soundEnum)
         {
             if(soundData == null)
@@ -64,90 +145,131 @@ namespace NOOD.Sound
 
 #region MusicRegion
         /// <summary>
-        /// Play sound with the MusicPlayer gameObject if exists else create one then play music
+        /// Play music with new MusicPlayer gameObject if exist no play, else play
         /// </summary>
         /// <param name="musicEnum"></param>
-        public static void PlayMusic(MusicEnum musicEnum, bool isMute)
+        public static void PlayMusic(MusicEnum musicEnum, float volume = 1)
         {
+            InitIfNeed();
             if(soundData == null)
             {
                 FindSoundData();
             }
-            AudioSource musicPlayer;
-            MusicPlayer musicPlayerObject = GameObject.FindObjectOfType<MusicPlayer>();
-            if(musicPlayerObject == null)
-            {
-                GameObject newObj = new GameObject("MusicPlayer" + musicEnum.ToString());
-                newObj.AddComponent<MusicPlayer>();
-                musicPlayer = newObj.AddComponent<AudioSource>();
-            }
-            else
-                musicPlayer = musicPlayerObject.GetComponent<AudioSource>();
-            AudioClip audioClip = musicPlayer.clip = soundData.musicDic.Dictionary[musicEnum.ToString()];
-            if (isMute)
-                musicPlayer.volume = 0;
-            else
-                musicPlayer.volume = 1;
-            musicPlayer.clip = audioClip;
-            musicPlayer.loop = true;
-            musicPlayer.Play();
+
+            if (activeMusicPlayers.Any(x => x.musicType == musicEnum)) return;
+
+            GameObject newObj = new GameObject("MusicPlayer");
+
+            AudioSource musicAudioSource;
+            MusicPlayer musicPlayer = newObj.AddComponent<MusicPlayer>();
+            musicPlayer.musicType = musicEnum;
+            activeMusicPlayers.Add(musicPlayer);
+
+            musicAudioSource = musicPlayer.gameObject.AddComponent<AudioSource>();
+            AudioClip audioClip = musicAudioSource.clip = soundData.musicDic.Dictionary[musicEnum.ToString()];
+
+            musicAudioSource.volume = volume;
+            musicAudioSource.clip = audioClip;
+            musicAudioSource.loop = true;
+            musicAudioSource.Play();
         }
 
-
-        public static void AdjustMusicTemporary(bool isMute)
+        /// <summary>
+        /// Change all music volumes that have the same musicEnum
+        /// </summary>
+        /// <param name="musicEnum"></param>
+        /// <param name="volume"></param>
+        public static void ChangeMusicVolume(MusicEnum musicEnum, float volume)
         {
-            AudioSource musicPlayer;
-            MusicPlayer musicPlayerObject = GameObject.FindObjectOfType<MusicPlayer>();
-            if (musicPlayerObject == null)
+            InitIfNeed();
+            foreach(var musicPlayer in activeMusicPlayers)
             {
-                Debug.Log("Music Player Object is Null");
-                return;
+                if(musicPlayer.musicType == musicEnum)
+                {
+                    AudioSource audioSource = musicPlayer.GetComponent<AudioSource>();
+                    audioSource.volume = volume;
+                }
             }
-            else
-                musicPlayer = musicPlayerObject.GetComponent<AudioSource>();
-            if (isMute)
-                musicPlayer.volume = 0;
-            else
-                musicPlayer.volume = 1;
         }
         /// <summary>
-        /// Play one more music in background
+        /// Change music clip of audio source from sourceMusicEnum clip to toMusicEnum clip
+        /// </summary>
+        /// <param name="sourceMusicEnum"></param>
+        /// <param name="toMusicEnum"></param>
+        public static void ChangeMusic(MusicEnum sourceMusicEnum, MusicEnum toMusicEnum)
+
+        {
+            InitIfNeed();
+            if(soundData == null)
+            {
+                FindSoundData();
+            }
+
+            MusicPlayer musicPlayer;
+            AudioSource musicAudioSource;
+            if(activeMusicPlayers.Any(x => x.musicType == sourceMusicEnum))
+            {
+                musicPlayer = activeMusicPlayers.First(x => x.musicType == sourceMusicEnum);
+                musicAudioSource = musicPlayer.GetComponent<AudioSource>();
+                musicPlayer.musicType = toMusicEnum;
+                musicAudioSource.clip = soundData.musicDic.Dictionary[toMusicEnum.ToString()];
+            }
+            else
+            {
+                Debug.Log("No source music enum, just play to music enum instead");
+                PlayMusic(toMusicEnum);
+            }
+        }
+
+        public static void ChangeMusicAndVolume(MusicEnum sourceMusicEnum, MusicEnum toMusicEnum, float volume)
+        {
+            ChangeMusic(sourceMusicEnum, toMusicEnum);
+            ChangeMusicVolume(toMusicEnum, volume);
+        }
+
+        #region Stop Music
+        /// <summary>
+        /// Stop all MusicPlayer has the same musicEnum
         /// </summary>
         /// <param name="musicEnum"></param>
-        public static void PlayMoreMusic(MusicEnum musicEnum)
+        public static void StopMusic(MusicEnum musicEnum)
         {
-            if(soundData == null)
+            InitIfNeed();
+            if(activeMusicPlayers.Any(x => x.musicType == musicEnum))
             {
-                FindSoundData();
-            }
-            GameObject newObj = new GameObject("MusicPlayer" + musicEnum.ToString());
-            newObj.AddComponent<MusicPlayer>();
-            AudioSource musicPlayer = newObj.AddComponent<AudioSource>();
-            AudioClip audioClip = musicPlayer.clip = soundData.musicDic.Dictionary[musicEnum.ToString()];
-            musicPlayer.clip = audioClip;
-            musicPlayer.loop = true;
-            musicPlayer.Play();
+                MusicPlayer musicPlayer =  activeMusicPlayers.First(x => x.musicType == musicEnum);
+
+                musicPlayer.GetComponent<AudioSource>().Stop();
+                musicPlayer.gameObject.SetActive(false);
+                activeMusicPlayers.Remove(musicPlayer);
+                disableMusicPlayers.Add(musicPlayer);
+            } 
         }
-        public static void ChangeMusic(MusicEnum musicEnum)
-        {
-            if(soundData == null)
-            {
-                FindSoundData();
-            }
-            AudioSource musicPlayer = GameObject.FindObjectOfType<MusicPlayer>().GetComponent<AudioSource>();
-            musicPlayer.gameObject.name = "MusicPlayer" + musicEnum.ToString();
-            AudioClip clip = soundData.musicDic.Dictionary[musicEnum.ToString()];
-            musicPlayer.clip = clip;
-        }
+        /// <summary>
+        /// Stop all MusicPlayer found
+        /// </summary>
         public static void StopAllMusic()
         {
+            InitIfNeed();
             if(soundData == null)
             {
                 FindSoundData();
             }
-            AudioSource musicPlayer = GameObject.FindObjectOfType<MusicPlayer>().GetComponent<AudioSource>();
-            musicPlayer.Stop();
+            MusicPlayer[] musicPlayerArray = GameObject.FindObjectsOfType<MusicPlayer>();
+            foreach(var musicPlayer in musicPlayerArray)
+            {
+                musicPlayer.GetComponent<AudioSource>().Stop();
+                musicPlayer.gameObject.SetActive(false);
+                activeMusicPlayers.Remove(musicPlayer);
+                disableMusicPlayers.Add(musicPlayer);
+            }
         }
+        #endregion
+        /// <summary>
+        /// Get music length (data from SoundData)
+        /// </summary>
+        /// <param name="musicEnum"></param>
+        /// <returns></returns>
         public static float GetMusicLength(MusicEnum musicEnum)
         {
             if(soundData == null)
@@ -156,9 +278,20 @@ namespace NOOD.Sound
             }
             return soundData.musicDic.Dictionary[musicEnum.ToString()].length;
         }
-#endregion
+
+        public static void PlaySound(SoundEnum buttonClicked, bool isMusicMute)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 
-    public class SoundPlayer : MonoBehaviour { }
-    public class MusicPlayer : MonoBehaviour { }
+    public class SoundPlayer : MonoBehaviour 
+    {
+        public SoundEnum soundType;
+    }
+    public class MusicPlayer : MonoBehaviour 
+    {
+        public MusicEnum musicType;
+    }
 }

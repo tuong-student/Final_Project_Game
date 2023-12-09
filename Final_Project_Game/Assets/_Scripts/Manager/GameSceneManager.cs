@@ -19,7 +19,7 @@ public class GameSceneManager : MonoBehaviour
     private AsyncOperation load;
     private void Start()
     {
-        currentScene = GameManager.instance.gamestatus.nameScene;
+        currentScene = GameManager.instance.gameStatus.nameScene;
     }
 
     public void InitSwitchScene(string to,Vector3 targetPosition)
@@ -51,7 +51,7 @@ public class GameSceneManager : MonoBehaviour
         load = SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
          unLoad = SceneManager.UnloadSceneAsync(currentScene);
         currentScene = to;
-        GameManager.instance.gamestatus.nameScene = to;
+        GameManager.instance.gameStatus.nameScene = to;
         Transform playerTransform = GameManager.instance.player.transform;
 
         CinemachineBrain currentCamera = Camera.main.GetComponent<CinemachineBrain>();
