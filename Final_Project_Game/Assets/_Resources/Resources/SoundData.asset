@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: SoundData
   m_EditorClassIdentifier: 
   soundDic:
-    _pairs: []
+    _pairs:
+    - _key: ButtonClicked
+      _value: {fileID: 8300000, guid: 4fd31d26db6b680499a977af10f41384, type: 3}
+    - _key: EnemyHited
+      _value: {fileID: 8300000, guid: b6f4fca2451513f42ae99fe9eb534c3d, type: 3}
+    - _key: Pistol
+      _value: {fileID: 8300000, guid: 72949c2f47800ee46a45e01b8b3afa0d, type: 3}
+    - _key: Tele
+      _value: {fileID: 8300000, guid: 9ecfd5f1ec3cdc14ead9c9df2f78e828, type: 3}
   musicDic:
-    _pairs: []
+    _pairs:
+    - _key: Theme
+      _value: {fileID: 8300000, guid: 434f67269b8f7e44cbcd6e46d04012b6, type: 3}

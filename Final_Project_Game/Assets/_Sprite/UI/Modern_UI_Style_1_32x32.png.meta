@@ -1193,6 +1193,174 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Panel2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 824
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 6, z: 4, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d033269cefc364bb597180a0ba96bb
+      internalID: 237847508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundOn2
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1216
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db4419898d3222344b98dae2e7b25dee
+      internalID: 1469492571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundOff2
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1216
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10257c01a0c842c448df48afba01f2a1
+      internalID: -1833351560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBG1
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 608
+        width: 44
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 8, z: 6, w: 6}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24571c92712a36a48a2991a9741cffe3
+      internalID: -691889142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pane
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 648
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 8, z: 6, w: 6}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0898abd5b8f5334f89e5d83c6590180
+      internalID: -978351720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Modern_UI_Style_1_32x32_42
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 669
+        width: 4
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491591088dccf0e4d8758a3d0a1348ac
+      internalID: 186932109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ConfirmButton
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 1280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e1ec86ac775aeb4390010251ae64026
+      internalID: 473266845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExitButton
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48c2d597c2ae1dc4ab1a230d7a71c24c
+      internalID: -764157763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1205,6 +1373,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       ButtonBG: 180573053
+      ButtonBG1: -691889142
+      ConfirmButton: 473266845
+      ExitButton: -764157763
       FullHP: -1944427054
       Modern_UI_Style_1_32x32_0: 2017681641
       Modern_UI_Style_1_32x32_1: -625919351
@@ -1243,6 +1414,7 @@ TextureImporter:
       Modern_UI_Style_1_32x32_4: -1223910239
       Modern_UI_Style_1_32x32_40: 897968147
       Modern_UI_Style_1_32x32_41: 1477052497
+      Modern_UI_Style_1_32x32_42: 186932109
       Modern_UI_Style_1_32x32_5: -340076915
       Modern_UI_Style_1_32x32_6: -222924137
       Modern_UI_Style_1_32x32_7: -870533923
@@ -1251,9 +1423,13 @@ TextureImporter:
       NoHP: 245631736
       OneFourHP: 987578092
       OneTwoHP: 1482461155
+      Pane: -978351720
       Panel: 1496548295
+      Panel2: 237847508
       SoundOff: 707555119
+      SoundOff2: -1833351560
       SoundOn: -1012046073
+      SoundOn2: 1469492571
       ThreeFourHP: -1337359684
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

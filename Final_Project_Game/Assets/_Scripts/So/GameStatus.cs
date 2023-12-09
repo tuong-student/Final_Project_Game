@@ -7,4 +7,6 @@ public class GameStatus : ScriptableObject
 {
     public bool isNewGame;
     public string nameScene;
+    public bool isMusicMute;
+    public bool isSoundMute;
 }
