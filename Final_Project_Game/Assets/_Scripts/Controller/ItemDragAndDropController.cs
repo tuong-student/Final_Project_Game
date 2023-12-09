@@ -55,7 +55,7 @@ public class ItemDragAndDropController : MonoBehaviour
         else
         {
             ItemIcon.SetActive(true);
-            itemIconImage.sprite = itemSlot.storable.Icon;
+            itemIconImage.sprite = itemSlot.storable.IconImage;
         }
     }
 

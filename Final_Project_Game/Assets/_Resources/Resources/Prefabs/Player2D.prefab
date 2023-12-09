@@ -375,7 +375,7 @@ MonoBehaviour:
   - {x: -0.06049061, y: -0.00066161156, z: 0}
   m_ShapePathHash: 500576805
   m_Mesh: {fileID: 0}
-  m_InstanceId: -8138
+  m_InstanceId: -49066
   m_LocalBounds:
     m_Center: {x: -0.00219059, y: 0.4996044, z: 0}
     m_Extent: {x: 0.3780079, y: 0.5012701, z: 0}
@@ -555,14 +555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f22a23e15cf3c49a9e2a2c129fddf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp:
-    maxVal: 100
-    currVal: 50
-  stamina:
-    maxVal: 100
-    currVal: 40
-  hpBar: {fileID: 0}
-  staminaBar: {fileID: 0}
 --- !u!114 &1630807197038679947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,7 +599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolbarSize: 12
-  iconHightlight: {fileID: 0}
+  iconHighlight: {fileID: 0}
 --- !u!114 &1224647797554350213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,6 +760,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.131
       objectReference: {fileID: 0}
+    - target: {fileID: 4229367242317689273, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: _itemView
+      value: 
+      objectReference: {fileID: 3172591526504528194}
+    - target: {fileID: 4229367242317689273, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+      propertyPath: _itemViewIdle
+      value: 
+      objectReference: {fileID: 7989150563556303105}
     - target: {fileID: 6044425141827028013, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
       propertyPath: m_Controller
       value: 
@@ -838,6 +838,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8949189229435274485, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
   m_PrefabInstance: {fileID: 9215864070572162415}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &3172591526504528194 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6044425141827028013, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+  m_PrefabInstance: {fileID: 9215864070572162415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4995873601090079958 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4229367242317689273, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
@@ -849,3 +854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b086615c1da7104788f9ccd84d48ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &7989150563556303105 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1241438309182315630, guid: b3dd2e0432b818b4eb4fbd09986051ac, type: 3}
+  m_PrefabInstance: {fileID: 9215864070572162415}
+  m_PrefabAsset: {fileID: 0}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using NOOD;
+using NOOD.Sound;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class BulletMono : MonoBehaviour
             SpawnDamageText(this.GetDamage());
         }
         PlayBulletEffect();
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.BulletExplode);
         Invoke(nameof(DeactivateSelf), 0.1f);
     }
     void OnDestroy()

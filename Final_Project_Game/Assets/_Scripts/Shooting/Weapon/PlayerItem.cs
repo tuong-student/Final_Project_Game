@@ -1,3 +1,5 @@
+using NOOD.Sound;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerItem : AbstractItem
@@ -30,13 +32,17 @@ public class PlayerItem : AbstractItem
         _flash.SetBool("Play", true);
         bullet.transform.position = _bulletSpawnTrans.position;
         bullet.GetComponent<Rigidbody2D>().AddForce(this.transform.right * gunSO._bulletForce);
+
+        // Play sound
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.Shoot, 1);
     }
     private void StopShooting()
     {
+        Debug.Log("StopShooting");
         _itemView.SetBool("Play", false);
         _casing.SetBool("Play", false);
         _flash.SetBool("Play", false);
-        _itemViewIdle.sprite = HoldableItem.HoldImage;
+        _itemViewIdle.sprite = _data.IconImage;
     }
     #endregion
 

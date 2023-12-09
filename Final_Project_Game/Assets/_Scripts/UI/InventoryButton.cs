@@ -20,7 +20,7 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
     public void SetItem(ItemSlot slot)
     {
         icon.gameObject.SetActive(true);
-        icon.sprite = slot.storable.Icon;
+        icon.sprite = slot.storable.IconImage;
 
         if (slot.storable.Stackable)
         {

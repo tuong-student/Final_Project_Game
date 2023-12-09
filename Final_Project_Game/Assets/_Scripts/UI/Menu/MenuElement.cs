@@ -31,7 +31,7 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             _itemSlot = itemSlot;
             _storableData = itemSlot.storable;
             _icon.color = Color.white;
-            _icon.sprite = _storableData.Icon;
+            _icon.sprite = _storableData.IconImage;
             _price.gameObject.SetActive(true);
             _price.text = itemSlot.storable.Price.ToString("0");
             if(_quantity != null)

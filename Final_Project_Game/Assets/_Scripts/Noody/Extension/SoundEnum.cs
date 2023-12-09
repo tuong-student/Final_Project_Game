@@ -2,6 +2,9 @@ public enum SoundEnum
 { 
 	ButtonClicked = 0,
 	EnemyHited = 1,
-	Pistol = 2,
+	Shoot = 2,
 	Tele = 3,
+	BulletExplode = 4,
+	PlayerHit = 5,
+	FootStep = 6,
 }

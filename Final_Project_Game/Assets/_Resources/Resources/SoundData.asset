@@ -17,11 +17,17 @@ MonoBehaviour:
     - _key: ButtonClicked
       _value: {fileID: 8300000, guid: 4fd31d26db6b680499a977af10f41384, type: 3}
     - _key: EnemyHited
-      _value: {fileID: 8300000, guid: b6f4fca2451513f42ae99fe9eb534c3d, type: 3}
-    - _key: Pistol
-      _value: {fileID: 8300000, guid: 72949c2f47800ee46a45e01b8b3afa0d, type: 3}
+      _value: {fileID: 8300000, guid: e6a455d6479c94839a0ef45a30089b17, type: 3}
+    - _key: Shoot
+      _value: {fileID: 8300000, guid: 400bfadff74d1423c93ffffb0666fa04, type: 3}
     - _key: Tele
       _value: {fileID: 8300000, guid: 9ecfd5f1ec3cdc14ead9c9df2f78e828, type: 3}
+    - _key: BulletExplode
+      _value: {fileID: 8300000, guid: b6f4fca2451513f42ae99fe9eb534c3d, type: 3}
+    - _key: PlayerHit
+      _value: {fileID: 8300000, guid: f35c236fc97db4309b80d8b34da60785, type: 3}
+    - _key: FootStep
+      _value: {fileID: 8300000, guid: 5a67c3ebaba314bdcb3ae080147fdda7, type: 3}
   musicDic:
     _pairs:
     - _key: Theme

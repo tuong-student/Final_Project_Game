@@ -24,7 +24,7 @@ public class ToolbarController : MonoBehaviour
     {
         get
         {
-            return PlayerManager.Instance.inventoryContainer.slots[selectedTool].storable;
+            return GetItemSlot.storable;
         }
     }
     private void Start()
@@ -62,24 +62,19 @@ public class ToolbarController : MonoBehaviour
         if(storable == null) return;
         if(storable.StorageType == StorageType.FarmItem)
         {
-            ItemSO item = storable as ItemSO;
-            if (item == null)
+            ItemSO itemSO = storable as ItemSO;
+            if (itemSO == null)
             {
                 iconHighlight.Show = false;
                 return;
             }
 
-            iconHighlight.Show = item.iconHighlight;
-            if (item.iconHighlight)
+            iconHighlight.Show = itemSO.iconHighlight;
+            if (itemSO.iconHighlight)
             {
-                iconHighlight.SetIcon(item.icon);
+                iconHighlight.SetIcon(itemSO.icon);
             }
-            PlayerManager.Instance.ChangeItem(item);
         }
-        if(storable.StorageType == StorageType.Weapon)
-        {
-            GunSO gunSO = storable as GunSO;
-            PlayerManager.Instance.ChangeItem(gunSO);
-        }
+        PlayerManager.Instance.ChangeItem((IHoldableItem)storable);
     }
 }
