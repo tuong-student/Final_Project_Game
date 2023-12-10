@@ -9,11 +9,20 @@ namespace Game
     public class UIManager : MonoBehaviorInstance<UIManager>
     {
         private static List<object> _uiList = new List<object>();
+        [SerializeField] private GameObject settingPanel;
+
 
         void OnDisable()
         {
             _uiList.Clear();
             GlobalConfig._isBlockInput = false;
+        }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                settingPanel.SetActive(true);
+            }
         }
 
         #region UIList

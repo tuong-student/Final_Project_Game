@@ -90,6 +90,7 @@ namespace Game
             if(tempItem == null) return;
             //tempItem.Pickup(_inventory);
         }
+
         #endregion
 
         #region Inventory

@@ -62,7 +62,6 @@ public class MainMenuUI : MonoBehaviour
     {
         if(isMute == false)
             SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
-        this.gameObject.SetActive(false);
         settingPanel.SetActive(true);
     }
 
