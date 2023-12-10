@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Game;
 using NOOD;
 using UnityEngine;
 
@@ -33,7 +31,7 @@ public class OrderManager : MonoBehaviorInstance<OrderManager>
     public Action<int> onPlayerCompleteOrder;
     #endregion
 
-    [SerializeField] private List<ItemSO> _itemSOs = new List<ItemSO>();
+    [SerializeField] private List<Storable> _storableSOs = new List<Storable>();
     [SerializeField] private List<Order> _orderList = new List<Order>();
     private int completeOrderNumber = 0;
 
@@ -76,24 +74,17 @@ public class OrderManager : MonoBehaviorInstance<OrderManager>
     #endregion
 
     #region Add Remove
-    public void DeliverOrder(List<Order> orderWillDeliver)
-    {
-        foreach(Order order in orderWillDeliver)
-        {
-            Debug.Log(order);
-            _orderList.Remove(order);
-            // money to player
-        }
-    }
     public Order CreateOrder()
     {
         Order newOrder = new Order();
         int quantity = 4;
         for(int i = 0; i < UnityEngine.Random.Range(1, 4); i++)
         {
-            OrderItem orderItem = new OrderItem();
-            orderItem.storable = GetRandomItemSO();
-            orderItem.quantity = UnityEngine.Random.Range(1, 40);
+            OrderItem orderItem = new OrderItem
+            {
+                storable = GetRandomStorable(),
+                quantity = UnityEngine.Random.Range(1, 40)
+            };
 
             newOrder._orderItems.Add(orderItem);
             quantity += orderItem.quantity;
@@ -105,10 +96,10 @@ public class OrderManager : MonoBehaviorInstance<OrderManager>
     #endregion
 
     #region Support functions
-    private ItemSO GetRandomItemSO()
+    private Storable GetRandomStorable()
     {
-        int r = UnityEngine.Random.Range(0, _itemSOs.Count);
-        return _itemSOs[r];
+        int r = UnityEngine.Random.Range(0, _storableSOs.Count);
+        return _storableSOs[r];
     }
     #endregion
 }

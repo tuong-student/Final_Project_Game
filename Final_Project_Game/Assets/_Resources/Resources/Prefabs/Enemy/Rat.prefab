@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858035602781596109}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0092001, y: 3.2596, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.396, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133,7 +133,7 @@ MonoBehaviour:
   _isTest: 0
   _moveSpeed: 2
   _hp: 30
-  _reward: {fileID: 11400000, guid: b32ef40573ffc44c9a990fea9a8b8640, type: 2}
+  _reward: {fileID: 11400000, guid: eadb90fb97716ab41a9789ebad6e536a, type: 2}
   _enemyAnimation: {fileID: 5663475940339780180}
   _attackRate: 2
   _damage: 1
@@ -264,7 +264,7 @@ SpriteRenderer:
   m_SortingLayerID: 1432456721
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3286189400204805870, guid: bacb39275657a5c41b462455d80cd045, type: 3}
+  m_Sprite: {fileID: -1760335954127753486, guid: 644b5e0fc2845cd42961d91d1151e072, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -308,5 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890d28643320300499a7ac5b5ff38349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseEnemy: {fileID: 334701163995709794}
   _anim: {fileID: 779432328088233792}
-  _sr: {fileID: 0}
+  _sr: {fileID: 1476815487061620065}
+  _light2D: {fileID: 3467802795348212364}

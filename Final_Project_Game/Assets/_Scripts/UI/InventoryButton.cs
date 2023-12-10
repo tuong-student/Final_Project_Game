@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using NOOD;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryButton : MonoBehaviour, IPointerClickHandler
+public class InventoryButton : MonoBehaviour, IPointerClickHandler, IDisplayInfo
 {
     [SerializeField] Image icon;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] Image hightLight;
+    public Storable _storableData;
     int myIndex;
 
     public void SetIndex(int index)
@@ -29,6 +31,8 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
         }
         else
             text.gameObject.SetActive(false);
+
+        _storableData = slot.storable;
     }
     public void Clean()
     {
@@ -46,5 +50,14 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
    public void Highlight(bool b)
     {
         hightLight.gameObject.SetActive(b);
+    }
+
+    public (string, Color) GetName()
+    {
+        if(_storableData == null)
+        {
+            return (null, Color.white);
+        }
+        return (_storableData.name, NoodyCustomCode.HexToColor("#5A00FF"));
     }
 }

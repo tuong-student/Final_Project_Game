@@ -1,20 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using NOOD;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
-public class DayTimeController : MonoBehaviour
+public class DayTimeController : MonoBehaviorInstance<DayTimeController>
 {
     private List<TimeAgent> agents;
 
     #region Events
-    public static Action<int> onNextDay;
-    public static Action onNightTime;
-    public static Action onDayTime;
+    public Action<int> onNextDay;
+    public Action onNightTime;
+    public Action onDayTime;
     #endregion
 
     #region Const
@@ -145,7 +147,7 @@ public class DayTimeController : MonoBehaviour
         time = 0;
         days += 1;
         _isDay = false;
-        _isDay = false;
+        _isNight = false;
         onNextDay?.Invoke(days);
     }
 }

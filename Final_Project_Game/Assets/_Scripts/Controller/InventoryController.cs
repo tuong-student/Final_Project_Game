@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game;
+using NOOD;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
@@ -9,21 +11,30 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject toolbarPanel;
     [SerializeField] GameObject additionalPanel;
 
-    private void Update()
+    #region Unity functions
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (!panel.activeInHierarchy)
-                Open();
-            else Close();
-        }
+        GameInput.onPlayerOpenInventory += ShowHideInventory;
     }
+    void OnDisable()
+    {
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
+    }
+    #endregion
 
+    #region Open Close
+    private void ShowHideInventory()
+    {
+        if (!panel.activeInHierarchy)
+            Open();
+        else Close();
+    }
     public void Open()
     {
         panel.SetActive(true);
         //statusPanel.SetActive(true);
         toolbarPanel.SetActive(false);
+        UIManager.Instance.AddToUIList(this);
     }
     public void Close()
     {
@@ -31,6 +42,8 @@ public class InventoryController : MonoBehaviour
         statusPanel.SetActive(false);
         toolbarPanel.SetActive(true);
         additionalPanel.SetActive(false);
+        UIManager.Instance.RemoveToUIList(this);
     }
+    #endregion
 }
 

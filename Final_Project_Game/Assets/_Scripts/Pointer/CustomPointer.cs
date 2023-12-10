@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using Game;
-using Game.Interface;
+using ImpossibleOdds;
 using NOOD;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -19,8 +18,13 @@ public enum PointerType
 
 public class CustomPointer : MonoBehaviorInstance<CustomPointer>
 {
+    #region SerializeField
     [SerializeField] private SerializedDictionary<PointerType, Sprite> _pointerSpriteDic = new SerializedDictionary<PointerType, Sprite>();
     [SerializeField] private Vector3 _normalScale, _menuChooseScale;
+    [SerializeField] private CanvasGroup _infoPanelCanvasGroup;
+    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private Image _holdIcon;
+    #endregion
     private Image _mouseImage;
     private PointerType _pointerStage;
     private GameObject _currentInteractableGameObject;
@@ -34,6 +38,7 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
         _mouseImage.transform.localScale = _normalScale;
         GameInput.onPlayerAccept += PlayerChoose;
         GameInput.onPlayerReleaseAccept += PlayerReleaseChoose;
+        _infoPanelCanvasGroup.alpha = 0;
     }
     void Update()
     {
@@ -51,13 +56,8 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
                     Debug.Log("Interactable");
                 }
             }
-            else if(_currentInteractableGameObject.TryGetComponent<IPointerMenu>(out IPointerMenu component) )
+            else if(_currentInteractableGameObject.TryGetComponent<IPointerMenu>(out IPointerMenu pointerMenu) )
             {
-                if(_pointerStage != PointerType.MenuChoose)
-                {
-                    _pointerStage = PointerType.MenuChoose;
-                    Debug.Log("Menu");
-                }
             }
             else
             {
@@ -69,9 +69,29 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
             }
         }
         else
-        if(_pointerStage != PointerType.Idle)
         {
-            _pointerStage = PointerType.Idle;
+            if(_pointerStage != PointerType.Idle)
+            {
+                _pointerStage = PointerType.Idle;
+            }
+
+            HideInfoPanel();
+        }
+
+        if(NoodyCustomCode.IsPointerOverUIElement())
+        {
+            if(_currentInteractableGameObject.TryGetComponent<IDisplayInfo>(out IDisplayInfo displayInfo))
+            {
+                SetInfo(displayInfo.GetName().Item1, displayInfo.GetName().Item2);
+            }
+            else
+            {
+                HideInfoPanel();
+            }
+        }
+        else
+        {
+            HideInfoPanel();
         }
 
         ChangePointerScale();
@@ -79,8 +99,7 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
     }
     void OnDestroy()
     {
-        GameInput.onPlayerAccept -= PlayerChoose;
-        GameInput.onPlayerReleaseAccept -= PlayerReleaseChoose;
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
     }
     #endregion
 
@@ -120,6 +139,34 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
                 _mouseImage.transform.localScale = _normalScale;
                 break;
         }
+    }
+    #endregion
+
+    #region Info
+    public void SetInfo(string name, Color color)
+    {
+        if (name.IsNullOrEmpty()) return;
+        _nameText.text = name;
+        _nameText.color = color;
+        ShowInfoPanel();
+    }
+    public void ShowInfoPanel()
+    {
+        _infoPanelCanvasGroup.DOFade(1, 0.5f);
+    }
+    public void HideInfoPanel()
+    {
+        _infoPanelCanvasGroup.DOFade(0, 0.5f);
+    }
+    public void SetHoldItem(Storable storable)
+    {
+        if (storable != null)
+        {
+            _holdIcon.gameObject.SetActive(true);
+            _holdIcon.sprite = storable.IconImage;
+        }
+        else
+            _holdIcon.gameObject.SetActive(false);
     }
     #endregion
 }

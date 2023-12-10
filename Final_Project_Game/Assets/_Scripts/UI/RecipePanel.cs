@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 
 public class RecipePanel : ItemPanel
@@ -7,7 +8,7 @@ public class RecipePanel : ItemPanel
     [SerializeField] RecipeList recipeList;
     [SerializeField] Crafting crafting;
 
-    public override void Show()
+    public override void InitButtons()
     {
         for (int i = 0; i < buttons.Count && i < recipeList.recipes.Count; i++)
         {

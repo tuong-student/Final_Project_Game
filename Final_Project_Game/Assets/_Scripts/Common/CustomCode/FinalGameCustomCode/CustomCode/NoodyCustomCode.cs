@@ -94,7 +94,10 @@ namespace NOOD
         //Returns 'true' if we touched or hovering on Unity UI element.
         public static bool IsPointerOverUIElement()
         {
-            return GetCurrentPointObject().layer == 5; // 5 is index of Layer UI
+            GameObject gameObject = GetCurrentPointObject();
+            if (gameObject == null) return false;
+
+            return gameObject.layer == 5; // 5 is index of Layer UI
         }
         public static GameObject GetCurrentPointObject()
         {

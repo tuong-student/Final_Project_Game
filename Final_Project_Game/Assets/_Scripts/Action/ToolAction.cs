@@ -9,12 +9,12 @@ public class ToolAction : ScriptableObject
         Debug.LogWarning("not implemented");
         return true;
     }
-    public virtual bool OnApplyTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, ItemSO item)
+    public virtual bool OnApplyTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, Storable cropSO)
     {
         Debug.LogWarning("OnApplyToTileMap is not implemented");
         return true;
     }
-    public virtual void OnItemUsed(ItemSO usedItem, ItemContainer inventory)
+    public virtual void OnItemUsed(Storable usedItem, ItemContainer inventory)
     {
 
     }

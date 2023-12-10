@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game;
 using System;
+using NOOD;
 
 public class CharacterInteractController : MonoBehaviour
 {
@@ -11,17 +12,11 @@ public class CharacterInteractController : MonoBehaviour
     ToolbarController toolbarController;
     [SerializeField] float offsetDistance = 1f;
     [SerializeField] float sizeOfInteractableArea = 1f;
+    [SerializeReference] HighlightController highlight;
     private Character character;
     private Vector2 positionPlayer = Vector2.zero;
-    [SerializeReference] HightlightController hightlight;
-    //[SerializeField] MarkerManager markerManager;
-    //[SerializeField] TileMapReadController tileMapReadController;
-    //[SerializeField] float maxDistance = 1.5f;
-    //[SerializeField] CropsManager cropsManager;
-    //[SerializeField] TileData plowableTiles;
-    //private Vector3Int selectedTilePosition;
-    //private bool selectable;
 
+    #region Unity functions
     private void Awake()
     {
         //player = GameManager.instance.player.transform;
@@ -29,14 +24,19 @@ public class CharacterInteractController : MonoBehaviour
         character = GetComponent<Character>();
         toolbarController = GetComponent<ToolbarController>();
     }
+    void Start()
+    {
+        GameInput.onPlayerPressInteract += Interact;
+    }
     private void Update()
     {
         Check();
-        if (Input.GetMouseButtonDown(1))
-        {
-            Interact();
-        }
     }
+    void OnDisable()
+    {
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
+    }
+    #endregion
 
     private void Check()
     {
@@ -47,11 +47,11 @@ public class CharacterInteractController : MonoBehaviour
             Interactable hit = c.GetComponent<Interactable>();
             if (hit != null)
             {
-                hightlight.Hightlight(hit.gameObject);
+                highlight.Highlight(hit.gameObject);
                 return;
             }
         }
-        hightlight.Hide();
+        highlight.Hide();
     }
 
 

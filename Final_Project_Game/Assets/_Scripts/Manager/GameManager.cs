@@ -15,6 +15,12 @@ public class GameManager: MonoBehaviour
     public ItemList itemDB;
     public GameStatusSO gameStatus;
     public PlaceableObjectsContainer placeableObjectsContainer;
+
+    #region Unity functions
+    void OnEnable()
+    {
+        GameInput.Init();
+    }
     private void Awake()
     {
         instance = this;
@@ -27,6 +33,7 @@ public class GameManager: MonoBehaviour
         }
         SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme, 0.5f);
     }
+    #endregion
 
     public Transform GetTransform()
     {

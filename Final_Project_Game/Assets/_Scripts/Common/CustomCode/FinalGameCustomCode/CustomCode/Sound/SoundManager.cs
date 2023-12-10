@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
+using NOOD.Sound;
 
 namespace NOOD.Sound
 {
@@ -21,9 +23,13 @@ namespace NOOD.Sound
 
         public static void FindSoundData()
         {
-            soundData = Resources.FindObjectsOfTypeAll<SoundDataSO>().First();
+            SoundDataSO[] soundDataSOs = Resources.LoadAll<SoundDataSO>("");
+            if(soundDataSOs.Length > 0)
+                soundData = Resources.FindObjectsOfTypeAll<SoundDataSO>()[0];
             if(soundData == null)
                 Debug.LogError("Can't find SoundData, please create one in Resources folder using Create -> SoundData");
+            else
+                Debug.Log("Load SoundData success");
         }
 
         private static void InitIfNeed()

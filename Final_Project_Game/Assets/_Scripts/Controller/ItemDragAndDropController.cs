@@ -50,12 +50,11 @@ public class ItemDragAndDropController : MonoBehaviour
     {
         if (itemSlot.storable == null)
         {
-            ItemIcon.SetActive(false);
+            CustomPointer.Instance.SetHoldItem(null);
         }
         else
         {
-            ItemIcon.SetActive(true);
-            itemIconImage.sprite = itemSlot.storable.IconImage;
+            CustomPointer.Instance.SetHoldItem(itemSlot.storable);
         }
     }
 

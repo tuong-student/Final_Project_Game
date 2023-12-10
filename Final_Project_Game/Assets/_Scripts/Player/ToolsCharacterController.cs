@@ -98,19 +98,40 @@ public class ToolsCharacterController : MonoBehaviour
                 PickUpTile();
                 return;
             }
-            if(storable.StorageType != StorageType.FarmItem) return;
-
-            ItemSO item = storable as ItemSO;
-            if (item.onTileMapAction == null) 
-                return;
-
-            bool complete = item.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController, item);
-            if (complete)
+            switch (storable.StorageType)
             {
-                if (item.onItemUsed != null)
-                {
-                    item.onItemUsed.OnItemUsed(item, PlayerManager.Instance.inventoryContainer);
-                }
+                case StorageType.None:
+                    break;
+                case StorageType.FarmItem:
+                    ItemSO itemSO = storable as ItemSO;
+                    if (itemSO.onTileMapAction == null) return;
+
+                    bool complete = itemSO.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController, itemSO);
+                    if (complete)
+                    {
+                        if (itemSO.onItemUsed != null)
+                        {
+                            itemSO.onItemUsed.OnItemUsed(itemSO, PlayerManager.Instance.inventoryContainer);
+                        }
+                    }
+                    break;
+                case StorageType.Crop:
+                    CropSO cropSO = storable as CropSO;
+
+                    if (cropSO.onTileMapAction == null) return;
+
+                    complete = cropSO.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController, cropSO);
+                    if (complete)
+                    {
+                        if (cropSO.onItemUsed != null)
+                        {
+                            cropSO.onItemUsed.OnItemUsed(cropSO, PlayerManager.Instance.inventoryContainer);
+                        }
+                    }
+                    break;
+                case StorageType.Weapon:
+                    GunSO gunSO = storable as GunSO;
+                    break;
             }
         }
     }

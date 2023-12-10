@@ -67,6 +67,7 @@ namespace Game
             if(_itemIcon.sprite == _noneImage) return;
             _tempImage = Instantiate(_itemIcon, this.transform);
         }
+
     }
 
 }

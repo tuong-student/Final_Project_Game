@@ -29,9 +29,9 @@ public class ItemToolbarPanel : ItemPanel
         buttons[currentSelectedTool].Highlight(true);
     }
 
-    public override void Show()
+    public override void InitButtons()
     {
-        base.Show();
+        base.InitButtons();
         toolbarController.UpdateHighlightIcon();
     }
 }

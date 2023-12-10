@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using NOOD;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class EnemyAnimation : MonoBehaviour
 {
+    [SerializeField] private BaseEnemy _baseEnemy;
     [SerializeField] private Animator _anim;
     [SerializeField] private SpriteRenderer _sr;
+    [SerializeField] private Light2D _light2D;
     private float _attackDuration = 0;
 
     public float GetAttackDuration()
@@ -22,17 +25,19 @@ public class EnemyAnimation : MonoBehaviour
         _anim.SetTrigger("Death");
         NoodyCustomCode.StartUpdater(() =>
         {
-            Debug.Log("Updater");
             Color color = _sr.color;
+            float intensity = _light2D.intensity;
             if(color.a >= 0)
             {
+                intensity -= Time.deltaTime;
                 color.a -= Time.deltaTime;
                 _sr.color = color;
+                _light2D.intensity = intensity;
                 return false;
             }
             else
             {
-                Debug.Log("StopUpdater");
+                _baseEnemy.gameObject.SetActive(false);
                 return true;
             }
         });

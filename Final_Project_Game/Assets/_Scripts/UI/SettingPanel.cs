@@ -4,6 +4,7 @@ using NOOD.Sound;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -31,8 +32,6 @@ public class SettingPanel : MonoBehaviour
         isMuteSound = gameStatus.isSoundMute;
         musicImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
         soundImg.sprite = isMuteSound ? listSprite[0] : listSprite[1];
-        if (showFB != null)
-            showFB.PlayFeedbacks();
     }
     private void Start()
     {
@@ -40,6 +39,7 @@ public class SettingPanel : MonoBehaviour
         soundBtn.onClick.AddListener(AdjustSound);
         confirmBtn.onClick.AddListener(OnConfirm);
         exitBtn.onClick.AddListener(OnExit);
+        Hide();
     }
 
     private void AdjustMusic()
@@ -66,9 +66,7 @@ public class SettingPanel : MonoBehaviour
         gameStatus.isMusicMute = isMuteMusic;
         gameStatus.isSoundMute = isMuteSound;
         SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, gameStatus.isMusicMute?0:1);
-        if (hideFB != null)
-            hideFB.PlayFeedbacks();
-        this.gameObject.SetActive(false);
+        Hide();
     }
 
     private void OnExit()
@@ -77,7 +75,20 @@ public class SettingPanel : MonoBehaviour
             hideFB.PlayFeedbacks();
         if(isMuteSound == false)
             SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
-        this.gameObject.SetActive(false);
+
+        Hide();
     }
 
+    #region Show Hide
+    public void Show()
+    {
+        if (showFB != null)
+            showFB.PlayFeedbacks();
+    }
+    public void Hide()
+    {
+        if (hideFB != null)
+            hideFB.PlayFeedbacks();
+    }
+    #endregion
 }

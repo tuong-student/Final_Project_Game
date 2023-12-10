@@ -143,6 +143,24 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Esc"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd9233ac-ff14-41b2-abef-71411ed7de08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b2ec15c-1b6b-4cb5-90fd-e134a8e4b1ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -205,6 +223,17 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""5ed1c8fa-cd57-40a1-9958-27460cbb8455"",
                     ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44cb6ae0-6152-40f9-b689-60b84e72c68b"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -343,6 +372,28 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""PlayerChoseOption"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4cdafe5c-746a-4c37-abb5-d4e3468c8d95"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12f187d7-82b4-41c3-8385-0ff23ad7d4ca"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -364,6 +415,8 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         m_Player_Inventory9 = m_Player.FindAction("Inventory9", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_PlayerChoseOption = m_Player.FindAction("PlayerChoseOption", throwIfNotFound: true);
+        m_Player_Esc = m_Player.FindAction("Esc", throwIfNotFound: true);
+        m_Player_OpenInventory = m_Player.FindAction("OpenInventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -438,6 +491,8 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Inventory9;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_PlayerChoseOption;
+    private readonly InputAction m_Player_Esc;
+    private readonly InputAction m_Player_OpenInventory;
     public struct PlayerActions
     {
         private @GameInputSystem m_Wrapper;
@@ -455,6 +510,8 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         public InputAction @Inventory9 => m_Wrapper.m_Player_Inventory9;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @PlayerChoseOption => m_Wrapper.m_Player_PlayerChoseOption;
+        public InputAction @Esc => m_Wrapper.m_Player_Esc;
+        public InputAction @OpenInventory => m_Wrapper.m_Player_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -503,6 +560,12 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
             @PlayerChoseOption.started += instance.OnPlayerChoseOption;
             @PlayerChoseOption.performed += instance.OnPlayerChoseOption;
             @PlayerChoseOption.canceled += instance.OnPlayerChoseOption;
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
+            @OpenInventory.started += instance.OnOpenInventory;
+            @OpenInventory.performed += instance.OnOpenInventory;
+            @OpenInventory.canceled += instance.OnOpenInventory;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -546,6 +609,12 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
             @PlayerChoseOption.started -= instance.OnPlayerChoseOption;
             @PlayerChoseOption.performed -= instance.OnPlayerChoseOption;
             @PlayerChoseOption.canceled -= instance.OnPlayerChoseOption;
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
+            @OpenInventory.started -= instance.OnOpenInventory;
+            @OpenInventory.performed -= instance.OnOpenInventory;
+            @OpenInventory.canceled -= instance.OnOpenInventory;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -578,5 +647,7 @@ public partial class @GameInputSystem: IInputActionCollection2, IDisposable
         void OnInventory9(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnPlayerChoseOption(InputAction.CallbackContext context);
+        void OnEsc(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
 }

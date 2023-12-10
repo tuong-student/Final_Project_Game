@@ -8,8 +8,9 @@ using UnityEngine.EventSystems;
 using Game;
 using MoreMountains.Feedbacks;
 using AssetKits.ParticleImage;
+using NOOD;
 
-public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDisplayInfo
 {
     #region SerializeField
     [SerializeField] private MMF_Player _minusFB;
@@ -94,6 +95,7 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     private void UpdateUI()
     {
+        Debug.Log(_orderItemData.storable.name);
         _itemIcon.sprite = _orderItemData.storable.IconImage;
         _itemQuantity.text = _orderItemData.quantity.ToString("0");
     }
@@ -105,11 +107,24 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         EventSystem.current.SetSelectedGameObject(this.gameObject);
         _isPress = true;
     }
-
     public void OnPointerUp(PointerEventData eventData)
     {
         EventSystem.current.SetSelectedGameObject(null);
         _isPress = false;
+    }
+    #endregion
+
+    #region Interface functions
+    public (string, Color) GetName()
+    {
+        if(_orderItemData == null)
+        {
+            return (null, Color.white);
+        }
+        else
+        {
+            return (_orderItemData.storable.name, NoodyCustomCode.HexToColor("#5A00FF"));
+        }
     }
     #endregion
 }

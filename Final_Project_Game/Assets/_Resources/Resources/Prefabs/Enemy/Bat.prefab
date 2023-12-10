@@ -119,8 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890d28643320300499a7ac5b5ff38349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseEnemy: {fileID: 7156277605756794916}
   _anim: {fileID: 191059384698174050}
   _sr: {fileID: 8236301277198724923}
+  _light2D: {fileID: 115995603629552000}
 --- !u!1 &3742727461592199328
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +172,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0.9817295, b: 0.8349056, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 0000000097522649796ebddf1382097dc324e1ce118e6155
@@ -254,7 +256,7 @@ MonoBehaviour:
   _isTest: 0
   _moveSpeed: 2
   _hp: 30
-  _reward: {fileID: 11400000, guid: b32ef40573ffc44c9a990fea9a8b8640, type: 2}
+  _reward: {fileID: 11400000, guid: 8f7d75d85ce4703459ca269e785df59f, type: 2}
   _enemyAnimation: {fileID: 2805961093957755003}
   _attackRate: 0.5
   _damage: 1

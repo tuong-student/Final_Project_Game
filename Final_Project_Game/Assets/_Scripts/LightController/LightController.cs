@@ -21,8 +21,8 @@ public class LightController : MonoBehaviorInstance<LightController>
 
     void Start()
     {
-        DayTimeController.onDayTime += OffWhenMorning;
-        DayTimeController.onNightTime += OnWhenEvening;
+        DayTimeController.Instance.onDayTime += OffWhenMorning;
+        DayTimeController.Instance.onNightTime += OnWhenEvening;
     }
 
     void OnDisable()

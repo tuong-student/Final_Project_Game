@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 
 public class ItemPanel : MonoBehaviour
 {
     public ItemContainer inventory;
     public List<InventoryButton> buttons;
+
     private void Start()
     {
         Init();
@@ -13,31 +15,32 @@ public class ItemPanel : MonoBehaviour
 
     public void Init()
     {
-        SetIndex();
-        Show();
+        SetButtonIndex();
+        InitButtons();
     }
 
-    private void SetIndex()
+    private void SetButtonIndex()
     {
         for (int i = 0; i < buttons.Count; i++)
         {
-            buttons[i].SetIndex(i);
+            int index = i;
+            buttons[i].SetIndex(index);
         }
     }
     private void OnEnable()
     {
-        Show();
+        InitButtons();
     }
 
     private void LateUpdate()
     {
         if (inventory.isDirty)
         {
-            Show();
+            InitButtons();
             inventory.isDirty = false; 
         }
     }
-    public virtual void Show()
+    public virtual void InitButtons()
     {
         for (int i = 0; i < inventory.slots.Count && i < buttons.Count; i++)
         {

@@ -26,3 +26,4 @@ MonoBehaviour:
   tradeable: 1
   iconHighlight: 0
   interactRate: 2
+  storageType: 1

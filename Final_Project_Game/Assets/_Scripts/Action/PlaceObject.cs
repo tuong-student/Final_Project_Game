@@ -5,15 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/ToolAction/Place Object")]
 public class PlaceObject : ToolAction
 {
-    public override bool OnApplyTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, ItemSO item)
+    public override bool OnApplyTileMap(Vector3Int gridPosition, TileMapReadController tileMapReadController, Storable storable)
     {
+        ItemSO itemSO = storable as ItemSO;
         if (tileMapReadController.objectsManager.CheckPosition(gridPosition))
             return false;
-        tileMapReadController.objectsManager.PlaceObject(item, gridPosition);
+        tileMapReadController.objectsManager.PlaceObject(itemSO, gridPosition);
         return true;
     }
 
-    public override void OnItemUsed(ItemSO usedItem, ItemContainer inventory)
+    public override void OnItemUsed(Storable usedItem, ItemContainer inventory)
     {
         inventory.Remove(usedItem);
     }

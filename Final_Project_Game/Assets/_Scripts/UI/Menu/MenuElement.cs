@@ -1,28 +1,40 @@
 using DG.Tweening;
 using Game;
+using NOOD;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(OptionHolder))]
-public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerMenu
+public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerMenu, IDisplayInfo
 {
-    public OptionHolder _optionHolder;
+    #region SerializeField
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _price, _quantity;
+    #endregion
+
+    #region Public
+    public OptionHolder _optionHolder;
+    #endregion
+
+    #region Private
     private MenuController _parentMenuController;
     private Storable _storableData;
     private ItemSlot _itemSlot;
     private Image _background;
+    #endregion
 
+    #region Unity Functions
     void Awake()
     {
         _optionHolder = GetComponent<OptionHolder>();
         _parentMenuController = GetComponentInParent<MenuController>();
         _background = GetComponent<Image>();
     }
+    #endregion
 
+    #region Get Set 
     public void SetItemSlot(ItemSlot itemSlot)
     {
         if(itemSlot != null && itemSlot.storable != null)
@@ -65,7 +77,9 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         return _itemSlot;
     }
+    #endregion
 
+    #region Select Deselect
     public void Select()
     {
         this.transform.DOScale(1.15f, 0.3f).SetEase(Ease.OutCubic);
@@ -85,6 +99,7 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             _background.raycastTarget = false;
         }
     }
+    #endregion
 
     #region Events Functions
     public void OnPointerEnter(PointerEventData eventData)
@@ -108,6 +123,17 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         _parentMenuController.SetCurrentSelectedObject(null);
         Deselect();
+    }
+    #endregion
+
+    #region Interface functions
+    public (string, Color) GetName()
+    {
+        if(_storableData != null)
+        {
+            return (_storableData.name, NoodyCustomCode.HexToColor("#5A00FF"));
+        }
+        return (null, Color.white);
     }
     #endregion
 }

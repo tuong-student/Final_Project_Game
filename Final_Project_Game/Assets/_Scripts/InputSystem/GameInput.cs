@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +18,7 @@ namespace Game
         public static event Action onPlayerAccept;
         public static event Action onPlayerReleaseAccept;
         public static event Action onPlayerPressEscape;
-
+        public static event Action onPlayerOpenInventory;
         #endregion
         private static GameInputSystem _gameInputSystem;
 
@@ -50,7 +51,10 @@ namespace Game
 
             _gameInputSystem.Player.PlayerChoseOption.performed += (InputAction.CallbackContext callbackContext) => onPlayerAccept?.Invoke();
             _gameInputSystem.Player.PlayerChoseOption.canceled += (InputAction.CallbackContext callbackContext) => onPlayerReleaseAccept?.Invoke();
-        }
 
+            _gameInputSystem.Player.OpenInventory.performed += (InputAction.CallbackContext callback) => onPlayerOpenInventory?.Invoke();
+
+            _gameInputSystem.Player.Esc.performed += (InputAction.CallbackContext callback) => onPlayerPressEscape?.Invoke();
+        }
     }
 }

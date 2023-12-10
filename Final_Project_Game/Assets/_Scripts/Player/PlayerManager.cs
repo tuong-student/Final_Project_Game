@@ -44,7 +44,6 @@ namespace Game
         }
         void OnEnable()
         {
-            GameInput.Init();
             GameInput.onPlayerPressInteract += Pickup;
         }
         void OnDestroy()

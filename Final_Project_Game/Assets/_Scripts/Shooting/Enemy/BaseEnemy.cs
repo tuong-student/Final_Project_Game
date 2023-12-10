@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-    protected Vector3 _targetPos;
+    #region SerializeField
     [SerializeField] protected bool _isTest;
     [SerializeField] protected float _moveSpeed = 4;
     [SerializeField] protected float _hp = 30;
@@ -14,11 +14,20 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] protected EnemyAnimation _enemyAnimation;
     [SerializeField] protected float _attackRate;
     [SerializeField] protected float _damage = 1;
+    #endregion
+
+    #region protected
+    protected Vector3 _targetPos;
     protected float _attackTime, _nextAttackTime;
-    private Collider2D _myCollider;
     protected bool _isDead;
     protected bool _isAttacking;
+    #endregion
 
+    #region private
+    private Collider2D _myCollider;
+    #endregion
+
+    #region Unity functions
     void Awake()
     {
         _myCollider = this.gameObject.GetComponent<Collider2D>();
@@ -35,14 +44,16 @@ public abstract class BaseEnemy : MonoBehaviour
         _attackTime += Time.deltaTime;
         ChildUpdate();
     }
+    #endregion
 
-    protected virtual void ChildUpdate() { }
 
     protected void Init()
     {
         _myCollider.enabled = true;
     }
 
+    #region Abstract and virtual functions
+    protected abstract void ChildUpdate();
     protected abstract void Move();
     protected abstract void ChildAttack();
     public virtual void Damage(float damage)
@@ -59,12 +70,12 @@ public abstract class BaseEnemy : MonoBehaviour
         _isDead = true;
         _enemyAnimation.PlayDeadAnimation();
         _myCollider.enabled = false;
-        ItemSpawnManager.instance.SpawnManyItem(this.transform.position, null, _reward, UnityEngine.Random.Range(0, 3));
+        DropReward();
         Destroy(this.gameObject, 2f);
     }
-    protected virtual void DropReward()
+    protected virtual void DropReward() 
     {
-
+        ItemSpawnManager.instance.SpawnManyItem(this.transform.position, null, _reward, UnityEngine.Random.Range(0, 3));
     }
     protected virtual void Attack()
     {
@@ -83,12 +94,7 @@ public abstract class BaseEnemy : MonoBehaviour
             }, _enemyAnimation.GetAttackDuration());
         }
     }
-    protected virtual void FindPlayer()
-    {
-
-    }
-    protected virtual void FindCrop()
-    {
-
-    }
+    protected virtual void FindPlayer(){}
+    protected virtual void FindCrop(){}
+    #endregion
 }
