@@ -1,11 +1,8 @@
-using DG.Tweening;
 using MoreMountains.Feedbacks;
 using NOOD.Sound;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
+using System;
 using UnityEngine.UI;
 
 public class SettingPanel : MonoBehaviour
@@ -17,6 +14,8 @@ public class SettingPanel : MonoBehaviour
     [SerializeField] private Button exitBtn; 
     [SerializeField] private Image musicImg;
     [SerializeField] private Image soundImg;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider soundSlider;
     [SerializeField] private List<Sprite> listSprite;
     [SerializeField] private GameStatusSO gameStatus;
     [SerializeField] private MMF_Player showFB;
@@ -32,6 +31,8 @@ public class SettingPanel : MonoBehaviour
         isMuteSound = gameStatus.isSoundMute;
         musicImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
         soundImg.sprite = isMuteSound ? listSprite[0] : listSprite[1];
+        musicSlider.value = gameStatus.musicVolume;
+        soundSlider.value = gameStatus.soundVolume;
     }
     private void Start()
     {
@@ -39,6 +40,9 @@ public class SettingPanel : MonoBehaviour
         soundBtn.onClick.AddListener(AdjustSound);
         confirmBtn.onClick.AddListener(OnConfirm);
         exitBtn.onClick.AddListener(OnExit);
+        musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
+        musicSlider.onValueChanged.AddListener(ChangeSoundVolume);
+
         Hide();
     }
 
@@ -57,6 +61,25 @@ public class SettingPanel : MonoBehaviour
         if(isMuteSound == false)
             SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         soundImg.sprite = isMuteSound ? listSprite[0] : listSprite[1];
+    }
+
+    private void ChangeMusicVolume(float volume)
+    {
+        gameStatus.musicVolume = volume;
+        if (volume > 0)
+            musicImg.sprite = listSprite[1];
+        else
+            musicImg.sprite = listSprite[0];
+    }
+
+    private void ChangeSoundVolume(float volume)
+    {
+        gameStatus.soundVolume = volume;
+        if(volume > 0)
+            soundImg.sprite = listSprite[1];
+        else
+            soundImg.sprite = listSprite[0];
+
     }
 
     private void OnConfirm()
