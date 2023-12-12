@@ -32,14 +32,16 @@ public class MainMenuUI : MonoBehaviour
         else
             loadGameBtn.gameObject.SetActive(true);
         isMute = gameStatus.isSoundMute;
-        SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme,gameStatus.musicVolume);
+        if(isMute == false)
+            SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
     }
 
     public void StartNewGame()
     {
         Debug.Log("New Game");
+        if(isMute == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         gameStatus.isNewGame = true;
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
         
@@ -48,7 +50,8 @@ public class MainMenuUI : MonoBehaviour
     private void LoadGame()
     {
         Debug.Log("Load Game");
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
+        if(isMute == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(gameStatus.nameScene, LoadSceneMode.Additive);
     }
@@ -57,18 +60,21 @@ public class MainMenuUI : MonoBehaviour
 
     public void SettingGame()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
+        if(isMute == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         settingPanel.SetActive(true);
     }
 
     public void Credits()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
+        if(isMute == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
     }
 
     public void ExitGame()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
+        if(isMute == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         Application.Quit();
     }
 }

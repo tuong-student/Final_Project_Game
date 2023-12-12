@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-using UnityEngine.Rendering;
 
 public class SettingPanel : MonoBehaviour
 {
@@ -42,30 +41,31 @@ public class SettingPanel : MonoBehaviour
         confirmBtn.onClick.AddListener(OnConfirm);
         exitBtn.onClick.AddListener(OnExit);
         musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
-        soundSlider.onValueChanged.AddListener(ChangeSoundVolume);
+        musicSlider.onValueChanged.AddListener(ChangeSoundVolume);
+
         Hide();
     }
 
     private void AdjustMusic()
     {
         isMuteMusic = !isMuteMusic;
-        musicSlider.value = isMuteMusic ? 0 : 1;
+        if(isMuteSound)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         musicImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
-        SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, gameStatus.musicVolume);
+        SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, isMuteMusic?0:1);
     }
 
     private void AdjustSound()
     {
         isMuteSound = !isMuteSound;
-        soundSlider.value = soundSlider ? 0 : 1;
+        if(isMuteSound == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         soundImg.sprite = isMuteSound ? listSprite[0] : listSprite[1];
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
     }
 
     private void ChangeMusicVolume(float volume)
     {
-        SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, volume);
+        gameStatus.musicVolume = volume;
         if (volume > 0)
             musicImg.sprite = listSprite[1];
         else
@@ -74,30 +74,31 @@ public class SettingPanel : MonoBehaviour
 
     private void ChangeSoundVolume(float volume)
     {
+        gameStatus.soundVolume = volume;
         if(volume > 0)
             soundImg.sprite = listSprite[1];
         else
             soundImg.sprite = listSprite[0];
+
     }
 
     private void OnConfirm()
     {
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
+        if (isMuteSound == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         gameStatus.isMusicMute = isMuteMusic;
         gameStatus.isSoundMute = isMuteSound;
-        gameStatus.musicVolume = musicSlider.value;
-        gameStatus.soundVolume = soundSlider.value;
-        SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, musicSlider.value);
-        this.gameObject.SetActive(false);
+        SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, gameStatus.isMusicMute?0:1);
         Hide();
     }
+
     private void OnExit()
     {
         if (hideFB != null)
             hideFB.PlayFeedbacks();
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked, gameStatus.soundVolume);
-        SoundManager.ChangeMusicVolume(NOOD.Sound.MusicEnum.Theme, gameStatus.musicVolume);
-        this.gameObject.SetActive(false);
+        if(isMuteSound == false)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+
         Hide();
     }
 
