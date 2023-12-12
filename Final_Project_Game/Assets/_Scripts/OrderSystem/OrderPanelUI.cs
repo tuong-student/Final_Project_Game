@@ -14,7 +14,7 @@ public class OrderPanelUI : MonoBehaviour
     [SerializeField] private OrderElementUI _orderElementPref;
     [SerializeField] private Transform _orderElementHolder;
     [SerializeField] private MMF_Player _showFeedback, _hideFeedback;
-    [SerializeField] private Button _goBtn, _closeBtn;
+    [SerializeField] private CustomButton _goBtn, _closeBtn;
     #endregion
 
     #region private Lists
@@ -29,8 +29,8 @@ public class OrderPanelUI : MonoBehaviour
         OrderManager.Instance.onPlayerOpenOrderPanel += UpdateUI;
         OrderManager.Instance.onPlayerOpenOrderPanel += Show;
         _orderElementPref.gameObject.SetActive(false);
-        _goBtn.onClick.AddListener(GoAction);
-        _closeBtn.onClick.AddListener(Hide);
+        _goBtn.SetAction(GoAction);
+        _closeBtn.SetAction(Hide);
     }
     #endregion
 

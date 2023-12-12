@@ -11,4 +11,6 @@ public enum SoundEnum
 	Pop = 8,
 	Truck = 9,
 	Hover = 10,
+	OrderItemComplete = 11,
+	OrderComplete = 12,
 }

@@ -189,7 +189,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1673941501, guid: 8ed340dbc5eb82641adb4507fc84188c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   - {x: -0.06049061, y: -0.00066161156, z: 0}
   m_ShapePathHash: 500576805
   m_Mesh: {fileID: 0}
-  m_InstanceId: -92408
+  m_InstanceId: -315782
   m_LocalBounds:
     m_Center: {x: -0.00219059, y: 0.4996044, z: 0}
     m_Extent: {x: 0.3780079, y: 0.5012701, z: 0}
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetDistance: 1
   sizeOfInteractableArea: 1
-  hightlight: {fileID: 0}
+  highlight: {fileID: 0}
 --- !u!114 &3082322380995025751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74cb111b34cf74a4ab96c60f4d7b40b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolbarSize: 12
+  itemToolbarPanel: {fileID: 0}
   iconHighlight: {fileID: 0}
 --- !u!114 &1224647797554350213
 MonoBehaviour:

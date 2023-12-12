@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using NOOD;
-using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,8 +10,8 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] private List<MenuElement> _menuElements = new List<MenuElement>();
     [SerializeField] private ItemContainer _itemContainer;
-    public ItemContainer ItemContainer => _itemContainer;
     [SerializeField] private Button _previousPage, _nextPage; 
+    public ItemContainer ItemContainer => _itemContainer;
     private CanvasGroup _canvasGroup;
     private int _page;
     private int _lastIndex;
@@ -28,7 +27,6 @@ public class MenuController : MonoBehaviour
             _canvasGroup = this.gameObject.AddComponent<CanvasGroup>();
         }
         _page = 0;
-        DisplayItem();
 
         if(_previousPage != null)
             _previousPage.onClick.AddListener(PreviousPage);
@@ -40,6 +38,7 @@ public class MenuController : MonoBehaviour
     {
         SubscribeEvents();
         SelectElement(_menuElements[0]);
+        DisplayItem();
     }
 
     void OnDisable()

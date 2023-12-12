@@ -23,13 +23,13 @@ namespace Game
         private ModifiableStats<float> _health = new ModifiableStats<float>();
         private ModifiableStats<float> _strength = new ModifiableStats<float>();
         private ModifiableStats<float> _speed = new ModifiableStats<float>();
-
         private List<ItemSO> _items = new List<ItemSO>();
-
         private PreviewHandler previewHandler;
         public ItemContainer inventoryContainer;
         public ItemContainer InventoryContainer => inventoryContainer;
         #endregion
+
+        [SerializeField] private ItemSO _coin;
 
         #region Unity Events
         void Awake()

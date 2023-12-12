@@ -48,7 +48,7 @@ public class PickUpItem : MonoBehaviour
             if (PlayerManager.Instance.inventoryContainer != null)
             {
                 Debug.Log("item_____" + item.IconImage+ "______" + item.ToString());
-                PlayerManager.Instance.inventoryContainer.Add(item, count);
+                PlayerManager.Instance.AddToInventory(item, count);
             }
             else Debug.Log("No inventory container attached to the game manager");
             Destroy(gameObject);

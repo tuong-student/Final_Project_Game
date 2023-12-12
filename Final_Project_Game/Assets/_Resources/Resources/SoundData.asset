@@ -33,9 +33,13 @@ MonoBehaviour:
     - _key: Pop
       _value: {fileID: 8300000, guid: 7336cd5e6e4f74693ac6c4b607b671ef, type: 3}
     - _key: Truck
-      _value: {fileID: 8300000, guid: b6447e61f053e4ba4becea7c6e766f69, type: 3}
+      _value: {fileID: 8300000, guid: 1c051810593da4d878348fe61170046f, type: 3}
     - _key: Hover
       _value: {fileID: 8300000, guid: e7992d172691ce147bde04a9ea103f2c, type: 3}
+    - _key: OrderItemComplete
+      _value: {fileID: 8300000, guid: 0a251865d11f91842a19cdee7af66120, type: 3}
+    - _key: OrderComplete
+      _value: {fileID: 8300000, guid: b8256a6b792fe3b488157984ecc43f61, type: 3}
   musicDic:
     _pairs:
     - _key: Theme
