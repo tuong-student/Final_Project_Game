@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryButton : MonoBehaviour, IPointerClickHandler, IDisplayInfo
+public class InventoryButton : InteractableUIBase, IPointerClickHandler, IDisplayInfo
 {
     [SerializeField] Image icon;
     [SerializeField] TextMeshProUGUI text;
@@ -59,5 +59,14 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler, IDisplayInfo
             return (null, Color.white);
         }
         return (_storableData.name, NoodyCustomCode.HexToColor("#5A00FF"));
+    }
+
+    public override void Interact(object sender)
+    {
+        // Do nothing
+    }
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        // Do nothing
     }
 }

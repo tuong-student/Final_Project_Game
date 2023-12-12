@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemToolbarPanel : ItemPanel
 {
     [SerializeField] ToolbarController toolbarController;
+    int currentSelectedTool;
 
     private void Start()
     {
@@ -19,8 +20,10 @@ public class ItemToolbarPanel : ItemPanel
         toolbarController.UpdateHighlightIcon();
     }
 
-    int currentSelectedTool;
-
+    public int GetToolbarCount()
+    {
+        return buttons.Count - 1;
+    }
 
     public void Highlight(int id)
     {

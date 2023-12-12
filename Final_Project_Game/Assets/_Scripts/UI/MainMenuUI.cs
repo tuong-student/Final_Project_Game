@@ -12,7 +12,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button settingGameBtn;
     [SerializeField] private Button creditsGameBtn;
     [SerializeField] private Button exitGameBtn;
-    [SerializeField] private GameObject settingPanel;
+    [SerializeField] private SettingPanel settingPanel;
     [SerializeField] private GameObject creditsPanel;
     [SerializeField] private string nameEssentialScene;
     [SerializeField] private string nameNewGameStartScene;
@@ -31,6 +31,7 @@ public class MainMenuUI : MonoBehaviour
         }
         else
             loadGameBtn.gameObject.SetActive(true);
+        
         isMute = gameStatus.isSoundMute;
         if(isMute == false)
             SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
@@ -39,19 +40,14 @@ public class MainMenuUI : MonoBehaviour
     public void StartNewGame()
     {
         Debug.Log("New Game");
-        if(isMute == false)
-            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         gameStatus.isNewGame = true;
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
-        
     }
 
     private void LoadGame()
     {
         Debug.Log("Load Game");
-        if(isMute == false)
-            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(gameStatus.nameScene, LoadSceneMode.Additive);
     }
@@ -60,21 +56,16 @@ public class MainMenuUI : MonoBehaviour
 
     public void SettingGame()
     {
-        if(isMute == false)
-            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
-        settingPanel.SetActive(true);
+        // Play sound will run in Parent class
+        settingPanel.OnRequestShowHide();
     }
 
     public void Credits()
     {
-        if(isMute == false)
-            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
     }
 
     public void ExitGame()
     {
-        if(isMute == false)
-            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         Application.Quit();
     }
 }

@@ -12,10 +12,6 @@ namespace Game
         private bool _isSettingShow;
 
         #region Unity functions
-        void Start()
-        {
-            GameInput.onPlayerPressEscape += ShowHideSetting;
-        }
         void OnDisable()
         {
             _uiList.Clear();
@@ -25,14 +21,6 @@ namespace Game
         #endregion
 
         #region UI Control
-        private void ShowHideSetting()
-        {
-            _isSettingShow = !_isSettingShow;
-            if (_isSettingShow)
-                settingPanel.Show();
-            else
-                settingPanel.Hide();
-        }
         #endregion
 
         #region UIList

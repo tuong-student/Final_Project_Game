@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
+using NOOD.Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -71,6 +72,7 @@ public class OrderElementUI : MonoBehaviour
         if(_orderData.IsComplete)
         {
             _completeFB.PlayFeedbacks();
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.OrderComplete);
         }
     }
     #endregion

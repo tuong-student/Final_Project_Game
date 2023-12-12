@@ -9,18 +9,48 @@ namespace NOOD.Sound
 {
     public class SoundManager
     {
-        #region Object Init
+#region Object Init
         private static SoundDataSO soundData;
         private static GameObject soundManagerGlobal;
-        #endregion
+#endregion
 
-        #region List
-        private static List<MusicPlayer> activeMusicPlayers;
-        private static List<SoundPlayer> activeSoundPlayers;
+#region List
+        private static List<MusicPlayer> enableMusicPlayers;
+        private static List<SoundPlayer> enableSoundPlayers;
         private static List<MusicPlayer> disableMusicPlayers;
         private static List<SoundPlayer> disableSoundPlayers;
-        #endregion
+#endregion
 
+#region Parameter
+        private static float globalSoundVolume;
+        private static float globalMusicVolume;
+        public static float GlobalSoundVolume
+        {
+            get
+            {
+                return globalSoundVolume;
+            }
+            set
+            {
+                globalSoundVolume = value;
+                AppliedVolume();
+            }
+        }
+        public static float GlobalMusicVolume
+        {
+            get
+            {
+                return globalMusicVolume;
+            }
+            set
+            {
+                globalMusicVolume = value;
+                AppliedVolume();
+            }
+        }
+#endregion
+
+#region Init
         public static void FindSoundData()
         {
             SoundDataSO[] soundDataSOs = Resources.LoadAll<SoundDataSO>("");
@@ -40,12 +70,20 @@ namespace NOOD.Sound
                 soundManagerGlobal = new GameObject("SoundManagerGlobal");
                 disableMusicPlayers = new List<MusicPlayer>();
                 disableSoundPlayers = new List<SoundPlayer>();
-                activeMusicPlayers = new List<MusicPlayer>();
-                activeSoundPlayers = new List<SoundPlayer>();
+                enableMusicPlayers = new List<MusicPlayer>();
+                enableSoundPlayers = new List<SoundPlayer>();
+                GlobalMusicVolume = 1;
+                GlobalSoundVolume = 1;
             }
         }
+#endregion
 
 #region SoundRegion
+        /// <summary>
+        /// Play sound with your volume
+        /// </summary>
+        /// <param name="soundEnum"></param>
+        /// <param name="volume"></param>
         public static void PlaySound(SoundEnum soundEnum, float volume = 1)
         {
             InitIfNeed();
@@ -79,15 +117,23 @@ namespace NOOD.Sound
             soundAudioPayer.volume = volume;
             soundAudioPayer.clip = audioClip;
             soundAudioPayer.Play();
-            activeSoundPlayers.Add(soundPlayer);
+            enableSoundPlayers.Add(soundPlayer);
 
             // Add to list when disable
             NoodyCustomCode.StartDelayFunction(() =>
             {
                 soundAudioPayer.gameObject.SetActive(false);
-                activeSoundPlayers.Remove(soundPlayer);
+                enableSoundPlayers.Remove(soundPlayer);
                 disableSoundPlayers.Add(soundPlayer);
             }, audioClip.length);
+        }
+        /// <summary>
+        /// Play sound with globalSoundVolume
+        /// </summary>
+        /// <param name="soundEnum"></param>
+        public static void PlaySound(SoundEnum soundEnum)
+        {
+            PlaySound(soundEnum, GlobalSoundVolume);
         }
         /// <summary>
         /// Stop all soundPlayers has the same soundEnum
@@ -107,7 +153,7 @@ namespace NOOD.Sound
                 if(soundPlayer.isActiveAndEnabled)
                 {
                     soundPlayer.gameObject.SetActive(false);
-                    activeSoundPlayers.Remove(soundPlayer);
+                    enableSoundPlayers.Remove(soundPlayer);
                     disableSoundPlayers.Add(soundPlayer);
                 }
             }
@@ -129,7 +175,7 @@ namespace NOOD.Sound
                 {
                     soundPlayer.gameObject.SetActive(false);
 
-                    activeSoundPlayers.Remove(soundPlayer);
+                    enableSoundPlayers.Remove(soundPlayer);
                     disableSoundPlayers.Add(soundPlayer);
                 }
             }
@@ -151,10 +197,10 @@ namespace NOOD.Sound
 
 #region MusicRegion
         /// <summary>
-        /// Play music with new MusicPlayer gameObject if exist no play, else play
+        /// Play music with new MusicPlayer gameObject and with your volume
         /// </summary>
         /// <param name="musicEnum"></param>
-        public static void PlayMusic(MusicEnum musicEnum, float volume = 1)
+        public static void PlayMusic(MusicEnum musicEnum, float volume = 1, bool alwaysPlay = false)
         {
             InitIfNeed();
             if(soundData == null)
@@ -162,7 +208,7 @@ namespace NOOD.Sound
                 FindSoundData();
             }
 
-            if (activeMusicPlayers.Any(x => x.musicType == musicEnum)) return;
+            if (enableMusicPlayers.Any(x => x.musicType == musicEnum)) return;
 
             MusicPlayer musicPlayer;
             if(disableMusicPlayers.Any(x => x.musicType == musicEnum))
@@ -179,18 +225,27 @@ namespace NOOD.Sound
             }
 
             musicPlayer.musicType = musicEnum;
-            activeMusicPlayers.Add(musicPlayer);
+            musicPlayer.isAlwaysPlay = alwaysPlay;
+            enableMusicPlayers.Add(musicPlayer);
 
             AudioSource musicAudioSource;
             musicAudioSource = musicPlayer.gameObject.AddComponent<AudioSource>();
             AudioClip audioClip = musicAudioSource.clip = soundData.musicDic.Dictionary[musicEnum.ToString()];
 
             musicAudioSource.volume = volume;
+
             musicAudioSource.clip = audioClip;
             musicAudioSource.loop = true;
             musicAudioSource.Play();
         }
-
+        /// <summary>
+        /// Play music with globalMusicVolume
+        /// </summary>
+        /// <param name="musicEnum"></param>
+        public static void PlayMusic(MusicEnum musicEnum)
+        {
+            PlayMusic(musicEnum, GlobalMusicVolume);
+        }
         /// <summary>
         /// Change all music volumes that have the same musicEnum
         /// </summary>
@@ -199,13 +254,22 @@ namespace NOOD.Sound
         public static void ChangeMusicVolume(MusicEnum musicEnum, float volume)
         {
             InitIfNeed();
-            foreach(var musicPlayer in activeMusicPlayers)
+            foreach(var musicPlayer in enableMusicPlayers)
             {
                 if(musicPlayer.musicType == musicEnum)
                 {
                     AudioSource audioSource = musicPlayer.GetComponent<AudioSource>();
                     audioSource.volume = volume;
                 }
+            }
+        }
+        public static void ChangeMusicVolumeAll(float volume)
+        {
+            InitIfNeed();
+            foreach(var musicPlayer in enableMusicPlayers)
+            {
+                AudioSource audioSource = musicPlayer.GetComponent<AudioSource>();
+                audioSource.volume = volume;
             }
         }
         /// <summary>
@@ -224,9 +288,9 @@ namespace NOOD.Sound
 
             MusicPlayer musicPlayer;
             AudioSource musicAudioSource;
-            if(activeMusicPlayers.Any(x => x.musicType == sourceMusicEnum))
+            if(enableMusicPlayers.Any(x => x.musicType == sourceMusicEnum))
             {
-                musicPlayer = activeMusicPlayers.First(x => x.musicType == sourceMusicEnum);
+                musicPlayer = enableMusicPlayers.First(x => x.musicType == sourceMusicEnum);
                 musicAudioSource = musicPlayer.GetComponent<AudioSource>();
                 musicPlayer.musicType = toMusicEnum;
                 musicAudioSource.clip = soundData.musicDic.Dictionary[toMusicEnum.ToString()];
@@ -243,27 +307,46 @@ namespace NOOD.Sound
             ChangeMusic(sourceMusicEnum, toMusicEnum);
             ChangeMusicVolume(toMusicEnum, volume);
         }
-
         #region Stop Music
         /// <summary>
-        /// Stop all MusicPlayer has the same musicEnum
+        /// Stop all MusicPlayer with the same musicEnum
         /// </summary>
         /// <param name="musicEnum"></param>
         public static void StopMusic(MusicEnum musicEnum)
         {
             InitIfNeed();
-            if(activeMusicPlayers.Any(x => x.musicType == musicEnum))
+            if(enableMusicPlayers.Any(x => x.musicType == musicEnum))
             {
-                MusicPlayer musicPlayer =  activeMusicPlayers.First(x => x.musicType == musicEnum);
+                MusicPlayer musicPlayer =  enableMusicPlayers.First(x => x.musicType == musicEnum);
 
                 musicPlayer.GetComponent<AudioSource>().Stop();
                 musicPlayer.gameObject.SetActive(false);
-                activeMusicPlayers.Remove(musicPlayer);
+                enableMusicPlayers.Remove(musicPlayer);
                 disableMusicPlayers.Add(musicPlayer);
             } 
         }
         /// <summary>
-        /// Stop all MusicPlayer found
+        /// Resume MusicPlayer with the same musicEnum
+        /// </summary>
+        /// <param name="musicEnum"></param>
+        public static void ResumeMusic(MusicEnum musicEnum)
+        {
+            InitIfNeed();
+            if(enableMusicPlayers.Any(x => x.musicType == musicEnum))
+            {
+                MusicPlayer musicPlayer =  disableMusicPlayers.First(x => x.musicType == musicEnum);
+
+                musicPlayer.gameObject.SetActive(true);
+                musicPlayer.TryGetComponent<AudioSource>(out AudioSource audioSource);
+                audioSource.Play();
+                audioSource.volume = GlobalMusicVolume;
+
+                enableMusicPlayers.Add(musicPlayer);
+                disableMusicPlayers.Remove(musicPlayer);
+            } 
+        }
+        /// <summary>
+        /// Stop all MusicPlayers found
         /// </summary>
         public static void StopAllMusic()
         {
@@ -272,16 +355,40 @@ namespace NOOD.Sound
             {
                 FindSoundData();
             }
-            MusicPlayer[] musicPlayerArray = GameObject.FindObjectsOfType<MusicPlayer>();
-            foreach(var musicPlayer in musicPlayerArray)
+            foreach(var musicPlayer in enableMusicPlayers)
             {
                 musicPlayer.GetComponent<AudioSource>().Stop();
                 musicPlayer.gameObject.SetActive(false);
-                activeMusicPlayers.Remove(musicPlayer);
+                enableMusicPlayers.Remove(musicPlayer);
                 disableMusicPlayers.Add(musicPlayer);
             }
         }
+        /// <summary>
+        /// Resume all MusicPlayers found
+        /// </summary>
+        public static void ResumeAllMusic()
+        {
+            InitIfNeed();
+            if(soundData == null)
+            {
+                FindSoundData();
+            }
+            foreach(var musicPlayer in disableMusicPlayers)
+            {
+                musicPlayer.TryGetComponent<AudioSource>(out AudioSource audioSource);
+
+                audioSource.Play();
+                audioSource.volume = GlobalMusicVolume;
+
+                musicPlayer.gameObject.SetActive(true);
+                enableMusicPlayers.Add(musicPlayer);
+                disableMusicPlayers.Remove(musicPlayer);
+            }
+        }
         #endregion
+#endregion
+
+#region Support functions
         /// <summary>
         /// Get music length (data from SoundData)
         /// </summary>
@@ -295,7 +402,47 @@ namespace NOOD.Sound
             }
             return soundData.musicDic.Dictionary[musicEnum.ToString()].length;
         }
-        #endregion
+        public static bool IsMusicPlaying(MusicEnum musicEnum)
+        {
+            InitIfNeed();
+            return enableMusicPlayers.Any(x => x.musicType == musicEnum);
+        }
+        private static void AppliedVolume()
+        {
+            // To sound
+            SoundPlayer[] soundPlayers = GameObject.FindObjectsByType<SoundPlayer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach(var sound in soundPlayers)
+            {
+                if(sound.TryGetComponent<AudioSource>(out AudioSource audioSource))
+                {
+                    audioSource.volume = globalSoundVolume;
+                }
+            }
+            // To music
+            MusicPlayer[] musicPlayers = GameObject.FindObjectsByType<MusicPlayer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach(var musicPlayer in musicPlayers)
+            {
+                if(globalMusicVolume == 0)
+                {
+                    if (musicPlayer.isAlwaysPlay == true) continue;
+                    if(musicPlayer.TryGetComponent<AudioSource>(out AudioSource audioSource))
+                    {
+                        audioSource.volume = globalMusicVolume;
+                    }
+                    musicPlayer.gameObject.SetActive(false);
+                    disableMusicPlayers.Add(musicPlayer);
+                    enableMusicPlayers.Remove(musicPlayer);
+                }
+                else
+                {
+                    if(musicPlayer.TryGetComponent<AudioSource>(out AudioSource audioSource))
+                    {
+                        audioSource.volume = globalMusicVolume;
+                    }
+                }
+            }
+        }
+#endregion
     }
 
     public class SoundPlayer : MonoBehaviour 
@@ -305,5 +452,6 @@ namespace NOOD.Sound
     public class MusicPlayer : MonoBehaviour 
     {
         public MusicEnum musicType;
+        public bool isAlwaysPlay;
     }
 }

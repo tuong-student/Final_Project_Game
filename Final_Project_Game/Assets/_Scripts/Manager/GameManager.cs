@@ -31,7 +31,7 @@ public class GameManager: MonoBehaviour
         {
             NewGame();
         }
-        SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme, 0.5f);
+        SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
     }
     #endregion
 

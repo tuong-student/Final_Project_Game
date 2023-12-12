@@ -9,6 +9,7 @@ using Game;
 using MoreMountains.Feedbacks;
 using AssetKits.ParticleImage;
 using NOOD;
+using NOOD.Sound;
 
 public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDisplayInfo
 {
@@ -73,6 +74,7 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     {
         OrderManager.Instance.CheckComplete();
         GetComponentInParent<OrderElementUI>().CheckComplete();
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.OrderItemComplete);
     }
     #endregion
 
@@ -84,18 +86,18 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     }
     private bool MinusOne()
     {
-        bool value = PlayerManager.Instance.TryRemoveInventory(_orderItemData.storable, 1);
-        if(value)
+        bool canGetItem = PlayerManager.Instance.TryRemoveInventory(_orderItemData.storable, 1);
+        if(canGetItem)
         {
             _orderItemData.quantity -= 1;
-            UpdateUI();
             _minusFB.PlayFeedbacks();
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.Pop);
+            UpdateUI();
         }
-        return value;
+        return canGetItem;
     }
     private void UpdateUI()
     {
-        Debug.Log(_orderItemData.storable.name);
         _itemIcon.sprite = _orderItemData.storable.IconImage;
         _itemQuantity.text = _orderItemData.quantity.ToString("0");
     }
