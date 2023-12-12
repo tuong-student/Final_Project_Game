@@ -22,7 +22,7 @@ public class ItemToolbarPanel : ItemPanel
 
     public int GetToolbarCount()
     {
-        return buttons.Count - 1;
+        return buttons.Count;
     }
 
     public void Highlight(int id)

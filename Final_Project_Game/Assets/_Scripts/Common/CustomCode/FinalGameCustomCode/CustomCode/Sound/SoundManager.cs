@@ -263,15 +263,6 @@ namespace NOOD.Sound
                 }
             }
         }
-        public static void ChangeMusicVolumeAll(float volume)
-        {
-            InitIfNeed();
-            foreach(var musicPlayer in enableMusicPlayers)
-            {
-                AudioSource audioSource = musicPlayer.GetComponent<AudioSource>();
-                audioSource.volume = volume;
-            }
-        }
         /// <summary>
         /// Change music clip of audio source from sourceMusicEnum clip to toMusicEnum clip
         /// </summary>
@@ -422,24 +413,8 @@ namespace NOOD.Sound
             MusicPlayer[] musicPlayers = GameObject.FindObjectsByType<MusicPlayer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             foreach(var musicPlayer in musicPlayers)
             {
-                if(globalMusicVolume == 0)
-                {
-                    if (musicPlayer.isAlwaysPlay == true) continue;
-                    if(musicPlayer.TryGetComponent<AudioSource>(out AudioSource audioSource))
-                    {
-                        audioSource.volume = globalMusicVolume;
-                    }
-                    musicPlayer.gameObject.SetActive(false);
-                    disableMusicPlayers.Add(musicPlayer);
-                    enableMusicPlayers.Remove(musicPlayer);
-                }
-                else
-                {
-                    if(musicPlayer.TryGetComponent<AudioSource>(out AudioSource audioSource))
-                    {
-                        audioSource.volume = globalMusicVolume;
-                    }
-                }
+                AudioSource audioSource = musicPlayer.GetComponent<AudioSource>();
+                audioSource.volume = globalMusicVolume;
             }
         }
 #endregion
