@@ -28,7 +28,15 @@ MonoBehaviour:
       _value: {fileID: 8300000, guid: f35c236fc97db4309b80d8b34da60785, type: 3}
     - _key: FootStep
       _value: {fileID: 8300000, guid: 5a67c3ebaba314bdcb3ae080147fdda7, type: 3}
+    - _key: InteractClick
+      _value: {fileID: 8300000, guid: ab16ee0540fb44fa69eff0e4867ad114, type: 3}
+    - _key: Pop
+      _value: {fileID: 8300000, guid: 7336cd5e6e4f74693ac6c4b607b671ef, type: 3}
+    - _key: Truck
+      _value: {fileID: 8300000, guid: b6447e61f053e4ba4becea7c6e766f69, type: 3}
+    - _key: Hover
+      _value: {fileID: 8300000, guid: e7992d172691ce147bde04a9ea103f2c, type: 3}
   musicDic:
     _pairs:
     - _key: Theme
-      _value: {fileID: 8300000, guid: 434f67269b8f7e44cbcd6e46d04012b6, type: 3}
+      _value: {fileID: 8300000, guid: 4a74f61bf7075e8439f9a759ece2693f, type: 3}

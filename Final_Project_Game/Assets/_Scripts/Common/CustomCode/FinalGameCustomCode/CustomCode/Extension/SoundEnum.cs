@@ -9,5 +9,9 @@ public enum SoundEnum
 	BulletExplode = 4,
 	PlayerHit = 5,
 	FootStep = 6,
+	InteractClick = 7,
+	Pop = 8,
+	Truck = 9,
+	Hover = 10,
 }
 }
