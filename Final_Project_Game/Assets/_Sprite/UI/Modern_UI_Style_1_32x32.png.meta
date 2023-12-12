@@ -1307,7 +1307,7 @@ TextureImporter:
         width: 4
         height: 3
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1328,7 +1328,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1349,7 +1349,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1357,6 +1357,69 @@ TextureImporter:
       bones: []
       spriteID: 48c2d597c2ae1dc4ab1a230d7a71c24c
       internalID: -764157763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Not
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 356
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73791b447b4ae4f4ba56daf628632d92
+      internalID: 674980921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slide
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 390
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 4, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0023c521f4583343ab9da571e80d240
+      internalID: -613913789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fill
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 392
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3b34f5c98c73ef43908d110fa148d97
+      internalID: -1350478142
       vertices: []
       indices: 
       edges: []
@@ -1376,6 +1439,7 @@ TextureImporter:
       ButtonBG1: -691889142
       ConfirmButton: 473266845
       ExitButton: -764157763
+      Fill: -1350478142
       FullHP: -1944427054
       Modern_UI_Style_1_32x32_0: 2017681641
       Modern_UI_Style_1_32x32_1: -625919351
@@ -1421,11 +1485,13 @@ TextureImporter:
       Modern_UI_Style_1_32x32_8: -229244397
       Modern_UI_Style_1_32x32_9: 680486252
       NoHP: 245631736
+      Not: 674980921
       OneFourHP: 987578092
       OneTwoHP: 1482461155
       Pane: -978351720
       Panel: 1496548295
       Panel2: 237847508
+      Slide: -613913789
       SoundOff: 707555119
       SoundOff2: -1833351560
       SoundOn: -1012046073

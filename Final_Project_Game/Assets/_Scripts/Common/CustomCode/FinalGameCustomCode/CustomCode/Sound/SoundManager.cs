@@ -263,6 +263,15 @@ namespace NOOD.Sound
                 }
             }
         }
+        public static void ChangeMusicVolumeAll(float volume)
+        {
+            InitIfNeed();
+            foreach(var musicPlayer in enableMusicPlayers)
+            {
+                AudioSource audioSource = musicPlayer.GetComponent<AudioSource>();
+                audioSource.volume = volume;
+            }
+        }
         /// <summary>
         /// Change music clip of audio source from sourceMusicEnum clip to toMusicEnum clip
         /// </summary>

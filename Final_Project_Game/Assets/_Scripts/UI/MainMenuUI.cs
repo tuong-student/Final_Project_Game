@@ -43,7 +43,6 @@ public class MainMenuUI : MonoBehaviour
         gameStatus.isNewGame = true;
         SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
         SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
-        
     }
 
     private void LoadGame()
