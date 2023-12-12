@@ -8,7 +8,8 @@ using Unity.VisualScripting;
 
 public class ToolbarController : MonoBehaviour
 {
-    [SerializeField] int toolbarSize = 12;
+    [SerializeField] ItemToolbarPanel itemToolbarPanel;
+    int toolbarSize;
     private int selectedTool;
     public Action<int> onChange;
     [SerializeField] IconHighlight iconHighlight;
@@ -31,6 +32,7 @@ public class ToolbarController : MonoBehaviour
     {
         onChange += UpdateHighlightIcon;
         UpdateHighlightIcon(selectedTool);
+        toolbarSize = itemToolbarPanel.GetToolbarCount();
     }
 
     private void Update()

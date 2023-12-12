@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using NOOD;
+using NOOD.Sound;
 using UnityEngine;
 
 public class Truck : Interactable
@@ -41,7 +42,7 @@ public class Truck : Interactable
             this.transform.DOMoveX(_outXPosition, 3).SetEase(Ease.InCirc);
         }, 3f);
         NoodyCustomCode.StartDelayFunction(Return, _deliveryTime);
-        Debug.Log("Go");
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.Truck);
     }
     private void Return()
     {
@@ -62,7 +63,7 @@ public class Truck : Interactable
         DeactivateAllContainer();
         this.transform.DOMoveX(_inXPosition, 3).SetEase(Ease.OutCirc);
         _positionShakeFB.PlayFeedbacks();
-        Debug.Log("Return");
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.Truck);
     }
     private void DeactivateAllContainer()
     {
@@ -77,6 +78,7 @@ public class Truck : Interactable
     public void OpenOrderPanel()
     {
         OrderManager.Instance.onPlayerOpenOrderPanel?.Invoke();
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.InteractClick);
     }
     public void PlayerCompleteOrder(int moneyOfOrder)
     {

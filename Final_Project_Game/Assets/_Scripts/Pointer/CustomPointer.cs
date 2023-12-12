@@ -2,6 +2,7 @@ using DG.Tweening;
 using Game;
 using ImpossibleOdds;
 using NOOD;
+using NOOD.Sound;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -32,12 +33,15 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
     #region Unity Functions
     void Awake()
     {
+        // GameInput events
+        // Left mouse Button
+        GameInput.onPlayerAccept += PlayerChoose;
+        GameInput.onPlayerReleaseAccept += PlayerReleaseChoose;
+
         _mouseImage = GetComponent<Image>();
         Cursor.visible = false;
         _pointerStage = PointerType.Idle;
         _mouseImage.transform.localScale = _normalScale;
-        GameInput.onPlayerAccept += PlayerChoose;
-        GameInput.onPlayerReleaseAccept += PlayerReleaseChoose;
         _infoPanelCanvasGroup.alpha = 0;
     }
     void Update()
@@ -55,9 +59,6 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
                     _pointerStage = PointerType.Choose;
                     Debug.Log("Interactable");
                 }
-            }
-            else if(_currentInteractableGameObject.TryGetComponent<IPointerMenu>(out IPointerMenu pointerMenu) )
-            {
             }
             else
             {

@@ -13,6 +13,7 @@ public class ShootingManager : MonoBehaviorInstance<ShootingManager>
     [SerializeField] private int _enemyToSpawn = 5;
     [HideInInspector] public TilemapCropsManager _tilemapCropsManager;
     private bool _isSpawnEnemy;
+    private bool _isWarnPlayer;
     private EnemySpawner _enemySpawner;
 
     public static ShootingManager Create()
@@ -41,9 +42,10 @@ public class ShootingManager : MonoBehaviorInstance<ShootingManager>
 
     private void CheckTimeToSpawnEnemies(int hours, int minute)
     {
-        if(hours == _hourToSpawnEnemy - 1)
+        if (hours == _hourToSpawnEnemy - 1 && minute == 30 && _isWarnPlayer == false)
         {
             // Warn player
+            _isWarnPlayer = true;
             PlayEnemyWarningFB();
         }
         if(hours == _hourToSpawnEnemy && _isSpawnEnemy == false)
@@ -55,6 +57,7 @@ public class ShootingManager : MonoBehaviorInstance<ShootingManager>
         if(hours != _hourToSpawnEnemy)
         {
             _isSpawnEnemy = false;
+            _isWarnPlayer = false;
         }
     }
 

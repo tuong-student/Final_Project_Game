@@ -1,13 +1,15 @@
 using DG.Tweening;
 using Game;
+using Game.Interface;
 using NOOD;
+using NOOD.Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(OptionHolder))]
-public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, IPointerMenu, IDisplayInfo
+public class MenuElement : InteractableUIBase, ISelectHandler, IDeselectHandler, IPointerMenu, IDisplayInfo, IInteractable
 {
     #region SerializeField
     [SerializeField] private Image _icon;
@@ -102,18 +104,6 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     #endregion
 
     #region Events Functions
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if(_storableData == null || _storableData.Tradable == false ) return;
-        eventData.selectedObject = this.gameObject;
-        Select();
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _parentMenuController.SetLastSelectedObject(this);
-        eventData.selectedObject = null;
-        Deselect();
-    }
     public void OnSelect(BaseEventData eventData)
     {
         _parentMenuController.SetCurrentSelectedObject(this);
@@ -134,6 +124,25 @@ public class MenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             return (_storableData.name, NoodyCustomCode.HexToColor("#5A00FF"));
         }
         return (null, Color.white);
+    }
+    #endregion
+
+    #region Override functions
+    public override void Interact(object sender)
+    {
+        // Do no thing
+    }
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        if(_storableData == null || _storableData.Tradable == false ) return;
+        eventData.selectedObject = this.gameObject;
+        Select();
+    }
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        _parentMenuController.SetLastSelectedObject(this);
+        eventData.selectedObject = null;
+        Deselect();
     }
     #endregion
 }
