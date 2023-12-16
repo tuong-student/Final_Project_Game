@@ -25,14 +25,18 @@ public class EnemyAttackCrop : BaseEnemy
         }
     }
 
-    protected override void FindCrop()
+    protected override void FindPlayer()
     {
         if(IsCropNullOrEmpty())
         {
-            // if don't have crop tile attack player instead
-            _targetPos = FindObjectOfType<PlayerManager>().transform.position;
+            if(PlayerManager.Instance != null)
+            {
+                _targetPos = PlayerManager.Instance.transform.position;
+            }
         }
-
+    }
+    protected override void FindCrop()
+    {
         if(IsCropNullOrEmpty())
         {
             CropsContainer cropsContainer = ShootingManager.Instance._tilemapCropsManager.GetCropContainer();

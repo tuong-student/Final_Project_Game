@@ -43,7 +43,7 @@ public class ObjectSpawner : MonoBehaviour
         if (CheckPosition(t))
         {
             Debug.Log("Here");
-            DestroyObject(go);
+            Destroy(go);
             return;
         }
         else
@@ -60,7 +60,10 @@ public class ObjectSpawner : MonoBehaviour
     {
         foreach (var go in spawnList)
         {
-            if (Vector3.Distance(go.transform.position, transform.position) < 3)
+            if (go == null) return false;
+
+            float distance = Vector3.Distance(go.transform.position, transform.position);
+            if (distance < 3)
                 return true;
         }
         return false;
@@ -85,12 +88,15 @@ public class ObjectSpawner : MonoBehaviour
     public string Read()
     {
         ToSave toSave = new ToSave();
-        for (int i = 0; i < spawnedObjects.Count; i++)
+        foreach(var item in spawnedObjects)
         {
-            toSave.spawnedObjectDatas.Add(
-                new SpawnedObject.SaveSpawnedObjectData(
-                    spawnedObjects[i].objId,
-                    spawnedObjects[i].transform.position));
+            if(item)
+            {
+                toSave.spawnedObjectDatas.Add(
+                    new SpawnedObject.SaveSpawnedObjectData(
+                        item.objId,
+                        item.transform.position));
+            }
         }
         string save = JsonUtility.ToJson(toSave);
         Debug.Log(save);

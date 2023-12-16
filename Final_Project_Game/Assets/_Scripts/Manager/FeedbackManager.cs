@@ -36,12 +36,14 @@ public class FeedbackManager : MonoBehaviorInstance<FeedbackManager>
 
     public void PlayPlayerDeadFB()
     {
+        Debug.Log("PlayerDeadFB");
         _feedbackType = FeedbackType.PlayerDead;
         PlayFeedback();
     }
 
     private void PlayFeedback()
     {
+        Debug.Log("PlayFB");
         MMF_Player fb = _feedbackDic.Dictionary[_feedbackType];
         if(fb != null)
             fb.PlayFeedbacks();

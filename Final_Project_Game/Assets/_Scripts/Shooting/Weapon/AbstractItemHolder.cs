@@ -34,7 +34,7 @@ public class AbstractItemHolder : MonoBehaviorInstance<AbstractItemHolder>
     #endregion
 
     #region Unity Functions
-    void Update()
+    void LateUpdate()
     {
         if(_currentGun.IsHasData)
             RotateToMouse();

@@ -81,13 +81,13 @@ public class MenuController : MonoBehaviour
     #region Events
     private void SubscribeEvents() 
     {
-        GameInput.onPlayerAccept += PlayerAccept;
+        GameInput.onPlayerChooseOption += PlayerAccept;
         GameInput.onPlayerPressMoveVector2 += PlayerMoveHandler;
     }
     private void UnSubscribeEvents()
     {
         // NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
-        GameInput.onPlayerAccept -= PlayerAccept;
+        GameInput.onPlayerChooseOption -= PlayerAccept;
         GameInput.onPlayerPressMoveVector2 -= PlayerMoveHandler;
     }
     private void OnOptionMenuClose()

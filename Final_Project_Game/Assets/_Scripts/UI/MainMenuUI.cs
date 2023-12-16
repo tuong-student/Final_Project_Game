@@ -4,9 +4,11 @@ using UnityEngine.UI;
 using NOOD.Sound;
 using System.Collections.Generic;
 using DG.Tweening;
+using EasyTransition;
 
 public class MainMenuUI : MonoBehaviour
 {
+    #region SerializeField
     [SerializeField] private Button startNewBtn; 
     [SerializeField] private Button loadGameBtn;
     [SerializeField] private Button settingGameBtn;
@@ -16,8 +18,18 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject creditsPanel;
     [SerializeField] private string nameEssentialScene;
     [SerializeField] private string nameNewGameStartScene;
+    [Tooltip("Find a TransitionSettings type by search t:TransitionSettings in project tab")]
+    [SerializeField] private TransitionSettings _transitionSettings;
+    #endregion
+
+    #region public
     public GameStatusSO gameStatus;
-    private bool isMute;
+    #endregion
+
+    #region private
+    #endregion
+
+
     private void Start()
     {
         startNewBtn.onClick.AddListener(StartNewGame);
@@ -32,24 +44,31 @@ public class MainMenuUI : MonoBehaviour
         else
             loadGameBtn.gameObject.SetActive(true);
         
-        isMute = gameStatus.isSoundMute;
-        if(isMute == false)
-            SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
+        SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
     }
 
     public void StartNewGame()
     {
         Debug.Log("New Game");
         gameStatus.isNewGame = true;
-        SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
-        SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
+        TransitionManager.Instance().onTransitionCutPointReached = () => 
+        {
+            SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
+            SceneManager.LoadScene(nameNewGameStartScene, LoadSceneMode.Additive);
+        };
+        TransitionManager.Instance().Transition(_transitionSettings, 0);
     }
 
     private void LoadGame()
     {
         Debug.Log("Load Game");
-        SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
-        SceneManager.LoadScene(gameStatus.nameScene, LoadSceneMode.Additive);
+        
+        TransitionManager.Instance().onTransitionCutPointReached = () =>
+        {
+            SceneManager.LoadScene(nameEssentialScene, LoadSceneMode.Single);
+            SceneManager.LoadScene(gameStatus.nameScene, LoadSceneMode.Additive);
+        };
+        TransitionManager.Instance().Transition(_transitionSettings, 0);
     }
 
   

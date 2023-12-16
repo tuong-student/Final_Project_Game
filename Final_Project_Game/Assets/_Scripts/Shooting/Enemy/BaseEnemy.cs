@@ -34,6 +34,7 @@ public abstract class BaseEnemy : MonoBehaviour
         Init();
         NoodyCustomCode.CreateNewCoroutineLoop(() =>
         {
+            if (PlayerManager.Instance.GetHealth() <= 0) return;
             FindPlayer();
             FindCrop();
         }, 0.2f);

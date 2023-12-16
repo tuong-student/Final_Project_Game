@@ -13,8 +13,6 @@ namespace Game
 
     public static class GlobalConfig
     {
-        public static bool _isBlockInput = false;
-        public static bool _isSoundMute = false;
-        public static bool _isMusicMute = false;
+        public static bool s_IsUiOpen = false;
     }
 }

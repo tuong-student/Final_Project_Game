@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2455431673443503961}
   - component: {fileID: 3467802795348212364}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 'EnemyLight '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 334701163995709794}
   - component: {fileID: 4884465664192792995}
   - component: {fileID: 8418355659061331169}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 1476815487061620065}
   - component: {fileID: 779432328088233792}
   - component: {fileID: 5663475940339780180}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RatView
   m_TagString: Untagged
   m_Icon: {fileID: 0}

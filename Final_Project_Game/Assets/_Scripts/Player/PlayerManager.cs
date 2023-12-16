@@ -51,10 +51,6 @@ namespace Game
             NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
             GameInput.Dispose();
         }
-        void Update()
-        {
-
-        }
         #endregion
 
         #region Get Set
@@ -70,10 +66,10 @@ namespace Game
         {
             _health.AddModifier(ModifyType.Subtract, amount);
             FeedbackManager.Instance.PlayPlayerHurtFeedback();
-            if (_health.Value <= 0)
+
+            if(_health.Value <= 0)
             {
-                NoodyCustomCode.StartDelayFunction(_playerAnimation.PlayDeadAnimation, 0.2f);
-                NoodyCustomCode.StartDelayFunction(() => this.gameObject.SetActive(false), 1.5f);
+                Dead();
             }
         }
         #endregion
@@ -89,13 +85,31 @@ namespace Game
             if(tempItem == null) return;
             //tempItem.Pickup(_inventory);
         }
-
+        private void Dead()
+        {
+            NoodyCustomCode.StartDelayFunction(_playerAnimation.PlayDeadAnimation, 0.2f);
+            NoodyCustomCode.StartDelayFunction(() => 
+            {
+                _playerGun.gameObject.SetActive(false);
+            }, 1.5f);
+            NoodyCustomCode.StartDelayFunction(() =>
+            {
+                UIManager.Instance.ActiveDeadMenu();
+            }, 3f);
+        }
         #endregion
 
         #region Inventory
         public void AddToInventory(Storable item, int count = 1)
         {
             inventoryContainer.Add(item, count);
+        }
+        public void AddDefaultItems(Dictionary<Storable, int> itemsAndCount)
+        {
+            foreach(var itemsPair in itemsAndCount)
+            {
+                inventoryContainer.Add(itemsPair.Key, itemsPair.Value);
+            }
         }
         public void RemoveFromInventory(Storable item, int count)
         {

@@ -1,13 +1,25 @@
 using Game;
+using NOOD.SerializableDictionary;
 using NOOD.Sound;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager: MonoBehaviour
 {
+    #region SerializeField
+    [Header("Default Items")]
+    [SerializeField] private SerializableDictionary<Storable, int> _defaultItems = new SerializableDictionary<Storable, int>();
+    #endregion
+
+    #region static
     public static GameManager instance;
+    #endregion
+
+    #region public
+    [Space(10)]
     public GameObject player;
     public ItemDragAndDropController dragAndDropController;
     public DayTimeController timeController;
@@ -15,6 +27,7 @@ public class GameManager: MonoBehaviour
     public ItemList itemDB;
     public GameStatusSO gameStatus;
     public PlaceableObjectsContainer placeableObjectsContainer;
+    #endregion
 
     #region Unity functions
     void OnEnable()
@@ -33,6 +46,10 @@ public class GameManager: MonoBehaviour
         }
         SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
     }
+    void OnDisable()
+    {
+        GameInput.Dispose();
+    }
     #endregion
 
     public Transform GetTransform()
@@ -43,7 +60,10 @@ public class GameManager: MonoBehaviour
     public void NewGame()
     {
         player.transform.position = new Vector3(-9.93f, 10.68f, 0f);
-        player.GetComponent<PlayerManager>().ClearAllInventory();
+        PlayerManager playerManager = player.GetComponent<PlayerManager>();
+        playerManager.ClearAllInventory();
+        playerManager.AddDefaultItems(_defaultItems.Dictionary);        
+        
         placeableObjectsContainer.ClearAllObj();
         gameStatus.isNewGame = false;
         gameStatus.nameScene = "2DMainGame";

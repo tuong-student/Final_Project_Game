@@ -72,8 +72,7 @@ public class CustomButton : InteractableUIBase, ISelectHandler, IDeselectHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(GlobalConfig._isSoundMute == false)
-            SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
     }
     #endregion
 }

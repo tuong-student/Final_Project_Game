@@ -2,6 +2,7 @@ using DG.Tweening;
 using Game;
 using ImpossibleOdds;
 using NOOD;
+using NOOD.SerializableDictionary;
 using NOOD.Sound;
 using TMPro;
 using Unity.VisualScripting;
@@ -20,8 +21,9 @@ public enum PointerType
 public class CustomPointer : MonoBehaviorInstance<CustomPointer>
 {
     #region SerializeField
-    [SerializeField] private SerializedDictionary<PointerType, Sprite> _pointerSpriteDic = new SerializedDictionary<PointerType, Sprite>();
-    [SerializeField] private Vector3 _normalScale, _menuChooseScale;
+    [SerializeField] private SerializableDictionary<PointerType, Sprite> _pointerSpriteDic = new SerializableDictionary<PointerType, Sprite>();
+    [Space(20)]
+    [SerializeField] private Vector3 _normalScale;
     [SerializeField] private CanvasGroup _infoPanelCanvasGroup;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private Image _holdIcon;
@@ -35,7 +37,7 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
     {
         // GameInput events
         // Left mouse Button
-        GameInput.onPlayerAccept += PlayerChoose;
+        GameInput.onPlayerChooseOption += PlayerChoose;
         GameInput.onPlayerReleaseAccept += PlayerReleaseChoose;
 
         _mouseImage = GetComponent<Image>();
@@ -124,8 +126,8 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
     #region Sprite
     private void ChangePointerSprite()
     {
-        if(_pointerStage != PointerType.MenuChoose)
-            _mouseImage.sprite = _pointerSpriteDic[_pointerStage];
+        Debug.Log(_pointerStage);
+        _mouseImage.sprite = _pointerSpriteDic.Dictionary[_pointerStage];
     }
     #endregion
 
