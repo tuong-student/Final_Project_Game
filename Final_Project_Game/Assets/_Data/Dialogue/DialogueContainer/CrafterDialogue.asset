@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a73314e232d3449ae0849916df7bf7, type: 3}
+  m_Name: CrafterDialogue
+  m_EditorClassIdentifier: 
+  line:
+  - My name is Steve, i am a crafter.
+  - mastery is a journey, not a destination. It took years of honing my skills, learning
+    from the ancients, and experimenting with forgotten techniques.
+  - Crafting is not just about making items; it's about infusing a piece of your
+    soul into every creation.
+  actor: {fileID: 11400000, guid: 060f80ba26333044886a243b6dceacf2, type: 2}

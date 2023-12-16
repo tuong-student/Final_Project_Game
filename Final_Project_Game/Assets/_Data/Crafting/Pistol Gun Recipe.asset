@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aaf826a4718e8834594002a740e4558a, type: 3}
-  m_Name: Chest Crafting Recipe
+  m_Name: Pistol Gun Recipe
   m_EditorClassIdentifier: 
   elements:
   - storable: {fileID: 11400000, guid: 8f7d75d85ce4703459ca269e785df59f, type: 2}
-    count: 10
+    count: 50
   - storable: {fileID: 11400000, guid: eadb90fb97716ab41a9789ebad6e536a, type: 2}
-    count: 1
+    count: 10
   output:
-    storable: {fileID: 11400000, guid: c23206c68ff29ab44a222a3be26b97f2, type: 2}
+    storable: {fileID: 11400000, guid: 0945bb376867c7e489136bbdc25c3245, type: 2}
     count: 1

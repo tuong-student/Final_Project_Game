@@ -10,6 +10,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] GameObject statusPanel;
     [SerializeField] GameObject toolbarPanel;
     [SerializeField] GameObject additionalPanel;
+    [SerializeField] GameObject craftingPanel;
 
     #region Unity functions
     void Start()
@@ -42,6 +43,7 @@ public class InventoryController : MonoBehaviour
         statusPanel.SetActive(false);
         toolbarPanel.SetActive(true);
         additionalPanel.SetActive(false);
+        craftingPanel.SetActive(false);
         UIManager.Instance.RemoveToUIList(this);
     }
     #endregion

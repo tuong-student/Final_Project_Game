@@ -13,7 +13,8 @@ public enum ActionType
     Buy,
     Buy1,
     Buy10,
-    Buy100
+    Buy100,
+    Craft
 }
 
 [CreateAssetMenu(menuName = "Data/Dialogue/OptionData")]

@@ -1,16 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
+using DG.Tweening;
+using Game;
+using NOOD;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class PanelGroup : MonoBehaviour
+public class PanelGroup : MonoBehaviorInstance<PanelGroup>
 {
-    public List<GameObject> panels;
-
-    public void Show(int idPanel)
+    [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private CanvasGroup _canvasGroup;
+    public void Open()
     {
-        for (int i = 0; i < panels.Count; i++)
-        {
-            panels[i].SetActive(i == idPanel);
-        }
+        this.gameObject.transform.DOScale(1, 1f);
+        _canvasGroup.DOFade(1, 0.7f);
+        inventoryPanel.SetActive(true);
     }
+    public void Close()
+    {
+        this.gameObject.transform.DOScale(0.3f, 1f);
+        _canvasGroup.DOFade(0, 0.7f).OnComplete(() => this.gameObject.SetActive(false)).OnComplete(() =>
+        {
+            inventoryPanel.gameObject.SetActive(false);
+        });
+    }
+
 }

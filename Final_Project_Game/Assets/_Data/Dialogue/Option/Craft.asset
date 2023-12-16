@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d511711ab425e254eae4493262c59f7a, type: 3}
-  m_Name: Luna
+  m_Script: {fileID: 11500000, guid: 02a9e45ca922e7d4e9aa3d5ca0d90dc2, type: 3}
+  m_Name: Craft
   m_EditorClassIdentifier: 
-  Name: Luna
-  portrait: {fileID: -1940738496428130850, guid: 2f90eb840bd0cf4438d49759bc08d718, type: 3}
+  _displayText: Craft
+  _actionToActive: 10
