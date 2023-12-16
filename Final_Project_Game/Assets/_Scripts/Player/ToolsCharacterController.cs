@@ -126,6 +126,18 @@ public class ToolsCharacterController : MonoBehaviour
                 case StorageType.Weapon:
                     GunSO gunSO = storable as GunSO;
                     break;
+                case StorageType.Object:
+                    itemSO = storable as ItemSO;
+                    if (itemSO.onTileMapAction == null) return;
+                    complete = itemSO.onTileMapAction.OnApplyTileMap(selectedTilePosition, tileMapReadController, itemSO);
+                    if (complete)
+                    {
+                        if (itemSO.onItemUsed != null)
+                        {
+                            itemSO.onItemUsed.OnItemUsed(itemSO, PlayerManager.Instance.inventoryContainer);
+                        }
+                    }
+                    break;
             }
         }
     }

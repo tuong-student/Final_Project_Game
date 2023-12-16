@@ -190,14 +190,14 @@ public class SettingPanel : MonoBehaviour
     }
     public void Show()
     {
-        UIManager.Instance.AddToUIList(this);
+        //UIManager.Instance.AddToUIList(this);
         isShow = true;
         if (showFB != null)
             showFB.PlayFeedbacks();
     }
     public void Hide()
     {
-        UIManager.Instance.RemoveToUIList(this);
+        //UIManager.Instance.RemoveToUIList(this);
         isShow = false;
         if (hideFB != null)
             hideFB.PlayFeedbacks();
