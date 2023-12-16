@@ -39,7 +39,7 @@ namespace Game
             _left= false;
             _right = false;
             _run = false;
-            if (GlobalConfig._isBlockInput == true) return;
+            if (GlobalConfig.s_IsUiOpen == true) return;
             if (PlayerManager.Instance.GetHealth() <= 0) return;
             if(playerInput == Vector2.zero) 
             {

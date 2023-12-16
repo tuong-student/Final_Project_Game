@@ -431,13 +431,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointerSpriteDic:
-    m_Keys: 000000000100000002000000
-    m_Values:
-    - {fileID: 2003270486, guid: 5f7066f1a9301004289b74daeeabffbc, type: 3}
-    - {fileID: -110859125, guid: 5f7066f1a9301004289b74daeeabffbc, type: 3}
-    - {fileID: -1282742279, guid: 5f7066f1a9301004289b74daeeabffbc, type: 3}
+    _pairs:
+    - _key: 0
+      _value: {fileID: 2003270486, guid: 5f7066f1a9301004289b74daeeabffbc, type: 3}
+    - _key: 1
+      _value: {fileID: -110859125, guid: 5f7066f1a9301004289b74daeeabffbc, type: 3}
   _normalScale: {x: 0.4, y: 0.4, z: 0.4}
-  _menuChooseScale: {x: 1.25, y: 1.25, z: 1.25}
   _infoPanelCanvasGroup: {fileID: 234934807327456254}
   _nameText: {fileID: 246580451764188894}
   _holdIcon: {fileID: 9025721043935158781}

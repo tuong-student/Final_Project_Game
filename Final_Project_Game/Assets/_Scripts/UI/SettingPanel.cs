@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Game;
+using NOOD;
+using UnityEngine.SceneManagement;
+using EasyTransition;
+using UnityEditor.ShortcutManagement;
 
 public class SettingPanel : MonoBehaviour
 {
@@ -11,7 +15,8 @@ public class SettingPanel : MonoBehaviour
     [SerializeField] private Button musicBtn;
     [SerializeField] private Button soundBtn;
     [SerializeField] private Button confirmBtn;
-    [SerializeField] private Button exitBtn; 
+    [SerializeField] private Button exitBtn;
+    [SerializeField] private CustomButton _homeBtn;
     [SerializeField] private Image musicImg;
     [SerializeField] private Image soundImg;
     [SerializeField] private Slider musicSlider;
@@ -20,13 +25,18 @@ public class SettingPanel : MonoBehaviour
     [SerializeField] private GameStatusSO gameStatus;
     [SerializeField] private MMF_Player showFB;
     [SerializeField] private MMF_Player hideFB;
+    [SerializeField] private TransitionSettings _transitionSetting;
     #endregion
+
+    #region Private
     private bool isMuteMusic;
     private bool isMuteSound;
     private bool isShow;
     private GameObject panel;
     private float oldMusicVolume, oldSoundVolume;
+    #endregion
 
+    #region Unity functions
     private void OnEnable()
     {
         isMuteMusic = gameStatus.isMusicMute;
@@ -35,17 +45,20 @@ public class SettingPanel : MonoBehaviour
         soundImg.sprite = isMuteSound ? listSprite[0] : listSprite[1];
         SoundManager.GlobalMusicVolume = gameStatus.musicVolume;
         SoundManager.GlobalSoundVolume = gameStatus.soundVolume;
+        GameInput.onPlayerPressEscape += OnRequestShowHide;
     }
     private void Start()
     {
+
         musicBtn.onClick.AddListener(AdjustMusic);
         soundBtn.onClick.AddListener(AdjustSound);
         confirmBtn.onClick.AddListener(OnConfirm);
         exitBtn.onClick.AddListener(OnExit);
+        if(_homeBtn != null)
+            _homeBtn.SetAction(OnHomeBtnHandler);
+
         musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
         soundSlider.onValueChanged.AddListener(ChangeSoundVolume);
-
-        GameInput.onPlayerPressEscape += OnRequestShowHide;
 
         panel = this.transform.GetChild(0).gameObject;
         showFB.Events.OnPlay.AddListener(() =>
@@ -63,12 +76,19 @@ public class SettingPanel : MonoBehaviour
         {
             SoundManager.PlayMusic(NOOD.Sound.MusicEnum.Theme);
         }
+
+        isShow = false;
     }
     void Update()
     {
         musicSlider.value = gameStatus.musicVolume;
         soundSlider.value = gameStatus.soundVolume;
     }
+    void OnDisable()
+    {
+        GameInput.onPlayerPressEscape -= OnRequestShowHide;
+    }
+    #endregion
 
     private void AdjustMusic()
     {
@@ -87,6 +107,8 @@ public class SettingPanel : MonoBehaviour
         SoundManager.GlobalMusicVolume = gameStatus.musicVolume;
     }
 
+
+    #region Sound
     private void AdjustSound()
     {
         isMuteSound = !isMuteSound;
@@ -104,7 +126,9 @@ public class SettingPanel : MonoBehaviour
         }
         SoundManager.GlobalSoundVolume = gameStatus.soundVolume;
     }
+    #endregion
 
+    #region Music
     private void ChangeMusicVolume(float volume)
     {
         gameStatus.musicVolume = volume;
@@ -115,7 +139,6 @@ public class SettingPanel : MonoBehaviour
         
         SoundManager.GlobalMusicVolume = volume;
     }
-
     private void ChangeSoundVolume(float volume)
     {
         gameStatus.soundVolume = volume;
@@ -126,7 +149,9 @@ public class SettingPanel : MonoBehaviour
 
         SoundManager.GlobalSoundVolume = volume;
     }
+    #endregion
 
+    #region Button functions
     private void OnConfirm()
     {
         gameStatus.isMusicMute = isMuteMusic;
@@ -136,7 +161,6 @@ public class SettingPanel : MonoBehaviour
         SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         Hide();
     }
-
     private void OnExit()
     {
         if (hideFB != null)
@@ -147,6 +171,13 @@ public class SettingPanel : MonoBehaviour
 
         Hide();
     }
+    private void OnHomeBtnHandler()
+    {
+        TransitionManager.Instance().onTransitionCutPointReached = () =>
+        SceneManager.LoadScene("MainMenuScene", LoadSceneMode.Single);
+        TransitionManager.Instance().Transition(_transitionSetting, 0);
+    }
+    #endregion
 
     #region Show Hide
     public void OnRequestShowHide()
@@ -159,12 +190,14 @@ public class SettingPanel : MonoBehaviour
     }
     public void Show()
     {
+        UIManager.Instance.AddToUIList(this);
         isShow = true;
         if (showFB != null)
             showFB.PlayFeedbacks();
     }
     public void Hide()
     {
+        UIManager.Instance.RemoveToUIList(this);
         isShow = false;
         if (hideFB != null)
             hideFB.PlayFeedbacks();

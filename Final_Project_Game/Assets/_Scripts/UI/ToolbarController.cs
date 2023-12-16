@@ -37,6 +37,8 @@ public class ToolbarController : MonoBehaviour
 
     private void Update()
     {
+        if (GlobalConfig.s_IsUiOpen) return;
+        
         float delta = Input.mouseScrollDelta.y;
         if (delta != 0)
         {

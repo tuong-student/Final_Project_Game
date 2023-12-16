@@ -73,7 +73,7 @@ public class OptionUI : MonoBehaviorInstance<OptionUI>, IOptionUIBase
     {
         Debug.Log("Subscribe");
         GameInput.onPlayerPressMoveVector2 += PlayerInputHandler;
-        GameInput.onPlayerAccept += PlayerAcceptHandler;
+        GameInput.onPlayerChooseOption += PlayerAcceptHandler;
     }
     private void UnSubscribeEvents()
     {

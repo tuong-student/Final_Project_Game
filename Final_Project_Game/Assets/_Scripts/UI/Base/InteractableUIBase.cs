@@ -15,8 +15,7 @@ public abstract class InteractableUIBase : MonoBehaviour, IPointerInteractable, 
     #region Virtual functions
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
-        if(GlobalConfig._isSoundMute == false)
-            SoundManager.PlaySound(NOOD.Sound.SoundEnum.Hover);
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.Hover);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)

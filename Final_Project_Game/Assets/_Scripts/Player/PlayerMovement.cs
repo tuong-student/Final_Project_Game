@@ -31,7 +31,7 @@ namespace Game
         void Update()
         {
             _isMove = false;
-            if(GlobalConfig._isBlockInput == true) return;
+            if(GlobalConfig.s_IsUiOpen == true) return;
             if (PlayerManager.Instance.GetHealth() <= 0) return;
             Move();
         }

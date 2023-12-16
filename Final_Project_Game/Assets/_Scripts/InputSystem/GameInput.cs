@@ -15,7 +15,7 @@ namespace Game
         public static event Action onPlayerPressInteract;
         public static event Action onPlayerShoot;
         public static event Action onPlayerStopShooting;
-        public static event Action onPlayerAccept;
+        public static event Action onPlayerChooseOption;
         public static event Action onPlayerReleaseAccept;
         public static event Action onPlayerPressEscape;
         public static event Action onPlayerOpenInventory;
@@ -24,6 +24,8 @@ namespace Game
 
         public static void Dispose()
         {
+            if(_gameInputSystem != null)
+                _gameInputSystem.Player.Disable();
             _gameInputSystem = null;
         }
 
@@ -49,7 +51,7 @@ namespace Game
             _gameInputSystem.Player.Shoot.performed += (InputAction.CallbackContext callbackContext) => onPlayerShoot?.Invoke();
             _gameInputSystem.Player.Shoot.canceled += (InputAction.CallbackContext callbackContext) => onPlayerStopShooting?.Invoke();
 
-            _gameInputSystem.Player.PlayerChoseOption.performed += (InputAction.CallbackContext callbackContext) => onPlayerAccept?.Invoke();
+            _gameInputSystem.Player.PlayerChoseOption.performed += (InputAction.CallbackContext callbackContext) => onPlayerChooseOption?.Invoke();
             _gameInputSystem.Player.PlayerChoseOption.canceled += (InputAction.CallbackContext callbackContext) => onPlayerReleaseAccept?.Invoke();
 
             _gameInputSystem.Player.OpenInventory.performed += (InputAction.CallbackContext callback) => onPlayerOpenInventory?.Invoke();

@@ -61,6 +61,8 @@ public class ToolsCharacterController : MonoBehaviour
 
     private bool UseToolWorld()
     {
+        if (GlobalConfig.s_IsUiOpen == true) return true;
+
         Vector2 position = rgbd2d.position * offsetDistance;
 
         Storable storable = toolbarController.GetPlayerSelected;
@@ -82,16 +84,8 @@ public class ToolsCharacterController : MonoBehaviour
 
     private void UseToolGrid()
     {
-        if (selectable)
+        if (selectable && GlobalConfig.s_IsUiOpen == false)
         {
-            //TileBase tileBase = tileMapReadController.GetTileBase(selectedTilePosition);
-            //TileData tileData = tileMapReadController.GetTileData(tileBase);
-            //if (tileData != plowableTiles) return;
-            //if (cropsManager.Check(selectedTilePosition))
-            //    cropsManager.Seed(selectedTilePosition);
-            //else
-            //    cropsManager.Plow(selectedTilePosition);
-
             Storable storable = toolbarController.GetPlayerSelected;
             if (storable == null)
             {

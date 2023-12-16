@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Game;
 using MoreMountains.Feedbacks;
+using NOOD;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -27,26 +29,36 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] float timePereLetter = 0.05f;
     #endregion
 
+    #region private
     int currentTextLine;
     DialogueContainer currentDialogue;
-
     [Range(0f,1f)]
     float totalTimeToType, currentTime;
     string lineToShow;
+    private bool _isShow => targetText.gameObject.activeInHierarchy; 
+    #endregion
 
     #region Unity functions
+    void OnEnable()
+    {
+        GameInput.onPlayerChooseOption += PushText;
+    }
     void Awake()
     {
         dialogueOptionUI.OnPlayerChoose += () => Show(false);
     }
     private void Update()
     {
-        if(targetText.gameObject.activeInHierarchy == false) return;
-        if (Input.GetMouseButtonDown(0) )
-        {
-            PushText();
-        }
+        if(_isShow == false) return;
         TypeOutText();
+    }
+    void OnDisable()
+    {
+        GameInput.onPlayerChooseOption -= PushText;
+    }
+    void OnDestroy()
+    {
+        NoodyCustomCode.UnSubscribeFromStatic(typeof(GameInput), this);
     }
     #endregion
 
@@ -80,6 +92,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void PushText()
     {
+        if (_isShow == false) return;
         if (visibleTextPercent < 1f)
         {
             visibleTextPercent = 1f;

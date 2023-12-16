@@ -62,6 +62,8 @@ public abstract class AbstractItem : MonoBehaviour
     }
     private void Update()
     {
+        if (GlobalConfig.s_IsUiOpen == true) return;
+
         _performTimer += Time.deltaTime;
         //Debug.Log(_data == null);
         if(_isAuto == true && _data != null)
