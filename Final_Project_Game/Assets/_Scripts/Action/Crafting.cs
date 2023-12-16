@@ -5,6 +5,7 @@ using UnityEngine;
 public class Crafting : MonoBehaviour
 {
     [SerializeField] ItemContainer inventory;
+    [SerializeField] InventoryPanel itemPanel;
     public void Craft(CraftingRecipe recipe)
     {
         if (!inventory.CheckFreeSpace())
@@ -26,5 +27,6 @@ public class Crafting : MonoBehaviour
             inventory.Remove(recipe.elements[i].storable, recipe.elements[i].count);
         }
         inventory.Add(recipe.output.storable, recipe.output.count);
+        itemPanel.Init();
     }
 }

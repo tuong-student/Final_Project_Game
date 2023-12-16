@@ -53,6 +53,10 @@ public class OptionLogic
             case ActionType.Buy100:
                 ShopController.Instance.Buy(BuyOption.OneHundred);
                 break;
+            case ActionType.Craft:
+                PanelGroup.Instance.gameObject.SetActive(true);
+                PanelGroup.Instance.Open();
+                break;
         }
     }
 }

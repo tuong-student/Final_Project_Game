@@ -63,8 +63,9 @@ public class DialogueSystem : MonoBehaviour
     #endregion
 
     #region Init
-    public void Initialize(DialogueContainer dialogueContainer)
+    public void Initialize(DialogueContainer dialogueContainer, OptionHolder holder)
     {
+        optionHolder = holder;
         Show(true);
         currentDialogue = dialogueContainer;
         currentTextLine = 0;
