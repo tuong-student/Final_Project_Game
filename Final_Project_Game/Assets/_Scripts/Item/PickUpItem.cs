@@ -45,7 +45,7 @@ public class PickUpItem : MonoBehaviour
         if(distance < 0.1f)
         {
             //Should be move into specified controller rather than being checked here.
-            if (PlayerManager.Instance.inventoryContainer != null)
+            if (PlayerManager.Instance.InventoryContainer != null)
             {
                 Debug.Log("item_____" + item.IconImage+ "______" + item.ToString());
                 PlayerManager.Instance.AddToInventory(item, count);

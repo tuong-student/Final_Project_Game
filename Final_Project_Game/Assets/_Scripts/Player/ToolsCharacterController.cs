@@ -65,18 +65,18 @@ public class ToolsCharacterController : MonoBehaviour
 
         Vector2 position = rgbd2d.position * offsetDistance;
 
-        Storable storable = toolbarController.GetPlayerSelected;
+        Storable storable = toolbarController.PlayerSelectedStorable;
         if(storable == null) return false;
         if(storable.StorageType != StorageType.FarmItem) return false;
 
-        ItemSO item = (ItemSO) toolbarController.GetPlayerSelected;
+        ItemSO item = (ItemSO) toolbarController.PlayerSelectedStorable;
         if (item.onAction == null) return false;
         bool complete = item.onAction.OnApply(position);
         if (complete)
         {
             if (item.onItemUsed != null)
             {
-                item.onItemUsed.OnItemUsed(item, PlayerManager.Instance.inventoryContainer);
+                item.onItemUsed.OnItemUsed(item, PlayerManager.Instance.InventoryContainer);
             }
         }
         return complete;
@@ -86,7 +86,7 @@ public class ToolsCharacterController : MonoBehaviour
     {
         if (selectable && GlobalConfig.s_IsUiOpen == false)
         {
-            Storable storable = toolbarController.GetPlayerSelected;
+            Storable storable = toolbarController.PlayerSelectedStorable;
             if (storable == null)
             {
                 PickUpTile();
@@ -105,7 +105,7 @@ public class ToolsCharacterController : MonoBehaviour
                     {
                         if (itemSO.onItemUsed != null)
                         {
-                            itemSO.onItemUsed.OnItemUsed(itemSO, PlayerManager.Instance.inventoryContainer);
+                            itemSO.onItemUsed.OnItemUsed(itemSO, PlayerManager.Instance.InventoryContainer);
                         }
                     }
                     break;
@@ -119,7 +119,7 @@ public class ToolsCharacterController : MonoBehaviour
                     {
                         if (cropSO.onItemUsed != null)
                         {
-                            cropSO.onItemUsed.OnItemUsed(cropSO, PlayerManager.Instance.inventoryContainer);
+                            cropSO.onItemUsed.OnItemUsed(cropSO, PlayerManager.Instance.InventoryContainer);
                         }
                     }
                     break;

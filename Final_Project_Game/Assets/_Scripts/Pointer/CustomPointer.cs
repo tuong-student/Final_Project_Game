@@ -59,14 +59,12 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
                 if(_pointerStage != PointerType.Choose)
                 {
                     _pointerStage = PointerType.Choose;
-                    Debug.Log("Interactable");
                 }
             }
             else
             {
                 if(_pointerStage != PointerType.Idle)
                 {
-                    Debug.Log("Idle");
                     _pointerStage = PointerType.Idle;
                 }
             }
@@ -126,7 +124,6 @@ public class CustomPointer : MonoBehaviorInstance<CustomPointer>
     #region Sprite
     private void ChangePointerSprite()
     {
-        Debug.Log(_pointerStage);
         _mouseImage.sprite = _pointerSpriteDic.Dictionary[_pointerStage];
     }
     #endregion
