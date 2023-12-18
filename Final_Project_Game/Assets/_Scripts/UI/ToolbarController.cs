@@ -18,10 +18,10 @@ public class ToolbarController : MonoBehaviour
     {
         get
         {
-            return PlayerManager.Instance.inventoryContainer.slots[selectedTool];
+            return PlayerManager.Instance.InventoryContainer.slots[selectedTool];
         }
     }
-    public Storable GetPlayerSelected
+    public Storable PlayerSelectedStorable
     {
         get
         {
@@ -62,7 +62,8 @@ public class ToolbarController : MonoBehaviour
     }
     public void UpdateHighlightIcon(int id = 0)
     {
-        Storable storable = GetPlayerSelected;
+        ChangeItem();
+        Storable storable = PlayerSelectedStorable;
         if(storable == null) return;
         if(storable.StorageType == StorageType.FarmItem)
         {
@@ -79,6 +80,10 @@ public class ToolbarController : MonoBehaviour
                 iconHighlight.SetIcon(itemSO.icon);
             }
         }
+    }
+    private void ChangeItem()
+    {
+        Storable storable = PlayerSelectedStorable;
         PlayerManager.Instance.ChangeItem((IHoldableItem)storable);
     }
 }

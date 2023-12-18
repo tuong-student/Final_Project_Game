@@ -7,6 +7,7 @@ public class PlayerItem : AbstractItem
     #region abstract functions
     public override void PerformAction()
     {
+        if (_data == null) return;
         if(_data.StorageType == StorageType.Weapon)
             Shoot();
         if (_data.StorageType == StorageType.FarmItem)
@@ -16,7 +17,8 @@ public class PlayerItem : AbstractItem
 
     public override void StopPerform()
     {
-        if(_data.StorageType == StorageType.Weapon)
+        if (_data == null) return;
+        if(_data.StorageType == StorageType.Weapon )
             StopShooting();
     }
     #endregion

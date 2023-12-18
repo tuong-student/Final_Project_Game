@@ -16,8 +16,8 @@ public class ItemToolbarPanel : ItemPanel
     public override void OnClick(int id)
     {
         toolbarController.Set(id);
-        Highlight(id);
         toolbarController.UpdateHighlightIcon();
+        Highlight(id);
     }
 
     public int GetToolbarCount()

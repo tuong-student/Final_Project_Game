@@ -6,6 +6,7 @@ using NOOD;
 using Unity.VisualScripting;
 using NOOD.Sound;
 using System.Linq;
+using ImpossibleOdds.Http;
 
 namespace Game
 {
@@ -17,6 +18,7 @@ namespace Game
         [SerializeField] private PlayerAnimation _playerAnimation;
         [SerializeField] private PlayerOnCollision _playerOnCollision;
         [SerializeField] private AbstractItem _playerGun;
+        [SerializeField] private ItemContainer _inventoryContainer;
         #endregion
 
         #region Private parameter
@@ -25,8 +27,22 @@ namespace Game
         private ModifiableStats<float> _speed = new ModifiableStats<float>();
         private List<ItemSO> _items = new List<ItemSO>();
         private PreviewHandler previewHandler;
-        public ItemContainer inventoryContainer;
-        public ItemContainer InventoryContainer => inventoryContainer;
+        #endregion
+
+        #region Public
+        public ItemContainer InventoryContainer => _inventoryContainer;
+        public int Money 
+        {
+            get
+            {
+                int money = 0;
+                if(_inventoryContainer.slots.Any(x => x.storable == _coin))
+                {
+                    money = _inventoryContainer.slots.First(x => x.storable == _coin).count;
+                }
+                return money;
+            }
+        } 
         #endregion
 
         [SerializeField] private ItemSO _coin;
@@ -102,28 +118,28 @@ namespace Game
         #region Inventory
         public void AddToInventory(Storable item, int count = 1)
         {
-            inventoryContainer.Add(item, count);
+            _inventoryContainer.Add(item, count);
         }
         public void AddDefaultItems(Dictionary<Storable, int> itemsAndCount)
         {
             foreach(var itemsPair in itemsAndCount)
             {
-                inventoryContainer.Add(itemsPair.Key, itemsPair.Value);
+                _inventoryContainer.Add(itemsPair.Key, itemsPair.Value);
             }
         }
         public void RemoveFromInventory(Storable item, int count)
         {
-            inventoryContainer.Remove(item, count);
+            _inventoryContainer.Remove(item, count);
         }
         public bool TryRemoveInventory(Storable item, int count)
         {
-            if(inventoryContainer.ContainItem(item) == false)
+            if(_inventoryContainer.ContainItem(item) == false)
             {
                 return false;
             }
             else
             {
-                if(inventoryContainer.GetSlot(item).count < count)
+                if(_inventoryContainer.GetSlot(item).count < count)
                 {
                     return false;
                 }
@@ -133,9 +149,9 @@ namespace Game
         }
         public void ClearAllInventory()
         {
-            for (int i = 0; i < inventoryContainer.slots.Count; i++)
+            for (int i = 0; i < _inventoryContainer.slots.Count; i++)
             {
-                inventoryContainer.slots[i].Clear();
+                _inventoryContainer.slots[i].Clear();
             }
         }
         #endregion
