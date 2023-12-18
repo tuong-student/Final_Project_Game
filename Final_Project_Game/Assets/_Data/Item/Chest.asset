@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4885adbcb6707441ca512c29ab0bb1f4, type: 3}
   m_Name: Chest
   m_EditorClassIdentifier: 
+  icon: {fileID: -679207937, guid: daccb2c8ab2346649a027a35a9c20a71, type: 3}
+  onAction: {fileID: 0}
+  onTileMapAction: {fileID: 11400000, guid: 0dbc42cdc5da07446b89e7414c45932c, type: 2}
+  onItemUsed: {fileID: 11400000, guid: 0dbc42cdc5da07446b89e7414c45932c, type: 2}
+  crop: {fileID: 0}
+  itemPrefab: {fileID: 3286206983607021225, guid: 1e582a3dd83f9614289300dfc1326318, type: 3}
+  animator: {fileID: 0}
   Name: Chest
   id: 1
   price: 0
   stackable: 0
   tradeable: 1
-  icon: {fileID: -291677805, guid: 4b745bbe5472b3c42b141eb061e0d79d, type: 3}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 11400000, guid: 0dbc42cdc5da07446b89e7414c45932c, type: 2}
-  onItemUsed: {fileID: 11400000, guid: 0dbc42cdc5da07446b89e7414c45932c, type: 2}
-  crop: {fileID: 0}
-  iconHightlight: 1
-  itemPrefab: {fileID: 3286206983607021225, guid: 1e582a3dd83f9614289300dfc1326318, type: 3}
+  iconHighlight: 0
+  interactRate: 0
+  storageType: 4

@@ -96,6 +96,7 @@ public class Truck : Interactable
     public override void Interact(Character character)
     {
         OpenOrderPanel();
+        Debug.Log("Interact");
     }
     #endregion
 

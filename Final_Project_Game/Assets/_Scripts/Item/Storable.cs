@@ -9,6 +9,7 @@ public enum StorageType
     FarmItem,
     Crop,
     Weapon,
+    Object,
 }
 
 public abstract class Storable : ScriptableObject

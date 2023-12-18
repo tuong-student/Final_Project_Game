@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4885adbcb6707441ca512c29ab0bb1f4, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 8c41b0d0e2a6b324ebc759ab8f8e4909, type: 3}
+  onAction: {fileID: 0}
+  onTileMapAction: {fileID: 0}
+  onItemUsed: {fileID: 0}
+  crop: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  animator: {fileID: 0}
   Name: Wood
   id: 9
   price: 10
   stackable: 1
   tradeable: 1
-  icon: {fileID: 21300000, guid: efe2ac1e04c61d1429e370eb4e493aa0, type: 3}
-  onAction: {fileID: 0}
-  onTileMapAction: {fileID: 0}
-  onItemUsed: {fileID: 0}
-  crop: {fileID: 0}
-  iconHightlight: 0
-  itemPrefab: {fileID: 0}
+  iconHighlight: 0
+  interactRate: 0
+  storageType: 0

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -541233543
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -737242608, guid: f177ba7af2da6074aba109627d2a344d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -149,7 +149,8 @@ MonoBehaviour:
   spread: 2
   item: {fileID: 11400000, guid: 8f7d75d85ce4703459ca269e785df59f, type: 2}
   itemCountInOneDrop: 1
-  dropCount: 25
+  dropCount: 3
+  damage: 8
   nodeType: 1
 --- !u!114 &3175946865401448956
 MonoBehaviour:
@@ -175,7 +176,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526813ffb027749409f629035b3c57fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toSpawn: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
+  toSpawn:
+  - {fileID: 11400000, guid: 27ffaced800c246418d521230c64b2c3, type: 2}
+  - {fileID: 11400000, guid: cafefda0a0ac43946b2a7f93fd7ccdf9, type: 2}
+  - {fileID: 11400000, guid: 2d40a09002e2dfb4ba0e3825695e2e20, type: 2}
+  - {fileID: 11400000, guid: 0e6aaa8c595bfe24798354026f76f4e5, type: 2}
+  - {fileID: 11400000, guid: 2b36fcbcf59e3f545a4238d87c6ad560, type: 2}
+  - {fileID: 11400000, guid: a81ba6478b30ad047be2c548b1b86a9f, type: 2}
+  - {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
+  - {fileID: 11400000, guid: 1bdddcd2a0dc0444cb27132e0f8c19fd, type: 2}
+  - {fileID: 11400000, guid: e35f0d578c835b94196caf83e4fac160, type: 2}
+  - {fileID: 11400000, guid: e97efbe83c26a65408883fc6785fbda4, type: 2}
+  - {fileID: 11400000, guid: c69b3bc00048d974c8927dd71deee63b, type: 2}
+  - {fileID: 11400000, guid: 4aeda367a2e1b9c48ad8495ee4ac6226, type: 2}
+  - {fileID: 11400000, guid: 62a893a9cc6417645be95e90bc5cc555, type: 2}
+  - {fileID: 11400000, guid: f87ef2cb7bc4d1d4aa7ef75e0d6c53ca, type: 2}
+  - {fileID: 11400000, guid: e979f2fce9ed4404084272b65f5db0ee, type: 2}
+  - {fileID: 11400000, guid: 15e8112b376f3c242ae5a66e9cd8dbf4, type: 2}
   count: 1
   spread: 2
-  probability: 0.005
+  probability: 0.05
