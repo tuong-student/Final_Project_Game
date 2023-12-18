@@ -1517,6 +1517,7 @@ GameObject:
   - component: {fileID: 524595021}
   - component: {fileID: 524595020}
   - component: {fileID: 524595025}
+  - component: {fileID: 524595027}
   - component: {fileID: 524595026}
   m_Layer: 0
   m_Name: NPCCrafting
@@ -1578,7 +1579,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3, y: 1.4}
+    oldSize: {x: 1, y: 1.4375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1641,7 +1642,7 @@ SpriteRenderer:
   m_SortingLayerID: 1952401639
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 774fe8dccef69a44d9179e4529aea50c, type: 3}
+  m_Sprite: {fileID: -1396893769, guid: 1368735a2b81f054dbb1a3718e1af493, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1695,9 +1696,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6637a5c9293f24eb9ee244d97f050d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1
   tilemap: {fileID: 1988663411}
   moveArea: {x: 10, y: 10}
+  _animator: {fileID: 524595027}
+  _sr: {fileID: 524595023}
+--- !u!95 &524595027
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524595019}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b25e2501771e364699707fdb76c3bc4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &567965327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,6 +2672,7 @@ GameObject:
   - component: {fileID: 928891392}
   - component: {fileID: 928891394}
   - component: {fileID: 928891395}
+  - component: {fileID: 928891396}
   m_Layer: 0
   m_Name: NPCShoper
   m_TagString: Untagged
@@ -2813,6 +2838,27 @@ MonoBehaviour:
   _optionDataSOs:
   - {fileID: 11400000, guid: b68eaccd97de1a544aa4943190b8d3ef, type: 2}
   - {fileID: 11400000, guid: c3a609c1cfa872342aeef473dd1cce81, type: 2}
+--- !u!95 &928891396
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928891388}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa8b136d0a7c2db48b25d7126f358f82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1096831515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11539,7 +11585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1600322178
 MonoBehaviour:
   m_ObjectHideFlags: 0
