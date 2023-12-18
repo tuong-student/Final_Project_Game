@@ -47,12 +47,6 @@ public class UpdateStats : MonoBehaviour
     }
     public int GetMoney()
     {
-        int money = 0;
-        if(_itemContainer.slots.Any(x => x.storable == _money))
-        {
-            ItemSlot moneySlot = _itemContainer.slots.First(x => x.storable == _money);
-            money = moneySlot.count;
-        }
-        return money;
+        return PlayerManager.Instance.Money;
     }
 }

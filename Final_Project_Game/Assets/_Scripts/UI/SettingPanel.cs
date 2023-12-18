@@ -29,20 +29,20 @@ public class SettingPanel : MonoBehaviour
     #endregion
 
     #region Private
-    private bool isMuteMusic;
-    private bool isMuteSound;
+    private bool _isMuteMusic;
+    private bool _isMuteSound;
     private bool isShow;
-    private GameObject panel;
-    private float oldMusicVolume, oldSoundVolume;
+    private GameObject _panel;
+    private float _oldMusicVolume, _oldSoundVolume;
     #endregion
 
     #region Unity functions
     private void OnEnable()
     {
-        isMuteMusic = gameStatus.isMusicMute;
-        isMuteSound = gameStatus.isSoundMute;
-        musicImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
-        soundImg.sprite = isMuteSound ? listSprite[0] : listSprite[1];
+        _isMuteMusic = gameStatus.isMusicMute;
+        _isMuteSound = gameStatus.isSoundMute;
+        musicImg.sprite = _isMuteMusic ? listSprite[0] : listSprite[1];
+        soundImg.sprite = _isMuteSound ? listSprite[0] : listSprite[1];
         SoundManager.GlobalMusicVolume = gameStatus.musicVolume;
         SoundManager.GlobalSoundVolume = gameStatus.soundVolume;
         GameInput.onPlayerPressEscape += OnRequestShowHide;
@@ -50,25 +50,25 @@ public class SettingPanel : MonoBehaviour
     private void Start()
     {
 
-        musicBtn.onClick.AddListener(AdjustMusic);
-        soundBtn.onClick.AddListener(AdjustSound);
+        musicBtn.onClick.AddListener(OnMusicButtonPressHandler);
+        soundBtn.onClick.AddListener(OnSoundButtonPressHandler);
         confirmBtn.onClick.AddListener(OnConfirm);
         exitBtn.onClick.AddListener(OnExit);
         if(_homeBtn != null)
             _homeBtn.SetAction(OnHomeBtnHandler);
 
-        musicSlider.onValueChanged.AddListener(ChangeMusicVolume);
-        soundSlider.onValueChanged.AddListener(ChangeSoundVolume);
+        musicSlider.onValueChanged.AddListener(OnMusicSliderChangeHandler);
+        soundSlider.onValueChanged.AddListener(OnSoundSliderChangeHandler);
 
-        panel = this.transform.GetChild(0).gameObject;
+        _panel = this.transform.GetChild(0).gameObject;
         showFB.Events.OnPlay.AddListener(() =>
         {
-            panel.SetActive(true);
+            _panel.SetActive(true);
             GetComponent<Image>().raycastTarget = true;
         });
         hideFB.Events.OnComplete.AddListener(() =>
         {
-            panel.SetActive(true);
+            _panel.SetActive(true);
             GetComponent<Image>().raycastTarget = false;
         });
 
@@ -90,85 +90,100 @@ public class SettingPanel : MonoBehaviour
     }
     #endregion
 
-    private void AdjustMusic()
+    #region Button
+    private void OnMusicButtonPressHandler()
     {
-        isMuteMusic = !isMuteMusic;
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
-        musicImg.sprite = isMuteMusic ? listSprite[0] : listSprite[1];
-        if(isMuteMusic)
+        _isMuteMusic = !_isMuteMusic;
+        musicImg.sprite = _isMuteMusic ? listSprite[0] : listSprite[1];
+        
+        if(_isMuteMusic)
         {
-            oldMusicVolume = gameStatus.musicVolume;
+            _oldMusicVolume = gameStatus.musicVolume;
             gameStatus.musicVolume = 0;
         }
         else
         {
-            gameStatus.musicVolume = oldMusicVolume;
+            gameStatus.musicVolume = _oldMusicVolume;
         }
+
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         SoundManager.GlobalMusicVolume = gameStatus.musicVolume;
     }
-
-
-    #region Sound
-    private void AdjustSound()
+    private void OnSoundButtonPressHandler()
     {
-        isMuteSound = !isMuteSound;
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
-        soundImg.sprite = isMuteSound ? listSprite[0] : listSprite[1];
-        gameStatus.soundVolume = isMuteSound? 0:gameStatus.soundVolume;
-        if(isMuteSound)
+        _isMuteSound = !_isMuteSound;
+        soundImg.sprite = _isMuteSound ? listSprite[0] : listSprite[1];
+
+        if(_isMuteSound)
         {
-            oldSoundVolume = gameStatus.soundVolume;
+            _oldSoundVolume = gameStatus.soundVolume;
             gameStatus.soundVolume = 0;
         }
         else
         {
-            gameStatus.soundVolume = oldSoundVolume;
+            gameStatus.soundVolume = _oldSoundVolume;
         }
+
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         SoundManager.GlobalSoundVolume = gameStatus.soundVolume;
     }
     #endregion
 
-    #region Music
-    private void ChangeMusicVolume(float volume)
+    #region Slider
+    private void OnMusicSliderChangeHandler(float volume)
     {
         gameStatus.musicVolume = volume;
         if (volume > 0)
+        {
             musicImg.sprite = listSprite[1];
+            _isMuteMusic = false;
+        }
         else
+        {
             musicImg.sprite = listSprite[0];
-        
+            _isMuteMusic = true;
+        }
         SoundManager.GlobalMusicVolume = volume;
     }
-    private void ChangeSoundVolume(float volume)
+    private void OnSoundSliderChangeHandler(float volume)
     {
         gameStatus.soundVolume = volume;
         if(volume > 0)
+        {
             soundImg.sprite = listSprite[1];
+            _isMuteSound = false;
+        }
         else
+        {
             soundImg.sprite = listSprite[0];
-
+            _isMuteSound = true;
+        }
         SoundManager.GlobalSoundVolume = volume;
+
     }
     #endregion
 
     #region Button functions
     private void OnConfirm()
     {
-        gameStatus.isMusicMute = isMuteMusic;
-        gameStatus.isSoundMute = isMuteSound;
+        // Apply setting
+        gameStatus.isMusicMute = _isMuteMusic;
+        gameStatus.isSoundMute = _isMuteSound;
         SoundManager.GlobalMusicVolume = gameStatus.musicVolume;
         SoundManager.GlobalSoundVolume = gameStatus.soundVolume;
+
         SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         Hide();
     }
     private void OnExit()
     {
-        if (hideFB != null)
-            hideFB.PlayFeedbacks();
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
-        SoundManager.GlobalMusicVolume = oldMusicVolume;
-        SoundManager.GlobalSoundVolume = oldSoundVolume;
+        // Don't apply the setting and reset to old volume
+        gameStatus.musicVolume = _oldMusicVolume;
+        gameStatus.soundVolume = _oldSoundVolume;
+        SoundManager.GlobalMusicVolume = _oldMusicVolume;
+        SoundManager.GlobalSoundVolume = _oldSoundVolume;
 
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.ButtonClicked);
         Hide();
     }
     private void OnHomeBtnHandler()
@@ -190,14 +205,19 @@ public class SettingPanel : MonoBehaviour
     }
     public void Show()
     {
-        UIManager.Instance.AddToUIList(this);
+        if(UIManager.Instance != null)
+            UIManager.Instance.AddToUIList(this);
         isShow = true;
         if (showFB != null)
             showFB.PlayFeedbacks();
+
+        _oldMusicVolume = SoundManager.GlobalMusicVolume;
+        _oldSoundVolume = SoundManager.GlobalSoundVolume;
     }
     public void Hide()
     {
-        UIManager.Instance.RemoveToUIList(this);
+        if(UIManager.Instance != null) // If at menu, UIManager == null
+            UIManager.Instance.RemoveToUIList(this);
         isShow = false;
         if (hideFB != null)
             hideFB.PlayFeedbacks();

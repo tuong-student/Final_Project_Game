@@ -375,7 +375,7 @@ MonoBehaviour:
   - {x: -0.06049061, y: -0.00066161156, z: 0}
   m_ShapePathHash: 500576805
   m_Mesh: {fileID: 0}
-  m_InstanceId: -408714
+  m_InstanceId: 539830
   m_LocalBounds:
     m_Center: {x: -0.00219059, y: 0.4996044, z: 0}
     m_Extent: {x: 0.3780079, y: 0.5012701, z: 0}
@@ -455,7 +455,7 @@ MonoBehaviour:
   _playerAnimation: {fileID: 6778522156184056841}
   _playerOnCollision: {fileID: 8916587675026982293}
   _playerGun: {fileID: 4995873601090079958}
-  inventoryContainer: {fileID: 11400000, guid: ecd0cd9abaedf36459c234977a4eeb80, type: 2}
+  _inventoryContainer: {fileID: 11400000, guid: ecd0cd9abaedf36459c234977a4eeb80, type: 2}
   _coin: {fileID: 11400000, guid: b32ef40573ffc44c9a990fea9a8b8640, type: 2}
 --- !u!114 &8916587675026982293
 MonoBehaviour:
@@ -587,6 +587,7 @@ MonoBehaviour:
   statusPanel: {fileID: 0}
   toolbarPanel: {fileID: 0}
   additionalPanel: {fileID: 0}
+  craftingPanel: {fileID: 0}
 --- !u!114 &8222712388763822301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: ecd0cd9abaedf36459c234977a4eeb80, type: 2}
+  itemPanel: {fileID: 0}
 --- !u!114 &8045988551428250852
 MonoBehaviour:
   m_ObjectHideFlags: 0

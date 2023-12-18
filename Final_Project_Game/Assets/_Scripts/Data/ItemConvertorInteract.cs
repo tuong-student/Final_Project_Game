@@ -57,7 +57,7 @@ public class ItemConvertorInteract : Interactable, IPersistant
         }
         if(data.itemSlot.storable != null && data.timer <= 0f)
         {
-            PlayerManager.Instance.inventoryContainer.Add(data.itemSlot.storable, data.itemSlot.count);
+            PlayerManager.Instance.InventoryContainer.Add(data.itemSlot.storable, data.itemSlot.count);
             data.itemSlot.Clear();
         }
     }

@@ -62,10 +62,14 @@ public abstract class AbstractItem : MonoBehaviour
     }
     private void Update()
     {
-        if (GlobalConfig.s_IsUiOpen == true) return;
-
         _performTimer += Time.deltaTime;
-        //Debug.Log(_data == null);
+        if (GlobalConfig.s_IsUiOpen == true) return;
+        if (NoodyCustomCode.IsPointerOverUIElement()) 
+        {
+            StopPerform();
+            return;
+        }
+
         if(_isAuto == true && _data != null)
         {
             if(_performTimer >= _nextPerformTime)
@@ -94,15 +98,14 @@ public abstract class AbstractItem : MonoBehaviour
     #region Change item
     public void ChangeItemData(IHoldableItem data)
     {
-        Debug.Log("ChangeItemData");
         if(data == null || data.StorableData.StorageType == StorageType.Crop || data.StorableData.StorageType == StorageType.None)
         {
+            Hide();
             _data = null;
             _itemViewIdle.sprite = null;
             _itemView.runtimeAnimatorController = null;
             _casing.runtimeAnimatorController = null;
             _flash.runtimeAnimatorController = null;
-            Hide();
         }
         else
         {
@@ -157,6 +160,7 @@ public abstract class AbstractItem : MonoBehaviour
     }
     public void Hide()
     {
+        Debug.Log("Hide");
         this.transform.DOScale(Vector3.zero, 0.2f);
     }
     #endregion

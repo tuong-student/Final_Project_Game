@@ -196,8 +196,7 @@ public class ShopController : MonoBehaviorInstance<ShopController>
     }
     private int GetMoney()
     {
-        ItemSlot montySlot = _playerInventoryMenu.ItemContainer.slots.First(x => x.storable == _money);
-        return montySlot.count;
+        return PlayerManager.Instance.Money;
     }
     #endregion
 
