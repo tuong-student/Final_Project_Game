@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d511711ab425e254eae4493262c59f7a, type: 3}
-  m_Name: Luna
+  m_Name: Molly
   m_EditorClassIdentifier: 
-  Name: Luna
-  portrait: {fileID: -1940738496428130850, guid: 2f90eb840bd0cf4438d49759bc08d718, type: 3}
+  Name: Molly
+  portrait: {fileID: -462260248, guid: 17055ea97cd413f4185e05f35f6301a7, type: 3}

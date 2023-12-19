@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Molly_32x32_0
+      name: Molly_Left
       rect:
         serializedVersion: 2
         x: 66
@@ -173,10 +173,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Molly_32x32_1
+      name: Molly_Front
       rect:
         serializedVersion: 2
-        x: 96
+        x: 95
         y: 512
         width: 32
         height: 44
@@ -1147,7 +1147,7 @@ TextureImporter:
         width: 32
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1168,7 +1168,7 @@ TextureImporter:
         width: 32
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1189,7 +1189,7 @@ TextureImporter:
         width: 32
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1212,8 +1212,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Molly_32x32_0: -988448139
-      Molly_32x32_1: -462260248
       Molly_32x32_10: 786210164
       Molly_32x32_11: 521944996
       Molly_32x32_12: 1574313349
@@ -1263,6 +1261,8 @@ TextureImporter:
       Molly_32x32_8: 1027961717
       Molly_32x32_9: 319296240
       Molly_Back: 887140188
+      Molly_Front: -462260248
+      Molly_Left: -988448139
       Molly_Right: 611632487
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
