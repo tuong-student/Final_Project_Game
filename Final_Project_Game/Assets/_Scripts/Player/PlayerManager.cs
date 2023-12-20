@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NOOD.ModifiableStats;
 using NOOD;
-using Unity.VisualScripting;
 using NOOD.Sound;
 using System.Linq;
-using ImpossibleOdds.Http;
 
 namespace Game
 {
     [RequireComponent(typeof(PlayerMovement), typeof(PlayerOnCollision))]
     public class PlayerManager : MonoBehaviorInstance<PlayerManager>
     {
+        #region Action
+        public Action OnPlayerInventoryChange;
+        #endregion
+
         #region SerializeField
         [SerializeField] private PlayerMovement _playerMovement;
         [SerializeField] private PlayerAnimation _playerAnimation;
@@ -78,16 +81,6 @@ namespace Game
         {
             return _health.Value;
         }
-        public void MinusHealth(float amount)
-        {
-            _health.AddModifier(ModifyType.Subtract, amount);
-            FeedbackManager.Instance.PlayPlayerHurtFeedback();
-
-            if(_health.Value <= 0)
-            {
-                Dead();
-            }
-        }
         #endregion
 
         #region SupportFunctions
@@ -101,6 +94,17 @@ namespace Game
             if(tempItem == null) return;
             //tempItem.Pickup(_inventory);
         }
+        public void MinusHealth(float amount)
+        {
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.PlayerHurt);
+            _health.AddModifier(ModifyType.Subtract, amount);
+            FeedbackManager.Instance.PlayPlayerHurtFeedback();
+
+            if(_health.Value <= 0)
+            {
+                Dead();
+            }
+        }
         private void Dead()
         {
             NoodyCustomCode.StartDelayFunction(_playerAnimation.PlayDeadAnimation, 0.2f);
@@ -112,6 +116,7 @@ namespace Game
             {
                 UIManager.Instance.ActiveDeadMenu();
             }, 3f);
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.PlayerDead);
         }
         #endregion
 
@@ -119,6 +124,7 @@ namespace Game
         public void AddToInventory(Storable item, int count = 1)
         {
             _inventoryContainer.Add(item, count);
+            OnPlayerInventoryChange?.Invoke();
         }
         public void AddDefaultItems(Dictionary<Storable, int> itemsAndCount)
         {
@@ -130,6 +136,7 @@ namespace Game
         public void RemoveFromInventory(Storable item, int count)
         {
             _inventoryContainer.Remove(item, count);
+            OnPlayerInventoryChange?.Invoke();
         }
         public bool TryRemoveInventory(Storable item, int count)
         {

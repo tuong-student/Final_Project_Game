@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game;
+using NOOD;
 using UnityEngine;
 
 public class ItemPanel : MonoBehaviour
@@ -30,6 +31,11 @@ public class ItemPanel : MonoBehaviour
     private void OnEnable()
     {
         InitButtons();
+        PlayerManager.Instance.OnPlayerInventoryChange += InitButtons;
+    }
+    void OnDisable()
+    {
+        NoodyCustomCode.UnSubscribeAllEvent(PlayerManager.Instance, this);
     }
 
     private void LateUpdate()
