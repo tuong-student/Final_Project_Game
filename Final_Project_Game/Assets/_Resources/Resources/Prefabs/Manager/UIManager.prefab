@@ -7942,11 +7942,11 @@ RectTransform:
   - {fileID: 2876666159942100717}
   - {fileID: 5441662830020926650}
   - {fileID: 6478868211890066328}
-  - {fileID: 8629474461003884167}
   - {fileID: 7113302292877042726}
   - {fileID: 2118813549566689586}
   - {fileID: 3280014964691819817}
   - {fileID: 355921540795422510}
+  - {fileID: 8629474461003884167}
   - {fileID: 8906632377027488641}
   - {fileID: 3553568267355558518}
   - {fileID: 8678922345013627506}
@@ -17044,7 +17044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do not enough money
+  m_text: Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bed2d0b94003205438e8678f26b5bf37, type: 2}
   m_sharedMaterial: {fileID: -1918583395805021751, guid: bed2d0b94003205438e8678f26b5bf37, type: 2}
@@ -18013,6 +18013,8 @@ MonoBehaviour:
     _pairs:
     - _key: 0
       _value: Do Not Enough Money
+    - _key: 1
+      _value: Dont Have That Item
 --- !u!1 &8312724963346356835
 GameObject:
   m_ObjectHideFlags: 0
