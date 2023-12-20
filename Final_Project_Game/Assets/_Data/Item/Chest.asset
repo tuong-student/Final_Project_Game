@@ -21,7 +21,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   Name: Chest
   id: 1
-  price: 0
+  price: 200
   stackable: 0
   tradeable: 1
   iconHighlight: 0

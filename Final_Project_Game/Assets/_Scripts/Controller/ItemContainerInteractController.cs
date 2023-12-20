@@ -34,12 +34,14 @@ public class ItemContainerInteractController : MonoBehaviour
         targetItemContainer = itemContainer;
         itemContainerPanel.inventory = targetItemContainer;
         inventoryController.Open();
+        inventoryController.panel.transform.localPosition = new Vector3(0, -211.29f, 0);
         itemContainerPanel.gameObject.SetActive(true);
         openedChest = _openedChest;
     }
 
     public void Close()
     {
+        inventoryController.panel.transform.localPosition = new Vector3(0, -19.4152f, 0);
         inventoryController.Close();
         itemContainerPanel.gameObject.SetActive(false);
         openedChest = null;
