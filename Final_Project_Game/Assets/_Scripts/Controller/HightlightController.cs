@@ -18,7 +18,7 @@ public class HighlightController : MonoBehaviour
     public void Highlight(Vector3 position)
     {
         highlighter.SetActive(true);
-        highlighter.transform.position = position;
+        highlighter.transform.position = new Vector3(position.x, position.y + 1f);
     }
 
     public void Hide()
