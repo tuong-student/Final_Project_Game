@@ -15,7 +15,7 @@ MonoBehaviour:
   elements:
   - storable: {fileID: 11400000, guid: 8f7d75d85ce4703459ca269e785df59f, type: 2}
     count: 100
-  - storable: {fileID: 11400000, guid: eadb90fb97716ab41a9789ebad6e536a, type: 2}
+  - storable: {fileID: 11400000, guid: f3e909fa282184a4aa5be3fd9288f6af, type: 2}
     count: 20
   output:
     storable: {fileID: 11400000, guid: b3f92460141622942b9baaf12aa0338b, type: 2}

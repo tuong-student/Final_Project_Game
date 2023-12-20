@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Shop
   m_EditorClassIdentifier: 
   slots:
+  - storable: {fileID: 11400000, guid: 9ca6de1a43380054eacf31ca629148fd, type: 2}
+    count: 500
+  - storable: {fileID: 11400000, guid: d3675901f60260d459a8687178e4dd87, type: 2}
+    count: 500
   - storable: {fileID: 11400000, guid: eadb90fb97716ab41a9789ebad6e536a, type: 2}
-    count: 0
+    count: 10
   - storable: {fileID: 11400000, guid: 8f7d75d85ce4703459ca269e785df59f, type: 2}
-    count: 0
+    count: 10
+  - storable: {fileID: 11400000, guid: e60c8994d3e5d9743866fe9c309feb6e, type: 2}
+    count: 10
+  - storable: {fileID: 11400000, guid: c23206c68ff29ab44a222a3be26b97f2, type: 2}
+    count: 100
+  - storable: {fileID: 11400000, guid: f3e909fa282184a4aa5be3fd9288f6af, type: 2}
+    count: 100
   isDirty: 0

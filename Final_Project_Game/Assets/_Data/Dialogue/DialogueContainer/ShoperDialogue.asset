@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShoperDialogue
   m_EditorClassIdentifier: 
   line:
-  - My name is Luna
+  - My name is Molly
   - I'm a shopper, if you have anything value, you can sell me
   - For exchange, I will sell you something too
   actor: {fileID: 11400000, guid: 52089cb8e3e79aa418364dc55da97dee, type: 2}
