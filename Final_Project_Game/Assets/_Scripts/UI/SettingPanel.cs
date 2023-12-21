@@ -47,6 +47,10 @@ public class SettingPanel : MonoBehaviour
         SoundManager.GlobalSoundVolume = gameStatus.soundVolume;
         GameInput.onPlayerPressEscape += OnRequestShowHide;
     }
+    private void Awake()
+    {
+        Time.timeScale = 1;
+    }
     private void Start()
     {
         musicBtn.onClick.AddListener(OnMusicButtonPressHandler);
@@ -64,6 +68,14 @@ public class SettingPanel : MonoBehaviour
         {
             panel.SetActive(true);
             GetComponent<Image>().raycastTarget = true;
+        });
+        showFB.Events.OnComplete.AddListener(() =>
+        {
+            Time.timeScale = 0;
+        });
+        hideFB.Events.OnPlay.AddListener(() =>
+        {
+            Time.timeScale = 1;
         });
         hideFB.Events.OnComplete.AddListener(() =>
         {

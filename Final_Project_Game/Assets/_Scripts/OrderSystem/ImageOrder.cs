@@ -94,6 +94,10 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
             SoundManager.PlaySound(NOOD.Sound.SoundEnum.Pop);
             UpdateUI();
         }
+        else
+        {
+            WarningUI.Instance.ShowWarning(WarningType.DontHaveItem);
+        }
         return canGetItem;
     }
     private void UpdateUI()

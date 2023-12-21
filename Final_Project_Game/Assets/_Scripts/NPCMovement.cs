@@ -5,26 +5,36 @@ using UnityEngine.Tilemaps;
 
 public class NPCMovement : MonoBehaviour
 {
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteRenderer _sr;
+
     public float moveSpeed = 1.0f;
     public Tilemap tilemap;
     public Vector2 moveArea = new Vector2(10, 10);
 
-    private Vector3 randomDestination;
-    private bool isMoving = false;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private SpriteRenderer _sr;
+    private TalkInteract _talkInteract;
+    private bool _stop;
+    private Vector3 _randomDestination;
+    private bool _isMoving = false;
     private bool _run, _left, _right, _up, _down;
     private Vector3 _originalScale;
     void Start()
     {
         SetRandomDestination();
+        _talkInteract = GetComponent<TalkInteract>();
+        _talkInteract.OnTalkInteracted += OnPlayerInteract;
     }
 
     void Update()
     {
-        if (!isMoving)
+        if (!_isMoving && _stop == false)
         {
             StartCoroutine(MoveToDestination());
+        }
+        if(_stop)
+        {
+            _isMoving = false;
+            StopCoroutine(MoveToDestination());
         }
         _animator.SetBool("Run", _run);
         _animator.SetBool("Left", _left);
@@ -33,13 +43,18 @@ public class NPCMovement : MonoBehaviour
         _animator.SetBool("Down", _down);
     }
 
+    void OnPlayerInteract(bool interacted)
+    {
+        _stop = interacted;
+    }
+
     void SetRandomDestination()
     {
         float randomX = Random.Range(-moveArea.x / 2, moveArea.x / 2);
         float randomY = Random.Range(-moveArea.y / 2, moveArea.y / 2);
 
         Vector3Int cellPosition = tilemap.WorldToCell(new Vector3(randomX, randomY, 0));
-        randomDestination = tilemap.GetCellCenterWorld(cellPosition);
+        _randomDestination = tilemap.GetCellCenterWorld(cellPosition);
     }
 
     bool CanMoveTo(Vector3 targetPosition)
@@ -59,26 +74,25 @@ public class NPCMovement : MonoBehaviour
 
     IEnumerator MoveToDestination()
     {
-        isMoving = true;
-
+        _isMoving = true;
         // Kiểm tra xem vị trí mới có thể điều hướng không
-        while (!CanMoveTo(randomDestination))
+        while (!CanMoveTo(_randomDestination))
         {
             SetRandomDestination();
         }
 
-        while (Vector2.Distance(transform.position, randomDestination) > 0.1f)
+        while (Vector2.Distance(transform.position, _randomDestination) > 0.1f)
         {
-        Vector2 moveDirection = (randomDestination - (Vector3)transform.position).normalized;
+            Vector2 moveDirection = (_randomDestination - (Vector3)transform.position).normalized;
             SetAnim(moveDirection);
-            transform.position = Vector2.MoveTowards(transform.position, randomDestination, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _randomDestination, moveSpeed * Time.deltaTime);
             yield return null;
         }
         SetAnim(Vector2.zero);
         yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
 
         SetRandomDestination();
-        isMoving = false;
+        _isMoving = false;
     }
 
     private void SetAnim(Vector2 position)

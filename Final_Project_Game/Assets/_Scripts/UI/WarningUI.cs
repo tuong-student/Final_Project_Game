@@ -9,7 +9,9 @@ using UnityEngine;
 
 public enum WarningType
 {
+    None,
     NotEnoughMoney,
+    DontHaveItem,
 }
 
 public class WarningUI : MonoBehaviorInstance<WarningUI>
@@ -26,6 +28,7 @@ public class WarningUI : MonoBehaviorInstance<WarningUI>
     {
         _canvasGroup = GetComponent<CanvasGroup>();
         _waringActiveFB.Events.OnComplete.AddListener(IsShowFalse);
+        _currentWarningType = WarningType.None;
     }
     void Start()
     {
@@ -39,13 +42,18 @@ public class WarningUI : MonoBehaviorInstance<WarningUI>
         _canvasGroup.alpha = 1;
         if(_isShowing == false)
         {
+            _currentWarningType = WarningType.None;
             _isShowing = true;
             _waringActiveFB.PlayFeedbacks();
+            _currentWarningType = warningType;
         }
         switch (warningType)
         {
             case WarningType.NotEnoughMoney:
                 DisplayNotEnoughMoney();
+                break;
+            case WarningType.DontHaveItem:
+                DisplayDontHaveItem();
                 break;
         }
     }
@@ -61,6 +69,17 @@ public class WarningUI : MonoBehaviorInstance<WarningUI>
         else
         {
             _warningText.text = _warningTextDic.Dictionary[WarningType.NotEnoughMoney];
+        }
+    }
+    private void DisplayDontHaveItem()
+    {
+        if(_currentWarningType == WarningType.DontHaveItem)
+        {
+            _warningShakeFB.PlayFeedbacks();
+        }
+        else
+        {
+            _warningText.text = _warningTextDic.Dictionary[WarningType.DontHaveItem];
         }
     }
     #endregion

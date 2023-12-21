@@ -30,7 +30,7 @@ public class GameSceneManager : MonoBehaviour
     private IEnumerator Transition(string to, Vector3 targetPosition)
     {
         screenTint.Tint();
-        yield return new WaitForSeconds(1f / screenTint.speed + 0.1f); // 1 second devided by speed of tining and small addition of time offset
+        yield return new WaitForSeconds(1f / screenTint.speed + 0.1f); // 1 second divided by speed of tining and small addition of time offset
         SwitchScene(to,targetPosition);
         while(load != null && unLoad != null)
         {
@@ -49,7 +49,7 @@ public class GameSceneManager : MonoBehaviour
     public void SwitchScene(string to,Vector3 targetPosition)
     {
         load = SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
-         unLoad = SceneManager.UnloadSceneAsync(currentScene);
+        unLoad = SceneManager.UnloadSceneAsync(currentScene);
         currentScene = to;
         GameManager.instance.gameStatus.nameScene = to;
         Transform playerTransform = GameManager.instance.player.transform;

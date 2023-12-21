@@ -13,4 +13,6 @@ public enum SoundEnum
 	Hover = 10,
 	OrderItemComplete = 11,
 	OrderComplete = 12,
+	PlayerHurt = 13,
+	PlayerDead = 14,
 }

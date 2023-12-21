@@ -17,6 +17,6 @@ MonoBehaviour:
   _casingController: {fileID: 9100000, guid: f72a3fbdac307264580a2c9bc9653642, type: 2}
   _flashController: {fileID: 9100000, guid: 97550ec898944244b90b9d3a49765f3b, type: 2}
   _gunIdleSprite: {fileID: -1062886487, guid: b3ec131e77b071c4db134286db83e03c, type: 3}
-  _icon: {fileID: -1062886487, guid: b3ec131e77b071c4db134286db83e03c, type: 3}
+  _icon: {fileID: 21300000, guid: 6a7a181d12ad37e4e82a2f3319f0838a, type: 3}
   _bulletData: {fileID: 11400000, guid: 09304b7452145df4d8746820a493d531, type: 2}
   _bulletForce: 400

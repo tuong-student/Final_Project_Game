@@ -36,7 +36,7 @@ public class PlayerItem : AbstractItem
         bullet.GetComponent<Rigidbody2D>().AddForce(this.transform.right * gunSO._bulletForce);
 
         // Play sound
-        SoundManager.PlaySound(NOOD.Sound.SoundEnum.Shoot, 1);
+        SoundManager.PlaySound(NOOD.Sound.SoundEnum.Shoot);
     }
     private void StopShooting()
     {

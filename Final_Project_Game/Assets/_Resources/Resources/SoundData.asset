@@ -40,6 +40,10 @@ MonoBehaviour:
       _value: {fileID: 8300000, guid: 0a251865d11f91842a19cdee7af66120, type: 3}
     - _key: OrderComplete
       _value: {fileID: 8300000, guid: b8256a6b792fe3b488157984ecc43f61, type: 3}
+    - _key: PlayerHurt
+      _value: {fileID: 8300000, guid: 558f9f56f603a954b8d45e17e89341d9, type: 3}
+    - _key: PlayerDead
+      _value: {fileID: 8300000, guid: bd8857660a16ba549b8cc522d93d9117, type: 3}
   musicDic:
     _pairs:
     - _key: Theme
