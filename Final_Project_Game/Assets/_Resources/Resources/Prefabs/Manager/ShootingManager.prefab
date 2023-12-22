@@ -1414,7 +1414,7 @@ MonoBehaviour:
     - _key: 6
       _value: {fileID: 8563699277119918258}
   _dayNumber: {fileID: 1347861528313406516}
-  _hourToSpawnEnemy: 19
+  _hourToSpawnEnemy: 21
   _enemyToSpawn: 5
   _tilemapCropsManager: {fileID: 0}
 --- !u!114 &6419171240807956491

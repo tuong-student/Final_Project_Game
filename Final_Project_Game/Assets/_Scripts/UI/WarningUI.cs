@@ -65,6 +65,7 @@ public class WarningUI : MonoBehaviorInstance<WarningUI>
         if(_currentWarningType == WarningType.NotEnoughMoney)
         {
             _warningShakeFB.PlayFeedbacks();
+            _warningText.text = _warningTextDic.Dictionary[WarningType.NotEnoughMoney];
         }
         else
         {
@@ -76,6 +77,7 @@ public class WarningUI : MonoBehaviorInstance<WarningUI>
         if(_currentWarningType == WarningType.DontHaveItem)
         {
             _warningShakeFB.PlayFeedbacks();
+            _warningText.text = _warningTextDic.Dictionary[WarningType.DontHaveItem];
         }
         else
         {

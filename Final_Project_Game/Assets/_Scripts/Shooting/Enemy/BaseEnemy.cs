@@ -32,7 +32,7 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         _myCollider = this.gameObject.GetComponent<Collider2D>();
         Init();
-        NoodyCustomCode.CreateNewCoroutineLoop(() =>
+        NoodyCustomCode.StartNewCoroutineLoop(() =>
         {
             if (PlayerManager.Instance.GetHealth() <= 0) return;
             FindPlayer();

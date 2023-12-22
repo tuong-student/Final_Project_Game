@@ -22,7 +22,7 @@ namespace Game
 
             float footStepTime;
             footStepTime = SoundManager.GetSoundLength(NOOD.Sound.SoundEnum.FootStep);
-            NoodyCustomCode.CreateNewCoroutineLoop(() =>
+            NoodyCustomCode.StartNewCoroutineLoop(() =>
             {
                 if(_isMove)
                     SoundManager.PlaySound(NOOD.Sound.SoundEnum.FootStep);

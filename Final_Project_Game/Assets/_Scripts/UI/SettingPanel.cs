@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Game;
-using NOOD;
 using UnityEngine.SceneManagement;
 using EasyTransition;
-using UnityEditor.ShortcutManagement;
 
 public class SettingPanel : MonoBehaviour
 {
