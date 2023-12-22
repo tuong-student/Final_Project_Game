@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
     public static GameSceneManager instance;
+    private Vector3 _targetPosition;
+    private string _to;
+
     private void Awake()
     {
         instance = this;
@@ -32,31 +35,34 @@ public class GameSceneManager : MonoBehaviour
         screenTint.Tint();
         yield return new WaitForSeconds(1f / screenTint.speed + 0.1f); // 1 second divided by speed of tining and small addition of time offset
         SwitchScene(to,targetPosition);
-        while(load != null && unLoad != null)
+        while(load.isDone == false && unLoad.isDone == false)
         {
-            if (load.isDone)
-                load = null;
-            if (unLoad.isDone)
-                unLoad = null;
-            yield return new WaitForSeconds(0.1f);
+            yield return null; // Skip 1 frame
         }
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(currentScene));
-
         cameraConfiner.UpdateBounds();
         screenTint.UnTint();
     }
     public void SwitchScene(string to,Vector3 targetPosition)
     {
+        Debug.Log(currentScene);
+        _to = to;
+        _targetPosition = targetPosition;
         load = SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         unLoad = SceneManager.UnloadSceneAsync(currentScene);
-        currentScene = to;
-        GameManager.instance.gameStatus.nameScene = to;
+        currentScene = _to;
+        GameManager.instance.gameStatus.nameScene = _to;
         Transform playerTransform = GameManager.instance.player.transform;
 
         CinemachineBrain currentCamera = Camera.main.GetComponent<CinemachineBrain>();
-        currentCamera.ActiveVirtualCamera.OnTargetObjectWarped(playerTransform,targetPosition - playerTransform.position); 
+        currentCamera.ActiveVirtualCamera.OnTargetObjectWarped(playerTransform,_targetPosition - playerTransform.position); 
 
-        playerTransform.position = new Vector3(targetPosition.x,targetPosition.y,0);
+        playerTransform.position = new Vector3(_targetPosition.x, _targetPosition.y,0);
+        // load.completed -= OnCompleteLoadScene;
+        // load.completed += OnCompleteLoadScene;
+    }
+    private void OnCompleteLoadScene(AsyncOperation asyncOperation)
+    {
     }
 }

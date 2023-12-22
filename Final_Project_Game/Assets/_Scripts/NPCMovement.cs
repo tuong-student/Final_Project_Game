@@ -1,4 +1,5 @@
 ﻿using Game;
+using NOOD;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -15,38 +16,53 @@ public class NPCMovement : MonoBehaviour
     private TalkInteract _talkInteract;
     private bool _stop;
     private Vector3 _randomDestination;
-    private bool _isMoving = false;
+    private bool _isFindingPoint = false;
     private bool _run, _left, _right, _up, _down;
     private Vector3 _originalScale;
+
+    #region Unity functions
     void Start()
     {
         SetRandomDestination();
         _talkInteract = GetComponent<TalkInteract>();
-        _talkInteract.OnTalkInteracted += OnPlayerInteract;
     }
-
     void Update()
     {
-        if (!_isMoving && _stop == false)
-        {
-            StartCoroutine(MoveToDestination());
-        }
-        if(_stop)
-        {
-            _isMoving = false;
-            StopCoroutine(MoveToDestination());
-        }
+        // if (!_isMoving && _stop == false)
+        // {
+        //     StartCoroutine(MoveToDestination());
+        // }
+        // if(_stop)
+        // {
+        //     _isMoving = false;
+        //     StopCoroutine(MoveToDestination());
+        // }
+        if (_stop == false)
+            Move();
+        else
+            Stop();
+
         _animator.SetBool("Run", _run);
         _animator.SetBool("Left", _left);
         _animator.SetBool("Right", _right);
         _animator.SetBool("Up", _up);
         _animator.SetBool("Down", _down);
     }
-
-    void OnPlayerInteract(bool interacted)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        _stop = interacted;
+        if(other.TryGetComponent(out PlayerManager player))
+        {
+            _stop = true;
+        }
     }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.TryGetComponent(out PlayerManager player))
+        {
+            _stop = false;
+        }
+    }
+    #endregion
 
     void SetRandomDestination()
     {
@@ -72,9 +88,40 @@ public class NPCMovement : MonoBehaviour
         return true;
     }
 
+    private void Move()
+    {
+        if (Vector2.Distance(transform.position, _randomDestination) > 0.1f)
+        {
+            Vector2 moveDirection = (_randomDestination - (Vector3)transform.position).normalized;
+            SetAnim(moveDirection);
+            transform.position = Vector2.MoveTowards(transform.position, _randomDestination, moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            if(_isFindingPoint == false)
+            {
+                _isFindingPoint = true;
+                NoodyCustomCode.StartDelayFunction(() => 
+                {
+                    SetRandomDestination();
+                    while(!CanMoveTo(_randomDestination))
+                    {
+                        SetRandomDestination();
+                    }
+                    _isFindingPoint = false;
+                }, Random.Range(1, 3));
+            }
+            SetAnim(Vector2.zero);
+        }
+    }
+    private void Stop()
+    {
+        SetAnim(Vector2.zero);
+    }
+
     IEnumerator MoveToDestination()
     {
-        _isMoving = true;
+        _isFindingPoint = true;
         // Kiểm tra xem vị trí mới có thể điều hướng không
         while (!CanMoveTo(_randomDestination))
         {
@@ -92,12 +139,11 @@ public class NPCMovement : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
 
         SetRandomDestination();
-        _isMoving = false;
+        _isFindingPoint = false;
     }
 
     private void SetAnim(Vector2 position)
     {
-
         _up = false;
         _down = false;
         _left = false;

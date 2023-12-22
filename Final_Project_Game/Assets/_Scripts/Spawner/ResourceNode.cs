@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using NOOD;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class ResourceNode : ToolHit
 {
     [SerializeField] GameObject pickUpDrop;
@@ -10,13 +11,22 @@ public class ResourceNode : ToolHit
     [SerializeField] ItemSO item;
     [SerializeField] int itemCountInOneDrop = 0;
     [SerializeField] private int dropCount = 1;
-    [SerializeField] int damage = 8;
+    [SerializeField] int _maxHealth = 8;
     [SerializeField] ResourceNodeType nodeType;
+    [SerializeField] private CircleSlider _circleSlider;
+
+    private int _currentHealth = 8;
+    
+    void Awake()
+    {
+        if(_circleSlider != null)
+            _circleSlider.gameObject.SetActive(false);
+    }
 
     public override void Hit()
     {
-        damage--;
-        if (damage == 0)
+        _currentHealth--;
+        if (_currentHealth == 0)
         {
             if (nodeType == ResourceNodeType.Ore)
                 itemCountInOneDrop = 1;
@@ -32,11 +42,40 @@ public class ResourceNode : ToolHit
             }
             Destroy(gameObject);
         }
+        UpdateSlider();
     }
 
     public override bool CanBeHit(List<ResourceNodeType> canbehit)
     {
         return canbehit.Contains(nodeType);
+    }
+
+    private void UpdateSlider()
+    {
+        NoodyCustomCode.StopCoroutineLoop("NodeSlider");
+        NoodyCustomCode.StopDelayFunction("NodeSliderDelay");
+        if(_circleSlider.CanvasGroup != null)
+            _circleSlider.CanvasGroup.alpha = 1;
+        if(_circleSlider != null)
+        {
+            _circleSlider.gameObject.SetActive(true);
+            _circleSlider.Init(_currentHealth, _maxHealth);
+            NoodyCustomCode.StartDelayFunction(() =>
+            {
+                NoodyCustomCode.StartNewCoroutineLoop(() =>
+                {
+                    if (_circleSlider.CanvasGroup != null && _circleSlider.CanvasGroup.alpha > 0)
+                    {
+                        _circleSlider.CanvasGroup.alpha -= Time.deltaTime;
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }, "NodeSlider");
+            }, "NodeSliderDelay", 2f);
+        }
     }
 }
 

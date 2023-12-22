@@ -15,6 +15,7 @@ public class CircleSlider : MonoBehaviour
 
     [SerializeField] private Image _sliderContent;
     [SerializeField] private MMF_Player _popAnimation;
+    [SerializeField] private CanvasGroup _canvasGroup;
 
     private Color _originalColor;
     private float _value, _maxValue;
@@ -27,6 +28,7 @@ public class CircleSlider : MonoBehaviour
             return _popAnimation.TotalDuration;
         }
     }
+    public CanvasGroup CanvasGroup => _canvasGroup;
 
     #region Unity functions
     void Awake()

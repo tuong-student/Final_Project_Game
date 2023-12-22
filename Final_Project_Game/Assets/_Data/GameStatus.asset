@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNewGame: 0
   nameScene: 2DMainGame
+  isMusicMute: 0
+  isSoundMute: 0
+  musicVolume: 0.9628848
+  soundVolume: 1

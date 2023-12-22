@@ -38,7 +38,7 @@ public class OrderManager : MonoBehaviorInstance<OrderManager>
     #region Unity functions
     void Start()
     {
-        NoodyCustomCode.CreateNewCoroutineLoop(() => {
+        NoodyCustomCode.StartNewCoroutineLoop(() => {
             if(_orderList.Count < 5)
             {
                 for(int i = 0; i < 4; i++)
