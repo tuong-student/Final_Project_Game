@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using NOOD.Sound;
 
 namespace NOOD.Sound
 {
@@ -417,16 +414,38 @@ namespace NOOD.Sound
                 audioSource.volume = globalMusicVolume;
             }
         }
+        public static void RemoveMusicPlayer(MusicPlayer musicPlayer)
+        {
+            if (enableMusicPlayers.Contains(musicPlayer))
+                enableMusicPlayers.Remove(musicPlayer);
+            if (disableMusicPlayers.Contains(musicPlayer))
+                disableMusicPlayers.Remove(musicPlayer);
+        }
+        public static void RemoveSoundPlayer(SoundPlayer soundPlayer)
+        {
+            if (enableSoundPlayers.Contains(soundPlayer))
+                enableSoundPlayers.Remove(soundPlayer);
+            if (disableSoundPlayers.Contains(soundPlayer))
+                disableSoundPlayers.Remove(soundPlayer);
+        }
 #endregion
     }
 
     public class SoundPlayer : MonoBehaviour 
     {
         public SoundEnum soundType;
+        private void OnDestroy()
+        {
+            SoundManager.RemoveSoundPlayer(this);
+        }
     }
     public class MusicPlayer : MonoBehaviour 
     {
         public MusicEnum musicType;
         public bool isAlwaysPlay;
+        private void OnDestroy()
+        {
+            SoundManager.RemoveMusicPlayer(this);
+        }
     }
 }
