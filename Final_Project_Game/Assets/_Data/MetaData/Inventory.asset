@@ -17,12 +17,12 @@ MonoBehaviour:
     count: 1
   - storable: {fileID: 11400000, guid: e60c8994d3e5d9743866fe9c309feb6e, type: 2}
     count: 1
-  - storable: {fileID: 11400000, guid: b3f92460141622942b9baaf12aa0338b, type: 2}
-    count: 1
   - storable: {fileID: 11400000, guid: 0945bb376867c7e489136bbdc25c3245, type: 2}
     count: 1
-  - storable: {fileID: 11400000, guid: 8f7d75d85ce4703459ca269e785df59f, type: 2}
-    count: 4
+  - storable: {fileID: 11400000, guid: d3675901f60260d459a8687178e4dd87, type: 2}
+    count: 1
+  - storable: {fileID: 11400000, guid: 0e6aaa8c595bfe24798354026f76f4e5, type: 2}
+    count: 5
   - storable: {fileID: 0}
     count: 0
   - storable: {fileID: 0}
