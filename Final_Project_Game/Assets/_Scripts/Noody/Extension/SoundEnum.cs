@@ -15,4 +15,8 @@ public enum SoundEnum
 	OrderComplete = 12,
 	PlayerHurt = 13,
 	PlayerDead = 14,
+	WoodHit = 15,
+	WoodFall = 16,
+	StoneFall = 17,
+	StoneHit = 18,
 }
