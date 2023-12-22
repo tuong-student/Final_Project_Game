@@ -14,6 +14,7 @@ public class PanelGroup : MonoBehaviorInstance<PanelGroup>
     {
         this.gameObject.transform.DOScale(1, 1f);
         _canvasGroup.DOFade(1, 0.7f);
+        _canvasGroup.interactable = true;
         inventoryPanel.SetActive(true);
     }
     public void Close()
@@ -21,6 +22,7 @@ public class PanelGroup : MonoBehaviorInstance<PanelGroup>
         this.gameObject.transform.DOScale(0.3f, 1f);
         _canvasGroup.DOFade(0, 0.7f).OnComplete(() => this.gameObject.SetActive(false)).OnComplete(() =>
         {
+            _canvasGroup.interactable = false;
             inventoryPanel.gameObject.SetActive(false);
         });
     }

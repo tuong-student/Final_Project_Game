@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    [SerializeField] GameObject panel;
-    [SerializeField] GameObject statusPanel;
+    public GameObject panel;
+    [SerializeField] GameObject craftingPanel;
     [SerializeField] GameObject toolbarPanel;
     [SerializeField] GameObject additionalPanel;
-    [SerializeField] GameObject craftingPanel;
+    [SerializeField] GameObject craftingInfoPanel;
 
     #region Unity functions
     void Start()
@@ -32,6 +32,7 @@ public class InventoryController : MonoBehaviour
     }
     public void Open()
     {
+        panel.transform.localPosition = new Vector3(0, -19.4152f, 0);
         panel.SetActive(true);
         //statusPanel.SetActive(true);
         toolbarPanel.SetActive(false);
@@ -40,10 +41,10 @@ public class InventoryController : MonoBehaviour
     public void Close()
     {
         panel.SetActive(false);
-        statusPanel.SetActive(false);
+        craftingPanel.GetComponent<CanvasGroup>().alpha = 0;
         toolbarPanel.SetActive(true);
         additionalPanel.SetActive(false);
-        craftingPanel.SetActive(false);
+        craftingInfoPanel.SetActive(false);
         UIManager.Instance.RemoveToUIList(this);
     }
     #endregion

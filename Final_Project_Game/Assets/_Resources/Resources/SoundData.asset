@@ -44,6 +44,14 @@ MonoBehaviour:
       _value: {fileID: 8300000, guid: 558f9f56f603a954b8d45e17e89341d9, type: 3}
     - _key: PlayerDead
       _value: {fileID: 8300000, guid: bd8857660a16ba549b8cc522d93d9117, type: 3}
+    - _key: WoodHit
+      _value: {fileID: 8300000, guid: 5809e10d0cbb53d4194cc3390fc48818, type: 3}
+    - _key: WoodFall
+      _value: {fileID: 8300000, guid: 9f57395caf8c5d9498ed367696c8ab0f, type: 3}
+    - _key: StoneFall
+      _value: {fileID: 8300000, guid: cb41e1ab354a3fa44b0c449806cf0d99, type: 3}
+    - _key: StoneHit
+      _value: {fileID: 8300000, guid: 231afb86fef9c7c488a3f03a682d6554, type: 3}
   musicDic:
     _pairs:
     - _key: Theme

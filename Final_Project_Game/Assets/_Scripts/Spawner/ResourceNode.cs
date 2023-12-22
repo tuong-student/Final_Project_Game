@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NOOD;
+using NOOD.Sound;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -26,10 +27,19 @@ public class ResourceNode : ToolHit
     public override void Hit()
     {
         _currentHealth--;
+        if (nodeType == ResourceNodeType.Ore)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.StoneHit, GameManager.instance.gameStatus.soundVolume);
+        else if (nodeType == ResourceNodeType.Tree)
+            SoundManager.PlaySound(NOOD.Sound.SoundEnum.WoodHit, GameManager.instance.gameStatus.soundVolume);
         if (_currentHealth == 0)
         {
             if (nodeType == ResourceNodeType.Ore)
+            {
                 itemCountInOneDrop = 1;
+                SoundManager.PlaySound(NOOD.Sound.SoundEnum.StoneFall, GameManager.instance.gameStatus.soundVolume);
+            }
+            else if (nodeType == ResourceNodeType.Tree)
+                SoundManager.PlaySound(NOOD.Sound.SoundEnum.WoodFall, GameManager.instance.gameStatus.soundVolume);
             while (dropCount > 0)
             {
                 dropCount--;

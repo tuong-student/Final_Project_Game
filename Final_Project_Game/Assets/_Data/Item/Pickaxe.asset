@@ -21,7 +21,7 @@ MonoBehaviour:
   animator: {fileID: 9100000, guid: f1fa3177c4de18f4ebdb28d16b1dd999, type: 2}
   Name: Pickaxe
   id: 4
-  price: 10
+  price: 500
   stackable: 0
   tradeable: 1
   iconHighlight: 0
