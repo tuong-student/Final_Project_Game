@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerItem : AbstractItem
 {
+    private bool _itemPreformed;
     #region abstract functions
     public override void PerformAction()
     {
         if (_data == null) return;
         if(_data.StorageType == StorageType.Weapon)
             Shoot();
-        if (_data.StorageType == StorageType.FarmItem)
+        if (_data.StorageType == StorageType.FarmItem && _itemPreformed == false)
             ToolPerform();
 
     }
@@ -20,6 +21,8 @@ public class PlayerItem : AbstractItem
         if (_data == null) return;
         if(_data.StorageType == StorageType.Weapon )
             StopShooting();
+        if (_data.StorageType == StorageType.FarmItem)
+            StopToolPerform();
     }
     #endregion
 
@@ -51,7 +54,12 @@ public class PlayerItem : AbstractItem
     #region Tool functions
     private void ToolPerform()
     {
+        _itemPreformed = true;
         _itemView.SetTrigger("Perform");
+    }
+    private void StopToolPerform()
+    {
+        _itemPreformed = false;
     }
     #endregion
 }

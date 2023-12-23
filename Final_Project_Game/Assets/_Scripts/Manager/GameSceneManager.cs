@@ -35,6 +35,10 @@ public class GameSceneManager : MonoBehaviour
         screenTint.Tint();
         yield return new WaitForSeconds(1f / screenTint.speed + 0.1f); // 1 second divided by speed of tining and small addition of time offset
         SwitchScene(to,targetPosition);
+        while(load == null)
+        {
+            yield return null;
+        }
         while(load.isDone == false && unLoad.isDone == false)
         {
             yield return null; // Skip 1 frame

@@ -375,7 +375,7 @@ MonoBehaviour:
   - {x: -0.06049061, y: -0.00066161156, z: 0}
   m_ShapePathHash: 500576805
   m_Mesh: {fileID: 0}
-  m_InstanceId: 306720
+  m_InstanceId: -143790
   m_LocalBounds:
     m_Center: {x: -0.00219059, y: 0.4996044, z: 0}
     m_Extent: {x: 0.3780079, y: 0.5012701, z: 0}
@@ -401,6 +401,8 @@ GameObject:
   - component: {fileID: 1224647797554350213}
   - component: {fileID: 7003837910147912643}
   - component: {fileID: 8045988551428250852}
+  - component: {fileID: 1163996454804186508}
+  - component: {fileID: 1088630251018235181}
   m_Layer: 6
   m_Name: Player2D
   m_TagString: Player
@@ -584,10 +586,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 0}
-  statusPanel: {fileID: 0}
+  craftingPanel: {fileID: 0}
   toolbarPanel: {fileID: 0}
   additionalPanel: {fileID: 0}
-  craftingPanel: {fileID: 0}
+  craftingInfoPanel: {fileID: 0}
 --- !u!114 &8222712388763822301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +655,33 @@ MonoBehaviour:
   _isOffWhenMorning: 1
   _isOnWhenEvening: 1
   _isOffWhenEvening: 0
+--- !u!114 &1163996454804186508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8358276870679638750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f22a23e15cf3c49a9e2a2c129fddf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1088630251018235181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8358276870679638750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdb0f3d32ff7f94d95cd142c6e07532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemContainerPanel: {fileID: 0}
+  openedChest: {fileID: 0}
+  maxDistance: 1.5
 --- !u!1001 &453025265511799403
 PrefabInstance:
   m_ObjectHideFlags: 0

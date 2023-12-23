@@ -7,7 +7,7 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     public GameObject panel;
-    [SerializeField] GameObject craftingPanel;
+    [SerializeField] PanelGroup craftingPanel;
     [SerializeField] GameObject toolbarPanel;
     [SerializeField] GameObject additionalPanel;
     [SerializeField] GameObject craftingInfoPanel;
@@ -41,7 +41,7 @@ public class InventoryController : MonoBehaviour
     public void Close()
     {
         panel.SetActive(false);
-        craftingPanel.GetComponent<CanvasGroup>().alpha = 0;
+        craftingPanel.Close();
         toolbarPanel.SetActive(true);
         additionalPanel.SetActive(false);
         craftingInfoPanel.SetActive(false);

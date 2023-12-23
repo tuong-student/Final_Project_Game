@@ -71,6 +71,12 @@ MonoBehaviour:
       _value: 1
     - _key: {fileID: 11400000, guid: e60c8994d3e5d9743866fe9c309feb6e, type: 2}
       _value: 1
+    - _key: {fileID: 11400000, guid: 0945bb376867c7e489136bbdc25c3245, type: 2}
+      _value: 1
+    - _key: {fileID: 11400000, guid: d3675901f60260d459a8687178e4dd87, type: 2}
+      _value: 1
+    - _key: {fileID: 11400000, guid: 2d40a09002e2dfb4ba0e3825695e2e20, type: 2}
+      _value: 15
   player: {fileID: 0}
   dragAndDropController: {fileID: 5050832018462455713}
   timeController: {fileID: 8706188146529715434}
