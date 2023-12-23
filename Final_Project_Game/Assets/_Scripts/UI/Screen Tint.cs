@@ -18,14 +18,16 @@ public class ScreenTint : MonoBehaviour
     }
     public void Tint()
     {
-        StopAllCoroutines();
+        StopCoroutine(TintScreen());
+        StopCoroutine(UnTintScreen());
         f = 0f;
         StartCoroutine(TintScreen());
     }
 
     public void UnTint()
     {
-        StopAllCoroutines();
+        StopCoroutine(TintScreen());
+        StopCoroutine(UnTintScreen());
         f = 0f;
         StartCoroutine(UnTintScreen());
     }

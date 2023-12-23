@@ -9,7 +9,7 @@ public class CropsContainer : ScriptableObject
     public List<CropTile> crops;
     Dictionary<CropTile, bool> _displayHarvestIconDic = new Dictionary<CropTile, bool>();
     Dictionary<CropTile, GameObject> _harvestIconDic = new Dictionary<CropTile, GameObject>();
-    Dictionary<CropTile, CircleSlider> _cropCircleSlider = new Dictionary<CropTile, CircleSlider>();
+    Dictionary<CropTile, CircleSlider> _cropCircleSliderDic = new Dictionary<CropTile, CircleSlider>();
     [SerializeField] private GameObject _fieldCanvas;
     
     public CropTile GetCropTile(Vector3 position)
@@ -19,17 +19,28 @@ public class CropsContainer : ScriptableObject
 
     public void ClearDatas()
     {
+        foreach(var pair in _harvestIconDic)
+        {
+            if(pair.Value.gameObject)
+                Destroy(pair.Value.gameObject);
+        }
+        foreach(var pair in _cropCircleSliderDic)
+        {
+            if(pair.Value.gameObject)
+                Destroy(pair.Value.gameObject);
+        }
+
         _displayHarvestIconDic.Clear();
         _harvestIconDic.Clear();
-        _cropCircleSlider.Clear();
+        _cropCircleSliderDic.Clear();
     }
 
     #region CropCircleSlider
     public void AddCropCircleSlider(CropTile cropTile)
     {   
-        if(_cropCircleSlider.TryGetValue(cropTile, out CircleSlider circleSlider))
+        if(_cropCircleSliderDic.TryGetValue(cropTile, out CircleSlider circleSlider))
         {
-            circleSlider = _cropCircleSlider[cropTile];
+            circleSlider = _cropCircleSliderDic[cropTile];
             circleSlider.Init(0, cropTile.crop.timeToGrow);
         }
         else
@@ -40,14 +51,15 @@ public class CropsContainer : ScriptableObject
             circleSlider = canvas.GetComponentInChildren<CircleSlider>();
             circleSlider.Init(0, cropTile.crop.timeToGrow);
 
-            _cropCircleSlider.Add(cropTile, circleSlider);
+            _cropCircleSliderDic.Add(cropTile, circleSlider);
         }
         ShowCropCircleSlider(cropTile, true);
     }
     public void UpdateCropCircleSlider(CropTile cropTile)
     {
-        if(_cropCircleSlider.TryGetValue(cropTile, out CircleSlider circleSlider))
+        if(_cropCircleSliderDic.TryGetValue(cropTile, out CircleSlider circleSlider))
         {
+            ShowCropCircleSlider(cropTile, true);
             circleSlider.SetValue(cropTile.growTimer);
         }
         else
@@ -57,7 +69,7 @@ public class CropsContainer : ScriptableObject
     }
     public void PlayCircleSliderDamage(CropTile cropTile)
     {
-        if(_cropCircleSlider.TryGetValue(cropTile, out CircleSlider circleSlider))
+        if(_cropCircleSliderDic.TryGetValue(cropTile, out CircleSlider circleSlider))
         {
             if(cropTile.Complete)
             {
@@ -79,7 +91,7 @@ public class CropsContainer : ScriptableObject
     }
     public void ShowCropCircleSlider(CropTile cropTile, bool isShow)
     {
-        if(_cropCircleSlider.TryGetValue(cropTile, out CircleSlider circleSlider))
+        if(_cropCircleSliderDic.TryGetValue(cropTile, out CircleSlider circleSlider))
         {
             circleSlider.gameObject.SetActive(isShow);
             if(isShow)

@@ -69,8 +69,11 @@ public class NPCMovement : MonoBehaviour
         float randomX = Random.Range(-moveArea.x / 2, moveArea.x / 2);
         float randomY = Random.Range(-moveArea.y / 2, moveArea.y / 2);
 
-        Vector3Int cellPosition = tilemap.WorldToCell(new Vector3(randomX, randomY, 0));
-        _randomDestination = tilemap.GetCellCenterWorld(cellPosition);
+        if(tilemap != null)
+        {
+            Vector3Int cellPosition = tilemap.WorldToCell(new Vector3(randomX, randomY, 0));
+            _randomDestination = tilemap.GetCellCenterWorld(cellPosition);
+        }
     }
 
     bool CanMoveTo(Vector3 targetPosition)

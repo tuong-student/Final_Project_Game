@@ -10,7 +10,6 @@ public class RestartMenu : MonoBehaviour
 {
     #region SerializeField
     [SerializeField] private CanvasGroup _canvasGroup;
-    [SerializeField] private GameObject _panel;
     [SerializeField] private CustomButton _mainMenuBtn, _retryBtn;
     [SerializeField] private MMF_Player _showFB, _hideFB;
     [SerializeField] private GameStatusSO _gameStatus;
@@ -18,10 +17,8 @@ public class RestartMenu : MonoBehaviour
     #endregion
 
     #region Unity functions
-    void Awake()
+    void Start()
     {
-        _mainMenuBtn.SetAction(ReturnToMainMenu);
-        _retryBtn.SetAction(Retry);
         _canvasGroup.alpha = 0;
         Hide();
     }
@@ -34,7 +31,12 @@ public class RestartMenu : MonoBehaviour
     #region ButtonFunctions
     private void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenuScene", LoadSceneMode.Single);
+        TransitionManager.Instance().onTransitionCutPointReached = () => 
+        {
+            SceneManager.LoadScene("MainMenuScene", LoadSceneMode.Single);
+        };
+        TransitionManager.Instance().Transition(_transitionSettings, 0);
+        Hide();
     }
     private void Retry()
     {
@@ -57,6 +59,9 @@ public class RestartMenu : MonoBehaviour
             _showFB.PlayFeedbacks();
 
         UIManager.Instance.AddToUIList(this);
+
+        _mainMenuBtn.SetAction(ReturnToMainMenu);
+        _retryBtn.SetAction(Retry);
     }
     public void Hide()
     {
@@ -64,6 +69,10 @@ public class RestartMenu : MonoBehaviour
             _hideFB.PlayFeedbacks();
 
         UIManager.Instance.RemoveToUIList(this);
+
+        if (_mainMenuBtn.enabled || _retryBtn.enabled ) return;
+        _mainMenuBtn.RemoveAction(ReturnToMainMenu);
+        _retryBtn.RemoveAction(Retry);
     }
     #endregion
 }

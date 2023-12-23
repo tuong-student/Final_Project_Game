@@ -16,7 +16,6 @@ public class GameSceneManager : MonoBehaviour
     }
 
     [SerializeField] private ScreenTint screenTint;
-    [SerializeField] private CameraConfiner cameraConfiner;
     string currentScene;
     private AsyncOperation unLoad;
     private AsyncOperation load;
@@ -35,17 +34,13 @@ public class GameSceneManager : MonoBehaviour
         screenTint.Tint();
         yield return new WaitForSeconds(1f / screenTint.speed + 0.1f); // 1 second divided by speed of tining and small addition of time offset
         SwitchScene(to,targetPosition);
-        while(load == null)
-        {
-            yield return null;
-        }
         while(load.isDone == false && unLoad.isDone == false)
         {
+            Debug.Log("Loop2");
             yield return null; // Skip 1 frame
         }
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(currentScene));
-        cameraConfiner.UpdateBounds();
         screenTint.UnTint();
     }
     public void SwitchScene(string to,Vector3 targetPosition)
@@ -63,10 +58,5 @@ public class GameSceneManager : MonoBehaviour
         currentCamera.ActiveVirtualCamera.OnTargetObjectWarped(playerTransform,_targetPosition - playerTransform.position); 
 
         playerTransform.position = new Vector3(_targetPosition.x, _targetPosition.y,0);
-        // load.completed -= OnCompleteLoadScene;
-        // load.completed += OnCompleteLoadScene;
-    }
-    private void OnCompleteLoadScene(AsyncOperation asyncOperation)
-    {
     }
 }

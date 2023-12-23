@@ -39,7 +39,7 @@ public class EnemyAttackCrop : BaseEnemy
     {
         if(IsCropNullOrEmpty())
         {
-            CropsContainer cropsContainer = ShootingManager.Instance._tilemapCropsManager.GetCropContainer();
+            CropsContainer cropsContainer = ShootingManager.Instance.tilemapCropsManager.GetCropContainer();
             List<CropTile> targetList = cropsContainer.crops.Where(x => x.crop != null).ToList();
             _targetCropTile = targetList.GetRandom();
             if(_targetCropTile == null) return;
@@ -74,7 +74,7 @@ public class EnemyAttackCrop : BaseEnemy
             _targetCropTile.Damage += 0.2f;
             if(_targetCropTile.Damage >= 1)
             {
-                ShootingManager.Instance._tilemapCropsManager.HarvestCropTile(_targetCropTile);
+                ShootingManager.Instance.tilemapCropsManager.HarvestCropTile(_targetCropTile);
                 _targetCropTile = null;
             }
         }

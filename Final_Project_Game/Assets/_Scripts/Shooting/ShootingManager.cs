@@ -11,7 +11,19 @@ public class ShootingManager : MonoBehaviorInstance<ShootingManager>
     [SerializeField] private TextMeshProUGUI _dayNumber;
     [SerializeField] private int _hourToSpawnEnemy = 22;
     [SerializeField] private int _enemyToSpawn = 5;
-    [HideInInspector] public TilemapCropsManager _tilemapCropsManager;
+    [HideInInspector] public TilemapCropsManager tilemapCropsManager
+    {
+        get
+        {
+            if(_tilemapCropManager == null)
+            {
+                _tilemapCropManager = FindObjectOfType<TilemapCropsManager>();
+            }
+            return _tilemapCropManager;
+        }
+    }
+
+    private TilemapCropsManager _tilemapCropManager;
     private bool _isSpawnEnemy;
     private bool _isWarnPlayer;
     private EnemySpawner _enemySpawner;
@@ -32,7 +44,6 @@ public class ShootingManager : MonoBehaviorInstance<ShootingManager>
     void Start()
     {
         DayTimeController.Instance.onNextDay += PlayNextDayFB;
-        _tilemapCropsManager = FindObjectOfType<TilemapCropsManager>();
     }
     void OnDestroy()
     {

@@ -20,6 +20,11 @@ public class TilemapCropsManager : TimeAgent
         onTimeTick += Tick;
         Init();
         VisualizeMap();
+        if(GameManager.instance.gameStatus.isNewGame)
+        {
+            container.crops.Clear();
+            container.ClearDatas();
+        }
     }
 
     private void OnDestroy()
@@ -143,6 +148,7 @@ public class TilemapCropsManager : TimeAgent
         for (int i = 0; i < container.crops.Count; i++)
         {
             VisualizeTile(container.crops[i]);
+            container.UpdateCropCircleSlider(container.crops[i]);
         }
     }
 

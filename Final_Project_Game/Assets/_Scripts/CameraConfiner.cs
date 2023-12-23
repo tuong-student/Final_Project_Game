@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class CameraConfiner : MonoBehaviour
 {
-    [SerializeField] CinemachineConfiner confiner;
+    private CinemachineConfiner _confiner;
+    private PolygonCollider2D _polygonCollider2D;
+
+    void Awake()
+    {
+        _polygonCollider2D = this.GetComponent<PolygonCollider2D>();
+    }
+
     private void Start()
     {
         UpdateBounds();
@@ -13,14 +20,8 @@ public class CameraConfiner : MonoBehaviour
 
     public void UpdateBounds()
     {
-        GameObject go = GameObject.Find("CameraConfinder");
-        if (go == null)
-        {
-            confiner.m_BoundingShape2D = null;
-            return;
-        }
+        _confiner = FindFirstObjectByType<CinemachineConfiner>();
 
-        Collider2D bounds = go.GetComponent<Collider2D>();
-        confiner.m_BoundingShape2D = bounds;
+        _confiner.m_BoundingShape2D = _polygonCollider2D;
     }
 }

@@ -108,7 +108,9 @@ public class Truck : Interactable
     }
     private void UpdateTruck()
     {
-        _containerFBs[_currentCapacity - 1].PlayFeedbacks();
+        MMF_Player currentFB = _containerFBs[_currentCapacity - 1];
+        if (currentFB != null)
+            currentFB.PlayFeedbacks();
     }
     #endregion
 }

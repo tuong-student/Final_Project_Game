@@ -201,7 +201,10 @@ public class SettingPanel : MonoBehaviour
     private void OnHomeBtnHandler()
     {
         TransitionManager.Instance().onTransitionCutPointReached = () =>
-        SceneManager.LoadScene("MainMenuScene", LoadSceneMode.Single);
+        {
+            SceneManager.LoadScene("MainMenuScene", LoadSceneMode.Single);
+        };
+
         TransitionManager.Instance().Transition(_transitionSetting, 0);
     }
     #endregion

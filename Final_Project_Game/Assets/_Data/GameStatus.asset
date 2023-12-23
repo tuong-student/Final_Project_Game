@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameStatus
   m_EditorClassIdentifier: 
   isNewGame: 0
-  nameScene: 2DMainGame
+  nameScene: MineScene
   isMusicMute: 0
   isSoundMute: 0
   musicVolume: 0.9628848

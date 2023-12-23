@@ -130,7 +130,7 @@ namespace Game
         {
             foreach(var itemsPair in itemsAndCount)
             {
-                _inventoryContainer.Add(itemsPair.Key, itemsPair.Value);
+                AddToInventory(itemsPair.Key, itemsPair.Value);
             }
         }
         public void RemoveFromInventory(Storable item, int count)

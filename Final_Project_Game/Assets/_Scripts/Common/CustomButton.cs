@@ -8,6 +8,7 @@ using Game;
 using NOOD;
 using System;
 using NOOD.Sound;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Button))]
 public class CustomButton : InteractableUIBase, ISelectHandler, IDeselectHandler, IPointerClickHandler
@@ -17,11 +18,7 @@ public class CustomButton : InteractableUIBase, ISelectHandler, IDeselectHandler
     #region UnityFunctions
     void Awake()
     {
-        _button = GetComponent<Button>();
-    }
-    void OnEnable()
-    {
-        // GameInput.onPlayerAccept += TryClick;
+        _button = this.GetComponent<Button>();
     }
     void OnDisable()
     {
@@ -30,16 +27,13 @@ public class CustomButton : InteractableUIBase, ISelectHandler, IDeselectHandler
     #endregion
 
     #region Perform functions
-    private void TryClick()
+    public void SetAction(UnityAction action)
     {
-        if(EventSystem.current.currentSelectedGameObject == this.gameObject)
-        {
-            _button.onClick?.Invoke();
-        }
+        _button.onClick.AddListener(action);
     }
-    public void SetAction(Action action)
+    public void RemoveAction(UnityAction action)
     {
-        _button.onClick.AddListener(() => action?.Invoke());
+        _button.onClick.RemoveListener(action);
     }
     #endregion
 
