@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using NOOD.Sound;
-using System.Collections.Generic;
-using DG.Tweening;
 using EasyTransition;
 
 public class MainMenuUI : MonoBehaviour

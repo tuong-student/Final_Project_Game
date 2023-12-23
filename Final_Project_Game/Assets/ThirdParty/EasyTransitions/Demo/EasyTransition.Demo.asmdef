@@ -1,10 +1,10 @@
 {
-    "name": "ThirdParty",
+    "name": "EasyTransition.Demo",
     "rootNamespace": "",
-    "references": [],
-    "includePlatforms": [
-        "Editor"
+    "references": [
+        "GUID:d005cd31a5dead44c8375cfe22b3d5eb"
     ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

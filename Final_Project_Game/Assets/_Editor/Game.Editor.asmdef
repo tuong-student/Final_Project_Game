@@ -1,7 +1,9 @@
 {
-    "name": "ThirdParty",
+    "name": "Game.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:fd66616a4f7faa84eae6fc359c59d9c6"
+    ],
     "includePlatforms": [
         "Editor"
     ],

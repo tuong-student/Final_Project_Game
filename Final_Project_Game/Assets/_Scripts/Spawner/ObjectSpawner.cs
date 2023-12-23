@@ -49,7 +49,7 @@ public class ObjectSpawner : MonoBehaviour
         else
         {
             t.SetParent(transform);
-            SpawnedObject spawnedObject = t.AddComponent<SpawnedObject>();
+            SpawnedObject spawnedObject = t.gameObject.AddComponent<SpawnedObject>();
             spawnList.Add(go);
             spawnedObjects.Add(spawnedObject);
             spawnedObject.objId = spawnList.Count - 1;

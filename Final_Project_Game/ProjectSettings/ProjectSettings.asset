@@ -836,7 +836,8 @@ PlayerSettings:
     Standalone: IMPOSSIBLE_ODDS_LOGGING_EDITOR_INFO;IMPOSSIBLE_ODDS_LOGGING_INFO;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
   additionalCompilerArguments: {}
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Standalone: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   managedStrippingLevel:

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using EasyTransition;
 using Game;
-using ImpossibleOdds.Http;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.SceneManagement;

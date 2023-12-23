@@ -1,7 +1,9 @@
 {
-    "name": "ThirdParty",
+    "name": "EasyTransition.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:d005cd31a5dead44c8375cfe22b3d5eb"
+    ],
     "includePlatforms": [
         "Editor"
     ],

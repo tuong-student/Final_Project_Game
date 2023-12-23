@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+#if UNITY_EDITOR
 using DG.DemiEditor;
+#endif
 
 namespace NOOD.Extension
 {
