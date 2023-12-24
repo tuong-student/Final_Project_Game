@@ -29,6 +29,7 @@ public class OrderPanelUI : MonoBehaviour
     {
         OrderManager.Instance.onPlayerOpenOrderPanel += UpdateUI;
         OrderManager.Instance.onPlayerOpenOrderPanel += Show;
+        OrderManager.Instance.onTruckGo += Hide;
         _orderElementPref.gameObject.SetActive(false);
         _goBtn.SetAction(GoAction);
         _closeBtn.SetAction(Hide);

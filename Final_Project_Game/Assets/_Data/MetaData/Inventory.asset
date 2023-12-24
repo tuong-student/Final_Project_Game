@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots:
   - storable: {fileID: 11400000, guid: 9ca6de1a43380054eacf31ca629148fd, type: 2}
-    count: 1
+    count: 0
   - storable: {fileID: 11400000, guid: e60c8994d3e5d9743866fe9c309feb6e, type: 2}
-    count: 1
+    count: 0
   - storable: {fileID: 11400000, guid: 0945bb376867c7e489136bbdc25c3245, type: 2}
-    count: 1
+    count: 0
   - storable: {fileID: 11400000, guid: d3675901f60260d459a8687178e4dd87, type: 2}
-    count: 1
-  - storable: {fileID: 11400000, guid: 0e6aaa8c595bfe24798354026f76f4e5, type: 2}
-    count: 5
-  - storable: {fileID: 0}
     count: 0
-  - storable: {fileID: 0}
-    count: 0
-  - storable: {fileID: 0}
-    count: 0
+  - storable: {fileID: 11400000, guid: 2d40a09002e2dfb4ba0e3825695e2e20, type: 2}
+    count: 15
+  - storable: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
+    count: 943
+  - storable: {fileID: 11400000, guid: e979f2fce9ed4404084272b65f5db0ee, type: 2}
+    count: 971
+  - storable: {fileID: 11400000, guid: a81ba6478b30ad047be2c548b1b86a9f, type: 2}
+    count: 973
   - storable: {fileID: 0}
     count: 0
   - storable: {fileID: 0}

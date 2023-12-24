@@ -57,6 +57,14 @@ public class OrderElementUI : MonoBehaviour
 
             imageOrder.gameObject.SetActive(true);
             imageOrder.SetData(orderItem);
+            if(orderItem.quantity <= 0)
+            {
+                imageOrder.ItemIcon.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                imageOrder.ItemIcon.color = new Color(1, 1, 1, 0.5f);
+            }
         }
         _money.text = order._money.ToString("0");
     }
@@ -81,6 +89,7 @@ public class OrderElementUI : MonoBehaviour
     public void Show()
     {
         // Play feedback
+        this.gameObject.GetComponent<CanvasGroup>().alpha = 1;
     }
     public void Hide()
     {

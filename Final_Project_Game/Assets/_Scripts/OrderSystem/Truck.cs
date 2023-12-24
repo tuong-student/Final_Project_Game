@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using NOOD;
+using NOOD.Data;
 using NOOD.Sound;
 using UnityEngine;
 
@@ -29,7 +30,24 @@ public class Truck : Interactable
     {
         OrderManager.Instance.onPlayerCompleteOrder += PlayerCompleteOrder;
         OrderManager.Instance.onPlayerPressGO += Go;
-        DeactivateAllContainer();
+        if (GameManager.instance.gameStatus.isNewGame)
+            DataManager<TruckCapacity>.Clear();
+
+    }
+    void OnEnable()
+    {
+        _currentCapacity = DataManager<TruckCapacity>.Data.currentCapacity;
+        if (_currentCapacity > 0)
+        {
+            for(int i = 0; i < _currentCapacity; i++)
+            {
+                MMF_Player currentFB = _containerFBs[i];
+                if (currentFB != null)
+                    currentFB.PlayFeedbacks();             
+            }
+        }
+        else
+            DeactivateAllContainer();
     }
     #endregion
 
@@ -46,6 +64,7 @@ public class Truck : Interactable
     }
     private void Return()
     {
+        // Create money
         while(_moneyOnTrip > 0)
         {
             if(_moneyOnTrip / 10 > 0)
@@ -59,10 +78,12 @@ public class Truck : Interactable
                 _moneyOnTrip = 0;
             }
         }
+
         _currentCapacity = 0;
         DeactivateAllContainer();
         this.transform.DOMoveX(_inXPosition, 3).SetEase(Ease.OutCirc);
         _positionShakeFB.PlayFeedbacks();
+        OrderManager.Instance.ResetOrderNumber();
         SoundManager.PlaySound(NOOD.Sound.SoundEnum.Truck);
     }
     private void DeactivateAllContainer()
@@ -88,6 +109,7 @@ public class Truck : Interactable
         if(_currentCapacity == _maxCapacity)
         {
             Go();
+            OrderManager.Instance.onTruckGo?.Invoke();
         }
     }
     #endregion
@@ -104,6 +126,8 @@ public class Truck : Interactable
     public void AddOrder()
     {
         _currentCapacity += 1;
+        DataManager<TruckCapacity>.Data.currentCapacity = _currentCapacity;
+        DataManager<TruckCapacity>.QuickSave();
         UpdateTruck();
     }
     private void UpdateTruck()
@@ -113,4 +137,9 @@ public class Truck : Interactable
             currentFB.PlayFeedbacks();
     }
     #endregion
+}
+
+public class TruckCapacity
+{
+    public int currentCapacity;
 }

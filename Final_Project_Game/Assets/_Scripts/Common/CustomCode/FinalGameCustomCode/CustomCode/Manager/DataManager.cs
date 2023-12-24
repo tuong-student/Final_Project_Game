@@ -21,7 +21,6 @@ namespace NOOD.Data
             {
                 if (data == null)
                 {
-                    Debug.Log(typeof(T).Name);
                     QuickLoad();
                 }
                 return data;
@@ -34,9 +33,12 @@ namespace NOOD.Data
         /// </summary> 
         private static void QuickLoad()
         {
+            Debug.Log("QuickLoad");
             if (PlayerPrefs.HasKey(typeof(T).Name))
             {
+                Debug.Log("QuickLoad Has Key");
                 data = LoadDataFromPlayerPref(typeof(T).Name);
+                Debug.Log(data.GetType());
             }
 
             if (data == null)
@@ -135,6 +137,7 @@ namespace NOOD.Data
         // Return the data to default value
         public static void Clear()
         {
+            QuickLoad();
             data = default;
         }
     }

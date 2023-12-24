@@ -37,7 +37,7 @@ public class CropSprite : MonoBehaviour
     {
         if(!isReturnToOldColor)
         {
-            _circleSlider.ChangeColor(NoodyCustomCode.HexToColor("#ff140099"));
+            _circleSlider.ChangeColor(Color.red);
             UpdateCropSlider(damage, maxDamage);
         }
         else
@@ -54,7 +54,7 @@ public class CropSprite : MonoBehaviour
     }
     public void ReturnToOldColor()
     {
-        _circleSlider.ChangeColor(NoodyCustomCode.HexToColor("#ff140099"));
+        _circleSlider.ReturnOldColor();
     }
 
     public void DestroySelf()

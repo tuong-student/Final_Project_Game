@@ -232,7 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenTint: {fileID: 0}
-  cameraConfiner: {fileID: 0}
 --- !u!114 &7337921021933730994
 MonoBehaviour:
   m_ObjectHideFlags: 0

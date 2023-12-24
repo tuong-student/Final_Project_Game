@@ -27,6 +27,7 @@ public class OrderManager : MonoBehaviorInstance<OrderManager>
 {
     #region Events
     public Action onPlayerOpenOrderPanel;
+    public Action onTruckGo;            
     public Action onPlayerPressGO;
     public Action<int> onPlayerCompleteOrder;
     #endregion
@@ -61,15 +62,21 @@ public class OrderManager : MonoBehaviorInstance<OrderManager>
     public void CheckComplete()
     {
         List<Order> completeOrders = _orderList.FindAll(x => x.IsComplete == true);
-        foreach(Order order in completeOrders)
+        for(int i = 0; i < _orderList.Count; i++)
         {
-            if(completeOrderNumber < 4)
+            Order order = _orderList[i];
+            if(_orderList[i].IsComplete)
             {
+                _orderList.Remove(order);
                 completeOrderNumber++;
                 onPlayerCompleteOrder?.Invoke(order._money);
-                _orderList.Remove(order);
+                i--;
             }
         }
+    }
+    public void ResetOrderNumber()
+    {
+        completeOrderNumber = 0;
     }
     #endregion
 

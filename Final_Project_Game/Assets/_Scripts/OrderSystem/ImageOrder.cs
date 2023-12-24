@@ -26,7 +26,7 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     #endregion
 
     #region Public
-    public Image _itemIcon;
+    public Image ItemIcon;
     public TextMeshProUGUI _itemQuantity;
     public bool IsComplete => _orderItemData.quantity <= 0;
     #endregion
@@ -102,7 +102,7 @@ public class ImageOrder : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
     }
     private void UpdateUI()
     {
-        _itemIcon.sprite = _orderItemData.storable.IconImage;
+        ItemIcon.sprite = _orderItemData.storable.IconImage;
         _itemQuantity.text = _orderItemData.quantity.ToString("0");
     }
     #endregion

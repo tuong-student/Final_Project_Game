@@ -88,7 +88,8 @@ public class CircleSlider : MonoBehaviour
     private void UpdateUI()
     {
         _sliderContent.fillAmount = _value / _maxValue;
-        _popAnimation.PlayFeedbacks();
+        if(_popAnimation != null)
+            _popAnimation.PlayFeedbacks();
     }
     public void ReturnOldColor()
     {

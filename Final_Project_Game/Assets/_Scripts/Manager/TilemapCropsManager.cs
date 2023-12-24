@@ -123,14 +123,20 @@ public class TilemapCropsManager : TimeAgent
         if(growing)
         {
             cropTile.Renderer.sprite = cropTile.crop.sprites[cropTile.growStage-1];
+            if (cropTile.Complete)
+                cropTile.ActiveHarvestIcon(true);
+            else
+                cropTile.ActiveHarvestIcon(false);
             cropTile.ActiveCropSlider(true);
             cropTile.UpdateCropSlider();
+            Debug.Log("growing");
         }
         else
         {
             cropTile.Renderer.sprite = null;
             cropTile.ActiveCropSlider(false);
             cropTile.ActiveHarvestIcon(false);
+            Debug.Log("NotGrowing");
         }
 
     }
@@ -141,7 +147,8 @@ public class TilemapCropsManager : TimeAgent
         {
             CropTile cropTile = container.crops[i];
             VisualizeTile(cropTile);
-            cropTile.UpdateCropSlider();
+            if(cropTile.crop != null)
+                cropTile.UpdateCropSlider();
         }
     }
 
