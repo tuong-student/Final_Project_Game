@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2375473425744395948}
   - component: {fileID: 6044436553558957823}
   m_Layer: 5
-  m_Name: FieldCanvas
+  m_Name: FieldSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,6 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sliderContent: {fileID: 6878591883210656930}
   _popAnimation: {fileID: 3083471904258636457}
+  _canvasGroup: {fileID: 0}
 --- !u!114 &3083471904258636457
 MonoBehaviour:
   m_ObjectHideFlags: 0
