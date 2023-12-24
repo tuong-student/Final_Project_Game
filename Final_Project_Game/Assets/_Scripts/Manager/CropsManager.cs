@@ -12,7 +12,9 @@ public class CropTile
     public int growTimer;
     public int growStage;
     public Crop crop;
-    public SpriteRenderer renderer;
+    public SpriteRenderer Renderer => _cropSprite.Renderer;
+    public bool IsHasView => _cropSprite != null;
+    private CropSprite _cropSprite;
     private float damage;
     public float Damage
     {
@@ -23,6 +25,7 @@ public class CropTile
         set
         {
             damage = value;
+            _cropSprite.CropDamageHandler(!Complete, damage, 1, growTimer, crop.timeToGrow);
             OnDamage?.Invoke(this);
         }
     }
@@ -43,10 +46,36 @@ public class CropTile
         OnHarvest?.Invoke();
         growTimer = 0;
         growStage = 0;
-        crop = null;
-        renderer.gameObject.SetActive(false);
         Damage = 0;
+        crop = null;
         OnHarvest = null;
+        _cropSprite.Renderer.sprite = null;
+    }
+
+    public void SetView(CropSprite cropSprite)
+    {
+        _cropSprite = cropSprite;
+    }
+
+    public void ActiveCropSlider(bool value)
+    {
+        _cropSprite.ActiveCropSlider(value);
+    }
+    public void ActiveHarvestIcon(bool value)
+    {
+        _cropSprite.ActiveHarvestIcon(value);
+    }
+    public void UpdateCropSlider() 
+    {
+        if(Complete == false)
+        {
+            _cropSprite.ReturnToOldColor();
+            _cropSprite.UpdateCropSlider(growTimer, crop.timeToGrow);
+        }
+    }
+    public void DestroyView()
+    {
+        _cropSprite.DestroySelf();
     }
 }
 

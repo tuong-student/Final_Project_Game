@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: SeededTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: cdd3802b2839b31409430e4f03c49fe4, type: 3}
+  m_Sprite: {fileID: -1389111151, guid: f40397b8b9bb9a34f9a900d874a7c0de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

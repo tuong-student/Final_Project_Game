@@ -9,7 +9,7 @@ public class TilemapCropsManager : TimeAgent
     [SerializeField] TileBase plowed;
     [SerializeField] TileBase seeded;
     private Tilemap targetTilemap;
-    [SerializeField] GameObject cropsSpritePrefab;
+    [SerializeField] CropSprite cropsSpritePrefab;
     [SerializeField] CropsContainer container;
     [SerializeField] GameObject harvestIconPref;
 
@@ -20,20 +20,14 @@ public class TilemapCropsManager : TimeAgent
         onTimeTick += Tick;
         Init();
         VisualizeMap();
-        if(GameManager.instance.gameStatus.isNewGame)
-        {
-            container.crops.Clear();
-            container.ClearDatas();
-        }
     }
 
     private void OnDestroy()
     {
         for(int i = 0;i< container.crops.Count; i++)
         {
-            container.crops[i].renderer = null;
+            container.crops[i].DestroyView();
         }
-        container.ClearDatas();
     }
 
     public CropsContainer GetCropContainer()
@@ -55,14 +49,11 @@ public class TilemapCropsManager : TimeAgent
                 continue;
             }
             cropTile.growTimer += 1;
-            container.UpdateCropCircleSlider(cropTile);
-
-            Debug.Log("GrowStage: " + cropTile.growStage);
+            cropTile.UpdateCropSlider();
 
             if (cropTile.growTimer >= cropTile.crop.growthStageTime[cropTile.growStage])
             {
-                cropTile.renderer.gameObject.SetActive(true);
-                cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
+                cropTile.Renderer.sprite = cropTile.crop.sprites[cropTile.growStage];
                 cropTile.growStage += 1;
                 cropTile.growStage = Mathf.Clamp(cropTile.growStage, 0, cropTile.crop.growthStageTime.Count - 1);
             }
@@ -70,12 +61,7 @@ public class TilemapCropsManager : TimeAgent
             if (cropTile.Complete)
             {
                 cropTile.Damage += 0.05f;
-                if(container.IsDisplayHarvestIconAt(cropTile) == false)
-                {
-                    Debug.Log("im done");
-                    CreateHarvestIcon(cropTile);
-                    cropTile.OnHarvest = () => container.DestroyHarvestIcon(cropTile);
-                }
+                cropTile.ActiveHarvestIcon(true);
                 continue;
             }
         }
@@ -85,17 +71,8 @@ public class TilemapCropsManager : TimeAgent
     {
         cropTile.Harvested();
         targetTilemap.SetTile(cropTile.position, plowed);
-        container.SetDisplayHarvestIconValue(cropTile, false);
-        container.ShowCropCircleSlider(cropTile, false);
-    }
-
-    public void CreateHarvestIcon(CropTile cropTile)
-    {
-        GameObject icon = Instantiate(harvestIconPref, cropTile.worldPosition, Quaternion.identity);
-        icon.transform.localScale = Vector3.one * 0.25f;
-
-        container.SetDisplayHarvestIconValue(cropTile, true);
-        container.AddHarvestIconDic(cropTile, icon);
+        cropTile.ActiveCropSlider(false);
+        cropTile.ActiveHarvestIcon(false);
     }
 
     public bool Check(Vector3Int position)
@@ -108,6 +85,7 @@ public class TilemapCropsManager : TimeAgent
         if (Check(position) == true)
             return;
 
+        Debug.Log("Plow");
         CreatePlowedTile(position);
     }
 
@@ -117,29 +95,43 @@ public class TilemapCropsManager : TimeAgent
         if (tile == null)
             return;
 
+        Debug.Log("Seed");
+
         targetTilemap.SetTile(position, seeded);
         tile.crop = toSeed;
-        container.AddCropCircleSlider(tile);
+        tile.ActiveHarvestIcon(false);
+        tile.ActiveCropSlider(true);
+        tile.UpdateCropSlider();
     }
 
     public void VisualizeTile(CropTile cropTile)
     {
         targetTilemap.SetTile(cropTile.position, cropTile.crop != null ? seeded : plowed);
-        if (cropTile.renderer == null)
+        if (cropTile.IsHasView == false)
         {
-            GameObject cropSpriteGO = Instantiate(cropsSpritePrefab, transform);
-            cropSpriteGO.transform.position = targetTilemap.CellToWorld(cropTile.position);
-            cropSpriteGO.transform.position = new Vector3(cropSpriteGO.transform.position.x + 0.5f, cropSpriteGO.transform.position.y + 0.5f, cropSpriteGO.transform.position.z);
-            cropSpriteGO.transform.position -= Vector3.forward * 0.01f;
+            CropSprite cropSprite = Instantiate(cropsSpritePrefab, transform);
+            cropSprite.transform.position = targetTilemap.CellToWorld(cropTile.position);
+            cropSprite.transform.position = new Vector3(cropSprite.transform.position.x + 0.5f, cropSprite.transform.position.y + 0.5f, cropSprite.transform.position.z);
+            cropSprite.transform.position -= Vector3.forward * 0.01f;
             
-            cropTile.renderer = cropSpriteGO.GetComponent<SpriteRenderer>();
+            cropTile.SetView(cropSprite);
             cropTile.worldPosition = targetTilemap.CellToWorld(cropTile.position);
         }
         
         bool growing = cropTile.crop != null && cropTile.growTimer >= cropTile.crop.growthStageTime[0];
-        cropTile.renderer.gameObject.SetActive(growing);
+
         if(growing)
-            cropTile.renderer.sprite = cropTile.crop.sprites[cropTile.growStage-1];
+        {
+            cropTile.Renderer.sprite = cropTile.crop.sprites[cropTile.growStage-1];
+            cropTile.ActiveCropSlider(true);
+            cropTile.UpdateCropSlider();
+        }
+        else
+        {
+            cropTile.Renderer.sprite = null;
+            cropTile.ActiveCropSlider(false);
+            cropTile.ActiveHarvestIcon(false);
+        }
 
     }
 
@@ -147,8 +139,9 @@ public class TilemapCropsManager : TimeAgent
     {
         for (int i = 0; i < container.crops.Count; i++)
         {
-            VisualizeTile(container.crops[i]);
-            container.UpdateCropCircleSlider(container.crops[i]);
+            CropTile cropTile = container.crops[i];
+            VisualizeTile(cropTile);
+            cropTile.UpdateCropSlider();
         }
     }
 
