@@ -1,4 +1,5 @@
 using Game;
+using NOOD;
 using NOOD.SerializableDictionary;
 using NOOD.Sound;
 using System.Collections;
@@ -62,7 +63,7 @@ public class GameManager: MonoBehaviour
         playerManager.AddDefaultItems(_defaultItems.Dictionary);        
         
         placeableObjectsContainer.ClearAllObj();
-        gameStatus.isNewGame = false;
         gameStatus.nameScene = "2DMainGame";
+        NoodyCustomCode.StartDelayFunction(() => gameStatus.isNewGame = false, 2f);
     }
 }

@@ -133,8 +133,10 @@ public class TilemapCropsManager : TimeAgent
         }
         else
         {
+            if (cropTile.crop != null) cropTile.ActiveCropSlider(true);
+            else cropTile.ActiveCropSlider(false);
+
             cropTile.Renderer.sprite = null;
-            cropTile.ActiveCropSlider(false);
             cropTile.ActiveHarvestIcon(false);
             Debug.Log("NotGrowing");
         }

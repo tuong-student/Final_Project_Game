@@ -119,9 +119,12 @@ namespace NOOD.Sound
             // Add to list when disable
             NoodyCustomCode.StartDelayFunction(() =>
             {
-                soundAudioPayer.gameObject.SetActive(false);
-                enableSoundPlayers.Remove(soundPlayer);
-                disableSoundPlayers.Add(soundPlayer);
+                if(soundAudioPayer != null)
+                {
+                    soundAudioPayer.gameObject.SetActive(false);
+                    enableSoundPlayers.Remove(soundPlayer);
+                    disableSoundPlayers.Add(soundPlayer);
+                }
             }, audioClip.length);
         }
         /// <summary>

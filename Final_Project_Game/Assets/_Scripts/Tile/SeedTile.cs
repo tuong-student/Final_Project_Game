@@ -12,11 +12,10 @@ public class SeedTile : ToolAction
         if (!tileMapReadController.cropsManager.Check(gridPosition)) 
             return false;
         tileMapReadController.cropsManager.Seed(gridPosition, cropSO.crop);
-        PlayerManager.Instance.RemoveFromInventory(storable, 1);
         return true;
     }
     public override void OnItemUsed(Storable usedItem, ItemContainer inventory)
     {
-        inventory.Remove(usedItem);
+        PlayerManager.Instance.RemoveFromInventory(usedItem, 1);
     }
 }

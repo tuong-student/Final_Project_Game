@@ -22,10 +22,13 @@ namespace NOOD
             {
                 _initObject = new GameObject("DelayInitObject");
                 _delayActions = new List<DelayAction>();
+                DontDestroyOnLoad(_initObject);
             }
             GameObject delayObject = new GameObject("DelayObject");
             DelayAction delayAction = delayObject.AddComponent<DelayAction>();
             _delayActions.Add(delayAction);
+            DontDestroyOnLoad(delayObject);
+
             return delayAction;
         }
         public static void StopDelayFunction(string functionName)

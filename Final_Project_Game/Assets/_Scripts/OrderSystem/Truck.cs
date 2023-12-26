@@ -21,8 +21,30 @@ public class Truck : Interactable
 
     #region Private
     private int _maxCapacity = 4;
-    private int _currentCapacity = 0;
-    private int _moneyOnTrip = 0;
+    private int _CurrentCapacity 
+    {
+        get 
+        {
+            return DataManager<TruckCapacity>.Data.currentCapacity;
+        }
+        set 
+        {
+            DataManager<TruckCapacity>.Data.currentCapacity = value;
+            DataManager<TruckCapacity>.QuickSave();
+        }
+    }
+    private int _MoneyOnTrip
+    {
+        get 
+        {
+            return DataManager<TruckCapacity>.Data.moneyOnTrip;
+        }
+        set
+        {
+            DataManager<TruckCapacity>.Data.moneyOnTrip = value;
+            DataManager<TruckCapacity>.QuickSave();
+        }
+    }
     #endregion
 
     #region Unity functions
@@ -31,15 +53,14 @@ public class Truck : Interactable
         OrderManager.Instance.onPlayerCompleteOrder += PlayerCompleteOrder;
         OrderManager.Instance.onPlayerPressGO += Go;
         if (GameManager.instance.gameStatus.isNewGame)
-            DataManager<TruckCapacity>.Clear();
+            DataManager<TruckCapacity>.QuickClear();
 
     }
     void OnEnable()
     {
-        _currentCapacity = DataManager<TruckCapacity>.Data.currentCapacity;
-        if (_currentCapacity > 0)
+        if (_CurrentCapacity > 0)
         {
-            for(int i = 0; i < _currentCapacity; i++)
+            for(int i = 0; i < _CurrentCapacity; i++)
             {
                 MMF_Player currentFB = _containerFBs[i];
                 if (currentFB != null)
@@ -49,12 +70,17 @@ public class Truck : Interactable
         else
             DeactivateAllContainer();
     }
+    void OnDisable()
+    {
+        NoodyCustomCode.UnSubscribeAllEvent(OrderManager.Instance, this);
+    }
     #endregion
 
     #region Go and Return
     private void Go()
     {
-        _positionShakeFB.PlayFeedbacks();
+        if(_positionShakeFB != null)
+            _positionShakeFB.PlayFeedbacks();
         NoodyCustomCode.StartDelayFunction(() =>
         {
             this.transform.DOMoveX(_outXPosition, 3).SetEase(Ease.InCirc);
@@ -65,21 +91,22 @@ public class Truck : Interactable
     private void Return()
     {
         // Create money
-        while(_moneyOnTrip > 0)
+        while(_MoneyOnTrip > 0)
         {
-            if(_moneyOnTrip / 10 > 0)
+            if(_MoneyOnTrip / 10 > 0)
             {
-                _moneyOnTrip /= 10;
+                _MoneyOnTrip /= 10;
                 ItemSpawnManager.instance.SpawnItem(NoodyCustomCode.GetRandomPointInsideCollider2D(_truckBox), this.transform, _coinItem, 10);
             }
             else
             {
-                ItemSpawnManager.instance.SpawnItem(NoodyCustomCode.GetRandomPointInsideCollider2D(_truckBox), this.transform, _coinItem, _moneyOnTrip);
-                _moneyOnTrip = 0;
+                ItemSpawnManager.instance.SpawnItem(NoodyCustomCode.GetRandomPointInsideCollider2D(_truckBox), this.transform, _coinItem, _MoneyOnTrip);
+                _MoneyOnTrip = 0;
             }
         }
 
-        _currentCapacity = 0;
+        _CurrentCapacity = 0;
+
         DeactivateAllContainer();
         this.transform.DOMoveX(_inXPosition, 3).SetEase(Ease.OutCirc);
         _positionShakeFB.PlayFeedbacks();
@@ -103,10 +130,10 @@ public class Truck : Interactable
     }
     public void PlayerCompleteOrder(int moneyOfOrder)
     {
-        _moneyOnTrip += moneyOfOrder;
+        _MoneyOnTrip += moneyOfOrder;
         AddOrder();
 
-        if(_currentCapacity == _maxCapacity)
+        if(_CurrentCapacity == _maxCapacity)
         {
             Go();
             OrderManager.Instance.onTruckGo?.Invoke();
@@ -125,14 +152,12 @@ public class Truck : Interactable
     #region Add order to truck
     public void AddOrder()
     {
-        _currentCapacity += 1;
-        DataManager<TruckCapacity>.Data.currentCapacity = _currentCapacity;
-        DataManager<TruckCapacity>.QuickSave();
+        _CurrentCapacity += 1;
         UpdateTruck();
     }
     private void UpdateTruck()
     {
-        MMF_Player currentFB = _containerFBs[_currentCapacity - 1];
+        MMF_Player currentFB = _containerFBs[_CurrentCapacity - 1];
         if (currentFB != null)
             currentFB.PlayFeedbacks();
     }
@@ -142,4 +167,5 @@ public class Truck : Interactable
 public class TruckCapacity
 {
     public int currentCapacity;
+    public int moneyOnTrip;
 }

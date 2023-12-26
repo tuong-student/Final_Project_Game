@@ -74,7 +74,6 @@ public class ShopController : MonoBehaviorInstance<ShopController>
     #region Sell
     public void Sell(SellOption sellOption)
     {
-
         switch (sellOption)
         {
             case SellOption.Prepare:
@@ -142,22 +141,22 @@ public class ShopController : MonoBehaviorInstance<ShopController>
                 break;
             case BuyOption.One:
                 Debug.Log("Buy 1");
-                Buy1(_currentItemSlot.storable as ItemSO);
+                Buy1(_currentItemSlot.storable);
                 break;
             case BuyOption.Ten:
                 Debug.Log("Buy 10");
-                Buy10(_currentItemSlot.storable as ItemSO);
+                Buy10(_currentItemSlot.storable);
                 break;
             case BuyOption.OneHundred:
                 Debug.Log("Buy 100");
-                Buy100(_currentItemSlot.storable as ItemSO);
+                Buy100(_currentItemSlot.storable);
                 break;
         }
         _playerInventoryMenu.UpdateUI();
     }
-    private void Buy1(ItemSO item)
+    private void Buy1(Storable item)
     {
-        int cost = item.price;
+        int cost = item.Price;
         if(GetMoney() >= cost)
         {
             _playerInventoryMenu.ItemContainer.Add(item, 1);
@@ -168,9 +167,9 @@ public class ShopController : MonoBehaviorInstance<ShopController>
             WarningUI.Instance.ShowWarning(WarningType.NotEnoughMoney);
         }
     }
-    private void Buy10(ItemSO item)
+    private void Buy10(Storable item)
     {
-        int cost = item.price * 10;
+        int cost = item.Price * 10;
         if(GetMoney() >= cost)
         {
             _playerInventoryMenu.ItemContainer.Add(item, 10);
@@ -181,9 +180,9 @@ public class ShopController : MonoBehaviorInstance<ShopController>
             WarningUI.Instance.ShowWarning(WarningType.NotEnoughMoney);
         }
     }
-    private void Buy100(ItemSO item)
+    private void Buy100(Storable item)
     {
-        int cost = item.price * 100;
+        int cost = item.Price * 100;
         if(GetMoney() >= cost)
         {
             _playerInventoryMenu.ItemContainer.Add(item, 100);
