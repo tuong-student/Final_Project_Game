@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9751579a27bfcf649afaaf2ed573f152, type: 3}
   m_Name: AubabaCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 30
+  timeToGrow: 10
   yield: {fileID: 11400000, guid: 27ffaced800c246418d521230c64b2c3, type: 2}
   count: 6
   sprites:

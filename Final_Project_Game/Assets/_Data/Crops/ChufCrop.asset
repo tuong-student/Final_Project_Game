@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9751579a27bfcf649afaaf2ed573f152, type: 3}
   m_Name: ChufCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 30
+  timeToGrow: 50
   yield: {fileID: 11400000, guid: a81ba6478b30ad047be2c548b1b86a9f, type: 2}
   count: 6
   sprites:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9751579a27bfcf649afaaf2ed573f152, type: 3}
   m_Name: PeanksCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 30
+  timeToGrow: 11
   yield: {fileID: 11400000, guid: e35f0d578c835b94196caf83e4fac160, type: 2}
   count: 6
   sprites:

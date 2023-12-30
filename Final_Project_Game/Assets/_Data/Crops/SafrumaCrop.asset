@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9751579a27bfcf649afaaf2ed573f152, type: 3}
   m_Name: SafrumaCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 30
+  timeToGrow: 60
   yield: {fileID: 11400000, guid: 62a893a9cc6417645be95e90bc5cc555, type: 2}
   count: 6
   sprites:

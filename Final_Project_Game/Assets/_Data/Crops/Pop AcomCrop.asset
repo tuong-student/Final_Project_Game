@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9751579a27bfcf649afaaf2ed573f152, type: 3}
   m_Name: Pop AcomCrop
   m_EditorClassIdentifier: 
-  timeToGrow: 30
+  timeToGrow: 55
   yield: {fileID: 11400000, guid: e97efbe83c26a65408883fc6785fbda4, type: 2}
   count: 6
   sprites:

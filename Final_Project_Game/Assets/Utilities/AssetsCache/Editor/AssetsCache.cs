@@ -286,8 +286,10 @@ namespace Utilities.AssetsCache
                     var lastPreviewRect = GUILayoutUtility.GetLastRect();
                     if (lastPreviewRect.Contains(Event.current.mousePosition))
                     {
+                        Debug.Log("MouseDown");
                         if (Event.current.type == EventType.MouseDown)
                         {
+                            Debug.Log("MouseDownAgain");
                             isDrag = true;
                             ignore = true;
                             GUIUtility.hotControl = 0;

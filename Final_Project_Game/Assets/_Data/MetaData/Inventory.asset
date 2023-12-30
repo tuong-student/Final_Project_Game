@@ -21,14 +21,14 @@ MonoBehaviour:
     count: 0
   - storable: {fileID: 11400000, guid: d3675901f60260d459a8687178e4dd87, type: 2}
     count: 0
-  - storable: {fileID: 11400000, guid: 2d40a09002e2dfb4ba0e3825695e2e20, type: 2}
-    count: 15
-  - storable: {fileID: 11400000, guid: bad4fd9f51b58044fa495883780e2426, type: 2}
-    count: 943
-  - storable: {fileID: 11400000, guid: e979f2fce9ed4404084272b65f5db0ee, type: 2}
-    count: 971
-  - storable: {fileID: 11400000, guid: a81ba6478b30ad047be2c548b1b86a9f, type: 2}
-    count: 973
+  - storable: {fileID: 11400000, guid: b32ef40573ffc44c9a990fea9a8b8640, type: 2}
+    count: 22
+  - storable: {fileID: 11400000, guid: 8f7d75d85ce4703459ca269e785df59f, type: 2}
+    count: 2000
+  - storable: {fileID: 11400000, guid: cafefda0a0ac43946b2a7f93fd7ccdf9, type: 2}
+    count: 1
+  - storable: {fileID: 11400000, guid: eadb90fb97716ab41a9789ebad6e536a, type: 2}
+    count: 11
   - storable: {fileID: 0}
     count: 0
   - storable: {fileID: 0}
