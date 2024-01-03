@@ -47,6 +47,7 @@ namespace Game
         }
         private void Move()
         {
+            _playerMove.Normalize();
             _rb.velocity = _playerMove * _speed.Value;
             if(_rb.velocity != Vector2.zero)
             {

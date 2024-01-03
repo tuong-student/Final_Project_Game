@@ -13,11 +13,14 @@ public class ScriptableObjectToolEditor : EditorWindow
 
     #region private variable
     private Dictionary<FoldHeader, List<ScriptableObjectData>> _scriptableObjectDic = new Dictionary<FoldHeader, List<ScriptableObjectData>>();
+    private Dictionary<FoldHeader, List<ScriptableObjectData>> _filterDic = new Dictionary<FoldHeader, List<ScriptableObjectData>>();
     private List<ScriptableObjectData> _allObjects = new List<ScriptableObjectData>();
     private EditorWindow _window;
     private List<ScriptableObjectData> _scriptableObjectDatas = new List<ScriptableObjectData>();
+    private List<FoldHeader> _loadedFoldHeaderData = new List<FoldHeader>();
     private Vector2 _scrollViewPosition;
     private bool _isGettingData;
+    private string _searchString = "";
     #endregion
 
     #region Show
@@ -47,9 +50,17 @@ public class ScriptableObjectToolEditor : EditorWindow
     private void OnGUI()
     {
         if (_isGettingData) return;
+
+        // update draw zone
+        DrawSearchZone();
         DrawFoldGroup();
         UpdateDragAndDrop();
         SaveState();
+    }
+    private void Update()
+    {
+        // update data zone
+        FilterData();
     }
     #endregion
 
@@ -68,28 +79,68 @@ public class ScriptableObjectToolEditor : EditorWindow
         }
 
         // Split into types of ScriptableObject
-        SplitData();
-    }
-
-    private void SplitData()
-    {
-        _scriptableObjectDic.Clear();
-        while(_allObjects.Count > 0)
-        {
-            ScriptableObjectData firstObject = _allObjects[0];
-            List<ScriptableObjectData> datas = _allObjects.Where(x => x.Type == firstObject.Type).ToList();
-            foreach(var data in datas)
-            {
-                _allObjects.Remove(data);
-            }
-            _scriptableObjectDic.Add(new FoldHeader(firstObject.Type, false), datas);
-        }
-        _scriptableObjectDic = _scriptableObjectDic.OrderBy(pair => pair.Key.Name).ToDictionary(pair => pair.Key, pair => pair.Value);
+        Debug.Log(_allObjects.Count);
+        SplitData(_allObjects);
         _isGettingData = false;
+    }
+    private void SplitData(List<ScriptableObjectData> scriptableObjectDatas)
+    {
+        // Split into Type and list
+        Dictionary<Type, List<ScriptableObjectData>> tempDic = new Dictionary<Type, List<ScriptableObjectData>>();
+        int index = 0;
+        while(index < scriptableObjectDatas.Count)
+        {
+            ScriptableObjectData data = scriptableObjectDatas[index];
+
+            // Add to dictionary if can
+            if(tempDic.TryGetValue(data.Type, out List<ScriptableObjectData> list))
+            {
+                list.Add(data);   
+            }            
+            else
+            {
+                var l = new List<ScriptableObjectData>
+                {
+                    data
+                };
+                tempDic.Add(data.Type, l);
+            }
+            index++;
+        }
+
+        // convert to FoldHeader and list 
+        _scriptableObjectDic.Clear();
+        _scriptableObjectDic = tempDic.ToDictionary(pair => new FoldHeader(pair.Key, false), pair => pair.Value);
+        _scriptableObjectDic = _scriptableObjectDic.OrderBy(pair => pair.Key.Name).ToDictionary(pair => pair.Key, pair => pair.Value);
+        ApplyLoadedData();
+    }
+    private void FilterData()
+    {
+        if (_searchString != "")
+        {
+            List<ScriptableObjectData> filterList = _allObjects.Where(x => x.Name.Contains(_searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            SplitData(filterList);
+        }
+        else
+            SplitData(_allObjects);
     }
     #endregion
 
     #region Draw functions
+    private void DrawSearchZone()
+    {
+        GUILayout.BeginHorizontal(GUI.skin.FindStyle("Toolbar"));
+        {
+            _searchString = GUILayout.TextField(_searchString, GUI.skin.FindStyle("ToolbarSearchTextField"));
+            if (GUILayout.Button("", GUI.skin.FindStyle("ToolbarSearchCancelButton")))
+            {
+                // Remove focus if cleared
+                _searchString = "";
+                GUI.FocusControl(null);
+            }
+        }
+        GUILayout.EndHorizontal();
+    }
     private void DrawFoldGroup()
     {
         _scrollViewPosition = GUILayout.BeginScrollView(_scrollViewPosition);
@@ -102,6 +153,7 @@ public class ScriptableObjectToolEditor : EditorWindow
                     pairCopy.Key.IsFold = EditorGUILayout.Foldout(pairCopy.Key.IsFold, pairCopy.Key.Name, true);
 
                     DrawAddButton(pairCopy.Key.Type, "Create new Scriptable with type in a new folder");
+                    ChangeLoadedData(pairCopy.Key);
                 }
                 GUILayout.EndHorizontal();
                 if(pairCopy.Key.IsFold)
@@ -187,19 +239,30 @@ public class ScriptableObjectToolEditor : EditorWindow
         {
             json = reader.ReadToEnd();
         }
-        List<FoldHeader> foldHeaders = JsonConvert.DeserializeObject<List<FoldHeader>>(json);
+        _loadedFoldHeaderData = JsonConvert.DeserializeObject<List<FoldHeader>>(json);
 
         // Apply data
+        ApplyLoadedData();
+    }
+    private void ApplyLoadedData()
+    {
         foreach(var pair in _scriptableObjectDic)
         {
-            if(foldHeaders.Exists(x => x.Name == pair.Key.Name))
+            if(_loadedFoldHeaderData.Exists(x => x.Name == pair.Key.Name))
             {
-                FoldHeader foldHeader = foldHeaders.First(x => x.Name == pair.Key.Name);
+                FoldHeader foldHeader = _loadedFoldHeaderData.First(x => x.Name == pair.Key.Name);
                 if(foldHeader != null)
                 {
                     pair.Key.IsFold = foldHeader.IsFold;
                 }
             }
+        }
+    }
+    private void ChangeLoadedData(FoldHeader changedHeader)
+    {
+        if(_loadedFoldHeaderData.Any(x => x.Compare(changedHeader)))
+        {
+            _loadedFoldHeaderData.First(x => x.Compare(changedHeader)).IsFold = changedHeader.IsFold;
         }
     }
     #endregion

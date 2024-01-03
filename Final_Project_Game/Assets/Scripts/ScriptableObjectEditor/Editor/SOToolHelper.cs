@@ -94,6 +94,14 @@ public class FoldHeader : IComparable
         Type = type;
     }
 
+    public bool Compare(FoldHeader foldHeader)
+    {
+        if(foldHeader.Name == this.Name && foldHeader.Type == this.Type)
+        {
+            return true;
+        }
+        return false;
+    }
     public int CompareTo(object obj)
     {
         if(obj.GetType() != typeof(FoldHeader))
